@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import NavBar from "../Components/layout/NavBar";
 import Footer from "../Components/layout/Footer";
 import BrandsSlider from "../Components/slideri/BrandsSlider";
+import { Helmet } from 'react-helmet';
 
 
 function Home() {
@@ -28,6 +29,9 @@ function Home() {
 
     return (
         <div>
+            <Helmet>
+                <title>Home | Tech Store</title>
+            </Helmet>
             <NavBar />
             <div className={classes.banner}>
                 <div className={classes.titulliPershkrim}>

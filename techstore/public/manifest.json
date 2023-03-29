@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Tech Store",
+  "name": "TechStore eshte nje lloj e-Commerce, nje Dyqan Online per paisje Teknologjike.",
   "icons": [
     {
       "src": "favicon.ico",

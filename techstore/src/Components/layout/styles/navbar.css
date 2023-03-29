@@ -1,0 +1,25 @@
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    padding: 0 5%;
+}
+
+.nav-links, .auth{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 2em 0;
+}
+
+.logo img{
+    width: 5.3em;
+}
+
+
+
+
+
+

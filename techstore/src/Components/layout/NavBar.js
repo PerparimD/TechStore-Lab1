@@ -1,14 +1,12 @@
 import React from "react";
 import "./styles/navbar.css";
-import logo from "../../assets/web/favicon.ico";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <>
       <nav className="nav">
         <div className="logo">
-          <Link to='/'><img src={logo} alt="" /></Link>
+          <Link to='/'><img src={`${process.env.PUBLIC_URL}/img/web/techstoreLogoWhiteSquare.png`} alt="" /></Link>
         </div>
         <ul className="nav-links">
           <Link to='/'><li className="nav-link">Home</li></Link>
@@ -20,7 +18,6 @@ const NavBar = () => {
           <p>Sign Up</p>
         </div>
       </nav>
-    </>
   );
 };
 

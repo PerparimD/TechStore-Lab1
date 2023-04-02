@@ -13,7 +13,7 @@ function BrandsSlider(props) {
     useEffect(() => {
         const shfaqKompanit = async () => {
             try {
-                const kopmania = await axios.get("https://localhost:7232/api/Kompania/shfaqKompanit");
+                const kopmania = await axios.get("https://localhost:7285/api/Kompania/shfaqKompanit");
                 setKompanit(kopmania.data);
             } catch (err) {
                 console.log(err);

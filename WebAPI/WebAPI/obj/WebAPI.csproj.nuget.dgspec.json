@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\TechStore-Lab1\\WebAPI\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\Admin\\OneDrive\\Desktop\\Tech Store\\WebAPI\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\TechStore-Lab1\\WebAPI\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\Admin\\OneDrive\\Desktop\\Tech Store\\WebAPI\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\TechStore-Lab1\\WebAPI\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Desktop\\Tech Store\\WebAPI\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "D:\\GitHub\\TechStore-Lab1\\WebAPI\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\rkycy\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\TechStore-Lab1\\WebAPI\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Desktop\\Tech Store\\WebAPI\\WebAPI\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Desktop\\Tech Store\\WebAPI\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rkycy\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.4, )"
@@ -54,9 +54,21 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[7.0.2, )"
             }
           },
           "imports": [
@@ -78,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

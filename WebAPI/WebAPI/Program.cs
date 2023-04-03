@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
+using Newtonsoft.Json.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +14,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+
 builder.Services.AddDbContext<TechStoreDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Conn")));
+
 
 builder.Services.AddCors(opt =>
 {

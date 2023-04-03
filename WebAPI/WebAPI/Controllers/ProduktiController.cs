@@ -23,10 +23,10 @@ namespace TechStoreWebAPI.Controllers
                 .OrderByDescending(x => x.ProduktiId)
                 .Take(15)
                 .Select(x => new {
-                x.ProduktiId,
-                x.EmriProduktit,
-                x.FotoProduktit,
-                x.QmimiProduktit,
+                    x.ProduktiId,
+                    x.EmriProduktit,
+                    x.FotoProduktit,
+                    x.QmimiProduktit,
                 })
                 .ToListAsync();
 
@@ -42,6 +42,45 @@ namespace TechStoreWebAPI.Controllers
 
             return CreatedAtAction("Get", produkti.ProduktiId, produkti);
 
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] Produkti p)
+        {
+            var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
+
+            if (produkti == null)
+            {
+                return NotFound();
+            }
+
+            //Update message properties
+            produkti.EmriProduktit = p.EmriProduktit;
+            produkti.Pershkrimi = p.Pershkrimi;
+            produkti.FotoProduktit = p.FotoProduktit;
+            produkti.QmimiProduktit = p.QmimiProduktit;
+            produkti.Kategoria = p.Kategoria;
+            produkti.Kompania = p.Kompania;
+
+
+            _context.Produktis.Update(produkti);
+            await _context.SaveChangesAsync();
+
+            return Ok(produkti);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
+
+            if (produkti == null)
+                return BadRequest("Invalid id");
+
+            _context.Produktis.Remove(produkti);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

@@ -16,8 +16,16 @@ namespace TechStoreWebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("Products")]
+        public async Task<ActionResult> Get()
+        {
+            var produktet = await _context.Produktis.ToListAsync();
+            return Ok(produktet);
+        }
+
+        [HttpGet]
         [Route("15ProduktetMeTeFundit")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get15Produkte()
         {
             var Kthe15TeFundit = await _context.Produktis
                 .OrderByDescending(x => x.ProduktiId)

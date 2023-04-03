@@ -1,0 +1,18 @@
+.flex-column{
+    margin-bottom: 1em;
+    padding: 1em;
+}
+.nav-bc-color{
+    background-color:#009879;
+}
+
+
+.colum{
+    width: 7em;
+    margin: 0.01em;
+    padding: 0.4em;
+}
+
+.td{
+    width: 7em;
+}

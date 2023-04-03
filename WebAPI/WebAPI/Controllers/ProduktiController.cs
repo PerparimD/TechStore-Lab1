@@ -19,7 +19,7 @@ namespace TechStoreWebAPI.Controllers
         [Route("15ProduktetMeTeFundit")]
         public async Task<IActionResult> Get()
         {
-            var top10 = await _context.Produktis
+            var Kthe15TeFundit = await _context.Produktis
                 .OrderByDescending(x => x.ProduktiId)
                 .Take(15)
                 .Select(x => new {
@@ -30,7 +30,7 @@ namespace TechStoreWebAPI.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(top10);
+            return Ok(Kthe15TeFundit);
         }
 
         [HttpPost]

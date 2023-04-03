@@ -51,19 +51,11 @@ D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\System.Security.Permissi
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\System.Text.Json.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\System.Windows.Extensions.dll
-D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.csproj.AssemblyReference.cache
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.GeneratedMSBuildEditorConfig.editorconfig
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.AssemblyInfoInputs.cache
@@ -179,3 +171,18 @@ C:\Users\Admin\OneDrive\Desktop\Tech Store\WebAPI\WebAPI\bin\Debug\net6.0\runtim
 C:\Users\Admin\OneDrive\Desktop\Tech Store\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Admin\OneDrive\Desktop\Tech Store\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Admin\OneDrive\Desktop\Tech Store\WebAPI\WebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\System.Data.SqlClient.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll

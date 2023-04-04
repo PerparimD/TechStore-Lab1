@@ -6,6 +6,7 @@ import Tab from 'react-bootstrap/Tab';
 import "./AdminDashboard.css";
 import ProductTables from '../produktet/ProductTables';
 import { useState } from 'react';
+import TabelaEKompanive from '../kompanit/TabelaEKompanive';
 
 // import Sonnet from '../../components/Sonnet'
 
@@ -36,7 +37,7 @@ const AdminDashboard = () => {
               <Nav.Link className='colum' eventKey="first" style={key === "first" ? ActiveStyle : inActiveStyle} >Products</Nav.Link>
             </Nav.Item>
             <Nav.Item >
-              <Nav.Link className='colum' eventKey="second" style={key === "second" ? ActiveStyle : inActiveStyle} >Test</Nav.Link>
+              <Nav.Link className='colum' eventKey="second" style={key === "second" ? ActiveStyle : inActiveStyle} >Kompanit</Nav.Link>
             </Nav.Item>
           </Nav>
         </Col>
@@ -47,7 +48,7 @@ const AdminDashboard = () => {
             </Tab.Pane>
 
             <Tab.Pane eventKey="second">
-              test
+              <TabelaEKompanive/>
             </Tab.Pane>
           </Tab.Content>
         </Col>

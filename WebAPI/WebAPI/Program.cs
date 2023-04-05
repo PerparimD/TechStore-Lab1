@@ -4,8 +4,14 @@ using WebAPI.Models;
 using Newtonsoft.Json.Serialization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Load the configuration
+var configBuilder = new ConfigurationBuilder()
+    .AddJsonFile("connectionstring.json")
+    .Build();
 
 // Add services to the container.
 
@@ -24,9 +30,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddControllers().AddJsonOptions(x =>
 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-
-builder.Services.AddDbContext<TechStoreDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Conn")));
-
+// Setup DbContext using the configuration
+builder.Services.AddDbContext<TechStoreDbContext>(options =>
+    options.UseSqlServer(configBuilder.GetConnectionString("Conn")));
 
 builder.Services.AddCors(opt =>
 {

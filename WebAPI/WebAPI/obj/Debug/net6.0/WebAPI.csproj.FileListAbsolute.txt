@@ -280,3 +280,10 @@ C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\obj\Debug\net6.0\re
 C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.pdb
 C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.genruntimeconfig.cache
 C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\obj\Debug\net6.0\ref\WebAPI.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\connectionstring.json
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll

@@ -37,7 +37,7 @@ public partial class TechStoreDbContext : DbContext
     {
         IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
+            .AddJsonFile("connectionstring.json")
             .Build();
 
         optionsBuilder.UseSqlServer(configuration.GetConnectionString("Conn"));

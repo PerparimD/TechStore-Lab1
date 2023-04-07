@@ -1,5 +1,0 @@
-{
-    "ConnectionStrings": {
-        "Conn": "Server=RILINDKYCYKU; Database=TechStoreDB;Trusted_Connection=True;TrustServerCertificate=True"
-    }
-}

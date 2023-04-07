@@ -5,15 +5,18 @@ import Button from "react-bootstrap/Button";
 import ShtoKompanit from "./ShtoKompanit";
 import Mesazhi from "../layout/Mesazhi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faBan} from '@fortawesome/free-solid-svg-icons'
+import { faBan, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import EditoKompanin from "./EditoKompanin";
 
 function TabelaEKompanive() {
     const [kompanit, setKompanit] = useState([]);
     const [perditeso, setPerditeso] = useState('');
     const [show, setShow] = useState(false);
+    const [edito, setEdito] = useState(false);
     const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
+    const [id, setId] = useState(0);
 
     useEffect(() => {
         const shfaqKompanit = async () => {
@@ -49,6 +52,12 @@ function TabelaEKompanive() {
     }
     const handleShow = () => setShow(true);
 
+    const handleEdito = (id) => {
+        setEdito(true)
+        setId(id)
+    };
+    const handleEditoMbyll = () => setEdito(false);
+
     return (
         <div className={classes.containerDashboardP}>
             <h1>
@@ -75,6 +84,14 @@ function TabelaEKompanive() {
                 pershkrimi={pershkrimiMesazhit}
                 tipi={tipiMesazhit}
             />}
+            {edito && <EditoKompanin
+                largo={handleEditoMbyll}
+                id={id}
+                shfaqmesazhin={() => setShfaqMesazhin(true)}
+                perditesoTeDhenat={() => setPerditeso(Date.now())}
+                setTipiMesazhit={setTipiMesazhit}
+                setPershkrimiMesazhit={setPershkrimiMesazhit}
+            />}
             <table>
                 <thead>
                     <tr>
@@ -88,7 +105,7 @@ function TabelaEKompanive() {
 
                 <tbody>
                     {kompanit.map((k) => (
-                        <tr>
+                        <tr key={k.kompaniaId}>
                             <td>{k.kompaniaId}</td>
                             <td>{k.emriKompanis}</td>
                             <td >
@@ -99,7 +116,10 @@ function TabelaEKompanive() {
                                 />
                             </td>
                             <td >{k.adresa}</td>
-                            <td><Button variant="danger" onClick={() => fshijKomapanin(k.kompaniaId)}><FontAwesomeIcon icon={faBan} /></Button></td>
+                            <td>
+                                <Button variant="success" onClick={() => handleEdito(k.kompaniaId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
+                                <Button variant="danger" onClick={() => fshijKomapanin(k.kompaniaId)}><FontAwesomeIcon icon={faBan} /></Button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

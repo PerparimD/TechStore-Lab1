@@ -131,7 +131,7 @@ const ProductTables = () => {
 
           <tbody>
             {products.map((p) => (
-              <tr key={p.ProduktiId}>
+              <tr key={p.produktiId}>
                 <td>{p.emriProduktit}</td>
                 <td>
                   <img

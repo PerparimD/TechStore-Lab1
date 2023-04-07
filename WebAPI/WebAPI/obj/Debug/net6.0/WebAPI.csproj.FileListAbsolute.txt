@@ -287,3 +287,9 @@ D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Con
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
 D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll

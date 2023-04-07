@@ -41,7 +41,7 @@ const AdminDashboard = () => {
             </Nav.Item>
           </Nav>
         </Col>
-        <Col sm={10}>
+        <Col sm={8}>
           <Tab.Content>
           <Tab.Pane eventKey="first">
               <ProductTables/>

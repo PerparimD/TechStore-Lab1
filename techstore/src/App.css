@@ -1,13 +1,11 @@
-a{
+a {
   text-decoration: none;
   color: black;
 }
 
-
-
-
-
-
+.App {
+  width: 100%;
+}
 
 .App-logo {
   height: 40vmin;

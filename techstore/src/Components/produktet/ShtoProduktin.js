@@ -1,4 +1,4 @@
-import {React, useState, useRef} from "react";
+import { React, useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -25,9 +25,6 @@ const ShtoProduktin = (props) => {
     setFoto(fileName);
   };
 
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-
   function handleSubmit() {
     axios
       .post('https://localhost:7285/api/Produkti/shtoProdukt', {
@@ -49,7 +46,7 @@ const ShtoProduktin = (props) => {
   }
   return (
     <>
-      <Modal show={props.show} onHide={props.hide}>
+      <Modal className="modal" show={props.show} onHide={props.hide}>
         <Modal.Header closeButton>
           <Modal.Title>Shto Produkt</Modal.Title>
         </Modal.Header>

@@ -12,9 +12,9 @@ const Dashboard = () => {
         <title>Home | Tech Store</title>
       </Helmet>
       <NavBar />
-      <AdminDashboard/>
-      <Footer/>
-      
+      <AdminDashboard />
+      <Footer />
+
 
     </div>
   );

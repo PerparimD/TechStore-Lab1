@@ -1,5 +1,3 @@
-
-
 .artikulli {
   display: flex;
   flex-direction: column;
@@ -35,8 +33,6 @@
   display: flex;
   flex-direction: column;
 }
-
-
 
 .cmimi {
   font-weight: bold;

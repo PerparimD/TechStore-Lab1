@@ -1,4 +1,4 @@
-import {useState, useRef } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -45,7 +45,7 @@ function ShtoKompanit(props) {
 
     }
     return (
-        <Modal show={props.shfaq} onHide={()=> props.largo()}>
+        <Modal className="modal" show={props.shfaq} onHide={() => props.largo()}>
             <Modal.Header closeButton>
                 <Modal.Title>Shto Kompanin</Modal.Title>
             </Modal.Header>
@@ -88,7 +88,7 @@ function ShtoKompanit(props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={()=> props.largo()}>
+                <Button variant="secondary" onClick={() => props.largo()}>
                     Anulo
                 </Button>
                 <Button

@@ -1,6 +1,6 @@
 import classes from './Buton.module.css';
 
-function Buton(props){
+function Buton(props) {
     return (
         <button type="submit" className={classes.button} name={props.Name}>{props.Label}</button>
     );

@@ -1,18 +1,24 @@
-.flex-column{
-    margin-bottom: 1em;
-    padding: 1em;
+.flex-column {
+  margin-bottom: 1em;
+  padding: 1em;
+  width: 1em;
 }
-.nav-bc-color{
-    background-color:#009879;
-}
-
-
-.colum{
-    width: 7em;
-    margin: 0.01em;
-    padding: 0.4em;
+.nav-bc-color {
+  background-color: #009879;
 }
 
-.td{
-    width: 7em;
+.col {
+  width: 100%;
+  margin: 1em;
+  height: auto;
+  flex: 0.5;
+}
+.colum {
+  width: 7em;
+  margin: 0.01em;
+  padding: 0.4em;
+}
+
+.td {
+  width: 2em;
 }

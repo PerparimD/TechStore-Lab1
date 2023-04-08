@@ -17,27 +17,3 @@ table {
 .containerDashboardP tr td {
   border-bottom: 1px solid #dddddd;
 }
-
-.edito {
-  padding: 0.4em;
-  background-color: #45c263;
-  border: none;
-  border-radius: 2px;
-}
-
-.edito,
-.edito a {
-  color: white;
-}
-
-.fshij {
-  padding: 0.4em;
-  background-color: #e33437;
-  border: none;
-  border-radius: 2px;
-}
-
-.fshij,
-.fshij a {
-  color: white;
-}

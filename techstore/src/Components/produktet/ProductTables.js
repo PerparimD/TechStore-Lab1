@@ -26,47 +26,47 @@ const ProductTables = () => {
 
   useEffect(() => {
     const shfaqProduktet = async () => {
-        try {
-            const produkti = await axios.get("https://localhost:7285/api/Produkti/Products");
-            setProdukti(produkti.data);
-        } catch (err) {
-            console.log(err);
-        }
+      try {
+        const produkti = await axios.get("https://localhost:7285/api/Produkti/Products");
+        setProdukti(produkti.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
 
     shfaqProduktet();
-}, [perditeso]);
+  }, [perditeso]);
 
-  
+
 
 
   async function fshijProduktin(id) {
     try {
-        await axios.delete(`https://localhost:7285/api/Produkti/`+id);
-        setTipiMesazhit("success");
-        setPershkrimiMesazhit("Kompania u fshi me sukses!")
-        setPerditeso(Date.now());
-        setShfaqMesazhin(true);
+      await axios.delete(`https://localhost:7285/api/Produkti/` + id);
+      setTipiMesazhit("success");
+      setPershkrimiMesazhit("Kompania u fshi me sukses!")
+      setPerditeso(Date.now());
+      setShfaqMesazhin(true);
     } catch (err) {
-        console.error(err);
-        setTipiMesazhit("danger");
-        setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se kompanis!")
-        setPerditeso(Date.now());
-        setShfaqMesazhin(true);
+      console.error(err);
+      setTipiMesazhit("danger");
+      setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se kompanis!")
+      setPerditeso(Date.now());
+      setShfaqMesazhin(true);
     }
-}
+  }
 
-const handleClose = () => {
+  const handleClose = () => {
     setShow(false);
-}
-const handleShow = () => setShow(true);
+  }
+  const handleShow = () => setShow(true);
 
-const handleEdito = (id) => {
+  const handleEdito = (id) => {
     setEdito(true)
     setId(id)
-};
+  };
 
-const handleEditoMbyll = () => setEdito(false);
+  const handleEditoMbyll = () => setEdito(false);
 
   return (
     <div className="containerDashboardP">
@@ -93,47 +93,47 @@ const handleEditoMbyll = () => setEdito(false);
           pershkrimi={pershkrimiMesazhit}
           tipi={tipiMesazhit}
         />)}
-        {edito && <EditoProduktin
-          show={handleShow}
-          hide={handleEditoMbyll}
-          id={id}
-          shfaqmesazhin={() => setShfaqMesazhin(true)}
-          perditesoTeDhenat={() => setPerditeso(Date.now())}
-          setTipiMesazhit={setTipiMesazhit}
-          setPershkrimiMesazhit={setPershkrimiMesazhit}
+      {edito && <EditoProduktin
+        show={handleShow}
+        hide={handleEditoMbyll}
+        id={id}
+        shfaqmesazhin={() => setShfaqMesazhin(true)}
+        perditesoTeDhenat={() => setPerditeso(Date.now())}
+        setTipiMesazhit={setTipiMesazhit}
+        setPershkrimiMesazhit={setPershkrimiMesazhit}
       />}
-      
-      
-        <table>
-          <thead>
-            <tr>
-              <th className="emriP">Emri i Produktit</th>
-              <th>Foto e Produktit</th>
-              <th>Qmimi i Produktit</th>
-              <th>Funksione</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            {produkti.map((p) => (
-              <tr key={p.produktiId}>
-                <td>{p.emriProduktit}</td>
-                <td>
-                  <img
-                    src={`${process.env.PUBLIC_URL}/img/products/${p.fotoProduktit}`}
-                    width="50"
-                    alt=""
-                  />
-                </td>
-                <td>{p.qmimiProduktit}</td>
-                <td>
-                  <Button variant="success" onClick={() => handleEdito(p.produktiId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
-                  <Button variant="danger" onClick={() => fshijProduktin(p.produktiId)}><FontAwesomeIcon icon={faBan} /></Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+      <table>
+        <thead>
+          <tr>
+            <th className="emriP">Emri i Produktit</th>
+            <th>Foto e Produktit</th>
+            <th>Qmimi i Produktit</th>
+            <th>Funksione</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {produkti.map((p) => (
+            <tr key={p.produktiId}>
+              <td>{p.emriProduktit}</td>
+              <td>
+                <img
+                  src={`${process.env.PUBLIC_URL}/img/products/${p.fotoProduktit}`}
+                  width="50"
+                  alt=""
+                />
+              </td>
+              <td>{p.qmimiProduktit} €</td>
+              <td>
+                <Button variant="success" onClick={() => handleEdito(p.produktiId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
+                <Button variant="danger" onClick={() => fshijProduktin(p.produktiId)}><FontAwesomeIcon icon={faBan} /></Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

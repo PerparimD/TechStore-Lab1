@@ -10,18 +10,18 @@ function BrandsSlider(props) {
 
   const [kompanit, setKompanit] = useState([]);
 
-    useEffect(() => {
-        const shfaqKompanit = async () => {
-            try {
-                const kopmania = await axios.get("https://localhost:7285/api/Kompania/shfaqKompanit");
-                setKompanit(kopmania.data);
-            } catch (err) {
-                console.log(err);
-            }
-        }
+  useEffect(() => {
+    const shfaqKompanit = async () => {
+      try {
+        const kopmania = await axios.get("https://localhost:7285/api/Kompania/shfaqKompanit");
+        setKompanit(kopmania.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
-        shfaqKompanit();
-    }, [])
+    shfaqKompanit();
+  }, [])
 
   useEffect(() => {
     kornizaEBrendeveRef.current.forEach((item, i) => {
@@ -51,7 +51,7 @@ function BrandsSlider(props) {
         {kompanit.map((kompania) => (
           <div className={classes.kartelaEBrendit} key={kompania.kompaniaID}>
             <div className={classes.logoBrendit}>
-              <a href={``}>
+              <a href=''>
                 <img src={`${process.env.PUBLIC_URL}/img/slider/sliderIcons/${kompania.logo}`} alt="" />
               </a>
             </div>

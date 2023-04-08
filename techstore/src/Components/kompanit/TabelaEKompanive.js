@@ -103,7 +103,7 @@ function TabelaEKompanive() {
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody >
                     {kompanit.map((k) => (
                         <tr key={k.kompaniaId}>
                             <td>{k.kompaniaId}</td>
@@ -115,7 +115,7 @@ function TabelaEKompanive() {
                                     alt=""
                                 />
                             </td>
-                            <td >{k.adresa}</td>
+                            <td >{k.adresa !== "" || k.adresa === null ? k.adresa : "Nuk Ka Adrese"}</td>
                             <td>
                                 <Button variant="success" onClick={() => handleEdito(k.kompaniaId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
                                 <Button variant="danger" onClick={() => fshijKomapanin(k.kompaniaId)}><FontAwesomeIcon icon={faBan} /></Button>

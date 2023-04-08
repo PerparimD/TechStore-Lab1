@@ -62,10 +62,17 @@ function EditoKompanin(props) {
     return (
         <Modal show={true} onHide={() => props.largo()}>
             <Modal.Header closeButton>
-                <Modal.Title>Shto Kompanin</Modal.Title>
+                <Modal.Title>Edito Kompanin</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>ID Kompanis</Form.Label>
+                        <Form.Control
+                            value={kompania.kompaniaId}
+                            disabled
+                        />
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Emri Kompanis</Form.Label>
                         <Form.Control
@@ -88,13 +95,13 @@ function EditoKompanin(props) {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Adresa Kompanis</Form.Label>
-                    <Form.Control
-                        onChange={e => handleAdresaChange(e.target.value)}
-                        type="text"
-                        placeholder="Adresa Kompanis"
-                        defaultValue={kompania.adresa ?? ''}
-                        autoFocus
-                    />
+                        <Form.Control
+                            onChange={e => handleAdresaChange(e.target.value)}
+                            type="text"
+                            placeholder="Adresa Kompanis"
+                            defaultValue={kompania.adresa ?? ''}
+                            autoFocus
+                        />
                     </Form.Group>
                 </Form>
             </Modal.Body>

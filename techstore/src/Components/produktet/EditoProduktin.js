@@ -101,7 +101,7 @@ function EditoProduktin(props) {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={props.handleClose}>
+            <Button variant="secondary" onClick={props.hide}>
               Close
             </Button>
             <Button

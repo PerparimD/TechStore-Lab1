@@ -24,6 +24,14 @@ namespace TechStoreWebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetById(int id)
+        {
+            var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
+            return Ok(produkti);
+        }
+
+        [HttpGet]
         [Route("15ProduktetMeTeFundit")]
         public async Task<IActionResult> Get15Produkte()
         {

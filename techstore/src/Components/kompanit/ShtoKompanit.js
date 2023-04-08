@@ -31,7 +31,7 @@ function ShtoKompanit(props) {
             logo: logo,
             adresa: adresa
         })
-            .then(function (response) {
+            .then((response) => {
                 console.log(response);
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Kompania u insertua me sukses!")
@@ -39,7 +39,7 @@ function ShtoKompanit(props) {
                 props.largo();
                 props.shfaqmesazhin();
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error);
             });
 

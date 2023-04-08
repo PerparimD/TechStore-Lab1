@@ -1,55 +1,72 @@
-import React, { useState } from "react";
-import useFetch from "../../Hooks/useFetch";
+/* eslint-disable no-undef */
+import React, { useState, useEffect } from "react";
 import "./ProductTables.css";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
+import axios from "axios";
+import Mesazhi from "../layout/Mesazhi";
+import ShtoProduktin from "./ShtoProduktin";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBan, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import EditoProduktin from "./EditoProduktin";
+
+
 
 const ProductTables = () => {
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useFetch("https://localhost:7285/api/Produkti/Products");
-
+  const [produkti, setProdukti] = useState([]);
   const [id, setId] = useState();
-  const [foto, setFoto] = useState("");
-  const [emriP, setEmriP] = useState("");
-  const [qmimiP, setQmimi] = useState(0);
+  const [perditeso, setPerditeso] = useState('');
   const [show, setShow] = useState(false);
+  const [edito, setEdito] = useState(false);
+  const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
+  const [tipiMesazhit, setTipiMesazhit] = useState("");
+  const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
-  const handleEmriPChange = (value) => {
-    setEmriP(value);
-  };
 
-  const handleQmimiPChange = (value) => {
-    setQmimi(value);
-  };
-  const handleFotoChange = (value) => {
-    setFoto(value);
-    console.log(value);
-  };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const info = { emriP, qmimiP, foto };
+  useEffect(() => {
+    const shfaqProduktet = async () => {
+        try {
+            const produkti = await axios.get("https://localhost:7285/api/Produkti/Products");
+            setProdukti(produkti.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-    fetch("https://localhost:7285/api/Produkti/Products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(info),
-    })
-      .then(() => {
-        console.log("Added");
-        console.log(foto);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+    shfaqProduktet();
+}, [perditeso]);
+
+  
+
+
+  async function fshijProduktin(id) {
+    try {
+        await axios.delete(`https://localhost:7285/api/Produkti/`+id);
+        setTipiMesazhit("success");
+        setPershkrimiMesazhit("Kompania u fshi me sukses!")
+        setPerditeso(Date.now());
+        setShfaqMesazhin(true);
+    } catch (err) {
+        console.error(err);
+        setTipiMesazhit("danger");
+        setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se kompanis!")
+        setPerditeso(Date.now());
+        setShfaqMesazhin(true);
+    }
+}
+
+const handleClose = () => {
+    setShow(false);
+}
+const handleShow = () => setShow(true);
+
+const handleEdito = (id) => {
+    setEdito(true)
+    setId(id)
+};
+
+const handleEditoMbyll = () => setEdito(false);
 
   return (
     <div className="containerDashboardP">
@@ -60,77 +77,45 @@ const ProductTables = () => {
       >
         Shto Produktin
       </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Shto Produkt</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Emri Produktit</Form.Label>
-              <Form.Control
-                onChange={(e) => handleEmriPChange(e.target.value)}
-                value={emriP}
-                type="text"
-                placeholder="Emri Produktit"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Foto Produktit</Form.Label>
-              <Form.Control
-               value={foto}
-                type="file"
-                placeholder="Foto e  Produktit"
-                onChange={(e) => handleFotoChange(e.target.value)}
-    
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Qmimi i Produktit</Form.Label>
-              <Form.Control
-                onChange={(e) => handleQmimiPChange(e.target.value)}
-                value={qmimiP}
-                type="number"
-                placeholder="Qmimi i Produktit"
-                autoFocus
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button
-            style={{ backgroundColor: "#009879", border: "none" }}
-            onClick={handleSubmit}
-          >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      {error && <div>{error}</div>}
-      {isLoading && <div>Loading...</div>}
-      {products && (
+      {show && (
+        <ShtoProduktin
+          show={handleShow}
+          hide={handleClose}
+          shfaqmesazhin={() => setShfaqMesazhin(true)}
+          perditesoTeDhenat={() => setPerditeso(Date.now())}
+          setTipiMesazhit={setTipiMesazhit}
+          setPershkrimiMesazhit={setPershkrimiMesazhit}
+        />
+      )}
+      {shfaqMesazhin && (
+        <Mesazhi
+          setShfaqMesazhin={setShfaqMesazhin}
+          pershkrimi={pershkrimiMesazhit}
+          tipi={tipiMesazhit}
+        />)}
+        {edito && <EditoProduktin
+          show={handleShow}
+          hide={handleEditoMbyll}
+          id={id}
+          shfaqmesazhin={() => setShfaqMesazhin(true)}
+          perditesoTeDhenat={() => setPerditeso(Date.now())}
+          setTipiMesazhit={setTipiMesazhit}
+          setPershkrimiMesazhit={setPershkrimiMesazhit}
+      />}
+      
+      
         <table>
           <thead>
             <tr>
               <th className="emriP">Emri i Produktit</th>
               <th>Foto e Produktit</th>
               <th>Qmimi i Produktit</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Funksione</th>
             </tr>
           </thead>
 
           <tbody>
-            {products.map((p) => (
+            {produkti.map((p) => (
               <tr key={p.produktiId}>
                 <td>{p.emriProduktit}</td>
                 <td>
@@ -141,11 +126,14 @@ const ProductTables = () => {
                   />
                 </td>
                 <td>{p.qmimiProduktit}</td>
+                <td>
+                  <Button variant="success" onClick={() => handleEdito(p.produktiId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
+                  <Button variant="danger" onClick={() => fshijProduktin(p.produktiId)}><FontAwesomeIcon icon={faBan} /></Button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-      )}
     </div>
   );
 };

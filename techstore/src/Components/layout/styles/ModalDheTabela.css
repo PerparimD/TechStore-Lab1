@@ -1,0 +1,44 @@
+.modal {
+  margin-top: 7em;
+}
+
+.imgFshij {
+  width: 50%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+  margin-left: 1em;
+}
+
+.Butoni {
+  background-color: #009879;
+  border: none;
+  float: right;
+  margin-right: 1em;
+}
+
+.Butoni:hover{
+  background-color: #01df93;
+}
+
+.ikonat {
+  color: white;
+}
+
+.Loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 10em;
+  margin-bottom: 10em;
+}
+
+@media screen and (max-width: 767px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}

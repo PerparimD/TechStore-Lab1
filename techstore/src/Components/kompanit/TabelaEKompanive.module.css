@@ -17,3 +17,7 @@ table {
 .containerDashboardP tr td {
   border-bottom: 1px solid #dddddd;
 }
+
+.containerDashboardP h1{
+  text-align: center;
+}

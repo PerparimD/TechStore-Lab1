@@ -71,8 +71,7 @@ const ProductTables = () => {
   return (
     <div className="containerDashboardP">
       <Button
-        style={{ backgroundColor: "#009879", border: "none", float: "right" }}
-        className="mb-3"
+        className="mb-3 Butoni"
         onClick={handleShow}
       >
         Shto Produktin
@@ -127,7 +126,7 @@ const ProductTables = () => {
               </td>
               <td>{p.qmimiProduktit} €</td>
               <td>
-                <Button variant="success" onClick={() => handleEdito(p.produktiId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
+                <Button style={{marginRight: "0.5em"}} variant="success" onClick={() => handleEdito(p.produktiId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
                 <Button variant="danger" onClick={() => fshijProduktin(p.produktiId)}><FontAwesomeIcon icon={faBan} /></Button>
               </td>
             </tr>

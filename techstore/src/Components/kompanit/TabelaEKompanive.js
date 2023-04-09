@@ -5,52 +5,43 @@ import Button from "react-bootstrap/Button";
 import ShtoKompanit from "./ShtoKompanit";
 import Mesazhi from "../layout/Mesazhi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBan, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faPenToSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
 import EditoKompanin from "./EditoKompanin";
+import LargoKompanin from "./LargoKompanin";
+import { TailSpin } from 'react-loader-spinner';
 
 function TabelaEKompanive() {
     const [kompanit, setKompanit] = useState([]);
     const [perditeso, setPerditeso] = useState('');
-    const [show, setShow] = useState(false);
+    const [shto, setShto] = useState(false);
     const [edito, setEdito] = useState(false);
+    const [fshij, setFshij] = useState(false);
     const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
     const [id, setId] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const shfaqKompanit = async () => {
             try {
+                setLoading(true);
                 const kompania = await axios.get("https://localhost:7285/api/Kompania/shfaqKompanit");
                 setKompanit(kompania.data);
+                setLoading(false);
             } catch (err) {
                 console.log(err);
+                setLoading(false);
             }
         };
 
         shfaqKompanit();
     }, [perditeso]);
 
-    async function fshijKomapanin(id) {
-        try {
-            await axios.delete(`https://localhost:7285/api/Kompania/fshijKompanin?id=${id}`);
-            setTipiMesazhit("success");
-            setPershkrimiMesazhit("Kompania u fshi me sukses!")
-            setPerditeso(Date.now());
-            setShfaqMesazhin(true);
-        } catch (error) {
-            console.error(error);
-            setTipiMesazhit("danger");
-            setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se kompanis!")
-            setPerditeso(Date.now());
-            setShfaqMesazhin(true);
-        }
-    }
-
     const handleClose = () => {
-        setShow(false);
+        setShto(false);
     }
-    const handleShow = () => setShow(true);
+    const handleShow = () => setShto(true);
 
     const handleEdito = (id) => {
         setEdito(true)
@@ -58,20 +49,15 @@ function TabelaEKompanive() {
     };
     const handleEditoMbyll = () => setEdito(false);
 
+    const handleFshij = (id) => {
+        setFshij(true)
+        setId(id)
+    };
+    const handleFshijMbyll = () => setFshij(false);
+
     return (
         <div className={classes.containerDashboardP}>
-            <h1>
-                Kompanit
-            </h1>
-
-            <Button
-                style={{ backgroundColor: "#009879", border: "none", float: "right" }}
-                className="mb-3"
-                onClick={handleShow}
-            >
-                Shto Kompanin
-            </Button>
-            {show && <ShtoKompanit
+            {shto && <ShtoKompanit
                 shfaq={handleShow}
                 largo={handleClose}
                 shfaqmesazhin={() => setShfaqMesazhin(true)}
@@ -92,21 +78,50 @@ function TabelaEKompanive() {
                 setTipiMesazhit={setTipiMesazhit}
                 setPershkrimiMesazhit={setPershkrimiMesazhit}
             />}
-            <table>
-                <thead>
+            {fshij && <LargoKompanin
+                largo={handleFshijMbyll}
+                id={id}
+                shfaqmesazhin={() => setShfaqMesazhin(true)}
+                perditesoTeDhenat={() => setPerditeso(Date.now())}
+                setTipiMesazhit={setTipiMesazhit}
+                setPershkrimiMesazhit={setPershkrimiMesazhit}
+            />}
+            {loading ? (
+                <div className="Loader">
+                    <TailSpin
+                        height="80"
+                        width="80"
+                        color="#009879"
+                        ariaLabel="tail-spin-loading"
+                        radius="1"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                    />
+                </div>
+            ) : (<>
+                <h1>
+                    Lista e Kompanive Partnere
+                </h1>
+
+                <Button
+                    className="mb-3 Butoni"
+                    onClick={handleShow}
+                >
+                    Shto Kompanin <FontAwesomeIcon icon={faPlus} />
+                </Button>
+
+
+                <table>
                     <tr>
-                        <th>ID</th>
                         <th>Emri i Kompanis</th>
                         <th>Logo</th>
                         <th>Adresa</th>
                         <th>Funksione</th>
                     </tr>
-                </thead>
 
-                <tbody >
                     {kompanit.map((k) => (
                         <tr key={k.kompaniaId}>
-                            <td>{k.kompaniaId}</td>
                             <td>{k.emriKompanis}</td>
                             <td >
                                 <img
@@ -115,15 +130,16 @@ function TabelaEKompanive() {
                                     alt=""
                                 />
                             </td>
-                            <td >{k.adresa !== "" || k.adresa === null ? k.adresa : "Nuk Ka Adrese"}</td>
-                            <td>
-                                <Button variant="success" onClick={() => handleEdito(k.kompaniaId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
-                                <Button variant="danger" onClick={() => fshijKomapanin(k.kompaniaId)}><FontAwesomeIcon icon={faBan} /></Button>
+                            <td >{k.adresa !== null && k.adresa.trim() !== '' ? k.adresa : "Nuk Ka Adrese"}</td>
+                            <td >
+                                <Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => handleEdito(k.kompaniaId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
+                                <Button variant="danger" onClick={() => handleFshij(k.kompaniaId)}><FontAwesomeIcon icon={faBan} /></Button>
                             </td>
                         </tr>
                     ))}
-                </tbody>
-            </table>
+                </table>
+            </>
+            )}
         </div >
     );
 };

@@ -12,7 +12,7 @@ import TabelaEKompanive from '../kompanit/TabelaEKompanive';
 
 const AdminDashboard = () => {
 
-  const [key, setKey] = useState("first");
+  const [key, setKey] = useState("1");
 
   const ActiveStyle = {
     background: "#009879",
@@ -29,25 +29,25 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <Tab.Container className="border" id="left-tabs-example" defaultActiveKey="first" onSelect={key => setKey(key)}>
+      <Tab.Container className="border" id="left-tabs-example" defaultActiveKey="1" onSelect={key => setKey(key)}>
         <Row>
-          <Col >
+          <Col>
             <Nav variant="pills" className="flex-column">
               <Nav.Item >
-                <Nav.Link className='colum' eventKey="first" style={key === "first" ? ActiveStyle : inActiveStyle} >Products</Nav.Link>
+                <Nav.Link className='colum' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle} >Products</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum' eventKey="second" style={key === "second" ? ActiveStyle : inActiveStyle} >Kompanit</Nav.Link>
+                <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle} >Kompanit</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
-          <Col sm={8}>
+          <Col sm={9}>
             <Tab.Content>
-              <Tab.Pane eventKey="first">
+              <Tab.Pane eventKey="1">
                 <ProductTables />
               </Tab.Pane>
 
-              <Tab.Pane eventKey="second">
+              <Tab.Pane eventKey="2">
                 <TabelaEKompanive />
               </Tab.Pane>
             </Tab.Content>

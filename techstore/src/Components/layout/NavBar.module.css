@@ -28,6 +28,7 @@ header {
 .navCenter {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   gap: 1em;
 }
@@ -52,6 +53,7 @@ header {
   justify-content: center;
   gap: 2em;
   width: 100%;
+  margin-top: 0.5em;
 }
 
 .navLinks a {

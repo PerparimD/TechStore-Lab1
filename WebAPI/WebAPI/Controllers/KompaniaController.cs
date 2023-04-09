@@ -20,9 +20,13 @@ namespace TechStoreWebAPI.Controllers
         [Route("shfaqKompanit")]
         public async Task<IActionResult> Get()
         {
-            List<Kompanium> kompanit = await _context.Kompania.OrderByDescending(x=> x.KompaniaId).ToListAsync();
+            var kompanite = _context.Kompania
+                .Where(k => k.EmriKompanis != null)
+                .AsEnumerable()
+                .OrderBy(k => k.EmriKompanis.ToString())
+                .ToList();
 
-            return Ok(kompanit);
+            return Ok(kompanite);
         }
 
         [HttpGet]
@@ -50,12 +54,13 @@ namespace TechStoreWebAPI.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] Kompanium k)
         {
             var kompania = await _context.Kompania.FirstOrDefaultAsync(x => x.KompaniaId == id);
-            if(kompania == null)
+            if (kompania == null)
             {
                 return BadRequest("Id gabim");
             }
 
-            if(!k.EmriKompanis.IsNullOrEmpty()){
+            if (!k.EmriKompanis.IsNullOrEmpty())
+            {
                 kompania.EmriKompanis = k.EmriKompanis;
             }
             if (!k.Logo.IsNullOrEmpty())

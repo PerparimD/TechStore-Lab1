@@ -1,5 +1,5 @@
 import classes from './NavBar.module.css';
-import '../layout/styles/modal.css';
+import '../layout/styles/ModalDheTabela.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons';

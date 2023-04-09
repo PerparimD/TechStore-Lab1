@@ -3,6 +3,8 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 function EditoKompanin(props) {
     const [kompania, setKompania] = useState([]);
@@ -107,13 +109,13 @@ function EditoKompanin(props) {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={() => props.largo()}>
-                    Anulo
+                    Anulo <FontAwesomeIcon icon={faXmark} />
                 </Button>
                 <Button
-                    style={{ backgroundColor: "#009879", border: "none" }}
+                    className="Butoni"
                     onClick={handleSubmit}
                 >
-                    Edito Kompanin
+                    Edito Kompanin <FontAwesomeIcon icon={faPenToSquare} />
                 </Button>
             </Modal.Footer>
         </Modal>

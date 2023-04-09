@@ -5,7 +5,7 @@ function Mesazhi(props) {
     return (
         <Modal show='true'>
             <Modal.Header >
-                <Modal.Title>{props.tipi === "success" ? "Me Sukses" : "Ndodhi nje gabim"}</Modal.Title>
+                <Modal.Title style={props.tipi === "success" ? { color: "#009879" } : { color: "red" }}>{props.tipi === "success" ? "Me Sukses" : "Ndodhi nje gabim"}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {props.pershkrimi}

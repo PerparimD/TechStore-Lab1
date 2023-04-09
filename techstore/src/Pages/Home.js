@@ -1,6 +1,6 @@
 import ProduktetNeHome from "../Components/produktet/ProduktetNeHome";
 
-import classes from './Home.module.css'
+import classes from './Styles/Home.module.css'
 
 
 import axios from 'axios';

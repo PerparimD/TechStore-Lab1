@@ -3,10 +3,11 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
-import "./AdminDashboard.css";
+import "./Styles/AdminDashboard.css";
 import ProductTables from '../produktet/ProductTables';
 import { useState } from 'react';
 import TabelaEKompanive from '../kompanit/TabelaEKompanive';
+import Mesazhet from '../mesazhet/Mesazhet';
 
 // import Sonnet from '../../components/Sonnet'
 
@@ -39,6 +40,9 @@ const AdminDashboard = () => {
               <Nav.Item >
                 <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle} >Kompanit</Nav.Link>
               </Nav.Item>
+              <Nav.Item >
+                <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle} >Mesazhet</Nav.Link>
+              </Nav.Item>
             </Nav>
           </Col>
           <Col sm={9}>
@@ -46,9 +50,11 @@ const AdminDashboard = () => {
               <Tab.Pane eventKey="1">
                 <ProductTables />
               </Tab.Pane>
-
               <Tab.Pane eventKey="2">
                 <TabelaEKompanive />
+              </Tab.Pane>
+              <Tab.Pane eventKey="3">
+                <Mesazhet />
               </Tab.Pane>
             </Tab.Content>
           </Col>

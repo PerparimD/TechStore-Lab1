@@ -68,7 +68,7 @@ public partial class TechStoreDbContext : DbContext
                 .HasColumnType("text")
                 .HasColumnName("mesazhi");
             entity.Property(e => e.Statusi)
-                .HasMaxLength(50)
+                .HasMaxLength(60)
                 .IsUnicode(false)
                 .HasDefaultValueSql("('Mesazhi juaj eshte derguar tek Stafi')")
                 .HasColumnName("statusi");

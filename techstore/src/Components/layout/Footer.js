@@ -1,4 +1,4 @@
-import classes from './Footer.module.css';
+import classes from './Styles/Footer.module.css';
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -3,7 +3,7 @@ import Footer from "../Components/layout/Footer";
 import NavBar from "../Components/layout/NavBar";
 import axios from "axios";
 import Mesazhi from "../Components/layout/Mesazhi";
-import "./ContactUs.css";
+import "./Styles/ContactUs.css";
 
 import { Helmet } from "react-helmet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -34,7 +34,7 @@ CREATE TABLE [dbo].[ContactForm] (
   [userID] INT NULL,
   [mesazhi] TEXT NOT NULL,
   [dataDergeses] DATE NULL CONSTRAINT [DF__ContactFo__dataD__34C8D9D1] DEFAULT (getdate()) ,
-  [statusi] VARCHAR(50) NULL CONSTRAINT [DF__ContactFo__statu__35BCFE0A] DEFAULT ('Mesazhi juaj eshte derguar tek Stafi') ,
+  [statusi] VARCHAR(60) NULL CONSTRAINT [DF__ContactFo__statu__35BCFE0A] DEFAULT ('Mesazhi juaj eshte derguar tek Stafi') ,
   [emri] VARCHAR(250) NULL,
   [email] VARCHAR(250) NULL,
   CONSTRAINT [PK__ContactF__0E3F7CF3731C8CDE] PRIMARY KEY ([mesazhiID])

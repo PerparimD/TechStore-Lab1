@@ -9,7 +9,7 @@ public partial class ContactForm
 
     public int? UserId { get; set; }
 
-    public string Mesazhi { get; set; } = null!;
+    public string? Mesazhi { get; set; }
 
     public DateTime? DataDergeses { get; set; }
 

@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "../Components/layout/Footer";
 import NavBar from "../Components/layout/NavBar";
 import lg from "../assets/techstoreLogoBlue.jpg";
-import "./AboutUs.css";
+import "./Styles/AboutUs.css";
 
 import { Helmet } from "react-helmet";
 

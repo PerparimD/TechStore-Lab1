@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from "react";
-import "./ProductTables.css";
+import "./Styles/ProductTables.css";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Mesazhi from "../layout/Mesazhi";
@@ -103,7 +103,7 @@ const ProductTables = () => {
       />}
 
 
-      <table>
+      <table className="tableBig">
         <thead>
           <tr>
             <th className="emriP">Emri i Produktit</th>

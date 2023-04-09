@@ -16,7 +16,7 @@
   margin-right: 1em;
 }
 
-.Butoni:hover{
+.Butoni:hover {
   background-color: #01df93;
 }
 
@@ -33,6 +33,40 @@
   margin-bottom: 10em;
 }
 
+table {
+  width: 100%;
+}
+
+.tableBig {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.containerDashboardP tr th {
+  margin-top: 3em;
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.containerDashboardP th,
+.containerDashboardP td {
+  padding: 12px 15px;
+  
+}
+
+.containerDashboardP tr td {
+  border-bottom: 1px solid #dddddd;
+}
+
+.containerDashboardP h1 {
+  text-align: center;
+}
+
 @media screen and (max-width: 767px) {
   table {
     display: block;
@@ -40,5 +74,8 @@
     white-space: nowrap;
     max-width: 90%;
     margin: 0 auto;
+  }
+  .tableBig{
+    max-width: 90%;
   }
 }

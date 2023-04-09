@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import classes from './TabelaEKompanive.module.css';
+import classes from './Styles/TabelaEKompanive.module.css';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import ShtoKompanit from "./ShtoKompanit";
@@ -112,7 +112,7 @@ function TabelaEKompanive() {
                 </Button>
 
 
-                <table>
+                <table style={{whiteSpace: "unset",}}>
                     <tr>
                         <th>Emri i Kompanis</th>
                         <th>Logo</th>

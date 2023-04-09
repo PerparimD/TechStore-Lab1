@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-import classes from './BrandsSlider.module.css'
+import classes from './Styles/BrandsSlider.module.css'
 
 function BrandsSlider(props) {
   const kornizaEBrendeveRef = useRef([]);

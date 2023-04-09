@@ -1,5 +1,5 @@
 import Buton from '../layout/Buton';
-import classes from './ProduktetNeHome.module.css'
+import classes from './Styles/ProduktetNeHome.module.css'
 
 
 function ProduktetNeHome(props) {

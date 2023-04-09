@@ -35,13 +35,14 @@ public partial class TechStoreDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        IConfigurationRoot configuration = new ConfigurationBuilder()
+        IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json")
             .Build();
 
         optionsBuilder.UseSqlServer(configuration.GetConnectionString("Conn"));
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ContactForm>(entity =>
@@ -55,6 +56,14 @@ public partial class TechStoreDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("date")
                 .HasColumnName("dataDergeses");
+            entity.Property(e => e.Email)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasColumnName("email");
+            entity.Property(e => e.Emri)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasColumnName("emri");
             entity.Property(e => e.Mesazhi)
                 .HasColumnType("text")
                 .HasColumnName("mesazhi");

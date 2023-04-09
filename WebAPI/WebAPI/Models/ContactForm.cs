@@ -15,5 +15,9 @@ public partial class ContactForm
 
     public string? Statusi { get; set; }
 
+    public string? Emri { get; set; }
+
+    public string? Email { get; set; }
+
     public virtual Perdoruesi? User { get; set; }
 }

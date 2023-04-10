@@ -4,16 +4,18 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-
 const ShtoProduktin = (props) => {
   const fotoP = useRef(null);
   const [foto, setFoto] = useState("");
   const [emriP, setEmriP] = useState("");
+  const [emriK, setEmriK] = useState("");
   const [qmimiP, setQmimi] = useState(0);
-
 
   const handleEmriPChange = (value) => {
     setEmriP(value);
+  };
+  const handleKompaniaChange = (value) => {
+    setEmriK(value);
   };
 
   const handleQmimiPChange = (value) => {
@@ -27,10 +29,14 @@ const ShtoProduktin = (props) => {
 
   function handleSubmit() {
     axios
-      .post('https://localhost:7285/api/Produkti/shtoProdukt', {
+      .post("https://localhost:7285/api/Produkti/shtoProdukt", {
+
         emriProduktit: emriP,
         fotoProduktit: foto,
-        qmimiProduktit: qmimiP
+        qmimiProduktit: qmimiP,
+        kompania:{
+          emriKompanis: emriK
+        },
       })
       .then((response) => {
         console.log(response);
@@ -76,6 +82,14 @@ const ShtoProduktin = (props) => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
+              <Form.Label>Kompania</Form.Label>
+              <Form.Control
+                value={emriK}
+                type="text"
+                placeholder="Kompania e Produktit"
+                onChange={(e) => handleKompaniaChange(e.target.value)}
+                autoFocus
+              />
               <Form.Label>Qmimi i Produktit</Form.Label>
               <Form.Control
                 onChange={(e) => handleQmimiPChange(e.target.value)}
@@ -88,7 +102,7 @@ const ShtoProduktin = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleClose}>
+          <Button variant="secondary" onClick={props.hide}>
             Close
           </Button>
           <Button

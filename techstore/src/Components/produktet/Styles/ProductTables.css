@@ -2,8 +2,9 @@ table {
   width: 100%;
 }
 th {
-  white-space: nowrap;
+  white-space:wrap;
 }
+
 .containerDashboardP tr th {
   margin-top: 3em;
   background-color: #009879;
@@ -21,7 +22,7 @@ th {
   border-bottom: 1px solid #dddddd;
 }
 .emriP {
-  width: 70%;
+  width: 5em;
 }
 
 .edito {

@@ -23,7 +23,7 @@ public partial class Produkti
 
     public virtual ICollection<KodiZbritje> KodiZbritjes { get; } = new List<KodiZbritje>();
 
-    public virtual Kompanium? Kompania { get; set; }
+    public Kompanium? Kompania { get; set; } 
 
     public virtual ICollection<TeDhenatEporosi> TeDhenatEporosis { get; } = new List<TeDhenatEporosi>();
 }

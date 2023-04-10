@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WebAPI.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace TechStoreWebAPI.Controllers
 {
@@ -19,6 +21,7 @@ namespace TechStoreWebAPI.Controllers
         [Route("Products")]
         public async Task<ActionResult> Get()
         {
+            List<Produkti> produktis = await _context.Produktis.Include(x => x.Kompania).ToListAsync();
             var produktet = await _context.Produktis.ToListAsync();
             return Ok(produktet);
         }
@@ -51,10 +54,21 @@ namespace TechStoreWebAPI.Controllers
 
         [HttpPost]
         [Route("shtoProdukt")]
-        public async Task<IActionResult> Post(Produkti produkti)
+        public async Task<IActionResult> Post([FromBody] Produkti produkti)
         {
-            await _context.Produktis.AddAsync(produkti);
+            var newProduct = new Produkti
+            {
+                EmriProduktit = produkti.EmriProduktit,
+                FotoProduktit = produkti.FotoProduktit,
+                QmimiProduktit = produkti.QmimiProduktit,
+                Kompania = new Kompanium
+                {
+                    EmriKompanis = produkti.Kompania.EmriKompanis
+                }
+            };
+            await _context.Produktis.AddAsync(newProduct);
             await _context.SaveChangesAsync();
+
 
             return CreatedAtAction("Get", produkti.ProduktiId, produkti);
 
@@ -67,8 +81,18 @@ namespace TechStoreWebAPI.Controllers
 
             if (produkti == null)
             {
-                return NotFound();
+                return BadRequest("Id gabim");
             }
+
+            if (!p.EmriProduktit.IsNullOrEmpty())
+            {
+                produkti.EmriProduktit = p.EmriProduktit;
+            }
+            if (!p.FotoProduktit.IsNullOrEmpty())
+            {
+                produkti.FotoProduktit = p.FotoProduktit;
+            }
+            produkti.QmimiProduktit = p.QmimiProduktit;
 
             //Update message properties
             produkti.EmriProduktit = p.EmriProduktit;

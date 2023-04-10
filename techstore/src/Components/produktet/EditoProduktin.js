@@ -43,15 +43,15 @@ function EditoProduktin(props) {
       .then(x => {
         console.log(x);
         props.setTipiMesazhit("success");
-        props.setPershkrimiMesazhit("Kompania u Perditesua me sukses!")
+        props.setPershkrimiMesazhit("Produkti u Perditesua me sukses!")
         props.perditesoTeDhenat();
         props.hide();
         props.shfaqmesazhin();
       })
       .catch(error => {
-        console.error('Error saving kompania:', error);
+        console.error('Error saving the product:', error);
         props.setTipiMesazhit("danger");
-        props.setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se kompanis!")
+        props.setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se produktit!")
         props.perditesoTeDhenat();
         props.shfaqmesazhin();
       });

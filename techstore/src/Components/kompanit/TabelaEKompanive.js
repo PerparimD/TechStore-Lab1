@@ -100,7 +100,7 @@ function TabelaEKompanive() {
                     />
                 </div>
             ) : (<>
-                <h1>
+                <h1 className="title">
                     Lista e Kompanive Partnere
                 </h1>
 

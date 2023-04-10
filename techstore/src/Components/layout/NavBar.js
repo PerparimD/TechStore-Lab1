@@ -12,7 +12,7 @@ function NavBar(props) {
     <header>
       <nav className={classes.nav}>
         <div className={classes.navleft}>
-          <Link className={classes.logo} href=""><img src={`${process.env.PUBLIC_URL}/img/web/techstoreLogoWhiteSquare.png`}
+          <Link className={classes.logo} href="/"><img src={`${process.env.PUBLIC_URL}/img/web/techstoreLogoWhiteSquare.png`}
             alt="" /></Link>
         </div>
         <ul className={classes.navLinks}>

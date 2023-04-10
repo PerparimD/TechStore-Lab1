@@ -85,7 +85,7 @@ function Mesazhet() {
                     />
                 </div>
             ) : (<>
-                <h1>
+                <h1 className="title">
                     Mesazhet e derguara nga Perdoruesit
                 </h1>
 

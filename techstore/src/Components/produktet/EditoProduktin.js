@@ -85,6 +85,16 @@ function EditoProduktin(props) {
                 autoFocus
               />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Kompania</Form.Label>
+              <Form.Control
+                value={produkti.emriKategoris}
+                type="text"
+                placeholder="Kompania e Produktit"
+                onChange={handleFotoChange}
+                autoFocus
+              />
+            </Form.Group>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"

@@ -4,6 +4,9 @@ table {
 th {
   white-space:wrap;
 }
+.title{
+  margin-top: 1em;
+}
 
 .containerDashboardP tr th {
   margin-top: 3em;

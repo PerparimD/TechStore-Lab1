@@ -7,7 +7,9 @@ import Mesazhi from "../layout/Mesazhi";
 import ShtoProduktin from "./ShtoProduktin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import EditoProduktin from "./EditoProduktin";
+import Modal from "react-bootstrap/Modal";
 
 const ProductTables = () => {
   const [produkti, setProdukti] = useState([]);
@@ -36,22 +38,6 @@ const ProductTables = () => {
     shfaqProduktet();
   }, [perditeso]);
 
-  async function fshijProduktin(id) {
-    try {
-      await axios.delete(`https://localhost:7285/api/Produkti/` + id);
-      setTipiMesazhit("success");
-      setPershkrimiMesazhit("Kompania u fshi me sukses!");
-      setPerditeso(Date.now());
-      setShfaqMesazhin(true);
-    } catch (err) {
-      console.error(err);
-      setTipiMesazhit("danger");
-      setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se kompanis!");
-      setPerditeso(Date.now());
-      setShfaqMesazhin(true);
-    }
-  }
-
   const handleClose = () => {
     setShow(false);
   };
@@ -62,12 +48,38 @@ const ProductTables = () => {
     setId(id);
   };
 
+  const [showD, setShowD] = useState(false);
+
+  const handleCloseD = () => setShowD(false);
+  const handleShowD = (id) => {
+    setId(id);
+    setShowD(true);
+  };
+
   const handleEditoMbyll = () => setEdito(false);
+
+  async function handleDelete() {
+    try {
+      await axios.delete(`https://localhost:7285/api/Produkti/` + id);
+      setTipiMesazhit("success");
+      setPershkrimiMesazhit("Produkti u fshi me sukses!");
+      setPerditeso(Date.now());
+      setShfaqMesazhin(true);
+      setShowD(false);
+    } catch (err) {
+      console.error(err);
+      setTipiMesazhit("danger");
+      setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se produkti!");
+      setPerditeso(Date.now());
+      setShfaqMesazhin(true);
+    }
+  }
 
   return (
     <div className="containerDashboardP">
+      <h1 className="title">Tabela e Produkteve</h1>
       <Button className="mb-3 Butoni" onClick={handleShow}>
-        Shto Produktin
+        Shto Produktin <FontAwesomeIcon icon={faPlus} />
       </Button>
       {show && (
         <ShtoProduktin
@@ -97,6 +109,22 @@ const ProductTables = () => {
           setPershkrimiMesazhit={setPershkrimiMesazhit}
         />
       )}
+      <Modal show={showD} onHide={handleCloseD}>
+        <Modal.Header closeButton>
+          <Modal.Title style={{ color: "red" }}>Largo Kompanin</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h6>A jeni te sigurt qe deshironi ta fshini kete kompani?</h6>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Anulo <FontAwesomeIcon icon={faXmark} />
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Largo Kompanin <FontAwesomeIcon icon={faBan} />
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       <table className="tableBig">
         <thead>
@@ -121,10 +149,8 @@ const ProductTables = () => {
                     alt=""
                   />
                 </td>
-                {/* <td>{p.kategoriaID}</td> */}
-                <td> 
-                  {!!p.kompania && p.kompania.emriKompanis}
-                </td>
+
+                <td>{!!p.kompania && p.kompania.emriKompanis}</td>
                 <td>{p.qmimiProduktit} €</td>
                 <td>
                   <Button
@@ -136,7 +162,7 @@ const ProductTables = () => {
                   </Button>
                   <Button
                     variant="danger"
-                    onClick={() => fshijProduktin(p.produktiId)}
+                    onClick={() => handleShowD(p.produktiId)}
                   >
                     <FontAwesomeIcon icon={faBan} />
                   </Button>

@@ -1,8 +1,11 @@
+/* eslint-disable no-undef */
 import { React, useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const ShtoProduktin = (props) => {
   const fotoP = useRef(null);
@@ -65,7 +68,6 @@ const ShtoProduktin = (props) => {
                 value={emriP}
                 type="text"
                 placeholder="Emri Produktit"
-                autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -75,7 +77,6 @@ const ShtoProduktin = (props) => {
                 type="file"
                 placeholder="Foto e Produktit"
                 onChange={handleFotoChange}
-                autoFocus
               />
             </Form.Group>
             <Form.Group
@@ -88,7 +89,6 @@ const ShtoProduktin = (props) => {
                 type="text"
                 placeholder="Kompania e Produktit"
                 onChange={(e) => handleKompaniaChange(e.target.value)}
-                autoFocus
               />
               <Form.Label>Qmimi i Produktit</Form.Label>
               <Form.Control
@@ -96,14 +96,13 @@ const ShtoProduktin = (props) => {
                 value={qmimiP}
                 type="number"
                 placeholder="Qmimi i Produktit"
-                autoFocus
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.hide}>
-            Close
+            Close <FontAwesomeIcon icon={faXmark}/>
           </Button>
           <Button
             style={{ backgroundColor: "#009879", border: "none" }}

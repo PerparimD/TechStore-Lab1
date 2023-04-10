@@ -41,11 +41,11 @@ function NavBar(props) {
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>
-              <Link to='/'>Sign out <FontAwesomeIcon icon={faRightFromBracket} /></Link>
+              <Link to='/'>Log out <FontAwesomeIcon icon={faRightFromBracket} /></Link>
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>
-              <Link to='/'>Sign in <FontAwesomeIcon icon={faRightToBracket} /></Link>
+              <Link to='/'>Log in <FontAwesomeIcon icon={faRightToBracket} /></Link>
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>

@@ -14,8 +14,9 @@ function App() {
         <Route path='/AboutUs' element={<AboutUs />} />
         <Route path='/ContactUs' element={<ContactUs />} />
         <Route path='/Dashboard' element={<Dashboard />} />
-        <Route path='/Produktet' element={<Produktet key="default"/>} exact />
-        <Route path='/Produktet/:llojiKerkimitNgaLinku/:termiPerKerkimNgaLinku' element={<Produktet />} exact/>
+        <Route path='/Produktet' element={<Produktet key="default" />} exact />
+        <Route path='/Produktet/:llojiKerkimitNgaLinku/:termiPerKerkimNgaLinku' element={<Produktet key="searchResults" />} exact />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

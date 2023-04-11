@@ -73,29 +73,25 @@
   gap: 0.5em;
 }
 
-.faqjaAktive {
-  color: white;
-  border: none;
-  padding: 0.6em;
-  border-radius: 100px;
-  background-color: #01df93;
+.navKerkimi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
 }
 
-.faqjaAktive:hover {
-  cursor: pointer;
-  color: white;
-  background-color: #01df93;
+.searchBar {
+  width: 23em;
+  padding: 1em 2em;
+  border: 1px solid #d3d3d3;
+  border-radius: 25px;
 }
 
-.faqjaTjeter {
-  color: black;
-  border: none;
-  padding: 0.6em;
-  border-radius: 100px;
+.button-kategoria {
+  margin: 2em;
 }
 
-.faqjaTjeter:hover {
-  cursor: pointer;
-  color: white;
-  background-color: #01df93;
+.button-kategoria span {
+  font-size: 15pt;
 }

@@ -27,6 +27,73 @@ namespace TechStoreWebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("shfaqProduktetENdara")]
+        public async Task<IEnumerable<Produkti>> ShfaqProduktetENdara(int fillimiKerkimitProduktit, int LimitiKerkimitProduktit, string llojiKerkimit, string termiPerKerkim)
+        {
+            try
+            {
+                IQueryable<Produkti> query = _context.Produktis.OrderByDescending(p => p.ProduktiId);
+
+                switch (llojiKerkimit)
+                {
+                    case "kerko":
+                        query = query.Where(p => EF.Functions.Like(p.EmriProduktit, $"%{termiPerKerkim}%"));
+                        break;
+                    case "kompania":
+                        query = query.Where(p => p.KompaniaId == int.Parse(termiPerKerkim));
+                        break;
+                    case "kategoria":
+                        query = query.Where(p => p.KategoriaId == int.Parse(termiPerKerkim));
+                        break;
+                    default:
+                        break;
+                }
+
+                query = query.Skip(fillimiKerkimitProduktit).Take(LimitiKerkimitProduktit);
+
+                return await query.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("shfaqNumrinEProdukteve")]
+        public async Task<object> ShfaqNumrinEProdukteve(string llojiKerkimit, string termiPerKerkim)
+        {
+            try
+            {
+                IQueryable<Produkti> query = _context.Produktis.OrderByDescending(p => p.ProduktiId);
+
+                switch (llojiKerkimit)
+                {
+                    case "kerko":
+                        query = query.Where(p => EF.Functions.Like(p.EmriProduktit, $"%{termiPerKerkim}%"));
+                        break;
+                    case "kompania":
+                        query = query.Where(p => p.KompaniaId == int.Parse(termiPerKerkim));
+                        break;
+                    case "kategoria":
+                        query = query.Where(p => p.KategoriaId == int.Parse(termiPerKerkim));
+                        break;
+                    default:
+                        break;
+                }
+
+                var produktet = await query.ToListAsync();
+                var numriProdukteve = produktet.Count;
+
+                return produktet;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult> GetById(int id)
         {

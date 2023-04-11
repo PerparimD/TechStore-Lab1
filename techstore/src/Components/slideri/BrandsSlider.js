@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import classes from './Styles/BrandsSlider.module.css'
 
@@ -49,10 +50,12 @@ function BrandsSlider(props) {
       </button>
       <div className={classes.kornizaEBrendeve} ref={(el) => (kornizaEBrendeveRef.current[0] = el)}>
         {kompanit.map((kompania) => (
-          <div className={classes.kartelaEBrendit} key={kompania.kompaniaID}>
+          <div className={classes.kartelaEBrendit} key={kompania.kompaniaId }>
             <div className={classes.logoBrendit}>
               <a href=''>
+              <Link to={`/Produktet/kompania/${kompania.kompaniaId}`}>
                 <img src={`${process.env.PUBLIC_URL}/img/slider/sliderIcons/${kompania.logo}`} alt="" />
+                </Link>
               </a>
             </div>
           </div>

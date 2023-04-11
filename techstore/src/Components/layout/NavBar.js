@@ -30,7 +30,7 @@ function NavBar(props) {
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>
-              <Link to='/'>Products</Link>
+            <Link to='/Produktet' key="default">Products</Link>
               <span className={classes.line}></span>
             </li>
           </div>
@@ -66,7 +66,7 @@ function NavBar(props) {
               <Link to='/'>Home</Link>
               <Link to='/AboutUs'>About Us</Link>
               <Link to='/ContactUs'>Contact Us</Link>
-              <Link to='/'>Products</Link>
+              <Link to='/Produktet' key="default">Products</Link>
               <Link to='/Dashboard'>Dashboard <FontAwesomeIcon icon={faCircleUser} /></Link>
               <Link to='/'>Sign out <FontAwesomeIcon icon={faRightFromBracket} /></Link>
               <Link to='/'>Sign in <FontAwesomeIcon icon={faRightToBracket} /></Link>

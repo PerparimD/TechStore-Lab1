@@ -47,7 +47,7 @@ function Home() {
                     return (
                         <ProduktetNeHome
                             key={produkti.produktiID}
-                            fotoProduktit={`${process.env.PUBLIC_URL}/img/products/${produkti.fotoProduktit}`}
+                            fotoProduktit={produkti.fotoProduktit}
                             emriProduktit={produkti.emriProduktit}
                             cmimi={produkti.qmimiProduktit}
                         />

@@ -1,20 +1,20 @@
 import Buton from '../layout/Buton';
-import classes from './Styles/ProduktetNeHome.module.css'
+import './Styles/produktet.css';
 
 
 function ProduktetNeHome(props) {
     return (
-        <form className={classes.artikulli} key={props.produktiID}>
+        <form className="artikulli" key={props.produktiID}>
             <a href='/'>
-                <img src={props.fotoProduktit} alt={props.emriProduktit} />
-                <p className={classes.artikulliLabel}>
+                <img src={`${process.env.PUBLIC_URL}/img/products/${props.fotoProduktit}`} alt={props.emriProduktit} />
+                <p className="artikulliLabel">
                     {props.emriProduktit}
                 </p>
             </a>
-            <p className={classes.cmimi}>
+            <p className="cmimi">
                 {props.cmimi.toFixed(2)} €
             </p>
-            <div className={classes.butonatDiv}>
+            <div className="butonatDiv">
                 <Buton Label="Buy Now" name="blej" />
             </div>
         </form>

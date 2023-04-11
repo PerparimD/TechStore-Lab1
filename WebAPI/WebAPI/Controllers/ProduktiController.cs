@@ -61,13 +61,13 @@ namespace TechStoreWebAPI.Controllers
 
         [HttpGet]
         [Route("shfaqNumrinEProdukteve")]
-        public async Task<object> ShfaqNumrinEProdukteve(string llojiKerkimit, string termiPerKerkim)
+        public async Task<int> ShfaqNumrinEProdukteve(string llojiKerkimit, string termiPerKerkim)
         {
             try
             {
                 IQueryable<Produkti> query = _context.Produktis.OrderByDescending(p => p.ProduktiId);
 
-                switch (llojiKerkimit)
+                switch (llojiKerkimit.ToLower())
                 {
                     case "kerko":
                         query = query.Where(p => EF.Functions.Like(p.EmriProduktit, $"%{termiPerKerkim}%"));
@@ -82,16 +82,18 @@ namespace TechStoreWebAPI.Controllers
                         break;
                 }
 
-                var produktet = await query.ToListAsync();
+                List<Produkti> produktet = await query.ToListAsync();
                 var numriProdukteve = produktet.Count;
 
-                return produktet;
+                return numriProdukteve;
             }
             catch (Exception ex)
             {
+                // handle the exception in some way, such as logging it
                 throw;
             }
         }
+
 
         [HttpGet]
         [Route("{id}")]

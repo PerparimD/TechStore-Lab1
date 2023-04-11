@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import NavBar from "../Components/layout/NavBar";
 import Footer from "../Components/layout/Footer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "axios";
 import ProduktetNeHome from "../Components/produktet/ProduktetNeHome";
@@ -9,81 +9,68 @@ import '../Components/produktet/Styles/produktet.css';
 
 function Produktet() {
     const [produktet, setProduktet] = useState([]);
-    const [prodPerNrFaqes, setProdPerNrFaqes] = useState([]);
     const [fillimiKerkimitProduktit, setFillimiKerkimitProduktit] = useState(0);
     const [limitiKerkimitProduktit, setLimitiKerkimitProduktit] = useState(15);
     const { llojiKerkimitNgaLinku, termiPerKerkimNgaLinku } = useParams();
-    const [llojiKerkimit, setLlojiKerkimit] = useState(llojiKerkimitNgaLinku ? llojiKerkimitNgaLinku : "teGjitha");
-    const [termiPerKerkim, setTermiPerKerkim] = useState(termiPerKerkimNgaLinku ? termiPerKerkimNgaLinku : "teGjitha");
-    const [nrFaqev, setNrFaqev] = useState(1);
+    const [llojiKerkimit, setLlojiKerkimit] = useState(llojiKerkimitNgaLinku ? llojiKerkimitNgaLinku : "a");
+    const [termiPerKerkim, setTermiPerKerkim] = useState(termiPerKerkimNgaLinku ? termiPerKerkimNgaLinku : "a");
     const [perditeso, setPerditeso] = useState("");
-    const [nrAktualFaqes, setNumriAktualFaqes] = useState(1);
+    const [perd, setPerditesoA] = useState("");
+    const [numriAktualFaqes, setNumriAktualFaqes] = useState(1);
+    const [nrTotProd, setNrTot] = useState(0);
+    const [nrFaqev, setNrFaqev] = useState(1);
     const numriFaqeveNeNav = [];
+    
 
 
     useEffect(() => {
-        if (!llojiKerkimitNgaLinku || llojiKerkimitNgaLinku.trim() === '') {
-            setLlojiKerkimit("teGjitha");
-        }
-        if (!termiPerKerkimNgaLinku || termiPerKerkimNgaLinku.trim() === '') {
-            setTermiPerKerkim("teGjitha");
-        }
-        setPerditeso(Date.now());
-    }, [llojiKerkimitNgaLinku, termiPerKerkimNgaLinku]);
-
-
-
-
-    useEffect(() => {
-        console.log(llojiKerkimit, termiPerKerkim);
-        console.log("nrAktualFaqes: " + nrAktualFaqes, "nrFaqev: " + nrFaqev, "numriFaqeveNeNav: " + numriFaqeveNeNav)
         const shfaqProduktet = async () => {
             try {
-                const produkti = await axios.get(`https://localhost:7285/api/Produkti/shfaqProduktetENdara?`
-                    + `fillimiKerkimitProduktit=${fillimiKerkimitProduktit}&`
-                    + `LimitiKerkimitProduktit=${limitiKerkimitProduktit}&`
-                    + `llojiKerkimit=${llojiKerkimit}&`
-                    + `termiPerKerkim=${termiPerKerkim}`);
-
+                const produkti = await axios.get(`https://localhost:7285/api/Produkti/shfaqProduktetENdara?fillimiKerkimitProduktit=${fillimiKerkimitProduktit}&LimitiKerkimitProduktit=${limitiKerkimitProduktit}&llojiKerkimit=${llojiKerkimit}&termiPerKerkim=${termiPerKerkim}`);
                 setProduktet(produkti.data);
             } catch (err) {
                 console.log(err);
             }
         }
-        
-        numriFaqev;
-        
+
         shfaqProduktet();
+        setNrFaqev(Math.ceil(nrTotProd / limitiKerkimitProduktit));
+        console.log(nrFaqev)
+        setPerditesoA(Date.now());
+    }, [perditeso, fillimiKerkimitProduktit, limitiKerkimitProduktit, llojiKerkimit, termiPerKerkim]);
 
-    }, [perditeso])
-    const numriFaqev = async () => {
-        try {
-            const datat = await axios.get(`https://localhost:7285/api/Produkti/shfaqNumrinEProdukteve?llojiKerkimit=${llojiKerkimit}&termiPerKerkim=${termiPerKerkim}`)
-
-            setProdPerNrFaqes(datat.data)
-        } catch (err) {
-            console.log(err);
+    useEffect(() => {
+        const prod = async () => {
+            try {
+                const produkti = await axios.get(`https://localhost:7285/api/Produkti/shfaqNumrinEProdukteve?llojiKerkimit=${llojiKerkimit}&termiPerKerkim=${termiPerKerkim}`);
+                setNrTot(produkti.data)
+                console.log(nrTotProd);
+            }
+            catch (err) {
+                console.log(err);
+            }
         }
-    }
 
+        prod();
+        setPerditesoA(Date.now());
+    }, [produktet, perditeso, fillimiKerkimitProduktit, limitiKerkimitProduktit, llojiKerkimit, termiPerKerkim])
 
     const handleNumriFaqes = (nrFaqes) => {
         setNumriAktualFaqes(nrFaqes);
         setFillimiKerkimitProduktit(nrFaqes * limitiKerkimitProduktit);
         setPerditeso(Date.now());
-    }
-    const handleTest = () => {
-        setNrFaqev(prodPerNrFaqes.length / limitiKerkimitProduktit)
-        console.log(prodPerNrFaqes.length, limitiKerkimitProduktit, prodPerNrFaqes.length / limitiKerkimitProduktit)
+        setPerditesoA(Date.now());
     }
 
     useEffect(() => {
-        handleTest();
         for (let i = 1; i <= nrFaqev; i++) {
             numriFaqeveNeNav.push(i);
         }
-
-    }, [perditeso]);
+        
+        console.log(nrFaqev)
+    }, [perd])
+    
+    
     return (
         <div>
             <Helmet>
@@ -94,7 +81,7 @@ function Produktet() {
                 <div className="titulliArtikuj">
                     <h1>Latest Products</h1>
                 </div>
-                {prodPerNrFaqes.map((x) => {
+                {produktet.map((x) => {
                     return (
                         <ProduktetNeHome
                             produktiID={x.produktiId}
@@ -107,14 +94,14 @@ function Produktet() {
             </div>
 
 
-            <div class="navigimiFaqev">
+            <div className="navigimiFaqev">
                 {nrFaqev > 1 &&
-                    <a class='faqjaTjeter' ><i class='fa-solid'>&#xf104;</i></a>
+                    <a className='faqjaTjeter' ><i className='fa-solid'>&#xf104;</i>Next</a>
                 }
                 {numriFaqeveNeNav.map((faqja) => (
                     <a
                         key={faqja}
-                        className={faqja === nrAktualFaqes ? "faqjaAktive" : "faqjaTjeter"}
+                        className={faqja === numriAktualFaqes ? "faqjaAktive" : "faqjaTjeter"}
                         onClick={() => handleNumriFaqes(faqja)}
                     >
                         {faqja}

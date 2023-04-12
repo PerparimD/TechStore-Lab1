@@ -46,7 +46,8 @@ function Home() {
                 {produktet.map((produkti) => {
                     return (
                         <ProduktetNeHome
-                            key={produkti.produktiID}
+                            key={produkti.produktiId}
+                            produktiID={produkti.produktiId}
                             fotoProduktit={produkti.fotoProduktit}
                             emriProduktit={produkti.emriProduktit}
                             cmimi={produkti.qmimiProduktit}

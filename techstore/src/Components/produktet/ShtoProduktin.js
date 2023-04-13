@@ -5,7 +5,8 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
 const ShtoProduktin = (props) => {
   const fotoP = useRef(null);
@@ -13,6 +14,7 @@ const ShtoProduktin = (props) => {
   const [emriP, setEmriP] = useState("");
   const [emriK, setEmriK] = useState("");
   const [qmimiP, setQmimi] = useState(0);
+  const [kompanit, setKompanit] = useState([]);
 
   const handleEmriPChange = (value) => {
     setEmriP(value);
@@ -30,15 +32,24 @@ const ShtoProduktin = (props) => {
     setFoto(fileName);
   };
 
+  useEffect(() => {
+    axios
+      .get("https://localhost:7285/api/Kompania/shfaqKompanit")
+      .then((response) => {
+        setKompanit(response.data);
+      });
+
+    // console.log(response);
+  });
+
   function handleSubmit() {
     axios
       .post("https://localhost:7285/api/Produkti/shtoProdukt", {
-
         emriProduktit: emriP,
         fotoProduktit: foto,
         qmimiProduktit: qmimiP,
-        kompania:{
-          emriKompanis: emriK
+        kompania: {
+          emriKompanis: emriK,
         },
       })
       .then((response) => {
@@ -84,12 +95,21 @@ const ShtoProduktin = (props) => {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Kompania</Form.Label>
-              <Form.Control
+              <select
+              placeholder="Kompania e Produktit"
+                className="form-select"
                 value={emriK}
-                type="text"
-                placeholder="Kompania e Produktit"
                 onChange={(e) => handleKompaniaChange(e.target.value)}
-              />
+              >
+                <option defaultValue disabled value="">Kompania e Produktit</option>
+                {kompanit.map((item) => {
+                  return (
+                    <option key={item.kompaniaId}>{item.emriKompanis}</option>
+                  );
+                })}
+              </select>
+            </Form.Group>
+            <Form.Group>
               <Form.Label>Qmimi i Produktit</Form.Label>
               <Form.Control
                 onChange={(e) => handleQmimiPChange(e.target.value)}
@@ -102,7 +122,7 @@ const ShtoProduktin = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.hide}>
-            Close <FontAwesomeIcon icon={faXmark}/>
+            Close <FontAwesomeIcon icon={faXmark} />
           </Button>
           <Button
             style={{ backgroundColor: "#009879", border: "none" }}

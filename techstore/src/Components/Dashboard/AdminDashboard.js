@@ -35,7 +35,7 @@ const AdminDashboard = () => {
           <Col>
             <Nav variant="pills" className="flex-column">
               <Nav.Item >
-                <Nav.Link className='colum' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle} >Products</Nav.Link>
+                <Nav.Link className='colum' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle} >Produktet</Nav.Link>
               </Nav.Item>
               <Nav.Item >
                 <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle} >Kompanit</Nav.Link>

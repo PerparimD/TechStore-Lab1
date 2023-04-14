@@ -13,6 +13,7 @@ const ShtoProduktin = (props) => {
   const [foto, setFoto] = useState("");
   const [emriP, setEmriP] = useState("");
   const [emriK, setEmriK] = useState("");
+  const [pershkrimi, setPershkrimi] = useState("");
   const [llojiK, setLlojiK] = useState("");
   const [qmimiP, setQmimi] = useState(0);
   const [kompanit, setKompanit] = useState([]);

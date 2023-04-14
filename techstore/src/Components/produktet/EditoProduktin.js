@@ -7,6 +7,8 @@ import Modal from "react-bootstrap/Modal";
 function EditoProduktin(props) {
   const [produkti, setProdukti] = useState([]);
   const foto = useRef(null);
+  const [kompanit, setKompanit] = useState([]);
+  const [kategoria, setKategoria] = useState([]);
 
   useEffect(() => {
     const shfaqProduktet = async () => {
@@ -18,6 +20,17 @@ function EditoProduktin(props) {
         console.log(err);
       }
     };
+    Promise.all([
+      fetch("https://localhost:7285/api/Kompania/shfaqKompanit"),
+      fetch("https://localhost:7285/api/Kategoria/shfaqKategorit"),
+    ])
+      .then(([resKompanit, resKategorit]) =>
+        Promise.all([resKompanit.json(), resKategorit.json()])
+      )
+      .then(([dataKomapit, dataKategorit]) => {
+        setKompanit(dataKomapit);
+        setKategoria(dataKategorit);
+      });
 
     shfaqProduktet();
   }, []);
@@ -33,6 +46,15 @@ function EditoProduktin(props) {
     const filePath = foto.current.value;
     const fileName = filePath.split("\\").pop();
     setProdukti((prev) => ({ ...prev, fotoProduktit: fileName }));
+  };
+
+  const handleKompaniaChange = (value) => {
+    setProdukti((prev) => ({ ...prev, emriKompanis: value }));
+  };
+
+
+  const handleKategoriaChange = (value) => {
+    setProdukti((prev) => ({ ...prev, llojiKategoris: value }));
   };
 
 
@@ -85,16 +107,51 @@ function EditoProduktin(props) {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Kompania</Form.Label>
-              <Form.Control
-                value={produkti.emriKategoris}
-                type="text"
+            <Form.Group>
+            <Form.Label>Kompania</Form.Label>
+              <select
                 placeholder="Kompania e Produktit"
-                onChange={handleFotoChange}
-                autoFocus
-              />
+                className="form-select"
+                value={produkti.emriKompanis}
+                onChange={(e) => handleKompaniaChange(e.target.value)}
+              >
+                <option defaultValue disabled value="">
+                  Kompania e Produktit
+                </option>
+                {kompanit.map((item) => {
+                  return (
+                    <option key={item.kompaniaId}>
+                      {item.emriKompanis}
+                    </option>
+                  );
+                })}
+              </select>
             </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Kategoria</Form.Label>
+              <select
+                placeholder="Kategoria e Produktit"
+                className="form-select"
+                value={produkti.llojiKategoris}
+                onChange={(e) => handleKategoriaChange(e.target.value)}
+              >
+                <option defaultValue disabled value="">
+                  Kategoria e Produktit
+                </option>
+                {kategoria.map((item) => {
+                  return (
+                    <option key={item.kategoriaID}>
+                      {item.llojiKategoris}
+                    </option>
+                  );
+                })}
+              </select>
+            </Form.Group>
+            
+            
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"

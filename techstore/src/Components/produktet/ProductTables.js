@@ -29,7 +29,6 @@ const ProductTables = () => {
         );
         setProdukti(produkti.data);
 
-        console.log(produkti.data[1].kompania.emriKompanis);
       } catch (err) {
         console.log(err);
       }
@@ -111,17 +110,17 @@ const ProductTables = () => {
       )}
       <Modal show={showD} onHide={handleCloseD}>
         <Modal.Header closeButton>
-          <Modal.Title style={{ color: "red" }}>Largo Kompanin</Modal.Title>
+          <Modal.Title style={{ color: "red" }}>Largo Produktin</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h6>A jeni te sigurt qe deshironi ta fshini kete kompani?</h6>
+          <h6>A jeni te sigurt qe deshironi ta fshini kete produkt?</h6>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleCloseD}>
             Anulo <FontAwesomeIcon icon={faXmark} />
           </Button>
           <Button variant="danger" onClick={handleDelete}>
-            Largo Kompanin <FontAwesomeIcon icon={faBan} />
+            Largo Produktin <FontAwesomeIcon icon={faBan} />
           </Button>
         </Modal.Footer>
       </Modal>
@@ -132,6 +131,7 @@ const ProductTables = () => {
             <th className="emriP">Emri i Produktit</th>
             <th>Foto e Produktit</th>
             <th>Kompania</th>
+            <th>Kategoria</th>
             <th>Qmimi i Produktit</th>
             <th>Funksione</th>
           </tr>
@@ -150,7 +150,8 @@ const ProductTables = () => {
                   />
                 </td>
 
-                <td>{!!p.kompania && p.kompania.emriKompanis}</td>
+                <td>{p.emriKompanis}</td>
+                <td>{p.llojiKategoris}</td>
                 <td>{p.qmimiProduktit} €</td>
                 <td>
                   <Button

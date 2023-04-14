@@ -13,14 +13,20 @@ const ShtoProduktin = (props) => {
   const [foto, setFoto] = useState("");
   const [emriP, setEmriP] = useState("");
   const [emriK, setEmriK] = useState("");
+  const [llojiK, setLlojiK] = useState("");
   const [qmimiP, setQmimi] = useState(0);
   const [kompanit, setKompanit] = useState([]);
+  const [kategoria, setKategoria] = useState([]);
 
   const handleEmriPChange = (value) => {
     setEmriP(value);
   };
   const handleKompaniaChange = (value) => {
     setEmriK(value);
+  };
+
+  const handleKategoriaChange = (value) => {
+    setLlojiK(value);
   };
 
   const handleQmimiPChange = (value) => {
@@ -33,14 +39,20 @@ const ShtoProduktin = (props) => {
   };
 
   useEffect(() => {
-    axios
-      .get("https://localhost:7285/api/Kompania/shfaqKompanit")
-      .then((response) => {
-        setKompanit(response.data);
+    Promise.all([
+      fetch("https://localhost:7285/api/Kompania/shfaqKompanit"),
+      fetch("https://localhost:7285/api/Kategoria/shfaqKategorit"),
+    ])
+      .then(([resKompanit, resKategorit]) =>
+        Promise.all([resKompanit.json(), resKategorit.json()])
+      )
+      .then(([dataKomapit, dataKategorit]) => {
+        setKompanit(dataKomapit);
+        setKategoria(dataKategorit);
       });
-
-    // console.log(response);
-  });
+  }, []);
+  console.log(kompanit)
+  
 
   function handleSubmit() {
     axios
@@ -48,6 +60,7 @@ const ShtoProduktin = (props) => {
         emriProduktit: emriP,
         fotoProduktit: foto,
         qmimiProduktit: qmimiP,
+        llojiKategoris: kategoria,
         kompania: {
           emriKompanis: emriK,
         },
@@ -96,15 +109,40 @@ const ShtoProduktin = (props) => {
             >
               <Form.Label>Kompania</Form.Label>
               <select
-              placeholder="Kompania e Produktit"
+                placeholder="Kompania e Produktit"
                 className="form-select"
                 value={emriK}
                 onChange={(e) => handleKompaniaChange(e.target.value)}
               >
-                <option defaultValue disabled value="">Kompania e Produktit</option>
+                <option defaultValue disabled value="">
+                  Kompania e Produktit
+                </option>
                 {kompanit.map((item) => {
                   return (
                     <option key={item.kompaniaId}>{item.emriKompanis}</option>
+                  );
+                })}
+              </select>
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Kategoria</Form.Label>
+              <select
+                placeholder="Kategoria e Produktit"
+                className="form-select"
+                value={llojiK}
+                onChange={(e) => handleKategoriaChange(e.target.value)}
+              >
+                <option defaultValue disabled value="">
+                  Kategoria e Produktit
+                </option>
+                {kategoria.map((item) => {
+                  return (
+                    <option key={item.kategoriaID}>
+                      {item.llojiKategoris}
+                    </option>
                   );
                 })}
               </select>

@@ -21,9 +21,25 @@ namespace TechStoreWebAPI.Controllers
         [Route("Products")]
         public async Task<ActionResult> Get()
         {
-            List<Produkti> produktis = await _context.Produktis.Include(x => x.Kompania).ToListAsync();
-            var produktet = await _context.Produktis.ToListAsync();
-            return Ok(produktet);
+            //List<Produkti> produktis = await _context.Produktis.Include(x => x.Kompania).ToListAsync();
+
+            var Produkti = await _context.Produktis
+               .OrderByDescending(x => x.ProduktiId)
+               .Select(x => new {
+                   x.ProduktiId,
+                   x.EmriProduktit,
+                   x.Pershkrimi,
+                   x.FotoProduktit,
+                   x.QmimiProduktit,
+                   x.Kategoria.LlojiKategoris,
+                   x.Kompania.EmriKompanis
+                   
+
+               })
+               .ToListAsync();
+
+            //var produktet = await _context.Produktis.ToListAsync();
+            return Ok(Produkti);
         }
 
         [HttpGet]
@@ -130,11 +146,17 @@ namespace TechStoreWebAPI.Controllers
                 EmriProduktit = produkti.EmriProduktit,
                 FotoProduktit = produkti.FotoProduktit,
                 QmimiProduktit = produkti.QmimiProduktit,
+                Kategoria = new KategoriaProduktit
+                {
+                    LlojiKategoris = produkti.Kategoria.LlojiKategoris
+                },
                 Kompania = new Kompanium
                 {
                     EmriKompanis = produkti.Kompania.EmriKompanis
                 }
             };
+
+
             await _context.Produktis.AddAsync(newProduct);
             await _context.SaveChangesAsync();
 

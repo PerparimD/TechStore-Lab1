@@ -19,7 +19,7 @@ public partial class Produkti
 
     public int? KategoriaId { get; set; }
 
-    public virtual KategoriaProduktit? Kategoria { get; set; }
+    public KategoriaProduktit? Kategoria { get; set; }
 
     public virtual ICollection<KodiZbritje> KodiZbritjes { get; } = new List<KodiZbritje>();
 

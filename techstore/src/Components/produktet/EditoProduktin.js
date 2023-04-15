@@ -3,6 +3,10 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+
 
 function EditoProduktin(props) {
   const [produkti, setProdukti] = useState([]);
@@ -37,6 +41,9 @@ function EditoProduktin(props) {
 
   const handleEmriPChange = (value) => {
     setProdukti((prev) => ({ ...prev, emriProduktit: value }));
+  };
+  const handlePershkrimiChange = (value) => {
+    setProdukti((prev) => ({ ...prev, pershkrimi: value }));
   };
 
   const handleQmimiPChange = (value) => {
@@ -81,7 +88,7 @@ function EditoProduktin(props) {
   }
   return (
     <>
-      <Modal className="modal" show={props.show} onHide={props.hide}>
+      <Modal className="modal mt-0" show={props.show} onHide={props.hide}>
         <Modal.Header closeButton>
           <Modal.Title>Shto Produkt</Modal.Title>
         </Modal.Header>
@@ -96,6 +103,15 @@ function EditoProduktin(props) {
                 placeholder="Emri Produktit"
                 autoFocus
               />
+               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Pershkrimi Produktit</Form.Label>
+              <Form.Control
+                onChange={(e) => handlePershkrimiChange(e.target.value)}
+                value={produkti.pershkrimi}
+                as="textarea"
+                placeholder="Pershkrimi Produktit"
+              />
+            </Form.Group>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Foto Produktit</Form.Label>
@@ -169,13 +185,13 @@ function EditoProduktin(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.hide}>
-            Close
+            Anulo <FontAwesomeIcon icon={faXmark} />
           </Button>
           <Button
             style={{ backgroundColor: "#009879", border: "none" }}
             onClick={handleSubmit}
           >
-            Save Changes
+            Edito Produktin <FontAwesomeIcon icon={faPenToSquare}/>
           </Button>
         </Modal.Footer>
       </Modal>

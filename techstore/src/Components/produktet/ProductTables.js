@@ -143,8 +143,8 @@ const ProductTables = () => {
           {produkti.map((p) => {
             return (
               <tr key={p.produktiId}>
-                <td>{p.emriProduktit}</td>
-                <td>{p.pershkrimi ? <FontAwesomeIcon icon={faCheck} color="green" /> : <FontAwesomeIcon icon={faXmark} color="red" />}</td>
+                <td className="eP">{p.emriProduktit}</td>
+                <td>{p.pershkrimi ? <FontAwesomeIcon icon={faCheck} color="green"  /> : <FontAwesomeIcon icon={faXmark} color="red" />}</td>
                 <td>
                   <img
                     src={`${process.env.PUBLIC_URL}/img/products/${p.fotoProduktit}`}

@@ -112,14 +112,12 @@ const ContactUs = () => {
               placeholder="Mesazhi Juaj"
               onChange={(e) => vendosMesazhin(e.target.value)} />
           </FloatingLabel>
-          <Form.Group>
-            <Button
+          <Button
               className="button"
               onClick={dergoMesazhin}
             >
               Send <FontAwesomeIcon icon={faEnvelopeCircleCheck} />
             </Button>
-          </Form.Group>
         </Form>
       </div>
       <Footer />

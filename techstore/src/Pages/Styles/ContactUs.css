@@ -5,7 +5,7 @@
   flex-basis: 120em;
   align-items: center;
   flex-wrap: wrap;
-  border-radius: 25px;
+  border-radius: 30px;
   width: fit-content;
   margin: auto;
   margin-top: 5em;
@@ -13,6 +13,7 @@
   -webkit-box-shadow: 0 0 20px #ddd;
   box-shadow: 0 0 20px #ddd;
   padding: 3em 2em;
+  /* background-color: #009879; */
   
 }
 
@@ -38,12 +39,12 @@
 .input {
   color: #ddd;
   background-color: inherit;
-  border: none;
-  box-shadow:0 0 600px #ddd;
-  border-radius:15px;
+  border: 1px solid #d3d3d3;
+  /* box-shadow: 0 0 4px; */
+  border-radius:30px;
   outline: none;
   width: max(27em, 20vw);
-  padding: 10px;
+  padding: 7px;
 }
 
 
@@ -52,7 +53,7 @@
   background-color: whitesmoke;
   color: black;
   padding: 1em 3em;
-  width: auto;
+  width: 100%;
   border-radius: 25px;
   margin-top: 1em;
 }

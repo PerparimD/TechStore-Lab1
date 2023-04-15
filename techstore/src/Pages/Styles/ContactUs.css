@@ -51,17 +51,17 @@
 .button {
   border: none;
   background-color: whitesmoke;
-  color: black;
+  color: white;
+  background: #01df93;
   padding: 1em 3em;
   width: 100%;
-  border-radius: 25px;
+  border-radius: 50px;
   margin-top: 1em;
 }
 
 .button:hover {
-  background: #01df93;
-  color: #fff;
-  font-weight: bold;
+  background: white;
+  color: #01df93;
   cursor: pointer;
 }
 

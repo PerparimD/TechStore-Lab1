@@ -6,6 +6,7 @@ th {
 }
 .title{
   margin-top: 1em;
+  
 }
 
 .containerDashboardP tr th {
@@ -23,9 +24,6 @@ th {
 
 .containerDashboardP tr td {
   border-bottom: 1px solid #dddddd;
-}
-.emriP {
-  width: 5em;
 }
 
 .edito {

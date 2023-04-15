@@ -7,7 +7,7 @@ import Mesazhi from "../layout/Mesazhi";
 import ShtoProduktin from "./ShtoProduktin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
 import EditoProduktin from "./EditoProduktin";
 import Modal from "react-bootstrap/Modal";
 
@@ -54,6 +54,7 @@ const ProductTables = () => {
     setId(id);
     setShowD(true);
   };
+  console.log(produkti);
 
   const handleEditoMbyll = () => setEdito(false);
 
@@ -128,7 +129,8 @@ const ProductTables = () => {
       <table className="tableBig">
         <thead>
           <tr>
-            <th className="emriP">Emri i Produktit</th>
+            <th>Emri i Produktit</th>
+            <th>Pershkrimi</th>
             <th>Foto e Produktit</th>
             <th>Kompania</th>
             <th>Kategoria</th>
@@ -142,6 +144,7 @@ const ProductTables = () => {
             return (
               <tr key={p.produktiId}>
                 <td>{p.emriProduktit}</td>
+                <td>{p.pershkrimi ? <FontAwesomeIcon icon={faCheck} color="green" /> : <FontAwesomeIcon icon={faXmark} color="red" />}</td>
                 <td>
                   <img
                     src={`${process.env.PUBLIC_URL}/img/products/${p.fotoProduktit}`}

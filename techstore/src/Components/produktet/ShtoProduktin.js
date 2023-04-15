@@ -22,6 +22,11 @@ const ShtoProduktin = (props) => {
   const handleEmriPChange = (value) => {
     setEmriP(value);
   };
+
+  const handlePershkrimiChange = (value) => {
+    setPershkrimi(value);
+  };
+
   const handleKompaniaChange = (value) => {
     setEmriK(value);
   };
@@ -59,6 +64,7 @@ const ShtoProduktin = (props) => {
     axios
       .post("https://localhost:7285/api/Produkti/shtoProdukt", {
         emriProduktit: emriP,
+        pershkrimi: pershkrimi,
         fotoProduktit: foto,
         qmimiProduktit: qmimiP,
         llojiKategoris: kategoria,
@@ -93,6 +99,15 @@ const ShtoProduktin = (props) => {
                 value={emriP}
                 type="text"
                 placeholder="Emri Produktit"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Pershkrimi Produktit</Form.Label>
+              <Form.Control
+                onChange={(e) => handlePershkrimiChange(e.target.value)}
+                value={pershkrimi}
+                as="textarea"
+                placeholder="Pershkrimi Produktit"
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

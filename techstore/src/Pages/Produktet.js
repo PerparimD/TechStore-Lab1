@@ -150,7 +150,7 @@ function Produktet() {
                     <Dropdown.Menu className="dropdown-content dropdown-content-kategoria">
                         {kategorit.map((k) => {
                             return (
-                                <Link to='/Produktet'>
+                                <Link to={`/Produktet/kategoria/${k.kategoriaId}`}>
                                     <Dropdown.Item href={`/Produktet/kategoria/${k.kategoriaId}`} onClick={(e) => handleNdryshimiKategoris(e, k.kategoriaId)}>{k.llojiKategoris}</Dropdown.Item>
                                 </Link>
                             )

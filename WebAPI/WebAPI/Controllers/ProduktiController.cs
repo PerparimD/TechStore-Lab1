@@ -115,7 +115,18 @@ namespace TechStoreWebAPI.Controllers
         [Route("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
-            var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
+            var produkti = await _context.Produktis
+               .Select(x => new {
+                   x.ProduktiId,
+                   x.EmriProduktit,
+                   x.Pershkrimi,
+                   x.FotoProduktit,
+                   x.QmimiProduktit,
+                   x.KategoriaId, 
+                   x.Kategoria.LlojiKategoris,
+                   x.KompaniaId,
+                   x.Kompania.EmriKompanis
+               }).FirstOrDefaultAsync(x => x.ProduktiId == id);
             return Ok(produkti);
         }
 

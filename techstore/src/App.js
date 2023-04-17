@@ -5,6 +5,7 @@ import ContactUs from './Pages/ContactUs';
 import Home from './Pages/Home';
 import Dashboard from './Pages/Dashboard';
 import Produktet from './Pages/Produktet';
+import Produkti from './Pages/Produkti';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <Route path='/AboutUs' element={<AboutUs />} />
         <Route path='/ContactUs' element={<ContactUs />} />
         <Route path='/Dashboard' element={<Dashboard />} />
-        <Route path='/Produktet' element={<Produktet key="default" />} exact />
-        <Route path='/Produktet/:llojiKerkimitNgaLinku/:termiPerKerkimNgaLinku' element={<Produktet key="searchResults" />} exact />
+        <Route path='/Produktet' element={<Produktet key={Date.now()} />} exact />
+        <Route path='/Produktet/:llojiKerkimitNgaLinku/:termiPerKerkimNgaLinku' element={<Produktet key={Date.now()} />} exact />
+        <Route path='/Produkti/:produktiID' element={<Produkti key={Date.now()}/>} exact />
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

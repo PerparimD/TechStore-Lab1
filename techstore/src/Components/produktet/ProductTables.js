@@ -143,7 +143,7 @@ const ProductTables = () => {
           {produkti.map((p) => {
             return (
               <tr key={p.produktiId}>
-                <td className="eP">{p.emriProduktit}</td>
+                <td>{p.emriProduktit}</td>
                 <td>{p.pershkrimi ? <FontAwesomeIcon icon={faCheck} color="green"  /> : <FontAwesomeIcon icon={faXmark} color="red" />}</td>
                 <td>
                   <img

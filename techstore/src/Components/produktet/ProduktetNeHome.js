@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
 import Buton from '../layout/Buton';
 import './Styles/produktet.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBan, faPenToSquare, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import "../layout/Styles/Buton.module.css";
+
 
 
 function ProduktetNeHome(props) {
@@ -19,6 +24,7 @@ function ProduktetNeHome(props) {
                 <p className="cmimi">{props.cmimi.toFixed(2)} €</p>
                 <div className="butonatDiv">
                     <Buton Label="Buy Now" name="blej" onClick={(e) => handleShporta(e)} />
+                    <button className='buttonat'> <FontAwesomeIcon icon={faCartShopping} /></button>
                 </div>
             </Link>
         </form >

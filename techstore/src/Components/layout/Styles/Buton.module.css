@@ -1,4 +1,8 @@
-.button {
+.butonatDiv{
+  display: flex;
+}
+
+.buttonat {
   border: none;
   box-shadow: 0 0 10px #d3d3d3;
   background-color: white;
@@ -10,7 +14,11 @@
   font-weight: 600;
 }
 
-.button:hover {
+
+
+
+
+.buttonat:hover {
   background-color: #01df93;
   color: white;
 }

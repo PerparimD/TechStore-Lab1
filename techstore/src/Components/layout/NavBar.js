@@ -3,9 +3,10 @@ import './Styles/ModalDheTabela.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
-import { faRightFromBracket, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faRightFromBracket, faRightToBracket, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
+
 
 function NavBar(props) {
   return (
@@ -30,7 +31,11 @@ function NavBar(props) {
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>
-              <a href='/Produktet'>Products</a>
+            <Link to='/Produktet'>Products</Link>
+              <span className={classes.line}></span>
+            </li>
+            <li className={classes.navItem}>
+            <Link to='/Cart'>Cart <FontAwesomeIcon icon={faCartShopping}/></Link>
               <span className={classes.line}></span>
             </li>
           </div>

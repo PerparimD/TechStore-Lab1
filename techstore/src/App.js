@@ -6,6 +6,7 @@ import Home from './Pages/Home';
 import Dashboard from './Pages/Dashboard';
 import Produktet from './Pages/Produktet';
 import Produkti from './Pages/Produkti';
+import Cart from './Pages/Cart';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path='/ContactUs' element={<ContactUs />} />
         <Route path='/Dashboard' element={<Dashboard />} />
         <Route path='/Produktet' element={<Produktet key={Date.now()} />} exact />
-        <Route path='/Produktet/:llojiKerkimitNgaLinku/:termiPerKerkimNgaLinku' element={<Produktet key={Date.now()} />} />
+        <Route path='/Cart' element={<Cart />} />
         <Route path='/Produkti/:produktiID' element={<Produkti key={Date.now()}/>} exact />
 
         <Route path="*" element={<Navigate to="/" />} />

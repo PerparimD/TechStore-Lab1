@@ -12,10 +12,10 @@ function ProduktetNeHome(props) {
 
         <form className="artikulli" key={props.produktiID}>
             <Link to={`/Produkti/${props.produktiID}`} >
-                <a href="/">
+                <div>
                     <img src={`${process.env.PUBLIC_URL}/img/products/${props.fotoProduktit}`} alt={props.emriProduktit} />
                     <p className="artikulliLabel">{props.emriProduktit}</p>
-                </a>
+                </div>
                 <p className="cmimi">{props.cmimi.toFixed(2)} €</p>
                 <div className="butonatDiv">
                     <Buton Label="Buy Now" name="blej" onClick={(e) => handleShporta(e)} />

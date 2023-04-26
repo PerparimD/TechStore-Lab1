@@ -1,35 +1,47 @@
-import { Link } from 'react-router-dom';
-import Buton from '../layout/Buton';
-import './Styles/produktet.css';
+import { Link } from "react-router-dom";
+import Buton from "../layout/Buton";
+import "./Styles/produktet.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBan, faPenToSquare, faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { faPlus, faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import "../layout/Styles/Buton.module.css";
-
-
+import { useStateValue } from "../../Context/StateProvider";
 
 function ProduktetNeHome(props) {
-    const handleShporta = (e) => {
-        e.preventDefault();
-    };
+  const [{ cart }, dispatch] = useStateValue();
 
-    return (
-
-        <form className="artikulli" key={props.produktiID}>
-            <Link to={`/Produkti/${props.produktiID}`} >
-                <div>
-                    <img src={`${process.env.PUBLIC_URL}/img/products/${props.fotoProduktit}`} alt={props.emriProduktit} />
-                    <p className="artikulliLabel">{props.emriProduktit}</p>
-                </div>
-                <p className="cmimi">{props.cmimi.toFixed(2)} €</p>
-                <div className="butonatDiv">
-                    <Buton Label="Buy Now" name="blej" onClick={(e) => handleShporta(e)} />
-                    <button className='buttonat'> <FontAwesomeIcon icon={faCartShopping} /></button>
-                </div>
-            </Link>
-        </form >
-
-    );
+  return (
+    <div className="artikulli" key={props.produktiID}>
+      <Link to={`/Produkti/${props.produktiID}`}>
+        <div>
+          <img
+            src={`${process.env.PUBLIC_URL}/img/products/${props.fotoProduktit}`}
+            alt={props.emriProduktit}
+          />
+          <p className="artikulliLabel">{props.emriProduktit}</p>
+        </div>
+        <p className="cmimi">{props.cmimi.toFixed(2)} €</p>
+      </Link>
+      <div className="butonatDiv">
+          <Buton Label="Buy Now" name="blej" />
+          <button
+            onClick={() => {
+              dispatch({
+                type: "ADD_TO_CART",
+                item: {
+                  id: props.produktiID,
+                  foto: props.fotoProduktit,
+                  emri: props.emriProduktit,
+                  cmimi: props.cmimi,
+                },
+              });
+            }}
+            className="buttonat"
+          >
+            <FontAwesomeIcon icon={faCartShopping} />
+          </button>
+        </div>
+    </div>
+  );
 }
 
 export default ProduktetNeHome;

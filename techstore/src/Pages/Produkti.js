@@ -47,7 +47,6 @@ function Produkti() {
         shfaqProduktet();
     }, [])
 
-    console.log(kaPershkrim);
     return (
         <div className="container">
             <Helmet>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import classes from './Styles/BrandsSlider.module.css'
+import classes from "./Styles/BrandsSlider.module.css";
 
 function BrandsSlider(props) {
   const kornizaEBrendeveRef = useRef([]);
@@ -14,26 +14,28 @@ function BrandsSlider(props) {
   useEffect(() => {
     const shfaqKompanit = async () => {
       try {
-        const kopmania = await axios.get("https://localhost:7285/api/Kompania/shfaqKompanit");
+        const kopmania = await axios.get(
+          "https://localhost:7285/api/Kompania/shfaqKompanit"
+        );
         setKompanit(kopmania.data);
       } catch (err) {
         console.log(err);
       }
-    }
+    };
 
     shfaqKompanit();
-  }, [])
+  }, []);
 
   useEffect(() => {
     kornizaEBrendeveRef.current.forEach((item, i) => {
       let containerDimensions = item.getBoundingClientRect();
       let containerWidth = containerDimensions.width;
 
-      shkoDjathtasRef.current[i].addEventListener('click', () => {
+      shkoDjathtasRef.current[i].addEventListener("click", () => {
         item.scrollLeft += containerWidth;
       });
 
-      shkoMajtasRef.current[i].addEventListener('click', () => {
+      shkoMajtasRef.current[i].addEventListener("click", () => {
         item.scrollLeft -= containerWidth;
       });
     });
@@ -42,21 +44,31 @@ function BrandsSlider(props) {
   return (
     <section className={classes.brandsSlider}>
       <h2 className={classes.brandsSliderLabel}>Brands</h2>
-      <button className={classes.shkoMajtas} ref={(el) => (shkoMajtasRef.current[0] = el)}>
+      <button
+        className={classes.shkoMajtas}
+        ref={(el) => (shkoMajtasRef.current[0] = el)}
+      >
         <img src={`${process.env.PUBLIC_URL}/img/slider/arrow.png`} alt="" />
       </button>
-      <button className={classes.shkoDjathtas} ref={(el) => (shkoDjathtasRef.current[0] = el)}>
+      <button
+        className={classes.shkoDjathtas}
+        ref={(el) => (shkoDjathtasRef.current[0] = el)}
+      >
         <img src={`${process.env.PUBLIC_URL}/img/slider/arrow.png`} alt="" />
       </button>
-      <div className={classes.kornizaEBrendeve} ref={(el) => (kornizaEBrendeveRef.current[0] = el)}>
+      <div
+        className={classes.kornizaEBrendeve}
+        ref={(el) => (kornizaEBrendeveRef.current[0] = el)}
+      >
         {kompanit.map((kompania) => (
-          <div className={classes.kartelaEBrendit} key={kompania.kompaniaId }>
+          <div className={classes.kartelaEBrendit} key={kompania.kompaniaId}>
             <div className={classes.logoBrendit}>
-              <a href=''>
               <Link to={`/Produktet/kompania/${kompania.kompaniaId}`}>
-                <img src={`${process.env.PUBLIC_URL}/img/slider/sliderIcons/${kompania.logo}`} alt="" />
-                </Link>
-              </a>
+                <img
+                  src={`${process.env.PUBLIC_URL}/img/slider/sliderIcons/${kompania.logo}`}
+                  alt=""
+                />
+              </Link>
             </div>
           </div>
         ))}

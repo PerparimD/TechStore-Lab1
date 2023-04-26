@@ -6,9 +6,11 @@ import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
 import { faRightFromBracket, faRightToBracket, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
+import { useStateValue } from '../../Context/StateProvider';
 
 
 function NavBar(props) {
+  const [{ cart }, dispatch] = useStateValue();
   return (
     <header>
       <nav className={classes.nav}>
@@ -34,12 +36,13 @@ function NavBar(props) {
             <Link to='/Produktet'>Products</Link>
               <span className={classes.line}></span>
             </li>
-            <li className={classes.navItem}>
-            <Link to='/Cart'>Cart <FontAwesomeIcon icon={faCartShopping}/></Link>
-              <span className={classes.line}></span>
-            </li>
           </div>
           <div className={classes.navRight}>
+          <li className={classes.navItem}>
+            <Link to='/Cart'><FontAwesomeIcon icon={faCartShopping} /></Link>
+            { cart.length }
+              <span className={classes.line}></span>
+            </li>
             <li className={classes.navItem}>
               <Link to='/Dashboard'><span
               >Dashboard <FontAwesomeIcon icon={faCircleUser} /></span></Link>

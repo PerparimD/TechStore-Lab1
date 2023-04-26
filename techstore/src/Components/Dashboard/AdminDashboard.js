@@ -29,7 +29,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div>
+    <div className='admin'>
       <Tab.Container className="border" id="left-tabs-example" defaultActiveKey="1" onSelect={key => setKey(key)}>
         <Row>
           <Col>
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
               </Nav.Item>
             </Nav>
           </Col>
-          <Col sm={9}>
+          <Col sm={10}>
             <Tab.Content>
               <Tab.Pane eventKey="1">
                 <ProductTables />

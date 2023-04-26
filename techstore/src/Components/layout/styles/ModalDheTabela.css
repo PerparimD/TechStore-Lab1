@@ -33,14 +33,17 @@
   margin-bottom: 10em;
 }
 
-table {
+.table{
   width: 100%;
 }
+
+
 
 .tableBig {
   display: block;
   overflow-x: auto;
   white-space: nowrap;
+  /* width: 98%; */
   max-width: 100%;
   margin: 0 auto;
 }

@@ -68,6 +68,22 @@ table {
   width: 80%;
 }
 
+.produkti-cart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+  font-size: 1em;
+  gap: 1.5em;
+  border: none;
+  padding: 3em;
+  border-radius: 30px;
+  box-shadow: 0 0 10px #d3d3d3;
+  background-color: white;
+  flex-direction: column;
+  width: 45em;
+}
+
 .detajet {
   display: flex;
   justify-content: center;

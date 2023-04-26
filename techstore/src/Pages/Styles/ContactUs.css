@@ -5,7 +5,7 @@
   flex-basis: 120em;
   align-items: center;
   flex-wrap: wrap;
-  border-radius: 50px;
+  border-radius: 40px;
   width: fit-content;
   margin: auto;
   margin-top: 5em;
@@ -13,7 +13,6 @@
   -webkit-box-shadow: 0 0 20px #ddd;
   box-shadow: 0 0 20px #ddd;
   padding: 3em 2em;
-  /* background-color: #009879; */
   
 }
 
@@ -30,7 +29,7 @@
 .formTitle {
   font-weight: 500;
   margin-bottom: 15px;
-  font-size: 20pt;
+  font-size: 25pt;
 }
 
 .forms table {
@@ -40,10 +39,10 @@
 .input {
   color: #ddd;
   background-color: inherit;
-  border: 1px solid #d3d3d3;
-  border-radius:30px;
+  border: none;
+  border-radius:25px;
+  box-shadow: 0 0 10px #ddd;
   outline: none;
-  /* padding: 100em; */
   width: max(27em, 20vw);
 
 }
@@ -54,7 +53,7 @@
   background-color: whitesmoke;
   color: white;
   background: #01df93;
-  padding: 1em 3em;
+  padding: 1em 2em;
   width: 100%;
   border-radius: 50px;
   margin-top: 1em;

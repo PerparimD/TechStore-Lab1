@@ -8,6 +8,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cart: [...state.cart, action.item],
+                
             };
 
         case 'REMOVE_CART':
@@ -33,8 +34,9 @@ const reducer = (state, action) => {
         default:
             return state;
     }
+    
 };
-localStorage.setItem('cart', JSON.stringify(initialState.cart));
+
 
 
 export default reducer;

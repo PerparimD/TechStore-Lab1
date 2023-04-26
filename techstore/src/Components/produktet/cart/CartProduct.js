@@ -18,9 +18,9 @@ const CartProduct = (props) => {
 
   return (
     <div className="produkti-cart">
-      <div className="detajet">
-        <div className="foto">
-          <img
+      <div className="info">
+        <div className="foto" style={{width: "35%"}}>
+          <img 
             src={`${process.env.PUBLIC_URL}/img/products/${props.fotoProduktit}`}
             alt={props.emriProduktit}
           />
@@ -43,7 +43,7 @@ const CartProduct = (props) => {
               <p>{props.cmimi - props.cmimi * 0.18 + "€ pa TVSH"}</p>
 
               <div>
-                <button className="button" onClick={() => removeCart()}>
+                <button className="remove-button" onClick={() => removeCart()}>
                   Remove From Cart
                 </button>
               </div>

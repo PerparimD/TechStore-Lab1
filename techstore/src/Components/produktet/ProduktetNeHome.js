@@ -32,6 +32,7 @@ function ProduktetNeHome(props) {
                   foto: props.fotoProduktit,
                   emri: props.emriProduktit,
                   cmimi: props.cmimi,
+                  sasia: 1
                 },
               });
             }}

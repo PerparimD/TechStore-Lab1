@@ -1,19 +1,21 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { useStateValue } from "../../../Context/StateProvider";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CartProduct from "./CartProduct";
 import "./CartPage.css";
-import Buton from "../../layout/Buton";
+import { faFaceFrown } from "@fortawesome/free-regular-svg-icons";
 
-const CartPage = () => {
+function CartPage() {
   const [{ cart }, dispatch] = useStateValue();
-  let string = JSON.stringify(cart);
-  localStorage.setItem("cart", string);
+  console.log(cart)
+  let qmimiTot = 0;
   return (
     <>
-      <h2 className="cart-title">Shporta Juaj</h2>
+      <h2 className="cart-title"></h2>
       <div className="cart-page">
         <div className="cart-items">
-          {cart.map((item) => {
+          {cart.length !== 0 && cart.map((item) => {
+            qmimiTot += item.cmimi * item.sasia;
             return (
               <CartProduct
                 key={item.id}
@@ -21,17 +23,22 @@ const CartPage = () => {
                 fotoProduktit={item.foto}
                 emriProduktit={item.emri}
                 cmimi={item.cmimi}
+                sasia={item.sasia}
               />
             );
           })}
+          {cart.length === 0 && <h1 className="shporta-zbrazet">Nuk Keni asnje Produkt ne Shporte! <FontAwesomeIcon icon={faFaceFrown} /></h1>}
         </div>
-
-        <div className="details">
-          <h4 className="d-title">Detajet e Shportes</h4>
-          <p>Nr i produkteve: {cart.length}</p>
-          <p>Qmimi total: </p>
-          <button className="cart-button"> Buy Now</button>
-        </div>
+        {cart.length !== 0 &&
+          <div className="details">
+            <h3 className="d-title">Detajet e Shportes</h3>
+            <h4>Totali produkteve: {cart.length}</h4>
+            <h4>Qmimi total: {qmimiTot.toFixed(2)} €</h4>
+            <p><strong>Qmimi total pa TVSH: </strong>{(qmimiTot - qmimiTot * 0.18).toFixed(2)} €</p>
+            <p><strong>TVSH: </strong>{(qmimiTot * 0.18).toFixed(2)} €</p>
+            <button className="cart-button"> Buy Now</button>
+          </div>
+        }
       </div>
     </>
   );

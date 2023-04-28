@@ -33,14 +33,15 @@ function NavBar(props) {
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>
-            <Link to='/Produktet'>Products</Link>
+              <Link to='/Produktet'>Products</Link>
               <span className={classes.line}></span>
             </li>
           </div>
           <div className={classes.navRight}>
-          <li className={classes.navItem}>
-            <Link to='/Cart'><FontAwesomeIcon icon={faCartShopping} /></Link>
-            { cart.length }
+            <li className={classes.navItem}>
+              <Link to='/Cart'><FontAwesomeIcon icon={faCartShopping} />
+                <span className={classes.badge} value={cart.length} />
+              </Link>
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>
@@ -63,6 +64,13 @@ function NavBar(props) {
           </div>
         </ul>
 
+        <ul className={classes.mobileShporta}>
+          <li className={classes.navItem}>
+            <Link to='/Cart'><FontAwesomeIcon icon={faCartShopping} />
+              <span className={classes.badge} value={cart.length} />
+            </Link>
+          </li>
+        </ul>
         <div className={classes.hamburger}>
           <div className={classes.dropdown}>
             <button className={classes.dropbtn}>

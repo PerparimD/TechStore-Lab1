@@ -86,21 +86,16 @@ namespace TechStoreWebAPI.Controllers
         [Route("shtoProdukt")]
         public async Task<IActionResult> Post([FromBody] Produkti produkti)
         {
+
             var newProduct = new Produkti
             {
                 EmriProduktit = produkti.EmriProduktit,
+                Pershkrimi = produkti.Pershkrimi,
                 FotoProduktit = produkti.FotoProduktit,
                 QmimiProduktit = produkti.QmimiProduktit,
-                Kategoria = new KategoriaProduktit
-                {
-                    LlojiKategoris = produkti.Kategoria.LlojiKategoris
-                },
-                Kompania = new Kompanium
-                {
-                    EmriKompanis = produkti.Kompania.EmriKompanis
-                }
+                KategoriaId = produkti.KategoriaId,
+                KompaniaId = produkti.KompaniaId
             };
-
 
             await _context.Produktis.AddAsync(newProduct);
             await _context.SaveChangesAsync();

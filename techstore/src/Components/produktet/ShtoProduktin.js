@@ -67,10 +67,8 @@ const ShtoProduktin = (props) => {
         pershkrimi: pershkrimi,
         fotoProduktit: foto,
         qmimiProduktit: qmimiP,
-        llojiKategoris: kategoria,
-        kompania: {
-          emriKompanis: emriK,
-        },
+        kategoriaId: llojiK,
+        kompaniaId: emriK
       })
       .then((response) => {
         console.log(response);
@@ -135,7 +133,7 @@ const ShtoProduktin = (props) => {
                 </option>
                 {kompanit.map((item) => {
                   return (
-                    <option key={item.kompaniaId}>{item.emriKompanis}</option>
+                    <option key={item.kompaniaId} value={item.kompaniaId}>{item.emriKompanis}</option>
                   );
                 })}
               </select>
@@ -156,7 +154,7 @@ const ShtoProduktin = (props) => {
                 </option>
                 {kategoria.map((item) => {
                   return (
-                    <option key={item.kategoriaID}>
+                    <option key={item.kategoriaId} value={item.kategoriaId}>
                       {item.llojiKategoris}
                     </option>
                   );

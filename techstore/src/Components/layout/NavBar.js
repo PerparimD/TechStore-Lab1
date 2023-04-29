@@ -33,7 +33,7 @@ function NavBar(props) {
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>
-              <Link to='/Produktet'>Products</Link>
+              <a href='/Produktet'>Products</a>
               <span className={classes.line}></span>
             </li>
           </div>

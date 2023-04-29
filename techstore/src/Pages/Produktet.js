@@ -1,33 +1,51 @@
 import { Helmet } from "react-helmet";
 import NavBar from "../Components/layout/NavBar";
 import Footer from "../Components/layout/Footer";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import ProduktetNeHome from "../Components/produktet/ProduktetNeHome";
 import "../Components/produktet/Styles/produktet.css";
 import Dropdown from "react-bootstrap/Dropdown";
-import useFetch from "../Hooks/useFetch";
+import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFaceFrown } from "@fortawesome/free-solid-svg-icons";
 
-function Produktet() {
-  const [kompania, setKompania] = useState(false);
+
+function Produktet(props) {
   const [kategoria, setKateogria] = useState("");
   const [kategorit, setKategorit] = useState([]);
+  const { kompania } = useParams();
+  const [emriKomapnis, setEmriKompanis] = useState(kompania ? kompania : "");
   const [perditeso, setPerditeso] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [produktetK, setProduktetK] = useState([]);
+  const [produktet, setProduktet] = useState([]);
 
-  const {
-    data: produktet,
-    isLoading,
-    error,
-  } = useFetch("https://localhost:7285/api/Produkti/Products");
+
+  useEffect(() => {
+    const vendosProduktet = async () => {
+      try {
+        const kategorit = await axios.get(
+          `https://localhost:7285/api/Produkti/Products`
+        );
+        setProduktet(kategorit.data);
+        console.log(perditeso)
+
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    vendosProduktet();
+  }, [perditeso]);
 
   const searchItems = (searchValue) => {
     setSearchInput(searchValue);
 
     if (searchInput !== "") {
       const filteredData = produktet.filter((item) => {
+        setKateogria("");
+        setEmriKompanis("");
         return Object.values(item)
           .join("")
           .toLowerCase()
@@ -41,7 +59,6 @@ function Produktet() {
 
   useEffect(() => {
     const vendosKategorit = async () => {
-      console.log(kategoria);
       try {
         const kategorit = await axios.get(
           `https://localhost:7285/api/Kategoria/shfaqKategorit`
@@ -54,7 +71,6 @@ function Produktet() {
 
     vendosKategorit();
   }, [perditeso]);
-
   return (
     <div>
       <Helmet>
@@ -79,6 +95,8 @@ function Produktet() {
                   value={k.llojiKategoris}
                   onClick={(e) => {
                     setKateogria(k.llojiKategoris);
+                    setSearchInput("");
+                    setEmriKompanis("");
                   }}
                 >
                   {k.llojiKategoris}
@@ -100,10 +118,16 @@ function Produktet() {
       </div>
       <div className="artikujt">
         <div className="titulliArtikuj">
-          {kategoria ? <h2>Te gjitha produktet nga {kategoria}</h2> : null}
+          {kategoria ? <h2>Te gjitha produktet e llojit {kategoria}</h2> :
+            emriKomapnis ? <h2>Te gjitha produktet nga {kompania}</h2> :
+              searchInput ? <h2>Produktet nga Kerkimi per: {searchInput}</h2> :
+                <h2>Te Gjitha Produktet</h2>
+          }
         </div>
         {searchInput.length >= 1
-          ? filteredResults.map((item) => {
+          ? (filteredResults.length !== 0 ?
+            filteredResults.map((item) => {
+
               return (
                 <ProduktetNeHome
                   produktiID={item.produktiId}
@@ -112,12 +136,23 @@ function Produktet() {
                   cmimi={item.qmimiProduktit}
                 />
               );
-            })
-          : produktet &&
-            (kategoria
-              ? produktet
-                  .filter((item) => item.llojiKategoris === kategoria)
-                  .map((item) => {
+            }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
+          : produktet && kategoria !== ""
+            ? (produktet.filter((item) => item.llojiKategoris === kategoria).length !== 0 ?
+              produktet.filter((item) => item.llojiKategoris === kategoria).map((item) => {
+                return (
+                  <ProduktetNeHome
+                    produktiID={item.produktiId}
+                    fotoProduktit={item.fotoProduktit}
+                    emriProduktit={item.emriProduktit}
+                    cmimi={item.qmimiProduktit}
+                  />
+                );
+              }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
+            : produktet && emriKomapnis !== ""
+              ? (produktet.filter((item) => item.emriKompanis === kompania).length !== 0 ?
+                produktet
+                  .filter((item) => item.emriKompanis === kompania).map((item) => {
                     return (
                       <ProduktetNeHome
                         produktiID={item.produktiId}
@@ -126,8 +161,9 @@ function Produktet() {
                         cmimi={item.qmimiProduktit}
                       />
                     );
-                  })
-              : produktet.map((item) => {
+                  }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
+              : searchInput.length === 0 && produktet
+                ? produktet.map((item) => {
                   return (
                     <ProduktetNeHome
                       produktiID={item.produktiId}
@@ -136,7 +172,9 @@ function Produktet() {
                       cmimi={item.qmimiProduktit}
                     />
                   );
-                }))}
+                })
+                : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>}
+
       </div>
 
       <Footer />

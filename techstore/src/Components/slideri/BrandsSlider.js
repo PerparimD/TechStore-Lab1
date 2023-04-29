@@ -63,7 +63,7 @@ function BrandsSlider(props) {
         {kompanit.map((kompania) => (
           <div className={classes.kartelaEBrendit} key={kompania.kompaniaId}>
             <div className={classes.logoBrendit}>
-              <Link to={`/Produktet/kompania/${kompania.kompaniaId}`}>
+              <Link to={`/Produktet/${kompania.emriKompanis}`}>
                 <img
                   src={`${process.env.PUBLIC_URL}/img/slider/sliderIcons/${kompania.logo}`}
                   alt=""

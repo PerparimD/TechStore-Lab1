@@ -1,9 +1,9 @@
-import { React, useEffect } from "react";
+import { React } from "react";
 import { useStateValue } from "../../../Context/StateProvider";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CartProduct from "./CartProduct";
 import "./CartPage.css";
 import { faFaceFrown } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function CartPage() {
   const [{ cart }, dispatch] = useStateValue();

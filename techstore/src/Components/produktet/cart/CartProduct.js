@@ -1,6 +1,8 @@
 import "./CartPage.css";
 import "../../layout/Styles/Buton.module.css";
 import { useStateValue } from "../../../Context/StateProvider";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const CartProduct = (props) => {
   const [{ cart }, dispatch] = useStateValue();
@@ -56,13 +58,13 @@ const CartProduct = (props) => {
                 <div className="sasia">
                   <label>Sasia: </label>
                   <div className="sasiaInputi">
-                    <button className="decrement" onClick={() => handelSasiaChange(props.sasia - 1)}>-</button>
+                    <button className="decrement" onClick={() => handelSasiaChange(props.sasia - 1)}><FontAwesomeIcon icon={faMinus}/></button>
                     <input type="number" value={props.sasia} onChange={handleInputChange}/>
-                    <button className="increment" onClick={() => handelSasiaChange(props.sasia + 1)}>+</button>
+                    <button className="increment" onClick={() => handelSasiaChange(props.sasia + 1)}><FontAwesomeIcon icon={faPlus}/></button>
                   </div>
                 </div>
                 <button className="remove-button" onClick={() => removeCart()}>
-                  Remove From Cart
+                  Remove From Cart 
                 </button>
               </div>
             </form>

@@ -17,6 +17,7 @@ function App() {
         <Route path='/ContactUs' element={<ContactUs />} />
         <Route path='/Dashboard' element={<Dashboard />} />
         <Route path='/Produktet' element={<Produktet key={Date.now()} />} exact />
+        <Route path='/Produktet/:kompania'  element={<Produktet key={Date.now()} />} exact />
         <Route path='/Cart' element={<Cart/>} />
         <Route path='/Produkti/:produktiID' element={<Produkti key={Date.now()}/>} exact />
 

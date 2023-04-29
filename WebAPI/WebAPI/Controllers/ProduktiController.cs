@@ -31,7 +31,9 @@ namespace TechStoreWebAPI.Controllers
                    x.Pershkrimi,
                    x.FotoProduktit,
                    x.QmimiProduktit,
+                   x.KategoriaId,
                    x.Kategoria.LlojiKategoris,
+                   x.KompaniaId,
                    x.Kompania.EmriKompanis
                    
 
@@ -133,8 +135,8 @@ namespace TechStoreWebAPI.Controllers
             produkti.Pershkrimi = p.Pershkrimi;
             produkti.FotoProduktit = p.FotoProduktit;
             produkti.QmimiProduktit = p.QmimiProduktit;
-            produkti.Kategoria = p.Kategoria;
-            produkti.Kompania = p.Kompania;
+            produkti.KategoriaId = p.KategoriaId;
+            produkti.KompaniaId = p.KompaniaId;
 
 
             _context.Produktis.Update(produkti);

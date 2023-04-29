@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 function EditoProduktin(props) {
@@ -56,12 +56,12 @@ function EditoProduktin(props) {
   };
 
   const handleKompaniaChange = (value) => {
-    setProdukti((prev) => ({ ...prev, emriKompanis: value }));
+    setProdukti((prev) => ({ ...prev, kompaniaId: value }));
   };
 
 
   const handleKategoriaChange = (value) => {
-    setProdukti((prev) => ({ ...prev, llojiKategoris: value }));
+    setProdukti((prev) => ({ ...prev, kategoriaId: value }));
   };
 
 
@@ -80,7 +80,7 @@ function EditoProduktin(props) {
       .catch(error => {
         console.error('Error saving the product:', error);
         props.setTipiMesazhit("danger");
-        props.setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se produktit!")
+        props.setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te produktit!")
         props.perditesoTeDhenat();
         props.shfaqmesazhin();
       });
@@ -103,15 +103,15 @@ function EditoProduktin(props) {
                 placeholder="Emri Produktit"
                 autoFocus
               />
-               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Pershkrimi Produktit</Form.Label>
-              <Form.Control
-                onChange={(e) => handlePershkrimiChange(e.target.value)}
-                value={produkti.pershkrimi}
-                as="textarea"
-                placeholder="Pershkrimi Produktit"
-              />
-            </Form.Group>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Pershkrimi Produktit</Form.Label>
+                <Form.Control
+                  onChange={(e) => handlePershkrimiChange(e.target.value)}
+                  value={produkti.pershkrimi}
+                  as="textarea"
+                  placeholder="Pershkrimi Produktit"
+                />
+              </Form.Group>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Foto Produktit</Form.Label>
@@ -124,19 +124,19 @@ function EditoProduktin(props) {
               />
             </Form.Group>
             <Form.Group>
-            <Form.Label>Kompania</Form.Label>
+              <Form.Label>Kompania</Form.Label>
               <select
                 placeholder="Kompania e Produktit"
                 className="form-select"
-                value={produkti.emriKompanis}
+                value={produkti.kompaniaId}
                 onChange={(e) => handleKompaniaChange(e.target.value)}
               >
-                <option defaultValue disabled value="">
-                  Kompania e Produktit
+                <option selected disabled hidden>
+                  {produkti.emriKompanis}
                 </option>
                 {kompanit.map((item) => {
                   return (
-                    <option key={item.kompaniaId}>
+                    <option key={item.kompaniaId} value={item.kompaniaId}>
                       {item.emriKompanis}
                     </option>
                   );
@@ -151,23 +151,23 @@ function EditoProduktin(props) {
               <select
                 placeholder="Kategoria e Produktit"
                 className="form-select"
-                value={produkti.llojiKategoris}
+                value={produkti.kategoriaID}
                 onChange={(e) => handleKategoriaChange(e.target.value)}
               >
-                <option defaultValue disabled value="">
-                  Kategoria e Produktit
+                <option selected disabled hidden>
+                  {produkti.llojiKategoris}
                 </option>
                 {kategoria.map((item) => {
                   return (
-                    <option key={item.kategoriaID}>
+                    <option key={item.kategoriaId} value={item.kategoriaId}>
                       {item.llojiKategoris}
                     </option>
                   );
                 })}
               </select>
             </Form.Group>
-            
-            
+
+
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
@@ -191,7 +191,7 @@ function EditoProduktin(props) {
             style={{ backgroundColor: "#009879", border: "none" }}
             onClick={handleSubmit}
           >
-            Edito Produktin <FontAwesomeIcon icon={faPenToSquare}/>
+            Edito Produktin <FontAwesomeIcon icon={faPenToSquare} />
           </Button>
         </Modal.Footer>
       </Modal>

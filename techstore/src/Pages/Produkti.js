@@ -91,10 +91,10 @@ function Produkti() {
                         <div className="blerja">
                             <form>
                                 <h1>
-                                    {produkti.qmimiProduktit.toFixed(2)} €
+                                    {parseFloat(produkti.qmimiProduktit).toFixed(2)} €
                                 </h1>
                                 <p>
-                                    {(produkti.qmimiProduktit - (produkti.qmimiProduktit * 0.18)).toFixed(2)} € pa TVSH
+                                    {parseFloat(produkti.qmimiProduktit - (produkti.qmimiProduktit * 0.18)).toFixed(2)} € pa TVSH
                                 </p>
 
                                 <div>

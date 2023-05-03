@@ -13,9 +13,9 @@ public partial class Perdoruesi
 
     public string? Email { get; set; }
 
-    public string Username { get; set; } = null!;
+    public string? Username { get; set; }
 
-    public string UserPw { get; set; } = null!;
+    public string? UserPw { get; set; }
 
     public int? Aksesi { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -58,6 +59,36 @@ namespace WebAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPut]
+        [Route("perditesoPerdorues")]
+        public async Task<IActionResult> Put(int id, [FromBody] Perdoruesi p)
+        {
+            var perdouresi = await _context.Perdoruesis.FirstOrDefaultAsync(x => x.UserId == id);
+
+            if(perdouresi == null)
+            {
+                return BadRequest("Perdoruesi nuk ekziston");
+            }
+
+            if(!p.Email.IsNullOrEmpty())
+            {
+               perdouresi.Email = p.Email;
+            }
+            if(!p.Emri.IsNullOrEmpty())
+            {
+                perdouresi.Emri = p.Emri;
+            }
+            if(!p.Mbimeri.IsNullOrEmpty())
+            {
+                perdouresi.Mbimeri = p.Mbimeri;
+            }
+
+            _context.Perdoruesis.Update(perdouresi);
+            await _context.SaveChangesAsync();
+
+            return Ok(perdouresi);
         }
     }
 }

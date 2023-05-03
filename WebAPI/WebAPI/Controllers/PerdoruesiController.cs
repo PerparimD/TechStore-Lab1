@@ -32,5 +32,32 @@ namespace WebAPI.Controllers
 
             return Ok(perdoruesi);
         }
+
+        [HttpPost]
+        [Route("shtoUser")]
+        public async Task<IActionResult> Post(Perdoruesi perdoruesi)
+        {
+            await _context.Perdoruesis.AddAsync(perdoruesi);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", perdoruesi.UserId, perdoruesi);
+        }
+
+        [HttpDelete]
+        [Route("fshijPerdorues")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var perdoruesi = await _context.Perdoruesis.FirstOrDefaultAsync(x => x.UserId == id);
+
+            if(perdoruesi == null)
+            {
+                return BadRequest("Perdoruesi nuk egziston");
+            }
+
+            _context.Perdoruesis.Remove(perdoruesi);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

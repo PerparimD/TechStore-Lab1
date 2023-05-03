@@ -7,55 +7,46 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 function EditoKompanin(props) {
-    const [kompania, setKompania] = useState([]);
-    const foto = useRef(null);
+    const [kategoria, setKategoria] = useState([]);
 
     useEffect(() => {
-        const shfaqKompanit = async () => {
+        const ShfaqKategorine = async () => {
             try {
-                const kompania = await axios.get(`https://localhost:7285/api/Kompania/shfaqKompanin?id=${props.id}`);
-                setKompania(kompania.data);
+                const kategoria = await axios.get(`https://localhost:7285/api/Kategoria/shfaqKategorinSipasIDs?id=${props.id}`);
+                setKategoria(kategoria.data);
 
             } catch (err) {
                 console.log(err);
             }
         };
 
-        shfaqKompanit();
+        ShfaqKategorine();
     }, []);
 
     const handleEmriChange = (value) => {
-        setKompania((prev) => ({ ...prev, emriKompanis: value }));
+        setKategoria((prev) => ({ ...prev, llojiKategoris: value }));
     };
 
-    const handleAdresaChange = (value) => {
-        setKompania((prev) => ({ ...prev, Adresa: value }));
+    const handlePershkrimiChange = (value) => {
+        setKategoria((prev) => ({ ...prev, pershkrimiKategoris: value }));
     };
-
-
-    const handleFotoChange = () => {
-        const filePath = foto.current.value;
-        const fileName = filePath.split('\\').pop();
-        setKompania(prev => ({ ...prev, logo: fileName }));
-    };
-
 
     function handleSubmit() {
 
 
-        axios.put(`https://localhost:7285/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`, kompania)
+        axios.put(`https://localhost:7285/api/Kategoria/perditesoKategorin?id=${kategoria.kategoriaId}`, kategoria)
             .then(x => {
                 console.log(x);
                 props.setTipiMesazhit("success");
-                props.setPershkrimiMesazhit("Kompania u Perditesua me sukses!")
+                props.setPershkrimiMesazhit("Kategoria u Perditesua me sukses!")
                 props.perditesoTeDhenat();
                 props.largo();
                 props.shfaqmesazhin();
             })
             .catch(error => {
-                console.error('Error saving kompania:', error);
+                console.error('Error saving kategoria:', error);
                 props.setTipiMesazhit("danger");
-                props.setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te kompanis!")
+                props.setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te kategorise!")
                 props.perditesoTeDhenat();
                 props.shfaqmesazhin();
             });
@@ -64,44 +55,34 @@ function EditoKompanin(props) {
     return (
         <Modal className="modalEditShto" show={true} onHide={() => props.largo()}>
             <Modal.Header closeButton>
-                <Modal.Title>Edito Kompanin</Modal.Title>
+                <Modal.Title>Edito Kategorine</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>ID Kompanis</Form.Label>
+                        <Form.Label>ID Kategorise</Form.Label>
                         <Form.Control
-                            value={kompania.kompaniaId}
+                            value={kategoria.kategoriaId}
                             disabled
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Emri Kompanis</Form.Label>
+                        <Form.Label>Lloji Kategorise</Form.Label>
                         <Form.Control
                             onChange={(e) => handleEmriChange(e.target.value)}
-                            value={kompania.emriKompanis}
+                            value={kategoria.llojiKategoris}
                             type="text"
-                            placeholder="Emri Kompanis"
+                            placeholder="Lloji Kategorise"
                             autoFocus
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Foto Kompanis</Form.Label>
+                        <Form.Label>Pershkrimi Kategorise</Form.Label>
                         <Form.Control
-                            type="file"
-                            placeholder="Foto e Kompanis"
-                            ref={foto}
-                            onChange={handleFotoChange}
-                            autoFocus
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Adresa Kompanis</Form.Label>
-                        <Form.Control
-                            onChange={e => handleAdresaChange(e.target.value)}
+                            onChange={(e) => handlePershkrimiChange(e.target.value)}
+                            value={kategoria.pershkrimiKategoris}
                             type="text"
-                            placeholder="Adresa Kompanis"
-                            defaultValue={kompania.adresa ?? ''}
+                            placeholder="Pershkrimi Kategorise"
                             autoFocus
                         />
                     </Form.Group>
@@ -115,7 +96,7 @@ function EditoKompanin(props) {
                     className="Butoni"
                     onClick={handleSubmit}
                 >
-                    Edito Kompanin <FontAwesomeIcon icon={faPenToSquare} />
+                    Edito Kategorine <FontAwesomeIcon icon={faPenToSquare} />
                 </Button>
             </Modal.Footer>
         </Modal>

@@ -54,7 +54,6 @@ const ProductTables = () => {
     setId(id);
     setShowD(true);
   };
-  console.log(produkti);
 
   const handleEditoMbyll = () => setEdito(false);
 

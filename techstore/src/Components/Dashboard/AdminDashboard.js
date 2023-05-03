@@ -9,6 +9,7 @@ import { useState } from 'react';
 import TabelaEKompanive from '../kompanit/TabelaEKompanive';
 import Mesazhet from '../mesazhet/Mesazhet';
 import TabelaEPerdoruesve from '../users/TabelaEPerdoruesve';
+import TabelaEKategorive from '../kategorit/TabelaEKategorive';
 
 // import Sonnet from '../../components/Sonnet'
 
@@ -45,7 +46,10 @@ const AdminDashboard = () => {
                 <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle} >Mesazhet</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum' eventKey="4" style={key === "3" ? ActiveStyle : inActiveStyle} >Perdoruesit</Nav.Link>
+                <Nav.Link className='colum' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle} >Perdoruesit</Nav.Link>
+              </Nav.Item>
+              <Nav.Item >
+                <Nav.Link className='colum' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle} >Kategorite</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
@@ -62,6 +66,9 @@ const AdminDashboard = () => {
               </Tab.Pane>
               <Tab.Pane eventKey="4">
                 <TabelaEPerdoruesve />
+              </Tab.Pane>
+              <Tab.Pane eventKey="5">
+                <TabelaEKategorive />
               </Tab.Pane>
             </Tab.Content>
           </Col>

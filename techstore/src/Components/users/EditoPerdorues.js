@@ -64,16 +64,16 @@ function EditoPerdorues(props) {
 
     }
     return (
-        <Modal show={true} onHide={() => props.largo()}>
+        <Modal className="modalEditShto" show={true} onHide={() => props.largo()}>
             <Modal.Header closeButton>
                 <Modal.Title>Edito Kompanin</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Username</Form.Label>
+                        <Form.Label>ID - Username</Form.Label>
                         <Form.Control
-                            value={perdoruesi.username}
+                            value={perdoruesi.userId + " - " + perdoruesi.username}
                             disabled
                         />
                     </Form.Group>

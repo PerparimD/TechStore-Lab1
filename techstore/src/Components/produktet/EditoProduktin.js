@@ -88,9 +88,9 @@ function EditoProduktin(props) {
   }
   return (
     <>
-      <Modal className="modal mt-0" show={props.show} onHide={props.hide}>
+      <Modal className="modalEditShto" show={props.show} onHide={props.hide}>
         <Modal.Header closeButton>
-          <Modal.Title>Shto Produkt</Modal.Title>
+          <Modal.Title>Edito Produktin</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>

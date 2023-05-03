@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -45,6 +46,53 @@ namespace WebAPI.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        [HttpPut]
+        [Route("perditesoKategorin")]
+        public async Task<IActionResult> Put(int id, [FromBody] KategoriaProduktit k)
+        {
+            var kategoria = await _context.KategoriaProduktits.FirstOrDefaultAsync(x => x.KategoriaId == id);
+            if(id < 0)
+            {
+                return BadRequest("Kategoria nuk egziston");
+            }
+
+            if (!k.LlojiKategoris.IsNullOrEmpty())
+            {
+                kategoria.LlojiKategoris = k.LlojiKategoris;
+            }
+            if(!k.PershkrimiKategoris.IsNullOrEmpty())
+            {
+                kategoria.PershkrimiKategoris = k.PershkrimiKategoris;
+            }
+
+            _context.KategoriaProduktits.Update(kategoria);
+            await _context.SaveChangesAsync();
+
+            return Ok(kategoria);
+        }
+
+        [HttpPost]
+        [Route("shtoKategorin")]
+        public async Task<IActionResult> Post(KategoriaProduktit kategoriaProduktit)
+        {
+            await _context.KategoriaProduktits.AddAsync(kategoriaProduktit);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", kategoriaProduktit.KategoriaId, kategoriaProduktit);
+        }
+
+        [HttpDelete]
+        [Route("fshijKategorin")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var kategoria = await _context.KategoriaProduktits.FirstOrDefaultAsync(x => x.KategoriaId == id);
+
+            _context.KategoriaProduktits.Remove(kategoria);
+            await _context.SaveChangesAsync();
+                
+            return Ok("Kategoria u fshie me sukses!");
         }
     }
 }

@@ -7,36 +7,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 function ShtoKompanit(props) {
-    const foto = useRef(null);
-    const [emri, setEmri] = useState("");
-    const [adresa, setAdresa] = useState("");
-    const [fotoFull, setFotoFull] = useState("");
+    const [llojiKategoris, setLlojiKategoris] = useState("");
+    const [pershkrimiKategoris, setPershkrimiKategoris] = useState("");
 
     const handleEmriChange = (value) => {
-        setEmri(value);
+        setLlojiKategoris(value);
     };
 
-    const handleAdresaChange = (value) => {
-        setAdresa(value);
-    };
-    const handleFotoChange = () => {
-        const filePath = foto.current.value;
-        const fileName = filePath.split('\\').pop();
-        setFotoFull(fileName);
+    const handlePershkrimiChange = (value) => {
+        setPershkrimiKategoris(value);
     };
 
     function handleSubmit() {
-        const logo = fotoFull;
-
-        axios.post('https://localhost:7285/api/Kompania/shtoKompanin', {
-            emriKompanis: emri,
-            logo: logo,
-            adresa: adresa
+        axios.post('https://localhost:7285/api/Kategoria/shtoKategorin', {
+            llojiKategoris: llojiKategoris,
+            pershkrimiKategoris: pershkrimiKategoris
         })
             .then((response) => {
                 console.log(response);
                 props.setTipiMesazhit("success");
-                props.setPershkrimiMesazhit("Kompania u insertua me sukses!")
+                props.setPershkrimiMesazhit("Kategoria u insertua me sukses!")
                 props.perditesoTeDhenat();
                 props.largo();
                 props.shfaqmesazhin();
@@ -49,28 +39,17 @@ function ShtoKompanit(props) {
     return (
         <Modal className="modalEditShto" show={props.shfaq} onHide={() => props.largo()}>
             <Modal.Header closeButton>
-                <Modal.Title>Shto Kompanin</Modal.Title>
+                <Modal.Title>Shto Kategorine</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Emri Kompanis</Form.Label>
+                        <Form.Label>Lloji Kategoris</Form.Label>
                         <Form.Control
                             onChange={(e) => handleEmriChange(e.target.value)}
-                            value={emri}
+                            value={llojiKategoris}
                             type="text"
-                            placeholder="Emri Kompanis"
-                            autoFocus
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Foto Kompanis</Form.Label>
-                        <Form.Control
-                            type="file"
-                            placeholder="Foto e Kompanis"
-                            ref={foto}
-                            onChange={handleFotoChange}
-
+                            placeholder="Lloji Kategoris"
                             autoFocus
                         />
                     </Form.Group>
@@ -78,12 +57,12 @@ function ShtoKompanit(props) {
                         className="mb-3"
                         controlId="exampleForm.ControlTextarea1"
                     >
-                        <Form.Label>Adresa Kompanis</Form.Label>
+                        <Form.Label>Pershkrimi Kategoris</Form.Label>
                         <Form.Control
-                            onChange={(e) => handleAdresaChange(e.target.value)}
-                            value={adresa}
+                            onChange={(e) => handlePershkrimiChange(e.target.value)}
+                            value={pershkrimiKategoris}
                             type="text"
-                            placeholder="Adresa Kompanis"
+                            placeholder="Pershkrimi Kategoris"
                             autoFocus
                         />
                     </Form.Group>
@@ -97,7 +76,7 @@ function ShtoKompanit(props) {
                     className="Butoni"
                     onClick={handleSubmit}
                 >
-                    Shto Kompanin <FontAwesomeIcon icon={faPlus} />
+                    Shto Kategorine <FontAwesomeIcon icon={faPlus} />
                 </Button>
             </Modal.Footer>
         </Modal>

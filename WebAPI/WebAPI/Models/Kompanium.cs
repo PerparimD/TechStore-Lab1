@@ -7,7 +7,7 @@ public partial class Kompanium
 {
     public int KompaniaId { get; set; }
 
-    public string EmriKompanis { get; set; } = null!;
+    public string? EmriKompanis { get; set; }
 
     public string? Logo { get; set; }
 

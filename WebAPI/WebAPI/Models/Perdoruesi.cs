@@ -7,7 +7,7 @@ public partial class Perdoruesi
 {
     public int UserId { get; set; }
 
-    public string Emri { get; set; } = null!;
+    public string? Emri { get; set; }
 
     public string? Mbiemri { get; set; }
 

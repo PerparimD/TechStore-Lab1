@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <Helmet>
-        <title>Home | Tech Store</title>
+        <title>Dashboard | Tech Store</title>
       </Helmet>
       <NavBar />
       <AdminDashboard />

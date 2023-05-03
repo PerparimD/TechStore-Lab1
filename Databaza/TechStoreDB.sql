@@ -35,7 +35,7 @@ DROP TABLE [dbo].[TeDhenatPerdoruesit];
 CREATE TABLE [dbo].[ContactForm] ( 
   [mesazhiID] INT IDENTITY NOT NULL,
   [userID] INT NULL,
-  [mesazhi] TEXT NOT NULL,
+  [mesazhi] TEXT NULL,
   [dataDergeses] DATE NULL CONSTRAINT [DF__ContactFo__dataD__34C8D9D1] DEFAULT (getdate()) ,
   [statusi] VARCHAR(60) NULL CONSTRAINT [DF__ContactFo__statu__35BCFE0A] DEFAULT ('Mesazhi juaj eshte derguar tek Stafi') ,
   [emri] VARCHAR(250) NULL,
@@ -44,38 +44,38 @@ CREATE TABLE [dbo].[ContactForm] (
 );
 CREATE TABLE [dbo].[KategoriaProduktit] ( 
   [kategoriaID] INT IDENTITY NOT NULL,
-  [llojiKategoris] TEXT NOT NULL,
+  [llojiKategoris] TEXT NULL,
   [pershkrimiKategoris] TEXT NULL,
   CONSTRAINT [PK__Kategori__AC39DE2ACE8BCA8A] PRIMARY KEY ([kategoriaID])
 );
 CREATE TABLE [dbo].[KodiZbritjes] ( 
   [kodi] CHAR(6) NOT NULL,
   [dataKrijimit] DATE NULL CONSTRAINT [DF__KodiZbrit__dataK__36B12243] DEFAULT (getdate()) ,
-  [qmimiZbritjes] DECIMAL(18,2) NOT NULL,
+  [qmimiZbritjes] DECIMAL(18,2) NULL,
   [idProdukti] INT NULL,
   CONSTRAINT [PK__KodiZbri__25A8748FB3E013A8] PRIMARY KEY ([kodi])
 );
 CREATE TABLE [dbo].[Kompania] ( 
   [kompaniaID] INT IDENTITY NOT NULL,
-  [emriKompanis] TEXT NOT NULL,
+  [emriKompanis] TEXT NULL,
   [logo] VARCHAR(40) NULL CONSTRAINT [DF__Kompania__logo__37A5467C] DEFAULT ('kompaniPaFoto.png') ,
   [adresa] VARCHAR(40) NULL,
   CONSTRAINT [PK__Kompania__2026D74DCB37AA9A] PRIMARY KEY ([kompaniaID])
 );
 CREATE TABLE [dbo].[Perdoruesi] ( 
   [userID] INT IDENTITY NOT NULL,
-  [emri] VARCHAR(30) NOT NULL,
+  [emri] VARCHAR(30) NULL,
   [mbiemri] VARCHAR(30) NULL,
   [email] VARCHAR(30) NULL,
-  [username] VARCHAR(20) NOT NULL,
-  [userPW] VARCHAR(70) NOT NULL,
+  [username] VARCHAR(20) NULL,
+  [userPW] VARCHAR(70) NULL,
   [aksesi] INT NULL CONSTRAINT [DF__Perdorues__akses__38996AB5] DEFAULT ((0)) ,
   CONSTRAINT [PK__Perdorue__CB9A1CDFC4C4A0AA] PRIMARY KEY ([userID]),
   CONSTRAINT [UQ__Perdorue__F3DBC5728A6B6DAE] UNIQUE ([username])
 );
 CREATE TABLE [dbo].[Porosit] ( 
   [idPorosia] INT IDENTITY NOT NULL,
-  [totaliPorosis] DECIMAL(18,2) NOT NULL,
+  [totaliPorosis] DECIMAL(18,2) NULL,
   [dataPorosis] DATE NULL CONSTRAINT [DF__Porosit__dataPor__398D8EEE] DEFAULT (getdate()) ,
   [statusiPorosis] VARCHAR(30) NULL CONSTRAINT [DF__Porosit__statusi__3A81B327] DEFAULT ('Ne Procesim') ,
   [idKlienti] INT NULL,
@@ -83,19 +83,19 @@ CREATE TABLE [dbo].[Porosit] (
 );
 CREATE TABLE [dbo].[Produkti] ( 
   [produktiID] INT IDENTITY NOT NULL,
-  [emriProduktit] TEXT NOT NULL,
+  [emriProduktit] TEXT NULL,
   [pershkrimi] TEXT NULL,
   [fotoProduktit] VARCHAR(40) NULL CONSTRAINT [DF__Produkti__fotoPr__3B75D760] DEFAULT ('produktPaFoto.png') ,
-  [qmimiProduktit] DECIMAL(18,2) NOT NULL,
+  [qmimiProduktit] DECIMAL(18,2) NULL,
   [kompaniaID] INT NULL,
   [kategoriaID] INT NULL,
   CONSTRAINT [PK__Produkti__76A3DFCF91A50347] PRIMARY KEY ([produktiID])
 );
 CREATE TABLE [dbo].[TeDhenatEPorosis] ( 
   [idDetajet] INT IDENTITY NOT NULL,
-  [qmimiTotal] DECIMAL(18,2) NOT NULL,
-  [sasiaPorositur] INT NOT NULL,
-  [idPorosia] INT NOT NULL,
+  [qmimiTotal] DECIMAL(18,2) NULL,
+  [sasiaPorositur] INT NULL,
+  [idPorosia] INT NULL,
   [idProdukti] INT NULL,
   [kodiZbritjes] CHAR(6) NULL,
   CONSTRAINT [PK__TeDhenat__494F491F84D65D51] PRIMARY KEY ([idDetajet])

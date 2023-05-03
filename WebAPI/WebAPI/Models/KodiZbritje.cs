@@ -9,7 +9,7 @@ public partial class KodiZbritje
 
     public DateTime? DataKrijimit { get; set; }
 
-    public decimal QmimiZbritjes { get; set; }
+    public decimal? QmimiZbritjes { get; set; }
 
     public int? IdProdukti { get; set; }
 

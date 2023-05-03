@@ -7,7 +7,7 @@ public partial class Porosit
 {
     public int IdPorosia { get; set; }
 
-    public decimal TotaliPorosis { get; set; }
+    public decimal? TotaliPorosis { get; set; }
 
     public DateTime? DataPorosis { get; set; }
 

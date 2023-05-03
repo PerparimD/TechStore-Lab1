@@ -8,6 +8,7 @@ import ProductTables from '../produktet/ProductTables';
 import { useState } from 'react';
 import TabelaEKompanive from '../kompanit/TabelaEKompanive';
 import Mesazhet from '../mesazhet/Mesazhet';
+import TabelaEPerdoruesve from '../users/TabelaEPerdoruesve';
 
 // import Sonnet from '../../components/Sonnet'
 
@@ -43,6 +44,9 @@ const AdminDashboard = () => {
               <Nav.Item >
                 <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle} >Mesazhet</Nav.Link>
               </Nav.Item>
+              <Nav.Item >
+                <Nav.Link className='colum' eventKey="4" style={key === "3" ? ActiveStyle : inActiveStyle} >Perdoruesit</Nav.Link>
+              </Nav.Item>
             </Nav>
           </Col>
           <Col sm={10}>
@@ -55,6 +59,9 @@ const AdminDashboard = () => {
               </Tab.Pane>
               <Tab.Pane eventKey="3">
                 <Mesazhet />
+              </Tab.Pane>
+              <Tab.Pane eventKey="4">
+                <TabelaEPerdoruesve />
               </Tab.Pane>
             </Tab.Content>
           </Col>

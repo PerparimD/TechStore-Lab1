@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import classes from './Styles/TabelaEKompanive.module.css';
+import classes from './Styles/TabelaEPerdoruesve.module.css';
 import axios from "axios";
 import Mesazhi from "../layout/Mesazhi";
 import { TailSpin } from 'react-loader-spinner';
 import EditoPerdorues from "./EditoPerdorues";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import {  faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import Button from "react-bootstrap/Button";
 
 function TabelaEPerdoruesve() {
@@ -83,15 +83,14 @@ function TabelaEPerdoruesve() {
                         <th>Email</th>
                         <th>Username</th>
                         <th>Aksesi</th>
+                        <th>Funksione</th>
                     </tr>
 
                     {perdoruesit.map((k) => (
                         <tr key={k.userId}>
                             <td>{k.userId}</td>
-                            <td>{k.emri} {k.mbimeri}</td>
-                            <td >
-                                {k.email}
-                            </td>
+                            <td>{k.emri} {k.mbiemri}</td>
+                            <td > {k.email} </td>
                             <td >{k.username}</td>
                             <td>{k.aksesi}</td>
                             <td><Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => handleEdito(k.userId)}><FontAwesomeIcon icon={faPenToSquare} /></Button></td>

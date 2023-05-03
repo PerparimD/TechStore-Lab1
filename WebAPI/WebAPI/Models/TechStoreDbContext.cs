@@ -158,10 +158,10 @@ public partial class TechStoreDbContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("emri");
-            entity.Property(e => e.Mbimeri)
+            entity.Property(e => e.Mbiemri)
                 .HasMaxLength(30)
                 .IsUnicode(false)
-                .HasColumnName("mbimeri");
+                .HasColumnName("mbiemri");
             entity.Property(e => e.UserPw)
                 .HasMaxLength(70)
                 .IsUnicode(false)

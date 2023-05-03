@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -12,7 +12,7 @@ function EditoPerdorues(props) {
     useEffect(() => {
         const shfaqKompanit = async () => {
             try {
-                const user = await axios.get(`https://localhost:7285/api/Perdoruesi/shfaqSipasID?id=${props.id}`);
+                const user = await axios.get(`https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUser=${props.id}`);
                 setPerdoruesi(user.data);
                 console.log(user)
 
@@ -38,6 +38,8 @@ function EditoPerdorues(props) {
 
     const handleAksesiChange = (value) => {
         setPerdoruesi((prev) => ({ ...prev, aksesi: value }));
+        console.log(value);
+        console.log(perdoruesi.aksesi)
     };
 
     function handleSubmit() {
@@ -68,13 +70,6 @@ function EditoPerdorues(props) {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>ID Perdoruesit</Form.Label>
-                        <Form.Control
-                            value={perdoruesi.userId}
-                            disabled
-                        />
-                    </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Username</Form.Label>
                         <Form.Control

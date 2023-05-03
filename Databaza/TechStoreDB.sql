@@ -1,5 +1,8 @@
-CREATE DATABASE TechStoreDB
-GO
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'TechStoreDB')
+  BEGIN
+    CREATE DATABASE TechStoreDB
+  END
+  GO
   USE TechStoreDB
 GO
 ALTER TABLE [dbo].[Produkti] DROP CONSTRAINT [FK_Produkti_Kategoria];

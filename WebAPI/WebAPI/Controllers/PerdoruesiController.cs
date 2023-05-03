@@ -80,9 +80,13 @@ namespace WebAPI.Controllers
             {
                 perdouresi.Emri = p.Emri;
             }
-            if(!p.Mbimeri.IsNullOrEmpty())
+            if(!p.Mbiemri.IsNullOrEmpty())
             {
-                perdouresi.Mbimeri = p.Mbimeri;
+                perdouresi.Mbiemri = p.Mbiemri;
+            }
+            if (p.Aksesi >= 0)
+            {
+                perdouresi.Aksesi = p.Aksesi;
             }
 
             _context.Perdoruesis.Update(perdouresi);

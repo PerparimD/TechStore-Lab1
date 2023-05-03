@@ -9,7 +9,7 @@ public partial class Perdoruesi
 
     public string Emri { get; set; } = null!;
 
-    public string? Mbimeri { get; set; }
+    public string? Mbiemri { get; set; }
 
     public string? Email { get; set; }
 

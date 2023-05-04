@@ -66,7 +66,7 @@ function EditoPerdorues(props) {
     return (
         <Modal className="modalEditShto" show={true} onHide={() => props.largo()}>
             <Modal.Header closeButton>
-                <Modal.Title>Edito Kompanin</Modal.Title>
+                <Modal.Title>Edito Perdoruesin</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>

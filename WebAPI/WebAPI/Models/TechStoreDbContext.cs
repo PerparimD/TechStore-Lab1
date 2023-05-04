@@ -34,10 +34,16 @@ public partial class TechStoreDbContext : DbContext
     public virtual DbSet<TeDhenatPerdoruesit> TeDhenatPerdoruesits { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=RILINDKYCYKU; Database=TechStoreDB; Trusted_Connection=True; TrustServerCertificate=True");
+    {
+        IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+        optionsBuilder.UseSqlServer(configuration.GetConnectionString("Conn"));
+    }
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ContactForm>(entity =>
         {

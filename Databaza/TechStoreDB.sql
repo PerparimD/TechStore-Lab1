@@ -1,19 +1,41 @@
 IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'TechStoreDB')
-  BEGIN
-    CREATE DATABASE TechStoreDB
-  END
-  GO
-  USE TechStoreDB
+    BEGIN
+        CREATE DATABASE TechStoreDB
+    END
+    GO
+    USE TechStoreDB
 GO
-ALTER TABLE [dbo].[Produkti] DROP CONSTRAINT [FK_Produkti_Kategoria];
-ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT [FK_TeDhenatPorosis_KodiZbritjes];
-ALTER TABLE [dbo].[Produkti] DROP CONSTRAINT [FK_Produkti_Kompania];
-ALTER TABLE [dbo].[ContactForm] DROP CONSTRAINT [FK_ContactForm_Perdoruesi];
-ALTER TABLE [dbo].[Porosit] DROP CONSTRAINT [FK_Porosit_Klienti];
-ALTER TABLE [dbo].[TeDhenatPerdoruesit] DROP CONSTRAINT [FK_TeDhenatPerdorues_Perdoruesi];
-ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT [FK_TeDhenatPorosis_Porosia];
-ALTER TABLE [dbo].[KodiZbritjes] DROP CONSTRAINT [FK_KodiZbritjes_Produkti];
-ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT [FK_TeDhenatPorosis_Produkti];
+IF EXISTS(SELECT * FROM sys.databases WHERE name = 'TechStoreDB')
+    BEGIN
+        IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Produkti]') AND type in (N'U'))
+            BEGIN  
+                ALTER TABLE [dbo].[Produkti] DROP CONSTRAINT [FK_Produkti_Kategoria];
+                ALTER TABLE [dbo].[Produkti] DROP CONSTRAINT [FK_Produkti_Kompania];
+            END
+        IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TeDhenatEPorosis]') AND type in (N'U'))
+            BEGIN
+                ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT [FK_TeDhenatPorosis_KodiZbritjes];
+                ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT [FK_TeDhenatPorosis_Produkti];
+                ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT [FK_TeDhenatPorosis_Porosia];
+             END
+        IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ContactForm]') AND type in (N'U'))
+            BEGIN
+                ALTER TABLE [dbo].[ContactForm] DROP CONSTRAINT [FK_ContactForm_Perdoruesi];
+            END
+        IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Porosit]') AND type in (N'U'))
+            BEGIN
+                ALTER TABLE [dbo].[Porosit] DROP CONSTRAINT [FK_Porosit_Klienti];
+            END
+        IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TeDhenatPerdoruesit]') AND type in (N'U'))
+            BEGIN
+                ALTER TABLE [dbo].[TeDhenatPerdoruesit] DROP CONSTRAINT [FK_TeDhenatPerdorues_Perdoruesi];
+            END
+        IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[KodiZbritjes]') AND type in (N'U'))
+            BEGIN
+                ALTER TABLE [dbo].[KodiZbritjes] DROP CONSTRAINT [FK_KodiZbritjes_Produkti];
+            END
+    END
+GO
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ContactForm]') AND type in (N'U'))
 DROP TABLE [dbo].[ContactForm];
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[KategoriaProduktit]') AND type in (N'U'))
@@ -49,8 +71,8 @@ CREATE TABLE [dbo].[KategoriaProduktit] (
   CONSTRAINT [PK__Kategori__AC39DE2ACE8BCA8A] PRIMARY KEY ([kategoriaID])
 );
 CREATE TABLE [dbo].[KodiZbritjes] ( 
-  [kodi] CHAR(6) NOT NULL,
-  [dataKrijimit] DATE NULL CONSTRAINT [DF__KodiZbrit__dataK__36B12243] DEFAULT (getdate()) ,
+  [kodi] VARCHAR(12) NOT NULL,
+  [dataKrijimit] DATETIME NULL CONSTRAINT [DF__KodiZbrit__dataK__36B12243] DEFAULT (getdate()) ,
   [qmimiZbritjes] DECIMAL(18,2) NULL,
   [idProdukti] INT NULL,
   CONSTRAINT [PK__KodiZbri__25A8748FB3E013A8] PRIMARY KEY ([kodi])
@@ -97,7 +119,7 @@ CREATE TABLE [dbo].[TeDhenatEPorosis] (
   [sasiaPorositur] INT NULL,
   [idPorosia] INT NULL,
   [idProdukti] INT NULL,
-  [kodiZbritjes] CHAR(6) NULL,
+  [kodiZbritjes] VARCHAR(12) NULL,
   CONSTRAINT [PK__TeDhenat__494F491F84D65D51] PRIMARY KEY ([idDetajet])
 );
 CREATE TABLE [dbo].[TeDhenatPerdoruesit] ( 

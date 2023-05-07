@@ -8,7 +8,7 @@ function Mesazhi(props) {
                 <Modal.Title style={props.tipi === "success" ? { color: "#009879" } : { color: "red" }}>{props.tipi === "success" ? "Me Sukses" : "Ndodhi nje gabim"}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {props.pershkrimi}
+                <div dangerouslySetInnerHTML={{ __html: props.pershkrimi }} />
 
             </Modal.Body>
             <Modal.Footer>

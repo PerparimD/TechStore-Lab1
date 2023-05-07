@@ -10,6 +10,7 @@ import TabelaEKompanive from '../kompanit/TabelaEKompanive';
 import Mesazhet from '../mesazhet/Mesazhet';
 import TabelaEPerdoruesve from '../users/TabelaEPerdoruesve';
 import TabelaEKategorive from '../kategorit/TabelaEKategorive';
+import KodiZbritjes from '../kodiZbritjes/KodiZbritjes';
 
 // import Sonnet from '../../components/Sonnet'
 
@@ -51,6 +52,9 @@ const AdminDashboard = () => {
               <Nav.Item >
                 <Nav.Link className='colum' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle} >Kategorite</Nav.Link>
               </Nav.Item>
+              <Nav.Item >
+                <Nav.Link className='colum' eventKey="6" style={key === "6" ? ActiveStyle : inActiveStyle} >Kodet e Zbritjev</Nav.Link>
+              </Nav.Item>
             </Nav>
           </Col>
           <Col sm={10}>
@@ -69,6 +73,9 @@ const AdminDashboard = () => {
               </Tab.Pane>
               <Tab.Pane eventKey="5">
                 <TabelaEKategorive />
+              </Tab.Pane>
+              <Tab.Pane eventKey="6">
+                <KodiZbritjes />
               </Tab.Pane>
             </Tab.Content>
           </Col>

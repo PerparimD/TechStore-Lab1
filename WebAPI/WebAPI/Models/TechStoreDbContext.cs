@@ -100,13 +100,13 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
             entity.HasKey(e => e.Kodi).HasName("PK__KodiZbri__25A8748FB3E013A8");
 
             entity.Property(e => e.Kodi)
-                .HasMaxLength(6)
+                .HasMaxLength(10)
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("kodi");
             entity.Property(e => e.DataKrijimit)
                 .HasDefaultValueSql("(getdate())")
-                .HasColumnType("date")
+                .HasColumnType("datetime")
                 .HasColumnName("dataKrijimit");
             entity.Property(e => e.IdProdukti).HasColumnName("idProdukti");
             entity.Property(e => e.QmimiZbritjes)

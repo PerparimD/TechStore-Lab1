@@ -21,7 +21,6 @@ namespace TechStoreWebAPI.Controllers
         [Route("Products")]
         public async Task<ActionResult> Get()
         {
-            //List<Produkti> produktis = await _context.Produktis.Include(x => x.Kompania).ToListAsync();
 
             var Produkti = await _context.Produktis
                .OrderByDescending(x => x.ProduktiId)

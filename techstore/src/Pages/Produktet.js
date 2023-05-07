@@ -25,10 +25,10 @@ function Produktet(props) {
   useEffect(() => {
     const vendosProduktet = async () => {
       try {
-        const kategorit = await axios.get(
+        const produktet = await axios.get(
           `https://localhost:7285/api/Produkti/Products`
         );
-        setProduktet(kategorit.data);
+        setProduktet(produktet.data);
         console.log(perditeso)
 
       } catch (err) {

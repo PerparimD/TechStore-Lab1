@@ -6,7 +6,7 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] 
+    [Route("api/[controller]")]
     public class PerdoruesiController : Controller
     {
         private readonly TechStoreDbContext _context;
@@ -41,6 +41,13 @@ namespace WebAPI.Controllers
             await _context.Perdoruesis.AddAsync(perdoruesi);
             await _context.SaveChangesAsync();
 
+            TeDhenatPerdoruesit teDhenatPerdoruesit = new TeDhenatPerdoruesit
+            {
+                UserId = perdoruesi.UserId
+            };
+            await _context.TeDhenatPerdoruesits.AddAsync(teDhenatPerdoruesit);
+            await _context.SaveChangesAsync();
+
             return CreatedAtAction("Get", perdoruesi.UserId, perdoruesi);
         }
 
@@ -50,7 +57,7 @@ namespace WebAPI.Controllers
         {
             var perdoruesi = await _context.Perdoruesis.FirstOrDefaultAsync(x => x.UserId == id);
 
-            if(perdoruesi == null)
+            if (perdoruesi == null)
             {
                 return BadRequest("Perdoruesi nuk egziston");
             }
@@ -67,20 +74,20 @@ namespace WebAPI.Controllers
         {
             var perdouresi = await _context.Perdoruesis.FirstOrDefaultAsync(x => x.UserId == id);
 
-            if(perdouresi == null)
+            if (perdouresi == null)
             {
                 return BadRequest("Perdoruesi nuk ekziston");
             }
 
-            if(!p.Email.IsNullOrEmpty())
+            if (!p.Email.IsNullOrEmpty())
             {
-               perdouresi.Email = p.Email;
+                perdouresi.Email = p.Email;
             }
-            if(!p.Emri.IsNullOrEmpty())
+            if (!p.Emri.IsNullOrEmpty())
             {
                 perdouresi.Emri = p.Emri;
             }
-            if(!p.Mbiemri.IsNullOrEmpty())
+            if (!p.Mbiemri.IsNullOrEmpty())
             {
                 perdouresi.Mbiemri = p.Mbiemri;
             }

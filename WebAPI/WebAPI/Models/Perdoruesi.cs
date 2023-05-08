@@ -23,5 +23,7 @@ public partial class Perdoruesi
 
     public virtual ICollection<Porosit> Porosits { get; } = new List<Porosit>();
 
+    public virtual ICollection<RegjistrimiStokut> RegjistrimiStokuts { get; } = new List<RegjistrimiStokut>();
+
     public virtual TeDhenatPerdoruesit? TeDhenatPerdoruesit { get; set; }
 }

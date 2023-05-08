@@ -99,6 +99,13 @@ namespace TechStoreWebAPI.Controllers
             await _context.Produktis.AddAsync(newProduct);
             await _context.SaveChangesAsync();
 
+            StokuProduktit stokuProduktit = new StokuProduktit
+            {
+                ProduktiId = newProduct.ProduktiId
+            };
+
+            await _context.StokuProduktits.AddAsync(stokuProduktit);
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction("Get", produkti.ProduktiId, produkti);
 

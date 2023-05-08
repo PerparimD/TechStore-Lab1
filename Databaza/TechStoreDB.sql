@@ -5,15 +5,19 @@ IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'TechStoreDB')
     GO
     USE TechStoreDB
 GO
-ALTER TABLE [dbo].[Produkti] DROP CONSTRAINT IF EXISTS[FK_Produkti_Kategoria];
-ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT IF EXISTS[FK_TeDhenatPorosis_KodiZbritjes];
-ALTER TABLE [dbo].[Produkti] DROP CONSTRAINT IF EXISTS[FK_Produkti_Kompania];
-ALTER TABLE [dbo].[ContactForm] DROP CONSTRAINT IF EXISTS[FK_ContactForm_Perdoruesi];
-ALTER TABLE [dbo].[Porosit] DROP CONSTRAINT IF EXISTS[FK_Porosit_Klienti];
-ALTER TABLE [dbo].[TeDhenatPerdoruesit] DROP CONSTRAINT IF EXISTS[FK_TeDhenatPerdorues_Perdoruesi];
-ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT IF EXISTS[FK_TeDhenatPorosis_Porosia];
-ALTER TABLE [dbo].[KodiZbritjes] DROP CONSTRAINT IF EXISTS[FK_KodiZbritjes_Produkti];
-ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT IF EXISTS[FK_TeDhenatPorosis_Produkti];
+ALTER TABLE [dbo].[Produkti] DROP CONSTRAINT IF EXISTS [FK_Produkti_Kategoria];
+ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT IF EXISTS [FK_TeDhenatPorosis_KodiZbritjes];
+ALTER TABLE [dbo].[Produkti] DROP CONSTRAINT IF EXISTS [FK_Produkti_Kompania];
+ALTER TABLE [dbo].[ContactForm] DROP CONSTRAINT IF EXISTS [FK_ContactForm_Perdoruesi];
+ALTER TABLE [dbo].[Porosit] DROP CONSTRAINT IF EXISTS [FK_Porosit_Klienti];
+ALTER TABLE [dbo].[RegjistrimiStokut] DROP CONSTRAINT IF EXISTS [FK_Regjistrimi_Perdoruesi];
+ALTER TABLE [dbo].[TeDhenatPerdoruesit] DROP CONSTRAINT IF EXISTS [FK_TeDhenatPerdorues_Perdoruesi];
+ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT IF EXISTS [FK_TeDhenatPorosis_Porosia];
+ALTER TABLE [dbo].[KodiZbritjes] DROP CONSTRAINT IF EXISTS [FK_KodiZbritjes_Produkti];
+ALTER TABLE [dbo].[StokuProduktit] DROP CONSTRAINT IF EXISTS [FK_Stoku_Produkti];
+ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT IF EXISTS [FK_TeDhenatPorosis_Produkti];
+ALTER TABLE [dbo].[TeDhenatRegjistrimit] DROP CONSTRAINT IF EXISTS [FK_Produkti_TeDhenatRegjistrimit];
+ALTER TABLE [dbo].[TeDhenatRegjistrimit] DROP CONSTRAINT IF EXISTS [FK_RegjistrimiStokut_TeDhenatRegjistrimit];
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ContactForm]') AND type in (N'U'))
 DROP TABLE [dbo].[ContactForm];
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[KategoriaProduktit]') AND type in (N'U'))
@@ -28,10 +32,16 @@ IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Porosi
 DROP TABLE [dbo].[Porosit];
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Produkti]') AND type in (N'U'))
 DROP TABLE [dbo].[Produkti];
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[RegjistrimiStokut]') AND type in (N'U'))
+DROP TABLE [dbo].[RegjistrimiStokut];
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[StokuProduktit]') AND type in (N'U'))
+DROP TABLE [dbo].[StokuProduktit];
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TeDhenatEPorosis]') AND type in (N'U'))
 DROP TABLE [dbo].[TeDhenatEPorosis];
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TeDhenatPerdoruesit]') AND type in (N'U'))
 DROP TABLE [dbo].[TeDhenatPerdoruesit];
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TeDhenatRegjistrimit]') AND type in (N'U'))
+DROP TABLE [dbo].[TeDhenatRegjistrimit];
 CREATE TABLE [dbo].[ContactForm] ( 
   [mesazhiID] INT IDENTITY NOT NULL,
   [userID] INT NULL,
@@ -91,6 +101,21 @@ CREATE TABLE [dbo].[Produkti] (
   [kategoriaID] INT NULL,
   CONSTRAINT [PK__Produkti__76A3DFCF91A50347] PRIMARY KEY ([produktiID])
 );
+CREATE TABLE [dbo].[RegjistrimiStokut] ( 
+  [idRegjistrimit] INT IDENTITY NOT NULL,
+  [dataRegjistrimit] DATETIME NULL CONSTRAINT [DF__Regjistri__dataR__753864A1] DEFAULT (getdate()) ,
+  [stafiID] INT NULL,
+  [shumaTotaleRegjistrimit] DECIMAL(18,2) NULL,
+  [totaliProdukteveRegjistruara] INT NULL,
+  CONSTRAINT [PK_RegjistrimiStokut] PRIMARY KEY ([idRegjistrimit])
+);
+CREATE TABLE [dbo].[StokuProduktit] ( 
+  [produktiID] INT NOT NULL,
+  [sasiaNeStok] INT NULL CONSTRAINT [DF__StokuProd__sasia__6F7F8B4B] DEFAULT ((1)) ,
+  [dataKrijimit] DATETIME NULL CONSTRAINT [DF__StokuProd__dataK__7073AF84] DEFAULT (getdate()) ,
+  [dataPerditsimit] DATETIME NULL CONSTRAINT [DF__StokuProd__dataP__7167D3BD] DEFAULT (getdate()) ,
+  CONSTRAINT [PK_StokuProduktit] PRIMARY KEY ([produktiID])
+);
 CREATE TABLE [dbo].[TeDhenatEPorosis] ( 
   [idDetajet] INT IDENTITY NOT NULL,
   [qmimiTotal] DECIMAL(18,2) NULL,
@@ -108,6 +133,12 @@ CREATE TABLE [dbo].[TeDhenatPerdoruesit] (
   [adresa] VARCHAR(40) NULL,
   CONSTRAINT [PK_TeDhenatPerdoruesit] PRIMARY KEY ([userID])
 );
+CREATE TABLE [dbo].[TeDhenatRegjistrimit] ( 
+  [idRegjistrimit] INT NOT NULL,
+  [idProduktit] INT NULL,
+  [sasiaStokut] INT NULL,
+  [shumaTotale] INT NULL
+);
 TRUNCATE TABLE [dbo].[ContactForm];
 TRUNCATE TABLE [dbo].[KategoriaProduktit];
 TRUNCATE TABLE [dbo].[KodiZbritjes];
@@ -115,8 +146,11 @@ TRUNCATE TABLE [dbo].[Kompania];
 TRUNCATE TABLE [dbo].[Perdoruesi];
 TRUNCATE TABLE [dbo].[Porosit];
 TRUNCATE TABLE [dbo].[Produkti];
+TRUNCATE TABLE [dbo].[RegjistrimiStokut];
+TRUNCATE TABLE [dbo].[StokuProduktit];
 TRUNCATE TABLE [dbo].[TeDhenatEPorosis];
 TRUNCATE TABLE [dbo].[TeDhenatPerdoruesit];
+TRUNCATE TABLE [dbo].[TeDhenatRegjistrimit];
 INSERT INTO [dbo].[ContactForm] ([userID], [mesazhi], [dataDergeses], [statusi]) VALUES (1, 'string', '2023-04-02T00:00:00.000Z', 'Mesazhi juaj eshte derguar tek Stafi');
 INSERT INTO [dbo].[ContactForm] ([userID], [mesazhi], [dataDergeses], [statusi]) VALUES (1, 'Twst', '2023-04-02T00:00:00.000Z', 'Mesazhi juaj eshte derguar tek Stafi');
 INSERT INTO [dbo].[ContactForm] ([userID], [mesazhi], [dataDergeses], [statusi]) VALUES (2, '53eddfgfh', '2023-04-02T00:00:00.000Z', 'Mesazhi juaj eshte derguar tek Stafi');
@@ -259,29 +293,92 @@ INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [q
 INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [qmimiProduktit], [kompaniaID], [kategoriaID]) VALUES ('Procesor Intel Core i7-12700F', 'Ky është një procesor i gjeneratës së 12-të Alder Lake i krijuar për prizën LGA 1700. Ofron 8+4 bërthama fizike (8 performancë + 4 efektive, 20 threads). Frekuenca e tyre është 1.6/2.1 GHz dhe deri në 3.6/4.8 GHz në modalitetin Turbo (bërthama efikase/performancë). Frekuenca maksimale Turbo Boost është deri në 4.9 GHz. Ai ofron një memorie buffer 25 MB SmartCache dhe një proces prodhimi 10 nm është përdorur për krijimin e tij. Mbështet memorie deri në DDR5 4800 MHz dhe DDR4 3200 MHz. Mbështet ndërfaqen PCI-Express 5.0/4.0. TDP e deklaruar nga prodhuesi është 65 W (maksimumi 180 W).', '63f5ecdb56b5d2.54488204.webp', 396.5, 33, 10);
 INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [qmimiProduktit], [kompaniaID], [kategoriaID]) VALUES ('Monitor Dell U3223QE - LED 31.5", 4K UHD, i zi / argjendtë', 'Dell U3223QE është një monitor 31.5" me rezolucion të lartë që do tju rrëmbejë me ngjyrën dhe elegancën e tij. Rezolucioni 4K (3840 x 2160) me më shumë se 8 milionë piksele ka një rezolucion 4 herë më të lartë se një monitor klasik Full HD. Ngjyrat janë të qarta dhe të qëndrueshme përgjatë këndit të shikimit. Dell UltraSharp P3222QE është një monitor që mendon gjithashtu për shëndetin tuaj. Falë funksionit ComfortView Plus, i cili garanton emetimin vazhdimisht të ulët të dritës blu, ju do të shijoni ngjyra të shkëlqyera.rnrnKarakteristikat e tjera të monitorit përfshijnë raporti i pamjes 16: 9, kontrasti 2000: 1, shpejtësia e rifreskimit 60 Hz, ndriçimi 400 cd / m2, koha e përgjigjes 8 ms në modalitetin normal ose 5 ms në modalitetin e shpejtë. Lidhësit: 1x DP, 1x HDMI, USB-C, 6x USB, 1x RJ-45, pivot. Dimensionet 71.26 cm x 61.88 cm x 23.32 cm, pesha 10.36 k', '63f5ecf98f3534.93172253.webp', 1199.5, 25, 16);
 INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [qmimiProduktit], [kompaniaID], [kategoriaID]) VALUES ('Kabllo AXAGON USB-A - micro USB 3.2 Gen 1 SPEED, 3A, 1m, e zezë', 'Kablloja AXAGON është e përshtatshme për laptopë, telefont, tabletë dhe pajisje e tjera celulare. Mbështet shpejtësinë e transferimit të të dhënave deri në 5 Gb / s dhe karikimin deri në 3A.', '63f5ed187916e2.65869096.webp', 9.5, 34, 15);
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (1, 1, '2023-05-08T19:09:28.633Z', '2023-05-08T19:09:28.633Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (2, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (3, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (4, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (5, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (6, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (7, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (8, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (9, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (10, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (11, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (12, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (13, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (14, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (15, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (16, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (17, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (18, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (19, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (20, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (21, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (22, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (23, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (24, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (25, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (26, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (27, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (28, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (29, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (30, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (31, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (32, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (33, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (34, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (35, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (36, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (37, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (38, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (39, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (40, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (41, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (42, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (43, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (44, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (45, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (46, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (47, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (48, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (49, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (50, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (51, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (52, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (53, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (54, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (55, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (56, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (57, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (58, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit]) VALUES (59, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (1, '045234567', 'Peja', 30000, 'Xhemajl Kada 3');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (2, '044123456', 'Prishtina', 10000, 'Kadri Zeka 6');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (3, '045987654', 'Gjilan ', 60000, 'Rexhep Luci 12');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (4, '045234567', 'Prizren ', 20000, 'Bedri Pejani 5');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (3, '045987654', 'Gjilan', 60000, 'Rexhep Luci 12');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (4, '045234567', 'Prizren', 20000, 'Bedri Pejani 5');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (5, '049876543', 'Kaçanik', 71000, 'Bedri Pejani 7');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (6, '044123456', 'Kaçanik', 71000, 'Rexhep Luci 6');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (7, '049234567', 'Ferizaj', 70000, 'Naim Frasheri 14');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (8, '044765432', 'Prizren ', 20000, 'Perparim Krasniqi 7');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (9, '045876543', 'Gjilan ', 60000, 'Rruga e Kavajes 36');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (10, '045234567', 'Gjakova ', 50000, 'Bajram Kelmendi 33');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (11, '044987654', 'Peja ', 30000, 'Hivzi Sulejmani 8');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (12, '049876543', 'Ferizaj ', 70000, '29 Nentori 19');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (13, '043345678', 'Prizren ', 20000, 'Skenderbeu 2');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (14, '046234567', 'Mitrovica ', 40000, 'Adem Jashari 11');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (15, '045987654', 'Gjilan ', 60000, 'Rruga e Kavajes 24');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (16, '044123456', 'Prishtina ', 10000, 'Rruga e Dibres 3');
-INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (17, '045876543', 'Prizren ', 20000, 'Shaban Shala 9');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (8, '044765432', 'Prizren', 20000, 'Perparim Krasniqi 7');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (9, '045876543', 'Gjilan', 60000, 'Rruga e Kavajes 36');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (10, '045234567', 'Gjakova', 50000, 'Bajram Kelmendi 33');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (11, '044987654', 'Peja', 30000, 'Hivzi Sulejmani 8');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (12, '049876543', 'Ferizaj', 70000, '29 Nentori 19');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (13, '043345678', 'Prizren', 20000, 'Skenderbeu 2');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (14, '046234567', 'Mitrovica', 40000, 'Adem Jashari 11');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (15, '045987654', 'Gjilan', 60000, 'Rruga e Kavajes 24');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (16, '044123456', 'Prishtina', 10000, 'Rruga e Dibres 3');
+INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (17, '045876543', 'Prizren', 20000, 'Shaban Shala 9');
 ALTER TABLE [dbo].[ContactForm] ADD CONSTRAINT [FK_ContactForm_Perdoruesi] FOREIGN KEY ([userID]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[KodiZbritjes] ADD CONSTRAINT [FK_KodiZbritjes_Produkti] FOREIGN KEY ([idProdukti]) REFERENCES [dbo].[Produkti] ([produktiID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[Porosit] ADD CONSTRAINT [FK_Porosit_Klienti] FOREIGN KEY ([idKlienti]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[Produkti] ADD CONSTRAINT [FK_Produkti_Kategoria] FOREIGN KEY ([kategoriaID]) REFERENCES [dbo].[KategoriaProduktit] ([kategoriaID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[Produkti] ADD CONSTRAINT [FK_Produkti_Kompania] FOREIGN KEY ([kompaniaID]) REFERENCES [dbo].[Kompania] ([kompaniaID]) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE [dbo].[RegjistrimiStokut] ADD CONSTRAINT [FK_Regjistrimi_Perdoruesi] FOREIGN KEY ([stafiID]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE [dbo].[StokuProduktit] ADD CONSTRAINT [FK_Stoku_Produkti] FOREIGN KEY ([produktiID]) REFERENCES [dbo].[Produkti] ([produktiID]) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE [dbo].[TeDhenatEPorosis] ADD CONSTRAINT [FK_TeDhenatPorosis_KodiZbritjes] FOREIGN KEY ([kodiZbritjes]) REFERENCES [dbo].[KodiZbritjes] ([kodi]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE [dbo].[TeDhenatEPorosis] ADD CONSTRAINT [FK_TeDhenatPorosis_Porosia] FOREIGN KEY ([idPorosia]) REFERENCES [dbo].[Porosit] ([idPorosia]) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE [dbo].[TeDhenatEPorosis] ADD CONSTRAINT [FK_TeDhenatPorosis_Produkti] FOREIGN KEY ([idProdukti]) REFERENCES [dbo].[Produkti] ([produktiID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[TeDhenatPerdoruesit] ADD CONSTRAINT [FK_TeDhenatPerdorues_Perdoruesi] FOREIGN KEY ([userID]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE [dbo].[TeDhenatRegjistrimit] ADD CONSTRAINT [FK_RegjistrimiStokut_TeDhenatRegjistrimit] FOREIGN KEY ([idRegjistrimit]) REFERENCES [dbo].[RegjistrimiStokut] ([idRegjistrimit]) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE [dbo].[TeDhenatRegjistrimit] ADD CONSTRAINT [FK_Produkti_TeDhenatRegjistrimit] FOREIGN KEY ([idProduktit]) REFERENCES [dbo].[Produkti] ([produktiID]) ON DELETE SET NULL ON UPDATE CASCADE;

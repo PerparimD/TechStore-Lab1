@@ -25,5 +25,7 @@ public partial class Produkti
 
     public virtual Kompanium? Kompania { get; set; }
 
+    public virtual StokuProduktit? StokuProduktit { get; set; }
+
     public virtual ICollection<TeDhenatEporosi> TeDhenatEporosis { get; } = new List<TeDhenatEporosi>();
 }

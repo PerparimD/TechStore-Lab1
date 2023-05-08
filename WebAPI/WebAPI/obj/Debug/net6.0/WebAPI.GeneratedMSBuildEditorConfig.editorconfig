@@ -15,3 +15,27 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\GitHub\TechStore-Lab1\WebAPI\WebAPI
 build_property._RazorSourceGeneratorDebug = 
+
+[D:/GitHub/TechStore-Lab1/WebAPI/WebAPI/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/TechStore-Lab1/WebAPI/WebAPI/Views/TeDhenatEporosis/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVEaGVuYXRFcG9yb3Npc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/TechStore-Lab1/WebAPI/WebAPI/Views/TeDhenatEporosis/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVEaGVuYXRFcG9yb3Npc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/TechStore-Lab1/WebAPI/WebAPI/Views/TeDhenatEporosis/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVEaGVuYXRFcG9yb3Npc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/TechStore-Lab1/WebAPI/WebAPI/Views/TeDhenatEporosis/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVEaGVuYXRFcG9yb3Npc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/TechStore-Lab1/WebAPI/WebAPI/Views/TeDhenatEporosis/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVEaGVuYXRFcG9yb3Npc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

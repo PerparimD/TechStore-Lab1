@@ -2,6 +2,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 function Mesazhi(props) {
+    const handleMesazhiMbyll = () => {
+        localStorage.setItem("shfaqMesazhinPasRef", false)
+        props.setShfaqMesazhin(false)
+    }
     return (
         <Modal show='true'>
             <Modal.Header >
@@ -12,7 +16,7 @@ function Mesazhi(props) {
 
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={() => props.setShfaqMesazhin(false)} variant={'outline-' + props.tipi}>
+                <Button onClick={handleMesazhiMbyll} variant={'outline-' + props.tipi}>
                     Mbylle
                 </Button >
             </Modal.Footer>

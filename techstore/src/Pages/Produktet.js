@@ -134,6 +134,7 @@ function Produktet(props) {
                   fotoProduktit={item.fotoProduktit}
                   emriProduktit={item.emriProduktit}
                   cmimi={item.qmimiProduktit}
+                  sasiaNeStok={item.sasiaNeStok}
                 />
               );
             }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
@@ -146,6 +147,7 @@ function Produktet(props) {
                     fotoProduktit={item.fotoProduktit}
                     emriProduktit={item.emriProduktit}
                     cmimi={item.qmimiProduktit}
+                    sasiaNeStok={item.sasiaNeStok}
                   />
                 );
               }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
@@ -159,6 +161,7 @@ function Produktet(props) {
                         fotoProduktit={item.fotoProduktit}
                         emriProduktit={item.emriProduktit}
                         cmimi={item.qmimiProduktit}
+                        sasiaNeStok={item.sasiaNeStok}
                       />
                     );
                   }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
@@ -170,6 +173,7 @@ function Produktet(props) {
                       fotoProduktit={item.fotoProduktit}
                       emriProduktit={item.emriProduktit}
                       cmimi={item.qmimiProduktit}
+                      sasiaNeStok={item.sasiaNeStok}
                     />
                   );
                 })

@@ -10,6 +10,7 @@ export const initialState = {
 const reducer = (state, action) => {
     switch (action.type) {
         case 'ADD_TO_CART':
+            localStorage.setItem("shfaqMesazhinPasRef", false)
             const produktiPerTuShtuar = action.item;
             const produktiEkzitues = state.cart.find(item => item.id === produktiPerTuShtuar.id);
             let shporta;

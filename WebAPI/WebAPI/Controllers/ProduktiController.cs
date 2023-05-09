@@ -33,9 +33,8 @@ namespace TechStoreWebAPI.Controllers
                    x.KategoriaId,
                    x.Kategoria.LlojiKategoris,
                    x.KompaniaId,
-                   x.Kompania.EmriKompanis
-                   
-
+                   x.Kompania.EmriKompanis,
+                   x.StokuProduktit.SasiaNeStok
                })
                .ToListAsync();
 
@@ -58,7 +57,8 @@ namespace TechStoreWebAPI.Controllers
                    x.KategoriaId, 
                    x.Kategoria.LlojiKategoris,
                    x.KompaniaId,
-                   x.Kompania.EmriKompanis
+                   x.Kompania.EmriKompanis,
+                   x.StokuProduktit.SasiaNeStok
                }).FirstOrDefaultAsync(x => x.ProduktiId == id);
             return Ok(produkti);
         }
@@ -75,6 +75,7 @@ namespace TechStoreWebAPI.Controllers
                     x.EmriProduktit,
                     x.FotoProduktit,
                     x.QmimiProduktit,
+                    x.StokuProduktit.SasiaNeStok
                 })
                 .ToListAsync();
 

@@ -5,6 +5,10 @@
   margin-right: 30em;
 }
 
+a{
+  color: #000;
+}
+
 .produkti-cart {
   display: flex;
   justify-content: space-evenly;

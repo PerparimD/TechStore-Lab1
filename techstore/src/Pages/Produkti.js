@@ -8,6 +8,10 @@ import Footer from "../Components/layout/Footer";
 import ProduktetNeHome from "../Components/produktet/ProduktetNeHome";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import Mesazhi from "../Components/layout/Mesazhi";
+import { useStateValue } from "../Context/StateProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 function Produkti() {
     const { produktiID } = useParams();
@@ -15,6 +19,10 @@ function Produkti() {
     const [perditeso, setPerditeso] = useState("");
     const [kaPershkrim, setKaPershkrim] = useState(false);
     const [produktet, setProduktet] = useState([]);
+    const [{ cart }, dispatch] = useStateValue();
+    const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
+    const [tipiMesazhit, setTipiMesazhit] = useState("success");
+    const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
     useEffect(() => {
         const teDhenatProd = async () => {
@@ -23,14 +31,13 @@ function Produkti() {
                 setProdukti(teDhenatProduktit.data);
                 if (teDhenatProduktit.data.pershkrimi !== "") {
                     setKaPershkrim(true);
-                }else{
+                } else {
                     setKaPershkrim(false);
                 }
             } catch (err) {
                 console.log(err);
             }
         }
-
         teDhenatProd();
     }, [perditeso, produktiID])
 
@@ -47,12 +54,61 @@ function Produkti() {
         shfaqProduktet();
     }, [])
 
+    const handleShtoNeShporte = () => {
+        const eshteNeShporte = cart.find((item) => item.id === produkti.produktiId);
+        console.log(produkti.sasiaNeStok)
+
+        if (eshteNeShporte && eshteNeShporte.sasia >= produkti.sasiaNeStok) {
+            setTipiMesazhit("danger")
+            setPershkrimiMesazhit(`Sasia maksimale per <strong>${produkti.emriProduktit}</strong> eshte <strong>${produkti.sasiaNeStok}</strong> ne shporte!`);
+            localStorage.setItem('shfaqMesazhinPasRef', true);
+        } else {
+            dispatch({
+                type: "ADD_TO_CART",
+                item: {
+                    id: produkti.produktiId,
+                    foto: produkti.fotoProduktit,
+                    emri: produkti.emriProduktit,
+                    cmimi: produkti.qmimiProduktit,
+                    sasia: 1,
+                },
+            });
+            setTipiMesazhit("success")
+            setPershkrimiMesazhit(`<strong>${produkti.emriProduktit}</strong> u shtua ne shporte!`);
+        }
+    };
+
+    useEffect(() => {
+        const shfaqMesazhinStorage = localStorage.getItem('shfaqMesazhin');
+        const pershkrimiMesazhitStorage = localStorage.getItem('pershkrimiMesazhit');
+        const tipiMesazhitStorage = localStorage.getItem('tipiMesazhit');
+
+        setShfaqMesazhin(shfaqMesazhinStorage === 'true');
+        setPershkrimiMesazhit(pershkrimiMesazhitStorage || '');
+        setTipiMesazhit(tipiMesazhitStorage || '');
+        if (localStorage.getItem('shfaqMesazhinPasRef') === 'true') {
+            setShfaqMesazhin(true);
+        }
+        localStorage.setItem("shfaqMesazhinPasRef", false)
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('shfaqMesazhin', shfaqMesazhin);
+        localStorage.setItem('pershkrimiMesazhit', pershkrimiMesazhit);
+        localStorage.setItem('tipiMesazhit', tipiMesazhit);
+    }, [shfaqMesazhin, pershkrimiMesazhit, tipiMesazhit]);
+
     return (
         <div className="container">
             <Helmet>
-                <title>{produkti.emriProduktit !== ""? produkti.emriProduktit + " | Tech Store": "Tech Store"}</title>
+                <title>{produkti.emriProduktit !== "" ? produkti.emriProduktit + " | Tech Store" : "Tech Store"}</title>
             </Helmet>
             <NavBar />
+            {shfaqMesazhin && <Mesazhi
+                setShfaqMesazhin={setShfaqMesazhin}
+                pershkrimi={pershkrimiMesazhit}
+                tipi={tipiMesazhit}
+            />}
             <div className="produkti">
                 <div className="detajet">
 
@@ -80,8 +136,8 @@ function Produkti() {
                                     <tr>
                                         <td>Kategoria:</td>
                                         <td>
-                                        <Link to={`/Produktet/kategoria/${produkti.kategoriaId}`}>{produkti.llojiKategoris}</Link>
-                                            
+                                            <Link to={`/Produktet/kategoria/${produkti.kategoriaId}`}>{produkti.llojiKategoris}</Link>
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -96,9 +152,29 @@ function Produkti() {
                                 <p>
                                     {parseFloat(produkti.qmimiProduktit - (produkti.qmimiProduktit * 0.18)).toFixed(2)} € pa TVSH
                                 </p>
+                                <p>
+                                    Disponueshmëria: {produkti.sasiaNeStok > 10 ? "Me shume se 10 artikuj" : produkti.sasiaNeStok + " artikuj"}
+                                </p>
 
                                 <div>
-                                    <button type="submit" className="button" >Buy now</button>
+                                    {produkti.sasiaNeStok > 0 &&
+                                        <button onClick={handleShtoNeShporte} type="submit" className="button" >Buy Now</button>
+                                    }
+                                    {produkti.sasiaNeStok > 0 &&
+                                        <button
+                                            onClick={handleShtoNeShporte}
+                                            className="buttonat"
+                                        >
+                                            <FontAwesomeIcon icon={faCartShopping} />
+                                        </button>
+                                    }
+                                    {produkti.sasiaNeStok <= 0 &&
+                                        <button
+                                            className={"button"} disabled style={{ backgroundColor: "lightgray", color: "black" }}
+                                        >
+                                            Out of Stock
+                                        </button>
+                                    }
                                 </div>
                             </form>
 
@@ -130,6 +206,7 @@ function Produkti() {
                             fotoProduktit={produkti.fotoProduktit}
                             emriProduktit={produkti.emriProduktit}
                             cmimi={produkti.qmimiProduktit}
+                            sasiaNeStok={produkti.sasiaNeStok}
                         />
                     );
                 }

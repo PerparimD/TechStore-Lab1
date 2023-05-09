@@ -97,6 +97,7 @@ function CartPage() {
                 emriProduktit={item.emri}
                 cmimi={item.cmimi}
                 sasia={item.sasia}
+                sasiaNeStok={item.sasiaNeStok}
               />
             );
 

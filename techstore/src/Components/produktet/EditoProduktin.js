@@ -67,8 +67,16 @@ function EditoProduktin(props) {
 
   function handleSubmit() {
 
-
-    axios.put(`https://localhost:7285/api/Produkti/` + props.id, produkti)
+    axios.put(`https://localhost:7285/api/Produkti/` + props.id, {
+      emriProduktit: produkti.emriProduktit,
+      kategoriaId: produkti.kategoriaId,
+      kompaniaId: produkti.kompaniaId,
+      pershkrimi: produkti.pershkrimi,
+      fotoProduktit: produkti.fotoProduktit,
+      stokuQmimiProduktit: {
+        qmimiProduktit: produkti.qmimiProduktit,
+      }
+    })
       .then(x => {
         console.log(x);
         props.setTipiMesazhit("success");
@@ -84,8 +92,8 @@ function EditoProduktin(props) {
         props.perditesoTeDhenat();
         props.shfaqmesazhin();
       });
-
   }
+
   return (
     <>
       <Modal className="modalEditShto" show={props.show} onHide={props.hide}>

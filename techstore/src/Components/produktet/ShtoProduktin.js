@@ -15,7 +15,6 @@ const ShtoProduktin = (props) => {
   const [emriK, setEmriK] = useState("");
   const [pershkrimi, setPershkrimi] = useState("");
   const [llojiK, setLlojiK] = useState("");
-  const [qmimiP, setQmimi] = useState(0);
   const [kompanit, setKompanit] = useState([]);
   const [kategoria, setKategoria] = useState([]);
 
@@ -35,9 +34,6 @@ const ShtoProduktin = (props) => {
     setLlojiK(value);
   };
 
-  const handleQmimiPChange = (value) => {
-    setQmimi(value);
-  };
   const handleFotoChange = () => {
     const filePath = fotoP.current.value;
     const fileName = filePath.split("\\").pop();
@@ -66,7 +62,6 @@ const ShtoProduktin = (props) => {
         emriProduktit: emriP,
         pershkrimi: pershkrimi,
         fotoProduktit: foto,
-        qmimiProduktit: qmimiP,
         kategoriaId: llojiK,
         kompaniaId: emriK
       })
@@ -160,15 +155,6 @@ const ShtoProduktin = (props) => {
                   );
                 })}
               </select>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Qmimi i Produktit</Form.Label>
-              <Form.Control
-                onChange={(e) => handleQmimiPChange(e.target.value)}
-                value={qmimiP}
-                type="number"
-                placeholder="Qmimi i Produktit"
-              />
             </Form.Group>
           </Form>
         </Modal.Body>

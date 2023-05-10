@@ -29,12 +29,13 @@ namespace TechStoreWebAPI.Controllers
                    x.EmriProduktit,
                    x.Pershkrimi,
                    x.FotoProduktit,
-                   x.QmimiProduktit,
                    x.KategoriaId,
                    x.Kategoria.LlojiKategoris,
                    x.KompaniaId,
                    x.Kompania.EmriKompanis,
-                   x.StokuProduktit.SasiaNeStok
+                   x.StokuQmimiProduktit.SasiaNeStok,
+                   x.StokuQmimiProduktit.QmimiProduktit,
+                   x.StokuQmimiProduktit.QmimiBleres
                })
                .ToListAsync();
 
@@ -43,25 +44,37 @@ namespace TechStoreWebAPI.Controllers
         }
 
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
             var produkti = await _context.Produktis
-               .Select(x => new {
-                   x.ProduktiId,
-                   x.EmriProduktit,
-                   x.Pershkrimi,
-                   x.FotoProduktit,
-                   x.QmimiProduktit,
-                   x.KategoriaId, 
-                   x.Kategoria.LlojiKategoris,
-                   x.KompaniaId,
-                   x.Kompania.EmriKompanis,
-                   x.StokuProduktit.SasiaNeStok
-               }).FirstOrDefaultAsync(x => x.ProduktiId == id);
+                .Include(p => p.Kompania)
+                .Include(p => p.Kategoria)
+                .Include(p => p.StokuQmimiProduktit)
+                .Where(p => p.ProduktiId == id)
+                .Select(p => new {
+                    p.ProduktiId,
+                    p.EmriProduktit,
+                    p.Pershkrimi,
+                    p.FotoProduktit,
+                    p.KompaniaId,
+                    EmriKompanis = p.Kompania.EmriKompanis,
+                    p.KategoriaId,
+                    LlojiKategoris = p.Kategoria.LlojiKategoris,
+                    p.StokuQmimiProduktit.SasiaNeStok,
+                    p.StokuQmimiProduktit.QmimiBleres,
+                    p.StokuQmimiProduktit.QmimiProduktit
+                })
+                .FirstOrDefaultAsync();
+
+            if (produkti == null)
+            {
+                return NotFound();
+            }
+
             return Ok(produkti);
         }
+
 
         [HttpGet]
         [Route("15ProduktetMeTeFundit")]
@@ -74,8 +87,9 @@ namespace TechStoreWebAPI.Controllers
                     x.ProduktiId,
                     x.EmriProduktit,
                     x.FotoProduktit,
-                    x.QmimiProduktit,
-                    x.StokuProduktit.SasiaNeStok
+                    x.StokuQmimiProduktit.SasiaNeStok,
+                    x.StokuQmimiProduktit.QmimiBleres,
+                    x.StokuQmimiProduktit.QmimiProduktit
                 })
                 .ToListAsync();
 
@@ -84,68 +98,83 @@ namespace TechStoreWebAPI.Controllers
 
         [HttpPost]
         [Route("shtoProdukt")]
-        public async Task<IActionResult> Post([FromBody] Produkti produkti)
+        public async Task<IActionResult> Post(Produkti produkti)
         {
-
-            var newProduct = new Produkti
-            {
-                EmriProduktit = produkti.EmriProduktit,
-                Pershkrimi = produkti.Pershkrimi,
-                FotoProduktit = produkti.FotoProduktit,
-                QmimiProduktit = produkti.QmimiProduktit,
-                KategoriaId = produkti.KategoriaId,
-                KompaniaId = produkti.KompaniaId
-            };
-
-            await _context.Produktis.AddAsync(newProduct);
+            await _context.Produktis.AddAsync(produkti);
             await _context.SaveChangesAsync();
 
-            StokuProduktit stokuProduktit = new StokuProduktit
+            StokuQmimiProduktit s = new StokuQmimiProduktit
             {
-                ProduktiId = newProduct.ProduktiId
+                ProduktiId = produkti.ProduktiId
             };
 
-            await _context.StokuProduktits.AddAsync(stokuProduktit);
+            await _context.StokuQmimiProduktits.AddAsync(s);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Get", produkti.ProduktiId, produkti);
-
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Produkti p)
         {
             var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
+            var stokuQmimi = await _context.StokuQmimiProduktits.FirstOrDefaultAsync(x => x.ProduktiId == id);
 
-            if (produkti == null)
+            if (produkti == null || stokuQmimi == null)
             {
-                return BadRequest("Id gabim");
+                return BadRequest("Produkti me këtë ID nuk ekziston");
             }
 
             if (!p.EmriProduktit.IsNullOrEmpty())
             {
                 produkti.EmriProduktit = p.EmriProduktit;
             }
+
             if (!p.FotoProduktit.IsNullOrEmpty())
             {
                 produkti.FotoProduktit = p.FotoProduktit;
             }
-            produkti.QmimiProduktit = p.QmimiProduktit;
 
-            //Update message properties
-            produkti.EmriProduktit = p.EmriProduktit;
-            produkti.Pershkrimi = p.Pershkrimi;
-            produkti.FotoProduktit = p.FotoProduktit;
-            produkti.QmimiProduktit = p.QmimiProduktit;
-            produkti.KategoriaId = p.KategoriaId;
-            produkti.KompaniaId = p.KompaniaId;
+            if (p.KategoriaId != null)
+            {
+                produkti.KategoriaId = p.KategoriaId;
+            }
 
+            if (p.KompaniaId != null)
+            {
+                produkti.KompaniaId = p.KompaniaId;
+            }
+
+            if (p.Pershkrimi != null)
+            {
+                produkti.Pershkrimi = p.Pershkrimi;
+            }
+
+            if (p.StokuQmimiProduktit != null)
+            {
+                if (p.StokuQmimiProduktit.QmimiProduktit != null)
+                {
+                    stokuQmimi.QmimiProduktit = p.StokuQmimiProduktit.QmimiProduktit;
+                }
+
+                if (p.StokuQmimiProduktit.QmimiBleres != null)
+                {
+                    stokuQmimi.QmimiBleres = p.StokuQmimiProduktit.QmimiBleres;
+                }
+
+                if (p.StokuQmimiProduktit.SasiaNeStok != null)
+                {
+                    stokuQmimi.SasiaNeStok = p.StokuQmimiProduktit.SasiaNeStok;
+                }
+            }
 
             _context.Produktis.Update(produkti);
+            _context.StokuQmimiProduktits.Update(stokuQmimi);
             await _context.SaveChangesAsync();
 
             return Ok(produkti);
         }
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)

@@ -11,9 +11,11 @@ public partial class RegjistrimiStokut
 
     public int? StafiId { get; set; }
 
-    public decimal? ShumaTotaleRegjistrimit { get; set; }
-
     public int? TotaliProdukteveRegjistruara { get; set; }
 
+    public decimal? ShumaTotaleRegjistrimit { get; set; }
+
     public virtual Perdoruesi? Stafi { get; set; }
+
+    public virtual ICollection<TeDhenatRegjistrimit> TeDhenatRegjistrimits { get; } = new List<TeDhenatRegjistrimit>();
 }

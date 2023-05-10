@@ -7,6 +7,7 @@ import Dashboard from './Pages/Dashboard';
 import Produktet from './Pages/Produktet';
 import Produkti from './Pages/Produkti';
 import Cart from './Pages/Cart';
+import AdminDashboard from './Components/Dashboard/AdminDashboard';
 
 function App() {
   return (

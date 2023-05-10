@@ -31,7 +31,7 @@ public partial class TechStoreDbContext : DbContext
 
     public virtual DbSet<RegjistrimiStokut> RegjistrimiStokuts { get; set; }
 
-    public virtual DbSet<StokuProduktit> StokuProduktits { get; set; }
+    public virtual DbSet<StokuQmimiProduktit> StokuQmimiProduktits { get; set; }
 
     public virtual DbSet<TeDhenatEporosi> TeDhenatEporoses { get; set; }
 
@@ -41,6 +41,7 @@ public partial class TechStoreDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        optionsBuilder.EnableSensitiveDataLogging();
         IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json")
@@ -48,7 +49,6 @@ public partial class TechStoreDbContext : DbContext
 
         optionsBuilder.UseSqlServer(configuration.GetConnectionString("Conn"));
     }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ContactForm>(entity =>
@@ -224,9 +224,6 @@ public partial class TechStoreDbContext : DbContext
             entity.Property(e => e.Pershkrimi)
                 .HasColumnType("text")
                 .HasColumnName("pershkrimi");
-            entity.Property(e => e.QmimiProduktit)
-                .HasColumnType("decimal(18, 2)")
-                .HasColumnName("qmimiProduktit");
 
             entity.HasOne(d => d.Kategoria).WithMany(p => p.Produktis)
                 .HasForeignKey(d => d.KategoriaId)
@@ -262,11 +259,11 @@ public partial class TechStoreDbContext : DbContext
                 .HasConstraintName("FK_Regjistrimi_Perdoruesi");
         });
 
-        modelBuilder.Entity<StokuProduktit>(entity =>
+        modelBuilder.Entity<StokuQmimiProduktit>(entity =>
         {
-            entity.HasKey(e => e.ProduktiId);
+            entity.HasKey(e => e.ProduktiId).HasName("PK_StokuProduktit");
 
-            entity.ToTable("StokuProduktit");
+            entity.ToTable("StokuQmimiProduktit");
 
             entity.Property(e => e.ProduktiId)
                 .ValueGeneratedNever()
@@ -279,13 +276,17 @@ public partial class TechStoreDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("dataPerditsimit");
+            entity.Property(e => e.QmimiBleres)
+                .HasDefaultValueSql("((0))")
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("qmimiBleres");
+            entity.Property(e => e.QmimiProduktit)
+                .HasDefaultValueSql("((0))")
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("qmimiProduktit");
             entity.Property(e => e.SasiaNeStok)
-                .HasDefaultValueSql("((1))")
+                .HasDefaultValueSql("((0))")
                 .HasColumnName("sasiaNeStok");
-
-            entity.HasOne(d => d.Produkti).WithOne(p => p.StokuProduktit)
-                .HasForeignKey<StokuProduktit>(d => d.ProduktiId)
-                .HasConstraintName("FK_Stoku_Produkti");
         });
 
         modelBuilder.Entity<TeDhenatEporosi>(entity =>
@@ -351,22 +352,28 @@ public partial class TechStoreDbContext : DbContext
 
         modelBuilder.Entity<TeDhenatRegjistrimit>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("TeDhenatRegjistrimit");
+            entity.ToTable("TeDhenatRegjistrimit");
 
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.IdProduktit).HasColumnName("idProduktit");
             entity.Property(e => e.IdRegjistrimit).HasColumnName("idRegjistrimit");
+            entity.Property(e => e.QmimiBleres)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("qmimiBleres");
+            entity.Property(e => e.QmimiShites)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("qmimiShites");
             entity.Property(e => e.SasiaStokut).HasColumnName("sasiaStokut");
             entity.Property(e => e.ShumaTotale).HasColumnName("shumaTotale");
 
-            entity.HasOne(d => d.IdProduktitNavigation).WithMany()
+            entity.HasOne(d => d.IdProduktitNavigation).WithMany(p => p.TeDhenatRegjistrimits)
                 .HasForeignKey(d => d.IdProduktit)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_Produkti_TeDhenatRegjistrimit");
 
-            entity.HasOne(d => d.IdRegjistrimitNavigation).WithMany()
+            entity.HasOne(d => d.IdRegjistrimitNavigation).WithMany(p => p.TeDhenatRegjistrimits)
                 .HasForeignKey(d => d.IdRegjistrimit)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_RegjistrimiStokut_TeDhenatRegjistrimit");
         });
 

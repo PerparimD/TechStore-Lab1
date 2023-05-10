@@ -13,10 +13,12 @@ import Mesazhet from '../mesazhet/Mesazhet';
 import TabelaEPerdoruesve from '../users/TabelaEPerdoruesve';
 import TabelaEKategorive from '../kategorit/TabelaEKategorive';
 import KodiZbritjes from '../kodiZbritjes/KodiZbritjes';
+import KalkulimiIMallit from '../kalkulimi/KalkulimiIMallit';
+import RegjistroFaturen from '../kalkulimi/RegjistroFaturen';
 
 // import Sonnet from '../../components/Sonnet'
 
-const AdminDashboard = () => {
+const AdminDashboard = (props) => {
 
   const [key, setKey] = useState("1");
 
@@ -57,14 +59,19 @@ const AdminDashboard = () => {
               <Nav.Item >
                 <Nav.Link className='colum normalMenu' eventKey="6" style={key === "6" ? ActiveStyle : inActiveStyle} >Kodet e Zbritjev</Nav.Link>
               </Nav.Item>
+              <Nav.Item >
+                <Nav.Link className='colum' eventKey="7" style={key === "7" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
+              </Nav.Item>
+              {props.test}
               <Nav.Item>
                 <NavDropdown title="Menu" id="basic-nav-dropdown" className='hamburgerMenu'>
-                  <Nav.Link className='colum' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle} >Produktet</Nav.Link>
-                  <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle} >Kompanit</Nav.Link>
-                  <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle} >Mesazhet</Nav.Link>
-                  <Nav.Link className='colum' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle} >Perdoruesit</Nav.Link>
-                  <Nav.Link className='colum' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle} >Kategorite</Nav.Link>
-                  <Nav.Link className='colum' eventKey="6" style={key === "6" ? ActiveStyle : inActiveStyle} >Kodet e Zbritjev</Nav.Link>
+                  <Nav.Link className='colum' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle}>Produktet</Nav.Link>
+                  <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle}>Kompanit</Nav.Link>
+                  <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle}>Mesazhet</Nav.Link>
+                  <Nav.Link className='colum' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle}>Perdoruesit</Nav.Link>
+                  <Nav.Link className='colum' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle}>Kategorite</Nav.Link>
+                  <Nav.Link className='colum' eventKey="6" style={key === "6" ? ActiveStyle : inActiveStyle}>Kodet e Zbritjev</Nav.Link>
+                  <Nav.Link className='colum' eventKey="7" style={key === "7" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
                 </NavDropdown>
               </Nav.Item>
             </Nav>
@@ -90,6 +97,9 @@ const AdminDashboard = () => {
               </Tab.Pane>
               <Tab.Pane eventKey="6">
                 <KodiZbritjes />
+              </Tab.Pane>
+              <Tab.Pane eventKey="7">
+                <KalkulimiIMallit />
               </Tab.Pane>
             </Tab.Content>
           </Col>

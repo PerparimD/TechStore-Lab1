@@ -13,8 +13,6 @@ public partial class Produkti
 
     public string? FotoProduktit { get; set; }
 
-    public decimal? QmimiProduktit { get; set; }
-
     public int? KompaniaId { get; set; }
 
     public int? KategoriaId { get; set; }
@@ -25,7 +23,9 @@ public partial class Produkti
 
     public virtual Kompanium? Kompania { get; set; }
 
-    public virtual StokuProduktit? StokuProduktit { get; set; }
+    public virtual StokuQmimiProduktit? StokuQmimiProduktit { get; set; }
 
     public virtual ICollection<TeDhenatEporosi> TeDhenatEporosis { get; } = new List<TeDhenatEporosi>();
+
+    public virtual ICollection<TeDhenatRegjistrimit> TeDhenatRegjistrimits { get; } = new List<TeDhenatRegjistrimit>();
 }

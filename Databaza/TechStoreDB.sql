@@ -17,6 +17,7 @@ ALTER TABLE [dbo].[KodiZbritjes] DROP CONSTRAINT IF EXISTS [FK_KodiZbritjes_Prod
 ALTER TABLE [dbo].[StokuQmimiProduktit] DROP CONSTRAINT IF EXISTS [FK_Stoku_Produkti];
 ALTER TABLE [dbo].[TeDhenatEPorosis] DROP CONSTRAINT IF EXISTS [FK_TeDhenatPorosis_Produkti];
 ALTER TABLE [dbo].[TeDhenatRegjistrimit] DROP CONSTRAINT IF EXISTS [FK_Produkti_TeDhenatRegjistrimit];
+ALTER TABLE [dbo].[ZbritjaQmimitProduktit] DROP CONSTRAINT IF EXISTS [FK_ZbritjaQmimitProduktit];
 ALTER TABLE [dbo].[TeDhenatRegjistrimit] DROP CONSTRAINT IF EXISTS [FK_RegjistrimiStokut_TeDhenatRegjistrimit];
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ContactForm]') AND type in (N'U'))
 DROP TABLE [dbo].[ContactForm];
@@ -42,6 +43,8 @@ IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TeDhen
 DROP TABLE [dbo].[TeDhenatPerdoruesit];
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TeDhenatRegjistrimit]') AND type in (N'U'))
 DROP TABLE [dbo].[TeDhenatRegjistrimit];
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ZbritjaQmimitProduktit]') AND type in (N'U'))
+DROP TABLE [dbo].[ZbritjaQmimitProduktit];
 CREATE TABLE [dbo].[ContactForm] ( 
   [mesazhiID] INT IDENTITY NOT NULL,
   [userID] INT NULL,
@@ -144,6 +147,13 @@ CREATE TABLE [dbo].[TeDhenatRegjistrimit] (
   [qmimiShites] DECIMAL(18,2) NULL,
   CONSTRAINT [PK_TeDhenatRegjistrimit] PRIMARY KEY ([id])
 );
+CREATE TABLE [dbo].[ZbritjaQmimitProduktit] ( 
+  [produktiID] INT NOT NULL,
+  [qmimiPaZbritjeProduktit] DECIMAL(18,2) NULL CONSTRAINT [DF__StokuQmim__qmimi__595B1234] DEFAULT ((0)) ,
+  [qmimiMeZbritjeProduktit] DECIMAL(18,2) NULL CONSTRAINT [DF__StokuQmim__qmimi__595B1123] DEFAULT ((0)) ,
+  [dataZbritjes] DATETIME NULL CONSTRAINT [DF__StokuProd__dataK__7073AF11] DEFAULT (getdate()) ,
+  CONSTRAINT [PK_ZbritjaQmimitProduktit] PRIMARY KEY ([produktiID])
+);
 TRUNCATE TABLE [dbo].[ContactForm];
 TRUNCATE TABLE [dbo].[KategoriaProduktit];
 TRUNCATE TABLE [dbo].[KodiZbritjes];
@@ -156,6 +166,7 @@ TRUNCATE TABLE [dbo].[StokuQmimiProduktit];
 TRUNCATE TABLE [dbo].[TeDhenatEPorosis];
 TRUNCATE TABLE [dbo].[TeDhenatPerdoruesit];
 TRUNCATE TABLE [dbo].[TeDhenatRegjistrimit];
+TRUNCATE TABLE [dbo].[ZbritjaQmimitProduktit];
 INSERT INTO [dbo].[ContactForm] ([userID], [mesazhi], [dataDergeses], [statusi]) VALUES (1, 'string', '2023-04-02T00:00:00.000Z', 'Mesazhi juaj eshte derguar tek Stafi');
 INSERT INTO [dbo].[ContactForm] ([userID], [mesazhi], [dataDergeses], [statusi]) VALUES (1, 'Twst', '2023-04-02T00:00:00.000Z', 'Mesazhi juaj eshte derguar tek Stafi');
 INSERT INTO [dbo].[ContactForm] ([userID], [mesazhi], [dataDergeses], [statusi]) VALUES (2, '53eddfgfh', '2023-04-02T00:00:00.000Z', 'Mesazhi juaj eshte derguar tek Stafi');
@@ -377,6 +388,8 @@ INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zip
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (17, '045876543', 'Prizren', 20000, 'Shaban Shala 9');
 INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [qmimiBleres], [qmimiShites]) VALUES (2, 58, 12, 999, 1299);
 INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [qmimiBleres], [qmimiShites]) VALUES (2, 55, 13, 26, 34);
+INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes]) VALUES (5, 170, 120, '2023-05-13T18:28:40.237Z');
+INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes]) VALUES (8, 150, 99, '2023-05-13T20:10:04.883Z');
 ALTER TABLE [dbo].[ContactForm] ADD CONSTRAINT [FK_ContactForm_Perdoruesi] FOREIGN KEY ([userID]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[KodiZbritjes] ADD CONSTRAINT [FK_KodiZbritjes_Produkti] FOREIGN KEY ([idProdukti]) REFERENCES [dbo].[Produkti] ([produktiID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[Porosit] ADD CONSTRAINT [FK_Porosit_Klienti] FOREIGN KEY ([idKlienti]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE SET NULL ON UPDATE CASCADE;
@@ -390,3 +403,4 @@ ALTER TABLE [dbo].[TeDhenatEPorosis] ADD CONSTRAINT [FK_TeDhenatPorosis_Produkti
 ALTER TABLE [dbo].[TeDhenatPerdoruesit] ADD CONSTRAINT [FK_TeDhenatPerdorues_Perdoruesi] FOREIGN KEY ([userID]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE [dbo].[TeDhenatRegjistrimit] ADD CONSTRAINT [FK_RegjistrimiStokut_TeDhenatRegjistrimit] FOREIGN KEY ([idRegjistrimit]) REFERENCES [dbo].[RegjistrimiStokut] ([idRegjistrimit]) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE [dbo].[TeDhenatRegjistrimit] ADD CONSTRAINT [FK_Produkti_TeDhenatRegjistrimit] FOREIGN KEY ([idProduktit]) REFERENCES [dbo].[Produkti] ([produktiID]) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE [dbo].[ZbritjaQmimitProduktit] ADD CONSTRAINT [FK_ZbritjaQmimitProduktit] FOREIGN KEY ([produktiID]) REFERENCES [dbo].[Produkti] ([produktiID]) ON DELETE CASCADE ON UPDATE CASCADE;

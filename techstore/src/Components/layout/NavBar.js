@@ -54,7 +54,7 @@ function NavBar(props) {
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>
-              <Link to='/'>Log in <FontAwesomeIcon icon={faRightToBracket} /></Link>
+              <Link to='/LogIn'>Log in <FontAwesomeIcon icon={faRightToBracket} /></Link>
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>

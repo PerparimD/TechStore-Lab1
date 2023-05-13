@@ -9,6 +9,7 @@ import Mesazhi from "../layout/Mesazhi";
 import { useState, useEffect } from "react";
 import classes from '../layout/Styles/Buton.module.css';
 
+
 function ProduktetNeHome(props) {
   const [{ cart }, dispatch] = useStateValue();
   const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
@@ -56,7 +57,7 @@ function ProduktetNeHome(props) {
           />
           <p className="artikulliLabel">{props.emriProduktit}</p>
         </div>
-        <p className="cmimi">{props.cmimi.toFixed(2)} €</p>
+        <p className="cmimi">{props.cmimi.toFixed(2)}€</p>
         <p>{props.cmimiMeZbritje}</p>
       </Link>
       <div className="butonatDiv">

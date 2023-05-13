@@ -106,13 +106,14 @@ CREATE TABLE [dbo].[RegjistrimiStokut] (
   [stafiID] INT NULL,
   [totaliProdukteveRegjistruara] INT NULL,
   [shumaTotaleRegjistrimit] DECIMAL(18,2) NULL,
+  [shumaTotaleBlerese] DECIMAL(18,2) NULL,
   CONSTRAINT [PK_RegjistrimiStokut] PRIMARY KEY ([idRegjistrimit])
 );
 CREATE TABLE [dbo].[StokuQmimiProduktit] ( 
   [produktiID] INT NOT NULL,
   [sasiaNeStok] INT NULL CONSTRAINT [DF__StokuProd__sasia__6F7F8B4B] DEFAULT ((0)) ,
   [qmimiBleres] DECIMAL(18,2) NULL CONSTRAINT [DF__StokuQmim__qmimi__595B4002] DEFAULT ((0)) ,
-  [qmimiProduktit] DECIMAL(18,2) NULL CONSTRAINT [DF__StokuQmim__qmimi__595B3222] DEFAULT ((0)),
+  [qmimiProduktit] DECIMAL(18,2) NULL CONSTRAINT [DF__StokuQmim__qmimi__595B3222] DEFAULT ((0)) ,
   [dataKrijimit] DATETIME NULL CONSTRAINT [DF__StokuProd__dataK__7073AF84] DEFAULT (getdate()) ,
   [dataPerditsimit] DATETIME NULL CONSTRAINT [DF__StokuProd__dataP__7167D3BD] DEFAULT (getdate()) ,
   CONSTRAINT [PK_StokuProduktit] PRIMARY KEY ([produktiID])
@@ -141,7 +142,6 @@ CREATE TABLE [dbo].[TeDhenatRegjistrimit] (
   [sasiaStokut] INT NULL,
   [qmimiBleres] DECIMAL(18,2) NULL,
   [qmimiShites] DECIMAL(18,2) NULL,
-  [shumaTotale] INT NULL,
   CONSTRAINT [PK_TeDhenatRegjistrimit] PRIMARY KEY ([id])
 );
 TRUNCATE TABLE [dbo].[ContactForm];
@@ -298,66 +298,66 @@ INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [k
 INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [kompaniaID], [kategoriaID]) VALUES ('Procesor Intel Core i7-12700F', 'Ky është një procesor i gjeneratës së 12-të Alder Lake i krijuar për prizën LGA 1700. Ofron 8+4 bërthama fizike (8 performancë + 4 efektive, 20 threads). Frekuenca e tyre është 1.6/2.1 GHz dhe deri në 3.6/4.8 GHz në modalitetin Turbo (bërthama efikase/performancë). Frekuenca maksimale Turbo Boost është deri në 4.9 GHz. Ai ofron një memorie buffer 25 MB SmartCache dhe një proces prodhimi 10 nm është përdorur për krijimin e tij. Mbështet memorie deri në DDR5 4800 MHz dhe DDR4 3200 MHz. Mbështet ndërfaqen PCI-Express 5.0/4.0. TDP e deklaruar nga prodhuesi është 65 W (maksimumi 180 W).', '63f5ecdb56b5d2.54488204.webp', 33, 10);
 INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [kompaniaID], [kategoriaID]) VALUES ('Monitor Dell U3223QE - LED 31.5", 4K UHD, i zi / argjendtë', 'Dell U3223QE është një monitor 31.5" me rezolucion të lartë që do tju rrëmbejë me ngjyrën dhe elegancën e tij. Rezolucioni 4K (3840 x 2160) me më shumë se 8 milionë piksele ka një rezolucion 4 herë më të lartë se një monitor klasik Full HD. Ngjyrat janë të qarta dhe të qëndrueshme përgjatë këndit të shikimit. Dell UltraSharp P3222QE është një monitor që mendon gjithashtu për shëndetin tuaj. Falë funksionit ComfortView Plus, i cili garanton emetimin vazhdimisht të ulët të dritës blu, ju do të shijoni ngjyra të shkëlqyera.rnrnKarakteristikat e tjera të monitorit përfshijnë raporti i pamjes 16: 9, kontrasti 2000: 1, shpejtësia e rifreskimit 60 Hz, ndriçimi 400 cd / m2, koha e përgjigjes 8 ms në modalitetin normal ose 5 ms në modalitetin e shpejtë. Lidhësit: 1x DP, 1x HDMI, USB-C, 6x USB, 1x RJ-45, pivot. Dimensionet 71.26 cm x 61.88 cm x 23.32 cm, pesha 10.36 k', '63f5ecf98f3534.93172253.webp', 25, 16);
 INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [kompaniaID], [kategoriaID]) VALUES ('Kabllo AXAGON USB-A - micro USB 3.2 Gen 1 SPEED, 3A, 1m, e zezë', 'Kablloja AXAGON është e përshtatshme për laptopë, telefont, tabletë dhe pajisje e tjera celulare. Mbështet shpejtësinë e transferimit të të dhënave deri në 5 Gb / s dhe karikimin deri në 3A.', '63f5ed187916e2.65869096.webp', 34, 15);
-INSERT INTO [dbo].[RegjistrimiStokut] ([dataRegjistrimit], [stafiID], [shumaTotaleRegjistrimit], [totaliProdukteveRegjistruara]) VALUES ('2023-05-09T22:14:16.357Z', 1, 1250, 3);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (1, 1, '2023-05-08T19:09:28.633Z', '2023-05-08T19:09:28.633Z', 1, 758.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (2, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 2710.49);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (3, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 899.99);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (4, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 459.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (5, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 2469.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (6, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 28.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (7, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 52.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (8, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 357.99);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (9, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 284.49);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (10, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 2489.99);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (11, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 210.66);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (12, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 18.45);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (13, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 18.99);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (14, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 29.99);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (15, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 30);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (16, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 9.99);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (17, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 43.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (18, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 12.99);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (19, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 55);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (20, 1, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z', 1, 975.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (21, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 1499.99);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (22, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 3499.99);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (23, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 1779);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (24, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 359.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (25, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 97.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (26, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 45.59);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (27, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 4149);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (28, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 84.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (29, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 49.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (30, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 84.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (31, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 69.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (32, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 3299);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (33, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 579);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (34, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 119);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (35, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 299.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (36, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 349);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (37, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 119.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (38, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 79.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (39, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 99.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (40, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 89.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (41, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 169.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (42, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 49.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (43, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 569);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (44, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 169);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (45, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 240);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (46, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 149.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (47, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 149.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (48, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 59.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (49, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 19.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (50, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 127.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (51, 5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 18.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (52, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 30);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (53, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 49.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (54, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 59.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (55, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 32.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (56, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 19.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (57, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 396.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (58, 1, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 1199.5);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [dataKrijimit], [dataPerditsimit], [qmimiBleres], [qmimiProduktit]) VALUES (59, 12, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z', 1, 9.5);
+INSERT INTO [dbo].[RegjistrimiStokut] ([dataRegjistrimit], [stafiID], [totaliProdukteveRegjistruara], [shumaTotaleRegjistrimit], [shumaTotaleBlerese]) VALUES ('2023-05-13T17:20:44.417Z', 2, 2, 16030, 12326);
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (1, 1, 1, 758.5, '2023-05-08T19:09:28.633Z', '2023-05-08T19:09:28.633Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (2, 1, 1, 2710.49, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (3, 1, 1, 899.99, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (4, 1, 1, 459.5, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (5, 1, 1, 2469.5, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (6, 1, 1, 28.5, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (7, 1, 1, 52.5, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (8, 1, 1, 357.99, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (9, 1, 1, 284.49, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (10, 1, 1, 2489.99, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (11, 1, 1, 210.66, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (12, 1, 1, 18.45, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (13, 1, 1, 18.99, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (14, 1, 1, 29.99, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (15, 1, 1, 30, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (16, 1, 1, 9.99, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (17, 1, 1, 43.5, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (18, 1, 1, 12.99, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (19, 1, 1, 55, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (20, 1, 1, 975.5, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (21, 1, 1, 1499.99, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (22, 1, 1, 3499.99, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (23, 1, 1, 1779, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (24, 1, 1, 359.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (25, 1, 1, 97.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (26, 1, 1, 45.59, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (27, 1, 1, 4149, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (28, 1, 1, 84.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (29, 1, 1, 49.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (30, 1, 1, 84.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (31, 1, 1, 69.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (32, 1, 1, 3299, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (33, 1, 1, 579, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (34, 1, 1, 119, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (35, 1, 1, 299.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (36, 1, 1, 349, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (37, 1, 1, 119.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (38, 1, 1, 79.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (39, 1, 1, 99.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (40, 1, 1, 89.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (41, 1, 1, 169.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (42, 1, 1, 49.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (43, 1, 1, 569, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (44, 1, 1, 169, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (45, 1, 1, 240, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (46, 1, 1, 149.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (47, 1, 1, 149.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (48, 1, 1, 59.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (49, 1, 1, 19.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (50, 1, 1, 127.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (51, 5, 1, 18.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (52, 1, 1, 30, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (53, 1, 1, 49.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (54, 1, 1, 59.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (55, 14, 1, 34, '2023-05-08T19:11:55.617Z', '2023-05-13T17:20:44.890Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (56, 1, 1, 19.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (57, 13, 1, 396, '2023-05-08T19:11:55.617Z', '2023-05-13T17:09:14.637Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (58, 23, 1, 1299, '2023-05-08T19:11:55.617Z', '2023-05-13T17:20:44.867Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (59, 12, 1, 9.5, '2023-05-08T19:11:55.617Z', '2023-05-08T19:11:55.617Z');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (1, '045234567', 'Peja', 30000, 'Xhemajl Kada 3');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (2, '044123456', 'Prishtina', 10000, 'Kadri Zeka 6');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (3, '045987654', 'Gjilan', 60000, 'Rexhep Luci 12');
@@ -375,24 +375,8 @@ INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zip
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (15, '045987654', 'Gjilan', 60000, 'Rruga e Kavajes 24');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (16, '044123456', 'Prishtina', 10000, 'Rruga e Dibres 3');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (17, '045876543', 'Prizren', 20000, 'Shaban Shala 9');
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [shumaTotale]) VALUES (1, 1, 12, 13);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale]) VALUES (1, 125, 55695);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale]) VALUES (1, 125, 55695);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale]) VALUES (1, 1, 1);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale]) VALUES (1, 2, 4);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale]) VALUES (1, 3, 9);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale]) VALUES (1, 125, 55695);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale]) VALUES (1, 1, 1);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale]) VALUES (1, 2, 4);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale]) VALUES (1, 3, 9);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale], [qmimiBleres], [qmimiShites]) VALUES (1, 125, 55695, 235, 237);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale], [qmimiBleres], [qmimiShites]) VALUES (1, 1, 1, 1, 1);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale], [qmimiBleres], [qmimiShites]) VALUES (1, 2, 4, 2, 2);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale], [qmimiBleres], [qmimiShites]) VALUES (1, 3, 9, 3, 3);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [shumaTotale], [qmimiBleres], [qmimiShites]) VALUES (1, 58, 125, 55695, 235, 237);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [shumaTotale], [qmimiBleres], [qmimiShites]) VALUES (1, 56, 1, 1, 1, 1);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [shumaTotale], [qmimiBleres], [qmimiShites]) VALUES (1, 59, 2, 4, 2, 2);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [sasiaStokut], [shumaTotale], [qmimiBleres], [qmimiShites]) VALUES (1, 3, 9, 3, 3);
+INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [qmimiBleres], [qmimiShites]) VALUES (2, 58, 12, 999, 1299);
+INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [qmimiBleres], [qmimiShites]) VALUES (2, 55, 13, 26, 34);
 ALTER TABLE [dbo].[ContactForm] ADD CONSTRAINT [FK_ContactForm_Perdoruesi] FOREIGN KEY ([userID]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[KodiZbritjes] ADD CONSTRAINT [FK_KodiZbritjes_Produkti] FOREIGN KEY ([idProdukti]) REFERENCES [dbo].[Produkti] ([produktiID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[Porosit] ADD CONSTRAINT [FK_Porosit_Klienti] FOREIGN KEY ([idKlienti]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE SET NULL ON UPDATE CASCADE;

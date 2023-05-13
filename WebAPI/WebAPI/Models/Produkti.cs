@@ -28,4 +28,6 @@ public partial class Produkti
     public virtual ICollection<TeDhenatEporosi> TeDhenatEporosis { get; } = new List<TeDhenatEporosi>();
 
     public virtual ICollection<TeDhenatRegjistrimit> TeDhenatRegjistrimits { get; } = new List<TeDhenatRegjistrimit>();
+
+    public virtual ZbritjaQmimitProduktit? ZbritjaQmimitProduktit { get; set; }
 }

@@ -53,7 +53,6 @@ const ShtoProduktin = (props) => {
         setKategoria(dataKategorit);
       });
   }, []);
-  console.log(kompanit)
   
 
   function handleSubmit() {

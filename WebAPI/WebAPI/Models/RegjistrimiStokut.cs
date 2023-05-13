@@ -15,6 +15,8 @@ public partial class RegjistrimiStokut
 
     public decimal? ShumaTotaleRegjistrimit { get; set; }
 
+    public decimal? ShumaTotaleBlerese { get; set; }
+
     public virtual Perdoruesi? Stafi { get; set; }
 
     public virtual ICollection<TeDhenatRegjistrimit> TeDhenatRegjistrimits { get; } = new List<TeDhenatRegjistrimit>();

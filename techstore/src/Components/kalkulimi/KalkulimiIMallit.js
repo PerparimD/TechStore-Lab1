@@ -3,26 +3,17 @@ import classes from './Styles/TabelaEKompanive.module.css';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import RegjistroFaturen from "./RegjistroFaturen";
-import Mesazhi from "../layout/Mesazhi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBan, faPenToSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
-import EditoKompanin from "./EditoKompanin";
-import LargoKompanin from "./LargoKompanin";
+import { faCircleInfo, faPlus } from '@fortawesome/free-solid-svg-icons'
+import TeDhenatKalkulimit from "./TeDhenatKalkulimit";
 import { TailSpin } from 'react-loader-spinner';
-import Nav from 'react-bootstrap/Nav';
-import { Link } from "react-router-dom";
-import AdminDashboard from "../Dashboard/AdminDashboard";
 
 function KalkulimiIMallit() {
     const [kalkulimet, setKalkulimet] = useState([]);
     const [perditeso, setPerditeso] = useState('');
     const [shto, setShto] = useState(false);
-    const [edito, setEdito] = useState(false);
-    const [fshij, setFshij] = useState(false);
+    const [shfaqTeDhenat, setShfaqTeDhenat] = useState(false);
     const [mbyllFature, setMbyllFaturen] = useState(true);
-    const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
-    const [tipiMesazhit, setTipiMesazhit] = useState("");
-    const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
 
@@ -42,23 +33,6 @@ function KalkulimiIMallit() {
         shfaqKalkulimet();
     }, [perditeso]);
 
-    const handleClose = () => {
-        setShto(false);
-    }
-    const handleShow = () => setShto(true);
-
-    const handleEdito = (id) => {
-        setEdito(true)
-        setId(id)
-    };
-    const handleEditoMbyll = () => setEdito(false);
-
-    const handleFshij = (id) => {
-        setFshij(true)
-        setId(id)
-    };
-    const handleFshijMbyll = () => setFshij(false);
-
     const handleRegjistroFatuern = () =>{
         setShto(true)
         setMbyllFaturen(false)
@@ -69,34 +43,26 @@ function KalkulimiIMallit() {
         setShto(false);
     }
 
+    const handleShfaqTeDhenat = (id) => {
+        setShfaqTeDhenat(true);
+        setMbyllFaturen(false);
+        setId(id);
+    };
+    
+    const mbyllTeDhenat = () => {
+        setMbyllFaturen(true);
+        setShfaqTeDhenat(false);
+    }
+
     return (
         <div className={classes.containerDashboardP}>
-            {shfaqMesazhin && <Mesazhi
-                setShfaqMesazhin={setShfaqMesazhin}
-                pershkrimi={pershkrimiMesazhit}
-                tipi={tipiMesazhit}
-            />}
             {shto && <RegjistroFaturen
-                setShfaqMesazhin={setShfaqMesazhin}
-                pershkrimi={pershkrimiMesazhit}
-                tipi={tipiMesazhit}
                 setMbyllFaturen={mbyllFaturen}
+                setPerditeso={setPerditeso}
             />}
-            {edito && <EditoKompanin
-                largo={handleEditoMbyll}
+            {shfaqTeDhenat && <TeDhenatKalkulimit
+                setMbyllTeDhenat={mbyllTeDhenat}
                 id={id}
-                shfaqmesazhin={() => setShfaqMesazhin(true)}
-                perditesoTeDhenat={() => setPerditeso(Date.now())}
-                setTipiMesazhit={setTipiMesazhit}
-                setPershkrimiMesazhit={setPershkrimiMesazhit}
-            />}
-            {fshij && <LargoKompanin
-                largo={handleFshijMbyll}
-                id={id}
-                shfaqmesazhin={() => setShfaqMesazhin(true)}
-                perditesoTeDhenat={() => setPerditeso(Date.now())}
-                setTipiMesazhit={setTipiMesazhit}
-                setPershkrimiMesazhit={setPershkrimiMesazhit}
             />}
             {loading ? (
                 <div className="Loader">
@@ -145,8 +111,7 @@ function KalkulimiIMallit() {
                             <td>{k.totaliProdukteveRegjistruara}</td>
                             <td >{new Date(k.dataRegjistrimit).toLocaleDateString('en-GB', { dateStyle: 'short' })}</td>
                             <td >
-                                <Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => handleEdito(k.kompaniaId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
-                                <Button variant="danger" onClick={() => handleFshij(k.kompaniaId)}><FontAwesomeIcon icon={faBan} /></Button>
+                                <Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => handleShfaqTeDhenat(k.idRegjistrimit)}><FontAwesomeIcon icon={faCircleInfo} /></Button>
                             </td>
                         </tr>
                     ))}

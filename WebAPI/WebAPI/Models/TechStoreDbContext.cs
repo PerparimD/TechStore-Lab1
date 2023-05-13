@@ -39,6 +39,8 @@ public partial class TechStoreDbContext : DbContext
 
     public virtual DbSet<TeDhenatRegjistrimit> TeDhenatRegjistrimits { get; set; }
 
+    public virtual DbSet<ZbritjaQmimitProduktit> ZbritjaQmimitProduktits { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.EnableSensitiveDataLogging();
@@ -247,6 +249,9 @@ public partial class TechStoreDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("dataRegjistrimit");
+            entity.Property(e => e.ShumaTotaleBlerese)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("shumaTotaleBlerese");
             entity.Property(e => e.ShumaTotaleRegjistrimit)
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("shumaTotaleRegjistrimit");
@@ -364,7 +369,6 @@ public partial class TechStoreDbContext : DbContext
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("qmimiShites");
             entity.Property(e => e.SasiaStokut).HasColumnName("sasiaStokut");
-            entity.Property(e => e.ShumaTotale).HasColumnName("shumaTotale");
 
             entity.HasOne(d => d.IdProduktitNavigation).WithMany(p => p.TeDhenatRegjistrimits)
                 .HasForeignKey(d => d.IdProduktit)
@@ -375,6 +379,29 @@ public partial class TechStoreDbContext : DbContext
                 .HasForeignKey(d => d.IdRegjistrimit)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_RegjistrimiStokut_TeDhenatRegjistrimit");
+        });
+
+        modelBuilder.Entity<ZbritjaQmimitProduktit>(entity =>
+        {
+            entity.HasKey(e => e.ProduktiId);
+
+            entity.ToTable("ZbritjaQmimitProduktit");
+
+            entity.Property(e => e.ProduktiId)
+                .ValueGeneratedNever()
+                .HasColumnName("produktiID");
+            entity.Property(e => e.DataZbritjes)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("dataZbritjes");
+            entity.Property(e => e.QmimiMeZbritjeProduktit)
+                .HasDefaultValueSql("((0))")
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("qmimiMeZbritjeProduktit");
+            entity.Property(e => e.QmimiPaZbritjeProduktit)
+                .HasDefaultValueSql("((0))")
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("qmimiPaZbritjeProduktit");
         });
 
         OnModelCreatingPartial(modelBuilder);

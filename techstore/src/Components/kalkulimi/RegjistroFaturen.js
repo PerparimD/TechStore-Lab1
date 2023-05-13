@@ -4,34 +4,29 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Mesazhi from "../layout/Mesazhi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBan, faPenToSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
-import EditoKompanin from "../kodiZbritjes/EditoKodin";
-import LargoKompanin from "../kodiZbritjes/FshijKodin";
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
-import ShtoKodin from "../kodiZbritjes/ShtoKodin";
 import { Table, Form, Container, Row, Col } from 'react-bootstrap';
 
 function RegjistroFaturen(props) {
-    const [kodetEZbritjeve, setKodetEZbritjeve] = useState([]);
     const [perditeso, setPerditeso] = useState('');
-    const [shto, setShto] = useState(false);
-    const [edito, setEdito] = useState(false);
-    const [fshij, setFshij] = useState(false);
     const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
-    const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
     const [produktetNeKalkulim, setproduktetNeKalkulim] = useState([]);
-    const [name, setName] = useState('');
-    const [address, setAddress] = useState(0);
+    const [emriProduktit, setemriProduktit] = useState('');
+    const [produktiID, setProduktiID] = useState(0);
     const [produktet, setProduktet] = useState([]);
     const [sasia, setSasia] = useState("");
     const [qmimiBleres, setQmimiBleres] = useState("");
     const [qmimiShites, setQmimiShites] = useState("");
-    const [totProdkteve, setTotProdkteve] = useState(0);
-    const [totFatures, setTotFatures] = useState(0);
+    const [totProdukteve, setTotProdukteve] = useState(0);
+    const [totFaturesShitese, setTotFaturesShitese] = useState(0);
+    const [totFaturesBlerese, setTotFaturesBlerese] = useState(0);
     const [sasiaNeStok, setSasiaNeStok] = useState(0);
+    const [qmimiB, setQmimiB] = useState(0);
+    const [qmimiSH, setQmimiSH] = useState(0);
 
     useEffect(() => {
         const vendosProduktet = async () => {
@@ -49,44 +44,11 @@ function RegjistroFaturen(props) {
         vendosProduktet();
     }, [perditeso]);
 
-    useEffect(() => {
-        const shfaqKompanit = async () => {
-            try {
-                setLoading(true);
-                const kodi = await axios.get("https://localhost:7285/api/KodiZbritje/shfaqKodet");
-                setKodetEZbritjeve(kodi.data);
-                setLoading(false);
-            } catch (err) {
-                console.log(err);
-                setLoading(false);
-            }
-        };
-
-        shfaqKompanit();
-    }, [perditeso]);
-
-    const handleClose = () => {
-        setShto(false);
-    }
-    const handleShow = () => setShto(true);
-
-    const handleEdito = (id) => {
-        setEdito(true)
-        setId(id)
-    };
-    const handleEditoMbyll = () => setEdito(false);
-
-    const handleFshij = (id) => {
-        setFshij(true)
-        setId(id)
-    };
-    const handleFshijMbyll = () => setFshij(false);
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const produkti = {
-            emriProduktit: name,
-            produktiId: address,
+            emriProduktit: emriProduktit,
+            produktiId: produktiID,
             sasia: sasia,
             qmimiBleres: qmimiBleres,
             qmimiShites: qmimiShites,
@@ -94,33 +56,45 @@ function RegjistroFaturen(props) {
         setproduktetNeKalkulim([...produktetNeKalkulim, produkti]);
         updateTotals([...produktetNeKalkulim, produkti]);
 
-        setAddress(0);
+        setProduktiID(0);
         setQmimiBleres("");
         setSasia("");
         setQmimiShites("");
         setSasiaNeStok(0);
+        setQmimiB(0);
+        setQmimiSH(0);
     };
 
-    const handleProduktiChange = (value, text, sasia) => {
-        setAddress(value);
-        setName(text);
+    const handleProduktiChange = (value, text, sasia, qmimiB, qmimiSH) => {
+        setProduktiID(value);
+        setemriProduktit(text);
         setSasiaNeStok(sasia);
+        setQmimiB(qmimiB);
+        setQmimiSH(qmimiSH);
     };
 
     const updateTotals = (newproduktetNeKalkulim) => {
         let totalProdkteve = 0;
-        let totalFatures = 0;
-        newproduktetNeKalkulim.forEach((produkti, index) => {
+        let totalFaturesShitese = 0;
+        let totalFaturesBlerese = 0;
+        newproduktetNeKalkulim.forEach((produkti) => {
             totalProdkteve += 1;
-            totalFatures += produkti.qmimiBleres * produkti.qmimiShites;
+            totalFaturesShitese += produkti.sasia * produkti.qmimiShites;
+            totalFaturesBlerese += produkti.sasia * produkti.qmimiBleres;
         });
-        setTotProdkteve(totalProdkteve);
-        setTotFatures(totalFatures);
+        setTotProdukteve(totalProdkteve);
+        setTotFaturesShitese(totalFaturesShitese);
+        setTotFaturesBlerese(totalFaturesBlerese);
     };
 
     const handleSave = () => {
-        handleMbyllFature();
-        props.setMbyllFaturen();
+        if(totFaturesShitese > 0){
+            handleMbyllFature();
+            props.setMbyllFaturen();
+        }
+        else{
+            props.setMbyllFaturen();
+        }
     }
 
     const ndrroField = (e, tjetra) => {
@@ -132,62 +106,45 @@ function RegjistroFaturen(props) {
 
     async function handleMbyllFature() {
         try {
-            for (let produkti of produktetNeKalkulim) {
-                await axios.post('https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/teDhenat', {
-                    idRegjistrimit: 1,
-                    idProduktit: produkti.produktiId,
-                    sasiaStokut: produkti.sasia,
-                    shumaTotale: produkti.qmimiShites * produkti.qmimiBleres,
-                    qmimiBleres: produkti.qmimiBleres,
-                    qmimiShites: produkti.qmimiShites,
-                }).then((response) => {
-                    console.log(response);
-                });
-                await axios.put(`https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/perditesoStokunQmimin?id=${produkti.produktiId}`,{
-                    produktiId: produkti.produktiId,
-                    qmimiBleres: produkti.qmimiBleres,
-                    qmimiProduktit: produkti.qmimiShites,
-                    sasiaNeStok: produkti.sasia
-                }).then((response) => {
-                    console.log(response);
-                });
-            }
+            await axios.post('https://localhost:7285/api/RegjistrimiStokut/RuajKalkulimin', {
+                totaliProdukteveRegjistruara: totProdukteve,
+                shumaTotaleRegjistrimit: totFaturesShitese,
+                shumaTotaleBlerese: totFaturesBlerese,
+                stafiId: 2 //Duhet te ndryshohet kur te behet pjesa e authentikimit
+            }).then(async (response) => {
+
+                for (let produkti of produktetNeKalkulim) {
+                    await axios.post('https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/teDhenat', {
+                        idRegjistrimit: response.data.idRegjistrimit,
+                        idProduktit: produkti.produktiId,
+                        sasiaStokut: produkti.sasia,
+                        qmimiBleres: produkti.qmimiBleres,
+                        qmimiShites: produkti.qmimiShites,
+                    });
+                    await axios.put(`https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/perditesoStokunQmimin?id=${produkti.produktiId}`, {
+                        produktiId: produkti.produktiId,
+                        qmimiBleres: produkti.qmimiBleres,
+                        qmimiProduktit: produkti.qmimiShites,
+                        sasiaNeStok: produkti.sasia
+                    });
+                }
+
+                props.setPerditeso(Date.now());
+            })
+
+
         } catch (error) {
             console.error(error);
         }
     }
-    
+
 
     return (
         <div className={classes.containerDashboardP}>
-            {shto && <ShtoKodin
-                shfaq={handleShow}
-                largo={handleClose}
-                shfaqmesazhin={() => setShfaqMesazhin(true)}
-                perditesoTeDhenat={() => setPerditeso(Date.now())}
-                setTipiMesazhit={setTipiMesazhit}
-                setPershkrimiMesazhit={setPershkrimiMesazhit}
-            />}
             {shfaqMesazhin && <Mesazhi
                 setShfaqMesazhin={setShfaqMesazhin}
                 pershkrimi={pershkrimiMesazhit}
                 tipi={tipiMesazhit}
-            />}
-            {edito && <EditoKompanin
-                largo={handleEditoMbyll}
-                id={id}
-                shfaqmesazhin={() => setShfaqMesazhin(true)}
-                perditesoTeDhenat={() => setPerditeso(Date.now())}
-                setTipiMesazhit={setTipiMesazhit}
-                setPershkrimiMesazhit={setPershkrimiMesazhit}
-            />}
-            {fshij && <LargoKompanin
-                largo={handleFshijMbyll}
-                id={id}
-                shfaqmesazhin={() => setShfaqMesazhin(true)}
-                perditesoTeDhenat={() => setPerditeso(Date.now())}
-                setTipiMesazhit={setTipiMesazhit}
-                setPershkrimiMesazhit={setPershkrimiMesazhit}
             />}
             {loading ? (
                 <div className="Loader">
@@ -222,11 +179,13 @@ function RegjistroFaturen(props) {
                                     <select
                                         placeholder="Produkti"
                                         className="form-select"
-                                        value={address ? address : 0}
+                                        value={produktiID ? produktiID : 0}
                                         onChange={(e) =>
                                             handleProduktiChange(e.target.value,
                                                 e.target.options[e.target.selectedIndex].text,
-                                                e.target.options[e.target.selectedIndex].getAttribute('sasiaNeStok')
+                                                e.target.options[e.target.selectedIndex].getAttribute('sasiaNeStok'),
+                                                e.target.options[e.target.selectedIndex].getAttribute('qmimiBleres'),
+                                                e.target.options[e.target.selectedIndex].getAttribute('qmimiShites')
                                             )
                                         }
                                         onKeyDown={(e) => { ndrroField(e, "sasia") }}
@@ -238,7 +197,10 @@ function RegjistroFaturen(props) {
                                             return (
                                                 <option key={item.produktiId}
                                                     value={item.produktiId}
-                                                    sasiaNeStok={item.sasiaNeStok}>
+                                                    sasiaNeStok={item.sasiaNeStok}
+                                                    qmimiBleres={item.qmimiBleres}
+                                                    qmimiShites={item.qmimiProduktit}
+                                                >
                                                     {item.produktiId + " - " + item.emriProduktit}
                                                 </option>
                                             );
@@ -298,23 +260,25 @@ function RegjistroFaturen(props) {
                                         }}
                                     />
                                 </Form.Group>
-
+                                <br />
                                 <Button variant="primary" type="submit">
-                                    Add produkti
+                                    Shto Produktin
                                 </Button>
 
 
                             </Form>
                         </Col>
                         <Col>
-                            <p>Sasia aktuale ne Stok: {sasiaNeStok}</p>
+                            <p><strong>Qmimi Bleres:</strong> {parseInt(qmimiB).toFixed(2)} €</p>
+                            <p><strong>Qmimi Shites:</strong> {parseInt(qmimiSH).toFixed(2)} €</p>
+                            <p><strong>Sasia aktuale ne Stok:</strong> {sasiaNeStok} copë</p>
                         </Col>
                         <Col>
-                            <h4>Totali Produkteve: {totProdkteve}</h4>
-                            <h4>Totali Fatures: {totFatures.toFixed(2)} €</h4>
+                            <h4>Totali Produkteve: {totProdukteve}</h4>
+                            <h4>Totali Fatures: {totFaturesShitese.toFixed(2)} €</h4>
                         </Col>
                     </Row>
-
+                    <h1 className="title">Tabela e Produkteve te Fatures</h1>
                     <Table striped bordered hover>
                         <thead>
                             <tr>
@@ -323,7 +287,8 @@ function RegjistroFaturen(props) {
                                 <th>Sasia</th>
                                 <th>Qmimi Bleres</th>
                                 <th>Qmimi Shites</th>
-                                <th>Totali</th>
+                                <th>Totali Bleres</th>
+                                <th>Totali Shites</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -334,7 +299,8 @@ function RegjistroFaturen(props) {
                                     <td>{produkti.sasia}</td>
                                     <td>{parseInt(produkti.qmimiBleres).toFixed(2)} €</td>
                                     <td>{parseInt(produkti.qmimiShites).toFixed(2)} €</td>
-                                    <td>{(produkti.qmimiBleres * produkti.qmimiShites).toFixed(2)} €</td>
+                                    <td>{(produkti.sasia * produkti.qmimiBleres).toFixed(2)} €</td>
+                                    <td>{(produkti.sasia * produkti.qmimiShites).toFixed(2)} €</td>
                                 </tr>
                             ))}
                         </tbody>

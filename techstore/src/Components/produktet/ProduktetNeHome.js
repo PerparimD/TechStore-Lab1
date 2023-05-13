@@ -57,6 +57,7 @@ function ProduktetNeHome(props) {
           <p className="artikulliLabel">{props.emriProduktit}</p>
         </div>
         <p className="cmimi">{props.cmimi.toFixed(2)} €</p>
+        <p>{props.cmimiMeZbritje}</p>
       </Link>
       <div className="butonatDiv">
         {props.sasiaNeStok > 0 &&

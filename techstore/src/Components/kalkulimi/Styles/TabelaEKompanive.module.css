@@ -18,6 +18,14 @@ table {
   border-bottom: 1px solid #dddddd;
 }
 
-.containerDashboardP h1{
+.containerDashboardP h1 {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .mobileResponsive {
+    width: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 }

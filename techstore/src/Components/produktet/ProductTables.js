@@ -6,10 +6,11 @@ import axios from "axios";
 import Mesazhi from "../layout/Mesazhi";
 import ShtoProduktin from "./ShtoProduktin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { faPlus, faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faPenToSquare, faPlus, faXmark, faCheck, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import EditoProduktin from "./EditoProduktin";
 import Modal from "react-bootstrap/Modal";
+import { TailSpin } from 'react-loader-spinner';
+import ZbritjetEProduktit from "./Zbritjet/ZbritjetEProduktit";
 
 const ProductTables = () => {
   const [produkti, setProdukti] = useState([]);
@@ -20,17 +21,21 @@ const ProductTables = () => {
   const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
   const [tipiMesazhit, setTipiMesazhit] = useState("");
   const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
+  const [mbyllZbritjen, setMbyllZbritjen] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const shfaqProduktet = async () => {
       try {
+        setLoading(true);
         const produkti = await axios.get(
           "https://localhost:7285/api/Produkti/Products"
         );
         setProdukti(produkti.data);
-
+        setLoading(false);
       } catch (err) {
         console.log(err);
+        setLoading(false);
       }
     };
 
@@ -74,12 +79,18 @@ const ProductTables = () => {
     }
   }
 
+  const handleMbyllZbritjen = () => {
+    setMbyllZbritjen(true);
+  }
+
   return (
     <div className="containerDashboardP">
-      <h1 className="title">Tabela e Produkteve</h1>
-      <Button className="mb-3 Butoni" onClick={handleShow}>
-        Shto Produktin <FontAwesomeIcon icon={faPlus} />
-      </Button>
+      {mbyllZbritjen == false &&
+        <ZbritjetEProduktit
+          setMbyllZbritjen={handleMbyllZbritjen}
+          setPerditeso={setPerditeso}
+        />
+      }
       {show && (
         <ShtoProduktin
           show={handleShow}
@@ -124,57 +135,79 @@ const ProductTables = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      {loading ? (
+        <div className="Loader">
+          <TailSpin
+            height="80"
+            width="80"
+            color="#009879"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </div>
+      ) : mbyllZbritjen && <>
+        <h1 className="title">Tabela e Produkteve</h1>
+        <Button className="mb-3 Butoni" onClick={handleShow}>
+          Shto Produktin <FontAwesomeIcon icon={faPlus} />
+        </Button>
+        <Button className="mb-3 Butoni" onClick={() => setMbyllZbritjen(false)}>
+          Zbrijtjet e Produkteve <FontAwesomeIcon icon={faInfoCircle} />
+        </Button>
+        <table className="tableBig">
+          <thead>
+            <tr>
+              <th>Emri i Produktit</th>
+              <th>Pershkrimi</th>
+              <th>Foto e Produktit</th>
+              <th>Kompania</th>
+              <th>Kategoria</th>
+              <th>Qmimi i Produktit</th>
+              <th>Funksione</th>
+            </tr>
+          </thead>
 
-      <table className="tableBig">
-        <thead>
-          <tr>
-            <th>Emri i Produktit</th>
-            <th>Pershkrimi</th>
-            <th>Foto e Produktit</th>
-            <th>Kompania</th>
-            <th>Kategoria</th>
-            <th>Qmimi i Produktit</th>
-            <th>Funksione</th>
-          </tr>
-        </thead>
+          <tbody>
+            {produkti.map((p) => {
+              return (
+                <tr key={p.produktiId}>
+                  <td>{p.emriProduktit}</td>
+                  <td>{p.pershkrimi ? <FontAwesomeIcon icon={faCheck} color="green" /> : <FontAwesomeIcon icon={faXmark} color="red" />}</td>
+                  <td>
+                    <img
+                      src={`${process.env.PUBLIC_URL}/img/products/${p.fotoProduktit}`}
+                      width="50"
+                      alt=""
+                    />
+                  </td>
 
-        <tbody>
-          {produkti.map((p) => {
-            return (
-              <tr key={p.produktiId}>
-                <td>{p.emriProduktit}</td>
-                <td>{p.pershkrimi ? <FontAwesomeIcon icon={faCheck} color="green"  /> : <FontAwesomeIcon icon={faXmark} color="red" />}</td>
-                <td>
-                  <img
-                    src={`${process.env.PUBLIC_URL}/img/products/${p.fotoProduktit}`}
-                    width="50"
-                    alt=""
-                  />
-                </td>
-
-                <td>{p.emriKompanis}</td>
-                <td>{p.llojiKategoris}</td>
-                <td>{(p.qmimiProduktit).toFixed(2)} €</td>
-                <td>
-                  <Button
-                    style={{ marginRight: "0.5em" }}
-                    variant="success"
-                    onClick={() => handleEdito(p.produktiId)}
-                  >
-                    <FontAwesomeIcon icon={faPenToSquare} />
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => handleShowD(p.produktiId)}
-                  >
-                    <FontAwesomeIcon icon={faBan} />
-                  </Button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                  <td>{p.emriKompanis}</td>
+                  <td>{p.llojiKategoris}</td>
+                  <td>{(p.qmimiProduktit).toFixed(2)} €</td>
+                  <td>
+                    <Button
+                      style={{ marginRight: "0.5em" }}
+                      variant="success"
+                      onClick={() => handleEdito(p.produktiId)}
+                    >
+                      <FontAwesomeIcon icon={faPenToSquare} />
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleShowD(p.produktiId)}
+                    >
+                      <FontAwesomeIcon icon={faBan} />
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </>
+      }
     </div>
   );
 };

@@ -17,8 +17,6 @@ public partial class TeDhenatRegjistrimit
 
     public decimal? QmimiShites { get; set; }
 
-    public int? ShumaTotale { get; set; }
-
     public virtual Produkti? IdProduktitNavigation { get; set; }
 
     public virtual RegjistrimiStokut? IdRegjistrimitNavigation { get; set; }

@@ -24,6 +24,7 @@ namespace WebAPI.Controllers
                 {
                     x.IdRegjistrimit,
                     x.ShumaTotaleRegjistrimit,
+                    x.ShumaTotaleBlerese,
                     x.TotaliProdukteveRegjistruara,
                     x.DataRegjistrimit,
                     x.StafiId,
@@ -32,6 +33,47 @@ namespace WebAPI.Controllers
 
             return Ok(regjistrimet);
         }
+
+        [HttpGet]
+        [Route("shfaqRegjistrimetNgaID")]
+        public async Task<IActionResult> GetRegjistrimin(int id)
+        {
+            var regjistrimet = await _context.RegjistrimiStokuts
+                .Select(x => new
+                {
+                    x.IdRegjistrimit,
+                    x.ShumaTotaleRegjistrimit,
+                    x.ShumaTotaleBlerese,
+                    x.TotaliProdukteveRegjistruara,
+                    x.DataRegjistrimit,
+                    x.StafiId,
+                    x.Stafi.Username
+                }).FirstOrDefaultAsync(x => x.IdRegjistrimit == id);
+
+            return Ok(regjistrimet);
+        }
+
+        [HttpGet]
+        [Route("shfaqTeDhenatKalkulimit")]
+        public async Task<IActionResult> Get(int idRegjistrimit)
+        {
+            var teDhenat = await _context.TeDhenatRegjistrimits
+                .Where(x => x.IdRegjistrimit == idRegjistrimit)
+                .Select(x => new
+                {
+                    x.IdRegjistrimit,
+                    x.IdProduktit,
+                    x.IdProduktitNavigation.EmriProduktit,
+                    x.SasiaStokut,
+                    x.QmimiBleres,
+                    x.QmimiShites
+                })
+               .ToListAsync();
+
+            return Ok(teDhenat);
+        }
+
+
 
         [HttpPost]
         [Route("ruajKalkulimin")]

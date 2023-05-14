@@ -14,11 +14,4 @@ root.render(
         <App />
       </StateProvider>
     </BrowserRouter>
-  // <React.StrictMode>
-  //   <BrowserRouter>
-  //     <StateProvider initialState={initialState} reducer={reducer}>
-  //       <App />
-  //     </StateProvider>
-  //   </BrowserRouter>
-  // </React.StrictMode>
 );

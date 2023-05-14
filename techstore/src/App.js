@@ -8,6 +8,7 @@ import Produktet from './Pages/Produktet';
 import Produkti from './Pages/Produkti';
 import Cart from './Pages/Cart';
 import AdminDashboard from './Components/Dashboard/AdminDashboard';
+import LogIn from './Pages/LogIn';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path='/Produktet/:kompania'  element={<Produktet key={Date.now()} />} exact />
         <Route path='/Cart' element={<Cart/>} />
         <Route path='/Produkti/:produktiID' element={<Produkti key={Date.now()}/>} exact />
-
+        <Route path='/LogIn' element={<LogIn />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

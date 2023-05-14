@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebAPI.Models;
 
-public partial class TechStoreDbContext : IdentityDbContext
+public partial class TechStoreDbContext : DbContext
 {
 
     public TechStoreDbContext()
@@ -56,7 +56,7 @@ public partial class TechStoreDbContext : IdentityDbContext
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<IdentityUserLogin<string>>().HasNoKey();
+
         modelBuilder.Entity<ContactForm>(entity =>
         {
             entity.HasKey(e => e.MesazhiId).HasName("PK__ContactF__0E3F7CF3731C8CDE");
@@ -411,6 +411,8 @@ public partial class TechStoreDbContext : IdentityDbContext
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("qmimiPaZbritjeProduktit");
         });
+
+       
 
         OnModelCreatingPartial(modelBuilder);
     }

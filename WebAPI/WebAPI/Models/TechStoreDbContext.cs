@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebAPI.Models;
 
-public partial class TechStoreDbContext : DbContext
+public partial class TechStoreDbContext : IdentityDbContext
 {
+
     public TechStoreDbContext()
     {
     }
-
-    public TechStoreDbContext(DbContextOptions<TechStoreDbContext> options)
-        : base(options)
+    public TechStoreDbContext(DbContextOptions<TechStoreDbContext> options) : base(options)
     {
+
     }
 
     public virtual DbSet<ContactForm> ContactForms { get; set; }
@@ -41,6 +43,7 @@ public partial class TechStoreDbContext : DbContext
 
     public virtual DbSet<ZbritjaQmimitProduktit> ZbritjaQmimitProduktits { get; set; }
 
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.EnableSensitiveDataLogging();
@@ -53,6 +56,7 @@ public partial class TechStoreDbContext : DbContext
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<IdentityUserLogin<string>>().HasNoKey();
         modelBuilder.Entity<ContactForm>(entity =>
         {
             entity.HasKey(e => e.MesazhiId).HasName("PK__ContactF__0E3F7CF3731C8CDE");

@@ -798,3 +798,15 @@ C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\zh
 C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.RazorAssemblyInfo.cache
 C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.RazorAssemblyInfo.cs
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\EntityFramework.SqlServer.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\EntityFramework.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.Design.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

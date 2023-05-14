@@ -51,6 +51,7 @@ function Home() {
                             emriProduktit={produkti.emriProduktit}
                             cmimi={produkti.qmimiProduktit}
                             sasiaNeStok={produkti.sasiaNeStok}
+                            cmimiMeZbritje={produkti.qmimiMeZbritjeProduktit}
                         />
                     );
                 }

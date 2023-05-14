@@ -5,9 +5,6 @@ function Mesazhi(props) {
     const handleMesazhiMbyll = () => {
         localStorage.setItem("shfaqMesazhinPasRef", false)
         props.setShfaqMesazhin(false)
-        if (typeof props.fshijZbritjen === 'function') {
-            props.fshijZbritjen();
-        }
     }
     return (
         <Modal show='true'>

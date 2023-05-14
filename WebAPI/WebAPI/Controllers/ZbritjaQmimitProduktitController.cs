@@ -27,7 +27,8 @@ namespace WebAPI.Controllers
                     x.ZbritjaQmimitProduktit.ProduktiId,
                     x.ZbritjaQmimitProduktit.QmimiPaZbritjeProduktit,
                     x.ZbritjaQmimitProduktit.QmimiMeZbritjeProduktit,
-                    x.ZbritjaQmimitProduktit.DataZbritjes
+                    x.ZbritjaQmimitProduktit.DataZbritjes,
+                    x.ZbritjaQmimitProduktit.DataSkadimit
                 }).ToListAsync();
 
             return Ok(prodMeZbritje);

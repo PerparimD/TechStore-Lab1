@@ -153,8 +153,8 @@ const ProductTables = () => {
         <Button className="mb-3 Butoni" onClick={handleShow}>
           Shto Produktin <FontAwesomeIcon icon={faPlus} />
         </Button>
-        <Button className="mb-3 Butoni" onClick={() => setMbyllZbritjen(false)}>
-          Zbrijtjet e Produkteve <FontAwesomeIcon icon={faInfoCircle} />
+        <Button className="mb-3 Butoni" onClick={() => { setPerditeso(Date.now()); setMbyllZbritjen(false);  }}>
+          Zbritjet e Produkteve <FontAwesomeIcon icon={faInfoCircle} />
         </Button>
         <table className="tableBig">
           <thead>

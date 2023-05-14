@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo, faPlus, faClose } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
 import Mesazhi from "../../layout/Mesazhi";
+import FshijZbritjen from './FshijZbritjen';
 
 function ZbritjetEProduktit(props) {
     const [zbritjet, setZbritjet] = useState([]);
@@ -16,8 +17,10 @@ function ZbritjetEProduktit(props) {
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
     const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
+    const [fshij, setFshij] = useState(false);
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
+    
 
     useEffect(() => {
         const shfaqZbritjet = async () => {
@@ -35,14 +38,32 @@ function ZbritjetEProduktit(props) {
         shfaqZbritjet();
     }, [perditeso]);
 
-    const handleShfaqTeDhenat = (id) => {
-        setMbyllFaturen(false);
+    useEffect(() => {
+        const currentDate = new Date().toLocaleDateString('en-GB', { dateStyle: 'short' });
+        zbritjet.forEach(zbritja => {
+            const dataSkadimit = new Date(zbritja.dataSkadimit).toLocaleDateString('en-GB', { dateStyle: 'short' });
+            if (dataSkadimit < currentDate) {
+                console.log(zbritja);
+                fshijZbritjen(zbritja.produktiId);
+            }
+        });
+    }, [zbritjet])
+
+    const handleFshijZbritjen = (id) => {
         setId(id);
+        setFshij(true);
     };
 
-    const fshijZbritjen = (id) =>{
+    const fshijZbritjen = (id) => {
         axios.delete(`https://localhost:7285/api/ZbritjaQmimitProduktit/fshijZbritjenProduktit?id=${id}`)
+        setPerditeso(Date.now())
     }
+
+    const handleFshij = (id) => {
+        setFshij(true)
+        setId(id)
+    };
+    const handleFshijMbyll = () => setFshij(false);
 
 
     return (
@@ -54,6 +75,14 @@ function ZbritjetEProduktit(props) {
                     tipi={tipiMesazhit}
                 />
             }
+            {fshij && <FshijZbritjen
+                largo={handleFshijMbyll}
+                fshijZbritjen={() => fshijZbritjen(id)}
+                shfaqmesazhin={() => setShfaqMesazhin(true)}
+                perditesoTeDhenat={() => setPerditeso(Date.now())}
+                setTipiMesazhit={setTipiMesazhit}
+                setPershkrimiMesazhit={setPershkrimiMesazhit}
+            />}
             {shtoZbritjen && <ProduktiNeZbritje
                 mbyllZbritjen={() => setShtoZbritjen(false)}
                 shfaq={() => setShtoZbritjen(true)}
@@ -104,6 +133,7 @@ function ZbritjetEProduktit(props) {
                         <th>Qmim pa Zbritje</th>
                         <th>Qmimi me Zbritje</th>
                         <th>Data e Zbritjes</th>
+                        <th>Data e Skadimit</th>
                         <th>Funksione</th>
                     </tr>
 
@@ -114,8 +144,9 @@ function ZbritjetEProduktit(props) {
                             <td>{parseFloat(z.qmimiPaZbritjeProduktit).toFixed(2)} €</td>
                             <td >{parseFloat(z.qmimiMeZbritjeProduktit).toFixed(2)} € </td>
                             <td >{new Date(z.dataZbritjes).toLocaleDateString('en-GB', { dateStyle: 'short' })}</td>
+                            <td >{new Date(z.dataSkadimit).toLocaleDateString('en-GB', { dateStyle: 'short' })}</td>
                             <td >
-                                <Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => handleShfaqTeDhenat(z.idRegjistrimit)}><FontAwesomeIcon icon={faCircleInfo} /></Button>
+                                <Button style={{ marginRight: "0.5em" }} variant="danger" onClick={() => handleFshij(z.produktiId)}><FontAwesomeIcon icon={faClose} /></Button>
                             </td>
                         </tr>
                     ))}

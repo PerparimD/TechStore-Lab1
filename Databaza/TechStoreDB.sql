@@ -152,6 +152,7 @@ CREATE TABLE [dbo].[ZbritjaQmimitProduktit] (
   [qmimiPaZbritjeProduktit] DECIMAL(18,2) NULL CONSTRAINT [DF__StokuQmim__qmimi__595B1234] DEFAULT ((0)) ,
   [qmimiMeZbritjeProduktit] DECIMAL(18,2) NULL CONSTRAINT [DF__StokuQmim__qmimi__595B1123] DEFAULT ((0)) ,
   [dataZbritjes] DATETIME NULL CONSTRAINT [DF__StokuProd__dataK__7073AF11] DEFAULT (getdate()) ,
+  [dataSkadimit] DATETIME NULL CONSTRAINT [DF__ZbritjaQm__dataS__070CFC19] DEFAULT (getdate()) ,
   CONSTRAINT [PK_ZbritjaQmimitProduktit] PRIMARY KEY ([produktiID])
 );
 TRUNCATE TABLE [dbo].[ContactForm];
@@ -310,7 +311,7 @@ INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [k
 INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [kompaniaID], [kategoriaID]) VALUES ('Monitor Dell U3223QE - LED 31.5", 4K UHD, i zi / argjendtë', 'Dell U3223QE është një monitor 31.5" me rezolucion të lartë që do tju rrëmbejë me ngjyrën dhe elegancën e tij. Rezolucioni 4K (3840 x 2160) me më shumë se 8 milionë piksele ka një rezolucion 4 herë më të lartë se një monitor klasik Full HD. Ngjyrat janë të qarta dhe të qëndrueshme përgjatë këndit të shikimit. Dell UltraSharp P3222QE është një monitor që mendon gjithashtu për shëndetin tuaj. Falë funksionit ComfortView Plus, i cili garanton emetimin vazhdimisht të ulët të dritës blu, ju do të shijoni ngjyra të shkëlqyera.rnrnKarakteristikat e tjera të monitorit përfshijnë raporti i pamjes 16: 9, kontrasti 2000: 1, shpejtësia e rifreskimit 60 Hz, ndriçimi 400 cd / m2, koha e përgjigjes 8 ms në modalitetin normal ose 5 ms në modalitetin e shpejtë. Lidhësit: 1x DP, 1x HDMI, USB-C, 6x USB, 1x RJ-45, pivot. Dimensionet 71.26 cm x 61.88 cm x 23.32 cm, pesha 10.36 k', '63f5ecf98f3534.93172253.webp', 25, 16);
 INSERT INTO [dbo].[Produkti] ([emriProduktit], [pershkrimi], [fotoProduktit], [kompaniaID], [kategoriaID]) VALUES ('Kabllo AXAGON USB-A - micro USB 3.2 Gen 1 SPEED, 3A, 1m, e zezë', 'Kablloja AXAGON është e përshtatshme për laptopë, telefont, tabletë dhe pajisje e tjera celulare. Mbështet shpejtësinë e transferimit të të dhënave deri në 5 Gb / s dhe karikimin deri në 3A.', '63f5ed187916e2.65869096.webp', 34, 15);
 INSERT INTO [dbo].[RegjistrimiStokut] ([dataRegjistrimit], [stafiID], [totaliProdukteveRegjistruara], [shumaTotaleRegjistrimit], [shumaTotaleBlerese]) VALUES ('2023-05-13T17:20:44.417Z', 2, 2, 16030, 12326);
-INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (1, 1, 1, 758.5, '2023-05-08T19:09:28.633Z', '2023-05-08T19:09:28.633Z');
+INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (1, 1, 12, 758.5, '2023-05-08T19:09:28.633Z', '2023-05-08T19:09:28.633Z');
 INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (2, 1, 1, 2710.49, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
 INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (3, 1, 1, 899.99, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
 INSERT INTO [dbo].[StokuQmimiProduktit] ([produktiID], [sasiaNeStok], [qmimiBleres], [qmimiProduktit], [dataKrijimit], [dataPerditsimit]) VALUES (4, 1, 1, 459.5, '2023-05-08T19:10:10.413Z', '2023-05-08T19:10:10.413Z');
@@ -386,10 +387,14 @@ INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zip
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (15, '045987654', 'Gjilan', 60000, 'Rruga e Kavajes 24');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (16, '044123456', 'Prishtina', 10000, 'Rruga e Dibres 3');
 INSERT INTO [dbo].[TeDhenatPerdoruesit] ([userID], [nrKontaktit], [qyteti], [zipKodi], [adresa]) VALUES (17, '045876543', 'Prizren', 20000, 'Shaban Shala 9');
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [qmimiBleres], [qmimiShites]) VALUES (2, 58, 12, 999, 1299);
-INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [qmimiBleres], [qmimiShites]) VALUES (2, 55, 13, 26, 34);
-INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes]) VALUES (5, 170, 120, '2023-05-13T18:28:40.237Z');
-INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes]) VALUES (8, 150, 99, '2023-05-13T20:10:04.883Z');
+INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [qmimiBleres], [qmimiShites]) VALUES (1, 58, 12, 999, 1299);
+INSERT INTO [dbo].[TeDhenatRegjistrimit] ([idRegjistrimit], [idProduktit], [sasiaStokut], [qmimiBleres], [qmimiShites]) VALUES (1, 55, 13, 26, 34);
+INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes], [dataSkadimit]) VALUES (21, 1499.99, 1299.99, '2023-05-14T17:19:21.847Z', '2023-05-25T00:00:00.000Z');
+INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes], [dataSkadimit]) VALUES (27, 4149, 3999.99, '2023-05-14T17:19:06.407Z', '2023-05-23T00:00:00.000Z');
+INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes], [dataSkadimit]) VALUES (52, 30, 24.99, '2023-05-14T17:18:26.493Z', '2023-05-30T00:00:00.000Z');
+INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes], [dataSkadimit]) VALUES (53, 49.5, 44.99, '2023-05-14T17:18:09.660Z', '2023-05-17T00:00:00.000Z');
+INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes], [dataSkadimit]) VALUES (54, 59.5, 49.99, '2023-05-14T17:17:35.490Z', '2023-05-26T00:00:00.000Z');
+INSERT INTO [dbo].[ZbritjaQmimitProduktit] ([produktiID], [qmimiPaZbritjeProduktit], [qmimiMeZbritjeProduktit], [dataZbritjes], [dataSkadimit]) VALUES (59, 9.5, 7.49, '2023-05-14T17:18:50.650Z', '2023-05-18T00:00:00.000Z');
 ALTER TABLE [dbo].[ContactForm] ADD CONSTRAINT [FK_ContactForm_Perdoruesi] FOREIGN KEY ([userID]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[KodiZbritjes] ADD CONSTRAINT [FK_KodiZbritjes_Produkti] FOREIGN KEY ([idProdukti]) REFERENCES [dbo].[Produkti] ([produktiID]) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE [dbo].[Porosit] ADD CONSTRAINT [FK_Porosit_Klienti] FOREIGN KEY ([idKlienti]) REFERENCES [dbo].[Perdoruesi] ([userID]) ON DELETE SET NULL ON UPDATE CASCADE;

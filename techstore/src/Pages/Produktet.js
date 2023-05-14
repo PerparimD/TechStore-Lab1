@@ -130,13 +130,13 @@ function Produktet(props) {
 
               return (
                 <ProduktetNeHome
-                  produktiID={item.produktiId}
-                  fotoProduktit={item.fotoProduktit}
-                  emriProduktit={item.emriProduktit}
-                  cmimi={item.qmimiProduktit}
-                  sasiaNeStok={item.sasiaNeStok}
-                  cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
-                />
+                      produktiID={item.produktiId}
+                      fotoProduktit={item.fotoProduktit}
+                      emriProduktit={item.emriProduktit}
+                      cmimi={item.qmimiProduktit}
+                      sasiaNeStok={item.sasiaNeStok}
+                      cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
+                    />
               );
             }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
           : produktet && kategoria !== ""
@@ -144,12 +144,13 @@ function Produktet(props) {
               produktet.filter((item) => item.llojiKategoris === kategoria).map((item) => {
                 return (
                   <ProduktetNeHome
-                    produktiID={item.produktiId}
-                    fotoProduktit={item.fotoProduktit}
-                    emriProduktit={item.emriProduktit}
-                    cmimi={item.qmimiProduktit}
-                    sasiaNeStok={item.sasiaNeStok}
-                  />
+                      produktiID={item.produktiId}
+                      fotoProduktit={item.fotoProduktit}
+                      emriProduktit={item.emriProduktit}
+                      cmimi={item.qmimiProduktit}
+                      sasiaNeStok={item.sasiaNeStok}
+                      cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
+                    />
                 );
               }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
             : produktet && emriKomapnis !== ""
@@ -158,12 +159,13 @@ function Produktet(props) {
                   .filter((item) => item.emriKompanis === kompania).map((item) => {
                     return (
                       <ProduktetNeHome
-                        produktiID={item.produktiId}
-                        fotoProduktit={item.fotoProduktit}
-                        emriProduktit={item.emriProduktit}
-                        cmimi={item.qmimiProduktit}
-                        sasiaNeStok={item.sasiaNeStok}
-                      />
+                      produktiID={item.produktiId}
+                      fotoProduktit={item.fotoProduktit}
+                      emriProduktit={item.emriProduktit}
+                      cmimi={item.qmimiProduktit}
+                      sasiaNeStok={item.sasiaNeStok}
+                      cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
+                    />
                     );
                   }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
               : searchInput.length === 0 && produktet

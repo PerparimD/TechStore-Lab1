@@ -207,6 +207,11 @@ td a:hover {
   width: 100%;
 }
 
+.qmimiPaZbritje{
+  text-decoration: line-through;
+  color: #777;
+}
+
 @media (min-width: 1025px) {
   .button-kategoria {
     width: 10em;

@@ -390,6 +390,10 @@ public partial class TechStoreDbContext : DbContext
             entity.Property(e => e.ProduktiId)
                 .ValueGeneratedNever()
                 .HasColumnName("produktiID");
+            entity.Property(e => e.DataSkadimit)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("dataSkadimit");
             entity.Property(e => e.DataZbritjes)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")

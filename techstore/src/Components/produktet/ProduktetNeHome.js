@@ -31,7 +31,7 @@ function ProduktetNeHome(props) {
           id: props.produktiID,
           foto: props.fotoProduktit,
           emri: props.emriProduktit,
-          cmimi: props.cmimi,
+          cmimi: (props.cmimiMeZbritje != null ? props.cmimiMeZbritje : props.cmimi),
           sasia: 1,
         },
       });

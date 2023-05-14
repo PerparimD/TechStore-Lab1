@@ -12,6 +12,7 @@ function ProduktiNeZbritje(props) {
   const [qmimiBleresProduktit, setQmimiBleresProduktit] = useState(0.00);
   const [qmimiShitesProduktit, setQmimiShitesProduktit] = useState(0.00);
   const [qmimiZbritur, setQmimiZbritur] = useState(0.00);
+  const [dataSkadimit, setDataSkadimit] = useState(new Date().toISOString().substring(0, 10));
   const [produktet, setProduktet] = useState([]);
   const [perditeso, setPerditeso] = useState("");
   const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
@@ -39,7 +40,7 @@ function ProduktiNeZbritje(props) {
   useEffect(() => {
     const vendosDetajetProduktit = async () => {
       try {
-        const teDhenat = await axios.get(
+        await axios.get(
           `https://localhost:7285/api/Produkti/${produkti}`
         ).then((response) => {
           setQmimiBleresProduktit((response.data.qmimiBleres).toFixed(2));
@@ -64,7 +65,7 @@ function ProduktiNeZbritje(props) {
     setProdukti(value);
     setKaZbritje(false);
     setQmimiZbritur(0);
-    const element = document.getElementById("qmimiZbritur");
+    const element = document.getElementById("dataSkadimit");
     element.focus();
   };
 
@@ -92,12 +93,13 @@ function ProduktiNeZbritje(props) {
       axios.post('https://localhost:7285/api/ZbritjaQmimitProduktit/shtoZbritjenProduktit', {
         produktiId: produkti,
         qmimiPaZbritjeProduktit: qmimiShitesProduktit,
-        qmimiMeZbritjeProduktit: qmimiZbritur
+        qmimiMeZbritjeProduktit: qmimiZbritur,
+        dataSkadimit: dataSkadimit
       })
         .then(() => {
           props.setTipiMesazhit("success");
           props.setPershkrimiMesazhit("Zbritja u shtua me sukses!")
-          props.setPerditeso();
+          props.setPerditeso(Date.now());
           props.mbyllZbritjen();
           props.shfaqmesazhin();
         })
@@ -122,7 +124,7 @@ function ProduktiNeZbritje(props) {
           tipi={tipiMesazhit}
         />
       }
-      <Modal className="modalEditShto" show={props.shfaq} onHide={() => props.setMbyllFaturen()} size="lg">
+      <Modal className="modalEditShto" show={props.shfaq} onHide={() => props.mbyllZbritjen()} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Shto Zbritjen</Modal.Title>
         </Modal.Header>
@@ -170,6 +172,25 @@ function ProduktiNeZbritje(props) {
                 disabled
               />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="dataSkadimit">
+              <Form.Label>Data e Perfundimit te Zbritjes</Form.Label>
+              <Form.Control
+                onChange={(e) => setDataSkadimit(e.target.value)}
+                onFocus={(e) => e.target.select()}
+                value={dataSkadimit}
+                type="date"
+                min={new Date().toISOString().substring(0, 10)}
+                onInput={(e) => {
+                  const minDate = new Date().toISOString().substring(0, 10); // get today's date
+                  if (e.target.value < minDate) {
+                    e.target.value = minDate; // set the date input value to today
+                  }
+                }}
+                disabled={kaZbritje}
+                autoFocus
+              />
+            </Form.Group>
+
             <Form.Group
               className="mb-3"
               controlId="qmimiZbritur"
@@ -199,7 +220,7 @@ function ProduktiNeZbritje(props) {
             className="Butoni"
             onClick={handleSubmit}
           >
-            Shto Kategorine <FontAwesomeIcon icon={faPlus} />
+            Vendosni Zbritjen <FontAwesomeIcon icon={faPlus} />
           </Button>
         </Modal.Footer>
       </Modal>

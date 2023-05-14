@@ -69,7 +69,7 @@ function Produkti() {
                     id: produkti.produktiId,
                     foto: produkti.fotoProduktit,
                     emri: produkti.emriProduktit,
-                    cmimi: produkti.qmimiProduktit,
+                    cmimi: (produkti.qmimiMeZbritjeProduktit != null ? produkti.qmimiMeZbritjeProduktit : produkti.qmimiProduktit),
                     sasia: 1,
                 },
             });
@@ -146,11 +146,24 @@ function Produkti() {
                         </div>
                         <div className="blerja">
                             <form>
-                                <h1>
-                                    {parseFloat(produkti.qmimiProduktit).toFixed(2)} €
+                                <h5 className="qmimiPaZbritje">
+                                    {produkti.qmimiMeZbritjeProduktit != null && parseFloat(produkti.qmimiProduktit).toFixed(2) + " €"}
+                                </h5>
+                                <h5>{produkti.qmimiMeZbritjeProduktit != null &&
+                                    ("Ju Kureseni: " + (produkti.qmimiProduktit - produkti.qmimiMeZbritjeProduktit).toFixed(2) + " €"
+                                        + " (" +
+                                        (((produkti.qmimiProduktit - produkti.qmimiMeZbritjeProduktit) / produkti.qmimiProduktit) * 100).toFixed(0)
+                                        + "%)")}
+                                </h5>
+                                <h1 className="">
+                                    {produkti.qmimiMeZbritjeProduktit != null ?
+                                        parseFloat(produkti.qmimiMeZbritjeProduktit).toFixed(2)
+                                        : parseFloat(produkti.qmimiProduktit).toFixed(2)} €
                                 </h1>
                                 <p>
-                                    {parseFloat(produkti.qmimiProduktit - (produkti.qmimiProduktit * 0.18)).toFixed(2)} € pa TVSH
+                                    {produkti.qmimiMeZbritjeProduktit != null ?
+                                        parseFloat(produkti.qmimiMeZbritjeProduktit - (produkti.qmimiMeZbritjeProduktit * 0.18)).toFixed(2)
+                                        : parseFloat(produkti.qmimiProduktit - (produkti.qmimiProduktit * 0.18)).toFixed(2)} € pa TVSH
                                 </p>
                                 <p>
                                     Disponueshmëria: {produkti.sasiaNeStok > 10 ? "Me shume se 10 artikuj" : produkti.sasiaNeStok + " artikuj"}

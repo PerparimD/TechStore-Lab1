@@ -269,8 +269,8 @@ function RegjistroFaturen(props) {
                             </Form>
                         </Col>
                         <Col>
-                            <p><strong>Qmimi Bleres:</strong> {parseInt(qmimiB).toFixed(2)} €</p>
-                            <p><strong>Qmimi Shites:</strong> {parseInt(qmimiSH).toFixed(2)} €</p>
+                            <p><strong>Qmimi Bleres:</strong> {parseFloat(qmimiB).toFixed(2)} €</p>
+                            <p><strong>Qmimi Shites:</strong> {parseFloat(qmimiSH).toFixed(2)} €</p>
                             <p><strong>Sasia aktuale ne Stok:</strong> {sasiaNeStok} copë</p>
                         </Col>
                         <Col>
@@ -297,8 +297,8 @@ function RegjistroFaturen(props) {
                                     <td>{index + 1}</td>
                                     <td>{produkti.emriProduktit}</td>
                                     <td>{produkti.sasia}</td>
-                                    <td>{parseInt(produkti.qmimiBleres).toFixed(2)} €</td>
-                                    <td>{parseInt(produkti.qmimiShites).toFixed(2)} €</td>
+                                    <td>{parseFloat(produkti.qmimiBleres).toFixed(2)} €</td>
+                                    <td>{parseFloat(produkti.qmimiShites).toFixed(2)} €</td>
                                     <td>{(produkti.sasia * produkti.qmimiBleres).toFixed(2)} €</td>
                                     <td>{(produkti.sasia * produkti.qmimiShites).toFixed(2)} €</td>
                                 </tr>

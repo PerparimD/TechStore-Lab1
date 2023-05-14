@@ -25,6 +25,7 @@
 }
 
 .artikulli {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,8 +63,20 @@
   color: black;
 }
 
+.cmimet{
+  display: flex;
+  gap: 0.3em;
+  align-items: flex-end;
+}
+
 .cmimi {
   font-weight: bold;
+  font-size: 13pt;
+}
+
+.cmimiPaZbritje{
+  font-size: 10pt;
+  text-decoration: line-through;
 }
 
 .navigimiFaqev {
@@ -95,4 +108,29 @@
 
 .button-kategoria span {
   font-size: 15pt;
+}
+
+.zbritjaBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 10px;
+  background-color: #ff0000;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+}
+
+.zbritjaBadge::after {
+  display: block;
+  top: -10;
+  right: -8px;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #ff0000;
 }

@@ -93,14 +93,14 @@ function TeDhenatKalkulimit(props) {
                     <Row>
                         <Col className={classes.mobileResponsive}>
                             <h4>Totali Produkteve: {teDhenatFat.totaliProdukteveRegjistruara}</h4>
-                            <h4>Totali Fatures: {parseInt(teDhenatFat.shumaTotaleRegjistrimit).toFixed(2)} €</h4>
+                            <h4>Totali Fatures: {parseFloat(teDhenatFat.shumaTotaleRegjistrimit).toFixed(2)} €</h4>
                             <h4>Profiti: {(teDhenatFat.shumaTotaleRegjistrimit - teDhenatFat.shumaTotaleBlerese).toFixed(2)} €</h4>
                             <p>Profiti: Qmimi Bleres - Qmimi Shites (Perfshihet TVSH)</p>
                         </Col>
                         <Col className={classes.mobileResponsive}>
                             <p><strong>Qmimi Bleres Pa TVSH:</strong> {teDhenatFat.shumaTotaleBlerese - teDhenatFat.shumaTotaleBlerese * 0.18} €</p>
                             <p><strong>Qmimi Bleres - TVSH-ja:</strong> {teDhenatFat.shumaTotaleBlerese * 0.18} €</p>
-                            <h5><strong>Qmimi Bleres: </strong> {parseInt(teDhenatFat.shumaTotaleBlerese).toFixed(2)} €</h5>
+                            <h5><strong>Qmimi Bleres: </strong> {parseFloat(teDhenatFat.shumaTotaleBlerese).toFixed(2)} €</h5>
                         </Col>
                         <Col className={classes.mobileResponsive}>
                             <p><strong>Personi Pergjegjes:</strong> {teDhenatFat.stafiId + " - " + teDhenatFat.username}</p>
@@ -125,8 +125,8 @@ function TeDhenatKalkulimit(props) {
                                     <td>{index + 1}</td>
                                     <td>{produkti.idProduktit + " - " +produkti.emriProduktit}</td>
                                     <td>{produkti.sasiaStokut}</td>
-                                    <td>{parseInt(produkti.qmimiBleres).toFixed(2)} €</td>
-                                    <td>{parseInt(produkti.qmimiShites).toFixed(2)} €</td>
+                                    <td>{parseFloat(produkti.qmimiBleres).toFixed(2)} €</td>
+                                    <td>{parseFloat(produkti.qmimiShites).toFixed(2)} €</td>
                                     <td>{(produkti.sasiaStokut*produkti.qmimiBleres).toFixed(2)} €</td>
                                     <td>{(produkti.sasiaStokut*produkti.qmimiShites).toFixed(2)} €</td>
                                 </tr>

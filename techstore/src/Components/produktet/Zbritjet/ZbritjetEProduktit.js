@@ -6,6 +6,7 @@ import ProduktiNeZbritje from "./ProduktiNeZbritje";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo, faPlus, faClose } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
+import Mesazhi from "../../layout/Mesazhi";
 
 function ZbritjetEProduktit(props) {
     const [zbritjet, setZbritjet] = useState([]);
@@ -14,6 +15,9 @@ function ZbritjetEProduktit(props) {
     const [mbyllFature, setMbyllFaturen] = useState(true);
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
+    const [tipiMesazhit, setTipiMesazhit] = useState("");
+    const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
     useEffect(() => {
         const shfaqZbritjet = async () => {
@@ -36,13 +40,27 @@ function ZbritjetEProduktit(props) {
         setId(id);
     };
 
+    const fshijZbritjen = (id) =>{
+        axios.delete(`https://localhost:7285/api/ZbritjaQmimitProduktit/fshijZbritjenProduktit?id=${id}`)
+    }
+
 
     return (
         <div className={classes.containerDashboardP}>
+            {shfaqMesazhin &&
+                <Mesazhi
+                    setShfaqMesazhin={setShfaqMesazhin}
+                    pershkrimi={pershkrimiMesazhit}
+                    tipi={tipiMesazhit}
+                />
+            }
             {shtoZbritjen && <ProduktiNeZbritje
-                setMbyllFaturen={() => setShtoZbritjen(false)}
+                mbyllZbritjen={() => setShtoZbritjen(false)}
                 shfaq={() => setShtoZbritjen(true)}
                 setPerditeso={setPerditeso}
+                setTipiMesazhit={setTipiMesazhit}
+                setPershkrimiMesazhit={setPershkrimiMesazhit}
+                shfaqmesazhin={() => setShfaqMesazhin(true)}
             />}
             {loading ? (
                 <div className="Loader">
@@ -93,8 +111,8 @@ function ZbritjetEProduktit(props) {
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{z.produktiId + " - " + z.emriProduktit}</td>
-                            <td>{parseInt(z.qmimiPaZbritjeProduktit).toFixed(2)} €</td>
-                            <td >{parseInt(z.qmimiMeZbritjeProduktit).toFixed(2)} € </td>
+                            <td>{parseFloat(z.qmimiPaZbritjeProduktit).toFixed(2)} €</td>
+                            <td >{parseFloat(z.qmimiMeZbritjeProduktit).toFixed(2)} € </td>
                             <td >{new Date(z.dataZbritjes).toLocaleDateString('en-GB', { dateStyle: 'short' })}</td>
                             <td >
                                 <Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => handleShfaqTeDhenat(z.idRegjistrimit)}><FontAwesomeIcon icon={faCircleInfo} /></Button>

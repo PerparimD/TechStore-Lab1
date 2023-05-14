@@ -51,14 +51,21 @@ function ProduktetNeHome(props) {
       />}
       <Link to={`/Produkti/${props.produktiID}`}>
         <div>
+          {props.cmimiMeZbritje != null &&
+            <div className="zbritjaBadge">
+              <p>- {props.cmimiMeZbritje != null && (((props.cmimi - props.cmimiMeZbritje) / props.cmimi) * 100).toFixed(0)} %</p>
+            </div>
+          }
           <img
             src={`${process.env.PUBLIC_URL}/img/products/${props.fotoProduktit}`}
             alt={props.emriProduktit}
           />
           <p className="artikulliLabel">{props.emriProduktit}</p>
         </div>
-        <p className="cmimi">{props.cmimi.toFixed(2)}€</p>
-        <p>{props.cmimiMeZbritje}</p>
+        <div className="cmimet">
+          <p className="cmimi">{props.cmimiMeZbritje != null ? parseFloat(props.cmimiMeZbritje).toFixed(2) : props.cmimi.toFixed(2)} €</p>
+          <p className="cmimiPaZbritje">{props.cmimiMeZbritje != null && props.cmimi.toFixed(2) + " €"} </p>
+        </div>
       </Link>
       <div className="butonatDiv">
         {props.sasiaNeStok > 0 &&

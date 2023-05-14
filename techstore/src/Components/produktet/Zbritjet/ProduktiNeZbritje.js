@@ -5,12 +5,20 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import Mesazhi from "../../layout/Mesazhi";
 
 function ProduktiNeZbritje(props) {
-  const [llojiKategoris, setLlojiKategoris] = useState("");
-  const [pershkrimiKategoris, setPershkrimiKategoris] = useState("");
+  const [produkti, setProdukti] = useState("");
+  const [qmimiBleresProduktit, setQmimiBleresProduktit] = useState(0.00);
+  const [qmimiShitesProduktit, setQmimiShitesProduktit] = useState(0.00);
+  const [qmimiZbritur, setQmimiZbritur] = useState(0.00);
   const [produktet, setProduktet] = useState([]);
   const [perditeso, setPerditeso] = useState("");
+  const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
+  const [tipiMesazhit, setTipiMesazhit] = useState("");
+  const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
+  const [zbritjaNeRregull, setZbritjaNeRregull] = useState(false);
+  const [kaZbritje, setKaZbritje] = useState(false);
 
   useEffect(() => {
     const vendosProduktet = async () => {
@@ -28,87 +36,174 @@ function ProduktiNeZbritje(props) {
     vendosProduktet();
   }, [perditeso]);
 
-  const handleEmriChange = (value) => {
-    setLlojiKategoris(value);
+  useEffect(() => {
+    const vendosDetajetProduktit = async () => {
+      try {
+        const teDhenat = await axios.get(
+          `https://localhost:7285/api/Produkti/${produkti}`
+        ).then((response) => {
+          setQmimiBleresProduktit((response.data.qmimiBleres).toFixed(2));
+          setQmimiShitesProduktit((response.data.qmimiProduktit).toFixed(2));
+          if (response.data.qmimiMeZbritjeProduktit != null) {
+            setQmimiZbritur(response.data.qmimiMeZbritjeProduktit);
+            setKaZbritje(true);
+            setPershkrimiMesazhit("Ky produkt ka Zbritje!");
+            setTipiMesazhit("danger");
+            setShfaqMesazhin(true);
+          }
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    vendosDetajetProduktit();
+  }, [perditeso, produkti]);
+
+  const handleProduktiChange = (value) => {
+    setProdukti(value);
+    setKaZbritje(false);
+    setQmimiZbritur(0);
+    const element = document.getElementById("qmimiZbritur");
+    element.focus();
   };
 
-  const handlePershkrimiChange = (value) => {
-    setPershkrimiKategoris(value);
-  };
+  const handleZbritja = (value) => {
+    const element = document.getElementById("qmimiZbritur");
+    if (value <= 0.01) {
+      setQmimiZbritur(0.01);
+      setZbritjaNeRregull(false);
+      element.focus();
+    } else if (value >= parseInt(qmimiShitesProduktit)) {
+      setQmimiZbritur(value);
+      setPershkrimiMesazhit("Qmimi i zbritur duhet te jete me i vogel se qmimi aktual!");
+      setTipiMesazhit("danger");
+      setShfaqMesazhin(true);
+      setZbritjaNeRregull(false);
+      element.focus();
+    } else {
+      setQmimiZbritur(value);
+      setZbritjaNeRregull(true);
+    }
+  }
 
   function handleSubmit() {
-    axios.post('https://localhost:7285/api/Kategoria/shtoKategorin', {
-      llojiKategoris: llojiKategoris,
-      pershkrimiKategoris: pershkrimiKategoris
-    })
-      .then((response) => {
-        console.log(response);
-        props.setTipiMesazhit("success");
-        props.setPershkrimiMesazhit("Kategoria u insertua me sukses!")
-        props.perditesoTeDhenat();
-        props.largo();
-        props.shfaqmesazhin();
+    if (zbritjaNeRregull === true && kaZbritje === false) {
+      axios.post('https://localhost:7285/api/ZbritjaQmimitProduktit/shtoZbritjenProduktit', {
+        produktiId: produkti,
+        qmimiPaZbritjeProduktit: qmimiShitesProduktit,
+        qmimiMeZbritjeProduktit: qmimiZbritur
       })
-      .catch((error) => {
-        console.log(error);
-      });
-
+        .then(() => {
+          props.setTipiMesazhit("success");
+          props.setPershkrimiMesazhit("Zbritja u shtua me sukses!")
+          props.setPerditeso();
+          props.mbyllZbritjen();
+          props.shfaqmesazhin();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else if (kaZbritje === true) {
+      setPershkrimiMesazhit("Ky produkt ka Zbritje!");
+      setTipiMesazhit("danger");
+      setShfaqMesazhin(true);
+    }
+    else {
+      handleZbritja(qmimiZbritur);
+    }
   }
   return (
-    <Modal className="modalEditShto" show={props.shfaq} onHide={() => props.setMbyllFaturen()}>
-      <Modal.Header closeButton>
-        <Modal.Title>Shto Kategorine</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group
-            className="mb-3"
-            controlId="exampleForm.ControlTextarea1"
-          >
-            <Form.Label>Vlen per</Form.Label>
-            <select
-              placeholder="Produkti"
-              className="form-select"
-              value={llojiKategoris}
-              onChange={(e) => handleEmriChange(e.target.value)}
+    <>
+      {shfaqMesazhin &&
+        <Mesazhi
+          setShfaqMesazhin={setShfaqMesazhin}
+          pershkrimi={pershkrimiMesazhit}
+          tipi={tipiMesazhit}
+        />
+      }
+      <Modal className="modalEditShto" show={props.shfaq} onHide={() => props.setMbyllFaturen()} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Shto Zbritjen</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
-              <option defaultValue value={0} key={0}>
-                Vlene per te gjitha produktet
-              </option>
-              {produktet.map((item) => {
-                return (
-                  <option key={item.produktiId} value={item.produktiId} qmimiAktual={item.qmimiProduktit}>{item.emriProduktit}</option>
-                );
-              })}
-            </select>
-          </Form.Group>
-          <Form.Group
-            className="mb-3"
-            controlId="exampleForm.ControlTextarea1"
+              <Form.Label>Vlen per</Form.Label>
+              <select
+                placeholder="Produkti"
+                className="form-select"
+                value={produkti}
+                onChange={(e) => handleProduktiChange(e.target.value)}
+              >
+                {produktet.map((item) => {
+                  return (
+                    <option key={item.produktiId} value={item.produktiId}>{item.emriProduktit}</option>
+                  );
+                })}
+              </select>
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Qmimi Bleres</Form.Label>
+              <Form.Control
+                value={qmimiBleresProduktit + " €"}
+                type="text"
+                placeholder="Qmimi Bleres"
+                disabled
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Qmimi Shites</Form.Label>
+              <Form.Control
+                value={qmimiShitesProduktit + " €"}
+                type="text"
+                placeholder="Qmimi Shites"
+                disabled
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="qmimiZbritur"
+            >
+              <Form.Label>Qmimi me Zbritje</Form.Label>
+              <Form.Control
+                onChange={(e) =>
+                  handleZbritja(e.target.value)
+                }
+                onFocus={(e) => e.target.select()}
+                value={qmimiZbritur}
+                type="text"
+                pattern="[0-9]+([,.][0-9]+)?"
+                placeholder="Qmimi me Zbritje"
+                min={1}
+                max={qmimiShitesProduktit - 0.01}
+                disabled={kaZbritje}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => props.mbyllZbritjen()}>
+            Anulo <FontAwesomeIcon icon={faXmark} />
+          </Button>
+          <Button
+            className="Butoni"
+            onClick={handleSubmit}
           >
-            <Form.Label>Pershkrimi Kategoris</Form.Label>
-            <Form.Control
-              onChange={(e) => handlePershkrimiChange(e.target.value)}
-              value={pershkrimiKategoris}
-              type="text"
-              placeholder="Pershkrimi Kategoris"
-              autoFocus
-            />
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => props.setMbyllFaturen()}>
-          Anulo <FontAwesomeIcon icon={faXmark} />
-        </Button>
-        <Button
-          className="Butoni"
-          onClick={handleSubmit}
-        >
-          Shto Kategorine <FontAwesomeIcon icon={faPlus} />
-        </Button>
-      </Modal.Footer>
-    </Modal>
+            Shto Kategorine <FontAwesomeIcon icon={faPlus} />
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   )
 }
 

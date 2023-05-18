@@ -810,3 +810,15 @@ C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Mi
 C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Admin\OneDrive\Desktop\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\EntityFramework.SqlServer.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\EntityFramework.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNet.Identity.Core.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.Design.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+D:\GitHub\TechStore-Lab1\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebAPI.Models;
 
-public partial class TechStoreDbContext : DbContext
+public partial class TechStoreDbContext : IdentityDbContext
 {
 
     public TechStoreDbContext()
@@ -43,20 +43,8 @@ public partial class TechStoreDbContext : DbContext
 
     public virtual DbSet<ZbritjaQmimitProduktit> ZbritjaQmimitProduktits { get; set; }
 
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.EnableSensitiveDataLogging();
-        IConfiguration configuration = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build();
-
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("Conn"));
-    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
         modelBuilder.Entity<ContactForm>(entity =>
         {
             entity.HasKey(e => e.MesazhiId).HasName("PK__ContactF__0E3F7CF3731C8CDE");
@@ -411,11 +399,18 @@ public partial class TechStoreDbContext : DbContext
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("qmimiPaZbritjeProduktit");
         });
-
-       
-
-        OnModelCreatingPartial(modelBuilder);
+        modelBuilder.Entity<IdentityUserLogin<string>>(entity =>
+        {
+            entity.HasKey(e => e.UserId);
+        });
+            modelBuilder.Entity<IdentityUserRole<string>>(entity =>
+            {
+                entity.HasKey(e => e.RoleId);
+            });
+        modelBuilder.Entity<IdentityUserToken<string>>(entity =>
+        {
+            entity.HasKey(e => e.Value);
+        }); ;
     }
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

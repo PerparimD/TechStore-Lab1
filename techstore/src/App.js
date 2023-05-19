@@ -9,6 +9,8 @@ import Produkti from './Pages/Produkti';
 import Cart from './Pages/Cart';
 import AdminDashboard from './Components/Dashboard/AdminDashboard';
 import LogIn from './Pages/LogIn';
+import SignUp from './Pages/SignUp';
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
         <Route path='/Cart' element={<Cart/>} />
         <Route path='/Produkti/:produktiID' element={<Produkti key={Date.now()}/>} exact />
         <Route path='/LogIn' element={<LogIn />} />
+        <Route path='/SignUp' element={<SignUp />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

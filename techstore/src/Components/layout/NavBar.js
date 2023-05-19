@@ -58,7 +58,7 @@ function NavBar(props) {
               <span className={classes.line}></span>
             </li>
             <li className={classes.navItem}>
-              <Link to='/'>Sign up <FontAwesomeIcon icon={faUserPlus} /></Link>
+              <Link to='/SignUp'>Sign up <FontAwesomeIcon icon={faUserPlus} /></Link>
               <span className={classes.line}></span>
             </li>
           </div>

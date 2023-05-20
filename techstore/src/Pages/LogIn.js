@@ -25,7 +25,7 @@ const LogIn = () => {
 
             controlId="floatingInput"
             label="User Name"
-            className="mb-3"
+            className="mb-3 label"
           >
             <Form.Control className="input"
               placeholder="User Name"
@@ -36,7 +36,7 @@ const LogIn = () => {
 
             controlId="floatingInput"
             label="Password"
-            className="mb-3"
+            className="mb-3 label"
           >
             <Form.Control className="input"
               placeholder="Password"

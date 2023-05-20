@@ -7,6 +7,8 @@ using System.Security.Claims;
 using System.Text;
 using WebAPI.Auth;
 using WebAPI.Configurations;
+using WebAPI.Models;
+using System.Net.Sockets;
 
 namespace WebAPI.Controllers
 {
@@ -17,6 +19,8 @@ namespace WebAPI.Controllers
         private readonly UserManager<IdentityUser>  _userManager;
         /*private readonly JwtConfig _jwtConfig;*//**/
         private readonly IConfiguration _configuration;
+        private readonly TechStoreDbContext _context;
+
 
         public AuthenticateController(
             UserManager<IdentityUser> userManager,
@@ -27,6 +31,8 @@ namespace WebAPI.Controllers
             /*_jwtConfig = jwtConfig;*/
             _configuration = configuration;
         }
+
+      
 
         [HttpPost]
         [Route("register")]

@@ -14,6 +14,10 @@
   width: fit-content;
     
   }
+
+  .label{
+    color:rgb(163, 154, 154)
+  }
   
 
   
@@ -28,7 +32,7 @@
   }
   
   .input {
-    color: #f3f3f3;
+    color: black;
     background-color: inherit;
     border: none;
     border-radius:25px;
@@ -51,7 +55,8 @@
   }
   
   .sign-up-button:hover {
-    opacity: 1;
+    background: rgb(18, 62, 127);
+    color: white;
     cursor: pointer;
   }
   

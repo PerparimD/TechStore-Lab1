@@ -52,6 +52,7 @@
   border: none;
   background-color: whitesmoke;
   color: white;
+  /* background: rgb(61, 101, 160); */
   background: #01df93;
   padding: 1em 2em;
   width: 100%;
@@ -60,8 +61,8 @@
 }
 
 .button:hover {
-  background: white;
-  color: #01df93;
+  background: #01df93;
+  color: white;
   cursor: pointer;
 }
 

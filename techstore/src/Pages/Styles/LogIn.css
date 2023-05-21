@@ -1,10 +1,10 @@
 .login-form {
-    display: flex;
+    /* display: flex;
   justify-content: space-between;
   flex-direction: column;
   flex-basis: 120em;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
   border-radius: 25px;
   margin: auto;
   margin-top: 7em;
@@ -24,12 +24,15 @@
     font-weight: 500;
     margin-bottom: 15px;
   }
+  .p-text{
+    font-weight: 300;
+  }
   
   .forms table {
     color: white;
   }
   
-  .input {
+  /* .input {
     color: black;
     background-color: inherit;
     border: none;
@@ -38,7 +41,7 @@
     outline: none;
     width: max(27em, 20vw);
   
-  }
+  } */
   
   
   .login-button {

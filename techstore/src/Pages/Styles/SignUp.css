@@ -1,16 +1,10 @@
 .sign-up-form {
-    display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  flex-basis: 120em;
-  align-items: center;
-  flex-wrap: wrap;
   border-radius: 25px;
   margin: auto;
-  margin-top: 5em;
-  margin-bottom: 7em;
+  margin-top: 2em;
+  /* margin-bottom: 7em; */
   box-shadow: 0 0 20px #ddd;
-  padding: 3em 2em;
+  padding: 3em;
   width: fit-content;
     
   }
@@ -22,9 +16,10 @@
 
   
   .formTitle {
-    color: black;
-    font-weight: 500;
+    color: rgb(45, 44, 44);
+    font-weight: 400;
     margin-bottom: 15px;
+    font-size: 30px;
   }
   
   .forms table {
@@ -38,11 +33,14 @@
     border-radius:25px;
     box-shadow: 0 0 10px #ddd;
     outline: none;
-    width: max(27em, 20vw);
-  
+    width: max(27em, 20vw);  
   }
-  
-  
+
+  /* .full-name{
+    display: flex;
+    gap: 1em;    
+  } */
+
   .sign-up-button {
     border: none;
     background-color: whitesmoke;

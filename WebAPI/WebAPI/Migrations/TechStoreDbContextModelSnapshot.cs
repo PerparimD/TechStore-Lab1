@@ -17,7 +17,7 @@ namespace WebAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -28,17 +28,48 @@ namespace WebAPI.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "770c0648-d274-459c-9bfc-211ad071fc01",
+                            ConcurrencyStamp = "1",
+                            Name = "User",
+                            NormalizedName = "User"
+                        },
+                        new
+                        {
+                            Id = "73e79d6d-e66c-4815-9e21-a47c91b0e243",
+                            ConcurrencyStamp = "2",
+                            Name = "Admin",
+                            NormalizedName = "Admin"
+                        },
+                        new
+                        {
+                            Id = "b45b7653-2652-4dd2-a128-ffe9fa4f55e8",
+                            ConcurrencyStamp = "3",
+                            Name = "Menaxher",
+                            NormalizedName = "Menaxher"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -56,11 +87,14 @@ namespace WebAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoleClaims");
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
@@ -72,10 +106,12 @@ namespace WebAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -87,10 +123,12 @@ namespace WebAPI.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -108,11 +146,20 @@ namespace WebAPI.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -130,62 +177,70 @@ namespace WebAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserClaims");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("UserId")
+                    b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("LoginProvider", "ProviderKey");
 
-                    b.ToTable("UserLogins");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("UserId", "RoleId");
 
-                    b.HasKey("RoleId");
+                    b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.Property<string>("Value")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.HasKey("Value");
-
-                    b.ToTable("UserTokens");
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("WebAPI.Models.ContactForm", b =>
@@ -234,7 +289,7 @@ namespace WebAPI.Migrations
                     b.HasKey("MesazhiId")
                         .HasName("PK__ContactF__0E3F7CF3731C8CDE");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex(new[] { "UserId" }, "IX_ContactForm_userID");
 
                     b.ToTable("ContactForm", (string)null);
                 });
@@ -287,7 +342,7 @@ namespace WebAPI.Migrations
                     b.HasKey("Kodi")
                         .HasName("PK__KodiZbri__25A8748FB3E013A8");
 
-                    b.HasIndex("IdProdukti");
+                    b.HasIndex(new[] { "IdProdukti" }, "IX_KodiZbritjes_idProdukti");
 
                     b.ToTable("KodiZbritjes");
                 });
@@ -334,11 +389,11 @@ namespace WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<int?>("Aksesi")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("aksesi")
-                        .HasDefaultValueSql("((0))");
+                    b.Property<string>("AspNetUserId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("AspNetUserID");
 
                     b.Property<string>("Email")
                         .HasMaxLength(30)
@@ -358,12 +413,6 @@ namespace WebAPI.Migrations
                         .HasColumnType("varchar(30)")
                         .HasColumnName("mbiemri");
 
-                    b.Property<string>("UserPw")
-                        .HasMaxLength(70)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(70)")
-                        .HasColumnName("userPW");
-
                     b.Property<string>("Username")
                         .HasMaxLength(20)
                         .IsUnicode(false)
@@ -375,7 +424,7 @@ namespace WebAPI.Migrations
 
                     b.HasIndex(new[] { "Username" }, "UQ__Perdorue__F3DBC5728A6B6DAE")
                         .IsUnique()
-                        .HasFilter("[username] IS NOT NULL");
+                        .HasFilter("([username] IS NOT NULL)");
 
                     b.ToTable("Perdoruesi", (string)null);
                 });
@@ -414,7 +463,7 @@ namespace WebAPI.Migrations
                     b.HasKey("IdPorosia")
                         .HasName("PK__Porosit__A9F27D2AB271ADFC");
 
-                    b.HasIndex("IdKlienti");
+                    b.HasIndex(new[] { "IdKlienti" }, "IX_Porosit_idKlienti");
 
                     b.ToTable("Porosit", (string)null);
                 });
@@ -455,9 +504,9 @@ namespace WebAPI.Migrations
                     b.HasKey("ProduktiId")
                         .HasName("PK__Produkti__76A3DFCF91A50347");
 
-                    b.HasIndex("KategoriaId");
+                    b.HasIndex(new[] { "KategoriaId" }, "IX_Produkti_kategoriaID");
 
-                    b.HasIndex("KompaniaId");
+                    b.HasIndex(new[] { "KompaniaId" }, "IX_Produkti_kompaniaID");
 
                     b.ToTable("Produkti", (string)null);
                 });
@@ -495,7 +544,7 @@ namespace WebAPI.Migrations
 
                     b.HasKey("IdRegjistrimit");
 
-                    b.HasIndex("StafiId");
+                    b.HasIndex(new[] { "StafiId" }, "IX_RegjistrimiStokut_stafiID");
 
                     b.ToTable("RegjistrimiStokut", (string)null);
                 });
@@ -576,11 +625,11 @@ namespace WebAPI.Migrations
                     b.HasKey("IdDetajet")
                         .HasName("PK__TeDhenat__494F491F84D65D51");
 
-                    b.HasIndex("IdPorosia");
+                    b.HasIndex(new[] { "IdPorosia" }, "IX_TeDhenatEPorosis_idPorosia");
 
-                    b.HasIndex("IdProdukti");
+                    b.HasIndex(new[] { "IdProdukti" }, "IX_TeDhenatEPorosis_idProdukti");
 
-                    b.HasIndex("KodiZbritjes");
+                    b.HasIndex(new[] { "KodiZbritjes" }, "IX_TeDhenatEPorosis_kodiZbritjes");
 
                     b.ToTable("TeDhenatEPorosis", (string)null);
                 });
@@ -649,9 +698,9 @@ namespace WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdProduktit");
+                    b.HasIndex(new[] { "IdProduktit" }, "IX_TeDhenatRegjistrimit_idProduktit");
 
-                    b.HasIndex("IdRegjistrimit");
+                    b.HasIndex(new[] { "IdRegjistrimit" }, "IX_TeDhenatRegjistrimit_idRegjistrimit");
 
                     b.ToTable("TeDhenatRegjistrimit", (string)null);
                 });
@@ -689,6 +738,57 @@ namespace WebAPI.Migrations
                     b.HasKey("ProduktiId");
 
                     b.ToTable("ZbritjaQmimitProduktit", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebAPI.Models.ContactForm", b =>
@@ -756,11 +856,13 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("WebAPI.Models.StokuQmimiProduktit", b =>
                 {
-                    b.HasOne("WebAPI.Models.Produkti", null)
+                    b.HasOne("WebAPI.Models.Produkti", "Produkti")
                         .WithOne("StokuQmimiProduktit")
                         .HasForeignKey("WebAPI.Models.StokuQmimiProduktit", "ProduktiId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Produkti");
                 });
 
             modelBuilder.Entity("WebAPI.Models.TeDhenatEporosi", b =>
@@ -822,11 +924,13 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("WebAPI.Models.ZbritjaQmimitProduktit", b =>
                 {
-                    b.HasOne("WebAPI.Models.Produkti", null)
+                    b.HasOne("WebAPI.Models.Produkti", "Produkti")
                         .WithOne("ZbritjaQmimitProduktit")
                         .HasForeignKey("WebAPI.Models.ZbritjaQmimitProduktit", "ProduktiId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Produkti");
                 });
 
             modelBuilder.Entity("WebAPI.Models.KategoriaProduktit", b =>

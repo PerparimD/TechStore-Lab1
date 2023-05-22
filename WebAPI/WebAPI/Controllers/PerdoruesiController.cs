@@ -1,71 +1,74 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class PerdoruesiController : Controller
     {
         private readonly TechStoreDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public PerdoruesiController(TechStoreDbContext context)
+        public PerdoruesiController(
+            TechStoreDbContext context, 
+            UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("shfaqPerdoruesit")]
         public async Task<IActionResult> Get()
         {
-            var perdoruesit = await _context.Perdoruesis.ToListAsync();
+            var perdoruesit = await _context.Perdoruesis
+                .Include(p => p.TeDhenatPerdoruesit)
+                .ToListAsync();
 
-            return Ok(perdoruesit);
-        }
+            var perdoruesiList = new List<RoletEPerdoruesit>();
 
-        [HttpGet]
-        [Route("shfaqSipasID")]
-        public async Task<IActionResult> GetbyId(int idUser)
-        {
-            var perdoruesi = await _context.Perdoruesis.FirstOrDefaultAsync(x => x.UserId == idUser);
-
-            return Ok(perdoruesi);
-        }
-
-        [HttpPost]
-        [Route("shtoUser")]
-        public async Task<IActionResult> Post(Perdoruesi perdoruesi)
-        {
-            await _context.Perdoruesis.AddAsync(perdoruesi);
-            await _context.SaveChangesAsync();
-
-            TeDhenatPerdoruesit teDhenatPerdoruesit = new TeDhenatPerdoruesit
+            foreach (var perdoruesi in perdoruesit)
             {
-                UserId = perdoruesi.UserId
-            };
-            await _context.TeDhenatPerdoruesits.AddAsync(teDhenatPerdoruesit);
-            await _context.SaveChangesAsync();
+                var user = await _userManager.FindByIdAsync(perdoruesi.AspNetUserId);
+                var roles = await _userManager.GetRolesAsync(user);
 
-            return CreatedAtAction("Get", perdoruesi.UserId, perdoruesi);
-        }
+                var roletEPerdoruesit = new RoletEPerdoruesit
+                {
+                    Perdoruesi = perdoruesi,
+                    Rolet = roles.ToList()
+                };
 
-        [HttpDelete]
-        [Route("fshijPerdorues")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var perdoruesi = await _context.Perdoruesis.FirstOrDefaultAsync(x => x.UserId == id);
-
-            if (perdoruesi == null)
-            {
-                return BadRequest("Perdoruesi nuk egziston");
+                perdoruesiList.Add(roletEPerdoruesit);
             }
 
-            _context.Perdoruesis.Remove(perdoruesi);
-            await _context.SaveChangesAsync();
+            return Ok(perdoruesiList);
+        }
 
-            return NoContent();
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("shfaqSipasID")]
+        public async Task<IActionResult> GetbyId(string idUserAspNet)
+        {
+            var user = await _userManager.FindByIdAsync(idUserAspNet);
+
+            var perdoruesi = await _context.Perdoruesis.FirstOrDefaultAsync(x => x.AspNetUserId.Equals(idUserAspNet));
+
+            var rolet = await _userManager.GetRolesAsync(user);
+
+            var result = new
+            {
+                perdoruesi,
+                rolet
+            };
+
+            return Ok(result);
         }
 
         [HttpPut]
@@ -91,15 +94,16 @@ namespace WebAPI.Controllers
             {
                 perdouresi.Mbiemri = p.Mbiemri;
             }
-            if (p.Aksesi >= 0)
-            {
-                perdouresi.Aksesi = p.Aksesi;
-            }
 
             _context.Perdoruesis.Update(perdouresi);
             await _context.SaveChangesAsync();
 
             return Ok(perdouresi);
         }
+    }
+    public class RoletEPerdoruesit
+    {
+        public Perdoruesi Perdoruesi { get; set; }
+        public List<string> Rolet { get; set; }
     }
 }

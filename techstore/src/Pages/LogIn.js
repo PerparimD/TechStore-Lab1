@@ -3,15 +3,10 @@ import { Helmet } from "react-helmet";
 import NavBar from "../Components/layout/NavBar";
 import Footer from "../Components/layout/Footer";
 import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Button from "react-bootstrap/esm/Button";
 import "./Styles/LogIn.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelopeCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Mesazhi from "../Components/layout/Mesazhi";
 import jwt_decode from "jwt-decode";
 import {
   MDBBtn,
@@ -21,8 +16,6 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBIcon,
-  MDBCheckbox,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 
@@ -32,6 +25,7 @@ const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [roles, setRoles] = useState([]);
 
   function vendosEmail(value) {
     setEmail(value);
@@ -49,62 +43,40 @@ const LogIn = () => {
     }
   });
 
-  const handleLogIn = (e) => {
+  async function handleLogIn(e) {
     e.preventDefault();
-
-    fetch("https://localhost:7285/api/Authenticate/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+  
+    try {
+      const response = await axios.post("https://localhost:7285/api/Authenticate/login", {
         email: email,
         password: password,
-      }),
-    })
-      .then(async (response) => {
-        if (response.ok) {
-          const data = await response.json();
-          const user = {
-            email: email,
-          };
-
-          if (data.token) {
-            localStorage.setItem("user", JSON.stringify(data));
-          }
-          if (data) {
-            localStorage.setItem("userInfo", JSON.stringify(user));
-          }
-
-          console.log("Token:", data.token);
-          // console.log('Expiration:', data.expiration);
-          const token = data.token;
-
-          // Decode the token to extract the claims
-          const decodedToken = jwt_decode(token);
-
-          // Access the roles claim
-          const roles =
-            decodedToken[
-              "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email"
-            ];
-          console.log(roles);
-
-          if (roles == "Admin") {
-            navigate("/dashboard");
-          } else if (roles == "Manager") {
-            navigate("/dashboard");
-          } else if (roles == "User") {
-            navigate("/");
-          }
-        } else {
-          throw new Error("Authentication failed");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
       });
+  
+      if (response.status === 200) {
+        const { token } = response.data;
+
+        localStorage.setItem("token", token);
+  
+        const decodedToken = jwt_decode(token);
+
+        localStorage.setItem("id", decodedToken.id);
+
+        const roles = decodedToken.role;
+        setRoles(roles);
+  
+        if (roles.includes("Admin") || roles.includes("Menaxher")) {
+          navigate("/dashboard");
+        } else {
+          navigate("/dashboard"); // Update this with the appropriate route for non-admin or non-menaxher users
+        }
+      } else {
+        throw new Error("Authentication failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+  
 
   return (
     <div className="logIn">
@@ -131,6 +103,7 @@ const LogIn = () => {
                   id="formControlLg"
                   type="email"
                   size="lg"
+                  onChange={(e) => vendosEmail(e.target.value)}
                 />
                 <MDBInput
                   wrapperClass="mb-4 w-100"
@@ -138,9 +111,10 @@ const LogIn = () => {
                   id="formControlLg"
                   type="password"
                   size="lg"
+                  onChange={(e) => vendosPasswordin(e.target.value)}
                 />
                 <Link to="/SignUp" className="text-white-20 mb-4 p-text">Don't have an Account?</Link>
-                <MDBBtn size="lg">Login</MDBBtn>
+                <MDBBtn size="lg" onClick={handleLogIn}>Login</MDBBtn>
 
                 
               </MDBCardBody>

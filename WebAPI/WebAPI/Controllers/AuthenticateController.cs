@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using WebAPI.Auth;
-using WebAPI.Configurations;
 using WebAPI.Models;
-using System.Net.Sockets;
 
 namespace WebAPI.Controllers
 {
@@ -16,23 +13,22 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        private readonly UserManager<IdentityUser>  _userManager;
-        /*private readonly JwtConfig _jwtConfig;*//**/
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly TechStoreDbContext _context;
-
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AuthenticateController(
             UserManager<IdentityUser> userManager,
-            IConfiguration configuration
-            /*JwtConfig jwtConfig*/)
+           RoleManager<IdentityRole> roleManager,
+            IConfiguration configuration,
+            TechStoreDbContext context)
         {
             _userManager = userManager; 
-            /*_jwtConfig = jwtConfig;*/
+            _roleManager = roleManager;
             _configuration = configuration;
+            _context = context;
         }
-
-      
 
         [HttpPost]
         [Route("register")]
@@ -40,9 +36,9 @@ namespace WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user_exit = await _userManager.FindByEmailAsync(registerModel.Email);
+                var perdoruesiEkziston = await _userManager.FindByEmailAsync(registerModel.Email);
 
-                if (user_exit != null)
+                if (perdoruesiEkziston != null)
                 {
                     return BadRequest(new AuthResults()
                     {
@@ -54,22 +50,44 @@ namespace WebAPI.Controllers
                     });
                 }
 
-                var new_user = new IdentityUser()
+                var perdoruesiIRI = new IdentityUser()
                 {
                     Email = registerModel.Email,
-                    UserName = registerModel.Email
+                    UserName = registerModel.Username
                 };
 
-                var is_created = await _userManager.CreateAsync(new_user, registerModel.Password);
+                var shtuarMeSukses = await _userManager.CreateAsync(perdoruesiIRI, registerModel.Password);
 
-                if (is_created.Succeeded)
+                if (shtuarMeSukses.Succeeded)
                 {
-                    var token = GenerateJwtToken(new_user);
+                    await _userManager.AddToRoleAsync(perdoruesiIRI, "User");
+
+                    Perdoruesi perdoruesi = new Perdoruesi
+                    {
+                        AspNetUserId = perdoruesiIRI.Id,
+                        Emri = registerModel.Name,
+                        Username = perdoruesiIRI.UserName,
+                        Email = perdoruesiIRI.Email,
+                        Mbiemri = registerModel.LastName,
+                    };
+                    await _context.Perdoruesis.AddAsync(perdoruesi);
+                    await _context.SaveChangesAsync();
+
+                    TeDhenatPerdoruesit teDhenatPerdoruesit = new TeDhenatPerdoruesit
+                    {
+                        UserId = perdoruesi.UserId,
+                        Adresa = !registerModel.Adresa.IsNullOrEmpty() ? registerModel.Adresa : null,
+                        Qyteti = !registerModel.Qyteti.IsNullOrEmpty() ? registerModel.Qyteti : null,
+                        Shteti = !registerModel.Shteti.IsNullOrEmpty() ? registerModel.Shteti : null,
+                        ZipKodi = registerModel.ZipKodi > 0 ? registerModel.ZipKodi : null,
+                        NrKontaktit = !registerModel.NrTelefonit.IsNullOrEmpty() ? registerModel.NrTelefonit : null
+                    };
+                    await _context.TeDhenatPerdoruesits.AddAsync(teDhenatPerdoruesit);
+                    await _context.SaveChangesAsync();
 
                     return Ok(new AuthResults()
                     {
-                        Result = true,
-                        Token = token
+                        Result = true
                     });
                 }
                 return BadRequest(new AuthResults()
@@ -91,6 +109,7 @@ namespace WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 var useri_ekziston = await _userManager.FindByEmailAsync(login.Email);
 
                 if(useri_ekziston == null)
@@ -119,7 +138,9 @@ namespace WebAPI.Controllers
                     });
                 }
 
-                var jwtToken = GenerateJwtToken(useri_ekziston);
+                var roles = await _userManager.GetRolesAsync(useri_ekziston);
+
+                var jwtToken = GenerateJwtToken(useri_ekziston, roles);
 
                 return Ok(new AuthResults()
                 {
@@ -137,7 +158,165 @@ namespace WebAPI.Controllers
             });
         }
 
-        private string GenerateJwtToken(IdentityUser user)
+        [HttpPost]
+        [Route("shtoRolinPerdoruesit")]
+        public async Task<IActionResult> PerditesoAksesin(string userID, string roli)
+        {
+            var user = await _userManager.FindByIdAsync(userID);
+
+            if (user == null)
+            {
+                return BadRequest(new AuthResults
+                {
+                    Errors = new List<string> { "Perdoruesi nuk ekziston!" }
+                });
+            }
+
+            var perditesoAksesin = await _userManager.AddToRoleAsync(user, roli);
+
+            if (perditesoAksesin.Succeeded)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                var jwtToken = GenerateJwtToken(user, roles);
+
+                return Ok(new AuthResults
+                {
+                    Token = jwtToken,
+                    Result = true
+                });
+            }
+            else if (await _userManager.IsInRoleAsync(user, roli))
+            {
+                return BadRequest(new AuthResults
+                {
+                    Errors = new List<string> { "Ky perdorues e ka kete role!" }
+                });
+            }
+            else
+            {
+                return BadRequest(new AuthResults
+                {
+                    Errors = new List<string> { "Ndodhi nje gabim gjate perditesimit te Aksesit" }
+                });
+            }
+        }
+
+        [HttpDelete]
+        [Route("FshijRolinUserit")]
+        public async Task<IActionResult> FshijRolinUserit(string userID, string roli)
+        {
+            var perdoruesi = await _userManager.FindByIdAsync(userID);
+
+            if(perdoruesi == null)
+            {
+                return BadRequest(new AuthResults
+                {
+                    Errors = new List<string> { "Ky perdorues nuk egziston" }
+                });
+            }
+            else
+            {
+                var ekzistonRoli = await _roleManager.FindByNameAsync(roli);
+
+                if(ekzistonRoli != null)
+                {
+                    var eKaRolin = await _userManager.IsInRoleAsync(perdoruesi, roli);
+
+                    if (eKaRolin == false)
+                    {
+                        await _userManager.RemoveFromRoleAsync(perdoruesi, roli);
+
+                        return Ok(new AuthResults
+                        {
+                            Result = true
+                        });
+                    }
+                }
+                else
+                {
+                    return BadRequest(new AuthResults
+                    {
+                        Errors = new List<string> { "Ky role nuk egziston" }
+                    });
+                }
+
+                return BadRequest(new AuthResults
+                {
+                    Errors = new List<string> { "Ndodhi nje gabim!" }
+                });
+            }
+
+            
+        }
+
+        [HttpPost]
+        [Route("shtoRolin")]
+        public async Task<IActionResult> ShtoRolin(string roli)
+        {
+            var ekziston = await _roleManager.FindByNameAsync(roli);
+
+            if (ekziston != null)
+            {
+                return BadRequest(new AuthResults
+                {
+                    Errors = new List<string> { "Ky role tashme Egziston!" }
+                });
+            }
+            else
+            {
+                var role = new IdentityRole(roli); 
+                var result = await _roleManager.CreateAsync(role); 
+
+                if (result.Succeeded)
+                {
+                    return Ok(new AuthResults
+                    {
+                        Result = true
+                    });
+                }
+                else
+                {
+                    return BadRequest(new AuthResults
+                    {
+                        Errors = new List<string> { "Ndodhi nje gabim gjate shtimit te rolit" }
+                    });
+                }
+            }
+        }
+
+        [HttpDelete]
+        [Route("fshijRolin")]
+        public async Task<IActionResult> FshijRolet(string emriRolit)
+        {
+            var roliEkziston = await _roleManager.FindByNameAsync(emriRolit);
+
+            if (roliEkziston != null)
+            {
+                var roliUFshi = await _roleManager.DeleteAsync(roliEkziston);
+
+                if(roliUFshi.Succeeded)
+                {
+                    return Ok(new AuthResults { Result = true });
+                }
+                else
+                {
+                    return BadRequest(new AuthResults
+                    {
+                        Errors = new List<string> { "Ndodhi nje gabim gjate fshirjes" }
+                    });
+                }
+            }
+            else
+            {
+                return BadRequest(new AuthResults
+                {
+                    Errors = new List<string> { "Ky Rol nuk egziston" }
+                });
+            }
+        }
+
+
+        private string GenerateJwtToken(IdentityUser user, IList<string> roles)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
@@ -146,6 +325,7 @@ namespace WebAPI.Controllers
             // Token descriptor
             var TokenDescriptor = new SecurityTokenDescriptor()
             {
+                
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim("id", user.Id),
@@ -158,6 +338,11 @@ namespace WebAPI.Controllers
                 Expires = DateTime.Now.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
             };
+
+            foreach (var role in roles)
+            {
+                TokenDescriptor.Subject.AddClaim(new Claim(ClaimTypes.Role, role));
+            }
 
             var token = jwtTokenHandler.CreateToken(TokenDescriptor);
             var jwtToken = jwtTokenHandler.WriteToken(token);

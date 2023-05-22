@@ -14,6 +14,7 @@ public partial class TeDhenatPerdoruesit
     public int? ZipKodi { get; set; }
 
     public string? Adresa { get; set; }
+    public string? Shteti { get; set; }
 
     public virtual Perdoruesi User { get; set; } = null!;
 }

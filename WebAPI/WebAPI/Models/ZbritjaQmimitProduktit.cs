@@ -14,4 +14,6 @@ public partial class ZbritjaQmimitProduktit
     public DateTime? DataZbritjes { get; set; }
 
     public DateTime? DataSkadimit { get; set; }
+
+    public virtual Produkti Produkti { get; set; } = null!;
 }

@@ -5,7 +5,7 @@ import Mesazhi from "../layout/Mesazhi";
 import { TailSpin } from 'react-loader-spinner';
 import EditoPerdorues from "./EditoPerdorues";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import Button from "react-bootstrap/Button";
 
 function TabelaEPerdoruesve() {
@@ -17,14 +17,22 @@ function TabelaEPerdoruesve() {
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
+    const token = localStorage.getItem("token");
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
 
     useEffect(() => {
         const shfaqPerdoruesit = async () => {
             try {
                 setLoading(true);
-                const perdoruesit = await axios.get("https://localhost:7285/api/Perdoruesi/shfaqPerdoruesit");
+                const perdoruesit = await axios.get("https://localhost:7285/api/Perdoruesi/shfaqPerdoruesit", config);
                 setPerdoruesit(perdoruesit.data);
                 setLoading(false);
+                console.log(perdoruesit)
             } catch (err) {
                 console.log(err);
                 setLoading(false);
@@ -87,13 +95,13 @@ function TabelaEPerdoruesve() {
                     </tr>
 
                     {perdoruesit.map((k) => (
-                        <tr key={k.userId}>
-                            <td>{k.userId}</td>
-                            <td>{k.emri} {k.mbiemri}</td>
-                            <td > {k.email} </td>
-                            <td >{k.username}</td>
-                            <td>{k.aksesi}</td>
-                            <td><Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => handleEdito(k.userId)}><FontAwesomeIcon icon={faPenToSquare} /></Button></td>
+                        <tr key={k.perdoruesi.userId}>
+                            <td>{k.perdoruesi.userId}</td>
+                            <td>{k.perdoruesi.emri} {k.perdoruesi.mbiemri}</td>
+                            <td > {k.perdoruesi.email} </td>
+                            <td >{k.perdoruesi.username}</td>
+                            <td>{k.rolet.join(', ')}</td>
+                            <td><Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => handleEdito(k.perdoruesi.userId)}><FontAwesomeIcon icon={faPenToSquare} /></Button></td>
                         </tr>
                     ))}
                 </table>

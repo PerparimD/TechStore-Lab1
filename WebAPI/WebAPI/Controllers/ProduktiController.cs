@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Models;
@@ -6,6 +7,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace TechStoreWebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class ProduktiController : Controller
@@ -17,6 +19,7 @@ namespace TechStoreWebAPI.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("Products")]
         public async Task<ActionResult> Get()
@@ -44,7 +47,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(Produkti);
         }
 
-
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
@@ -77,7 +80,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(produkti);
         }
 
-
+        [AllowAnonymous]
         [HttpGet]
         [Route("15ProduktetMeTeFundit")]
         public async Task<IActionResult> Get15Produkte()
@@ -99,6 +102,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(Kthe15TeFundit);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoProdukt")]
         public async Task<IActionResult> Post(Produkti produkti)
@@ -117,6 +121,7 @@ namespace TechStoreWebAPI.Controllers
             return CreatedAtAction("Get", produkti.ProduktiId, produkti);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Produkti p)
         {
@@ -178,7 +183,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(produkti);
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

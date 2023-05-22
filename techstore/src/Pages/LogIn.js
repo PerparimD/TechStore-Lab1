@@ -67,7 +67,7 @@ const LogIn = () => {
         if (roles.includes("Admin") || roles.includes("Menaxher")) {
           navigate("/dashboard");
         } else {
-          navigate("/dashboard"); // Update this with the appropriate route for non-admin or non-menaxher users
+          navigate("/dashboard"); 
         }
       } else {
         throw new Error("Authentication failed");
@@ -130,23 +130,3 @@ const LogIn = () => {
 
 export default LogIn;
 
-{
-  /* <Form className="login-form">
-        <Form.Text className="formTitle">Log In</Form.Text>
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Email"
-          className="mb-3 label"
-        >
-          <Form.Control className="input" placeholder="Email" type="text" />
-        </FloatingLabel>
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Password"
-          className="mb-3 label"
-        >
-          <Form.Control className="input" placeholder="Password" type="text" />
-        </FloatingLabel>
-        <button className="login-button">Log In</button>
-      </Form> */
-}

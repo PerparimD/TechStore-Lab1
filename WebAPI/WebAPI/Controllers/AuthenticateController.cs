@@ -79,7 +79,7 @@ namespace WebAPI.Controllers
                         Adresa = !registerModel.Adresa.IsNullOrEmpty() ? registerModel.Adresa : null,
                         Qyteti = !registerModel.Qyteti.IsNullOrEmpty() ? registerModel.Qyteti : null,
                         Shteti = !registerModel.Shteti.IsNullOrEmpty() ? registerModel.Shteti : null,
-                        ZipKodi = registerModel.ZipKodi > 0 ? registerModel.ZipKodi : null,
+                        ZipKodi = registerModel.ZipKodi > 0 ? registerModel.ZipKodi : 0,
                         NrKontaktit = !registerModel.NrTelefonit.IsNullOrEmpty() ? registerModel.NrTelefonit : null
                     };
                     await _context.TeDhenatPerdoruesits.AddAsync(teDhenatPerdoruesit);
@@ -335,7 +335,7 @@ namespace WebAPI.Controllers
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToUniversalTime().ToString())
                 }),
 
-                Expires = DateTime.Now.AddHours(1),
+                Expires = DateTime.Now.AddDays(1).AddHours(12),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
             };
 

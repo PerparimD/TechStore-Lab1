@@ -7,10 +7,36 @@ import { faRightFromBracket, faRightToBracket, faCartShopping } from '@fortaweso
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { useStateValue } from '../../Context/StateProvider';
+import jwtDecode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 function NavBar(props) {
+  const navigate = useNavigate();
+
   const [{ cart }, dispatch] = useStateValue();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const kohaAktive = new Date(decodedToken.exp * 1000);
+      const kohaTanishme = new Date();
+
+      if (kohaAktive < kohaTanishme) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        navigate("/LogIn");
+      }
+    }
+  }, []);
+
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+  }
+
   return (
     <header>
       <nav className={classes.nav}>
@@ -44,23 +70,31 @@ function NavBar(props) {
               </Link>
               <span className={classes.line}></span>
             </li>
-            <li className={classes.navItem}>
-              <Link to='/Dashboard'><span
-              >Dashboard <FontAwesomeIcon icon={faCircleUser} /></span></Link>
-              <span className={classes.line}></span>
-            </li>
-            <li className={classes.navItem}>
-              <Link to='/'>Log out <FontAwesomeIcon icon={faRightFromBracket} /></Link>
-              <span className={classes.line}></span>
-            </li>
-            <li className={classes.navItem}>
-              <Link to='/LogIn'>Log in <FontAwesomeIcon icon={faRightToBracket} /></Link>
-              <span className={classes.line}></span>
-            </li>
-            <li className={classes.navItem}>
-              <Link to='/SignUp'>Sign up <FontAwesomeIcon icon={faUserPlus} /></Link>
-              <span className={classes.line}></span>
-            </li>
+            {token &&
+              <>
+                <li className={classes.navItem}>
+                  <Link to='/Dashboard'><span
+                  >Dashboard <FontAwesomeIcon icon={faCircleUser} /></span></Link>
+                  <span className={classes.line}></span>
+                </li>
+                <li className={classes.navItem}>
+                  <Link to='/' onClick={handleSignOut}>Log out <FontAwesomeIcon icon={faRightFromBracket} /></Link>
+                  <span className={classes.line}></span>
+                </li>
+              </>
+            }
+            {!token &&
+              <>
+                <li className={classes.navItem}>
+                  <Link to='/LogIn'>Log in <FontAwesomeIcon icon={faRightToBracket} /></Link>
+                  <span className={classes.line}></span>
+                </li>
+                <li className={classes.navItem}>
+                  <Link to='/SignUp'>Sign up <FontAwesomeIcon icon={faUserPlus} /></Link>
+                  <span className={classes.line}></span>
+                </li>
+              </>
+            }
           </div>
         </ul>
 
@@ -83,10 +117,18 @@ function NavBar(props) {
               <Link to='/AboutUs'>About Us</Link>
               <Link to='/ContactUs'>Contact Us</Link>
               <a href='/Produktet'>Products</a>
-              <Link to='/Dashboard'>Dashboard <FontAwesomeIcon icon={faCircleUser} /></Link>
-              <Link to='/'>Sign out <FontAwesomeIcon icon={faRightFromBracket} /></Link>
-              <Link to='/'>Sign in <FontAwesomeIcon icon={faRightToBracket} /></Link>
-              <Link to='/'>Sign up <FontAwesomeIcon icon={faUserPlus} /></Link>
+              {token &&
+                <>
+                  <Link to='/Dashboard'>Dashboard <FontAwesomeIcon icon={faCircleUser} /></Link>
+                  <Link to='/' onClick={handleSignOut}>Sign out <FontAwesomeIcon icon={faRightFromBracket} /></Link>
+                </>
+              }
+              {!token &&
+                <>
+                  <Link to='/LogIn'>Sign in <FontAwesomeIcon icon={faRightToBracket} /></Link>
+                  <Link to='/SignUp'>Sign up <FontAwesomeIcon icon={faUserPlus} /></Link>
+                </>
+              }
             </div>
           </div>
         </div>

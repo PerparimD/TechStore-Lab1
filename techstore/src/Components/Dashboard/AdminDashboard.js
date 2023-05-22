@@ -17,7 +17,7 @@ import KalkulimiIMallit from '../kalkulimi/KalkulimiIMallit';
 import RegjistroFaturen from '../kalkulimi/RegjistroFaturen';
 
 
-const AdminDashboard = () => {
+const AdminDashboard = (props) => {
 
   const [key, setKey] = useState("1");
 
@@ -36,10 +36,12 @@ const AdminDashboard = () => {
 
   return (
     <div className='admin'>
+
       <Tab.Container className="border" id="left-tabs-example" defaultActiveKey="1" onSelect={key => setKey(key)}>
         <Row>
           <Col>
             <Nav variant="pills" className="flex-column">
+              <button className='colum normalMenu' onClick={props.setShfaqAdmin}>Mbyll Admin</button>
               <Nav.Item >
                 <Nav.Link className='colum normalMenu' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle} >Produktet</Nav.Link>
               </Nav.Item>
@@ -63,6 +65,7 @@ const AdminDashboard = () => {
               </Nav.Item>
               <Nav.Item>
                 <NavDropdown title="Menu" id="basic-nav-dropdown" className='hamburgerMenu'>
+                  <button className='colum' onClick={props.setShfaqAdmin}>Mbyll Admin</button>
                   <Nav.Link className='colum' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle}>Produktet</Nav.Link>
                   <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle}>Kompanit</Nav.Link>
                   <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle}>Mesazhet</Nav.Link>

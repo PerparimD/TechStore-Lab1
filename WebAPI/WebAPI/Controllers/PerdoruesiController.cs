@@ -58,7 +58,9 @@ namespace WebAPI.Controllers
         {
             var user = await _userManager.FindByIdAsync(idUserAspNet);
 
-            var perdoruesi = await _context.Perdoruesis.FirstOrDefaultAsync(x => x.AspNetUserId.Equals(idUserAspNet));
+            var perdoruesi = await _context.Perdoruesis
+                .Include(p => p.TeDhenatPerdoruesit)
+                .FirstOrDefaultAsync(x => x.AspNetUserId.Equals(idUserAspNet));
 
             var rolet = await _userManager.GetRolesAsync(user);
 

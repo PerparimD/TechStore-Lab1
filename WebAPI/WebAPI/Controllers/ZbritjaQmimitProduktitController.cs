@@ -43,6 +43,7 @@ namespace WebAPI.Controllers
 
             return CreatedAtAction("get", zbritja.ProduktiId, zbritja);
         }
+
         [HttpDelete]
         [Route("fshijZbritjenProduktit")]
         public async Task<IActionResult> Delete(int id)

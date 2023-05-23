@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 import { useStateValue } from '../../Context/StateProvider';
 import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function NavBar(props) {
   const navigate = useNavigate();
+  
 
   const [{ cart }, dispatch] = useStateValue();
   const token = localStorage.getItem("token");
@@ -23,8 +24,15 @@ function NavBar(props) {
       const decodedToken = jwtDecode(token);
       const kohaAktive = new Date(decodedToken.exp * 1000);
       const kohaTanishme = new Date();
+      const id = localStorage.getItem("id");
 
       if (kohaAktive < kohaTanishme) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        navigate("/LogIn");
+      }
+
+      if(id !== decodedToken.id){
         localStorage.removeItem("token");
         localStorage.removeItem("id");
         navigate("/LogIn");

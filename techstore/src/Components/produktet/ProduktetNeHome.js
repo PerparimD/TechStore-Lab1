@@ -53,7 +53,7 @@ function ProduktetNeHome(props) {
         <div>
           {props.cmimiMeZbritje != null &&
             <div className="zbritjaBadge">
-              <p>- {props.cmimiMeZbritje != null && (((props.cmimi - props.cmimiMeZbritje) / props.cmimi) * 100).toFixed(0)} %</p>
+              <p className="">- {props.cmimiMeZbritje != null && (((props.cmimi - props.cmimiMeZbritje) / props.cmimi) * 100).toFixed(0)} %</p>
             </div>
           }
           <img

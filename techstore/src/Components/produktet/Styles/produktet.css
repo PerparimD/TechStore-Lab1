@@ -114,23 +114,19 @@
   position: absolute;
   top: 0;
   right: 0;
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 10px;
-  background-color: #ff0000;
+  padding: 6px;
+  border-radius: 0 25px 0 10px ;
+  background-color: #ec3d08;
   color: #fff;
   font-size: 12px;
   font-weight: bold;
-  text-align: center;
   line-height: 1;
 }
 
-.zbritjaBadge::after {
-  display: block;
-  top: -10;
-  right: -8px;
-  margin-top: -5px;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 8px solid #ff0000;
+.zbritjaBadge p{
+  margin: 10px;
+  margin-left: 0;
+  margin-right: 0;
 }
+
+

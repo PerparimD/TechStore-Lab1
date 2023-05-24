@@ -32,9 +32,22 @@
 .titulliPershkrim {
   display: flex;
   flex-direction: column;
-  color: #009879;
+  color: white;
+  background-color:#009879; 
+  width: 25%;
   text-align: center;
-  margin-top: 2em;
+  margin-top: 1.6em;
+  padding: 14px;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  color: grey; 
+  text-align: left;
+  margin-right: auto;
+  margin-left: 3.8em;
+  
 }
 
 .button {

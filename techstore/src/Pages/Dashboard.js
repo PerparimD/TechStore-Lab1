@@ -61,9 +61,9 @@ const Dashboard = () => {
         </div>
       ) : (
         <div class="containerDashboard">
-          <h1 class="titulliPershkrim">Miresevini {teDhenat.perdoruesi.emri}
-          </h1>
-          <h2>Te dhenat e tua</h2>
+          <h3 class="titulliPershkrim">Miresevini {teDhenat.perdoruesi.emri}
+          </h3>
+          <h4 className="info">Te dhenat personale:</h4>
           <table>
             <tr>
               <td><strong>Emri:</strong></td>
@@ -106,7 +106,6 @@ const Dashboard = () => {
           <div class="butonatDiv">
             <button disabled
               class="button">Perditeso te Dhenat <i class="fa-solid">&#xf4ff;</i></button>
-            <button disabled class="button">Ndrysho Fjalekalimin</button>
             <button disabled class="button">Porosite e tua</button>
             {(teDhenat.rolet.includes("Admin") || teDhenat.rolet.includes("Menaxher")) &&
               <button class="button" onClick={() => setShfaqAdmin(true)}>Admin Dashboard</button>

@@ -78,6 +78,7 @@ a{
   border-radius: 25px;
   cursor: pointer;
   font-weight: 600;
+  /* margin-bottom: 2em; */
 }
 
 .cart-button:hover {

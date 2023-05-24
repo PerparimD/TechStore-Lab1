@@ -10,6 +10,8 @@ import { faEnvelopeCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from "react-bootstrap/esm/Button";
+// import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBSelect, CDBContainer } from 'cdbreact';
+
 
 
 const ContactUs = () => {
@@ -83,7 +85,7 @@ const ContactUs = () => {
             label="Emri"
             className="mb-3"
           >
-            <Form.Control className="input"
+            <Form.Control className="inputt"
               value={emri}
               placeholder="Email"
               type="text"
@@ -94,7 +96,7 @@ const ContactUs = () => {
             label="Email"
             className="mb-3"
           >
-            <Form.Control className="input"
+            <Form.Control className="inputt"
               value={email}
               type="text"
               placeholder="Email"
@@ -104,7 +106,7 @@ const ContactUs = () => {
             controlId="floatingInput"
             label="Mesazhi Juaj"
           >
-            <Form.Control className="input"
+            <Form.Control className="inputt"
               value={msg}
               as="textarea"
               style={{ height: '150px' }}

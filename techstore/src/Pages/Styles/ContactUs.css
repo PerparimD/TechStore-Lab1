@@ -5,7 +5,7 @@
   flex-basis: 120em;
   align-items: center;
   flex-wrap: wrap;
-  border-radius: 40px;
+  border-radius: 30px;
   width: fit-content;
   margin: auto;
   margin-top: 5em;
@@ -36,14 +36,12 @@
   color: white;
 }
 
-.input {
+.inputt {
+  border: none;
+  border-bottom: 1px solid #d3d3d3;
   color: #ddd;
   background-color: inherit;
-  border: none;
-  border-radius:25px;
-  box-shadow: 0 0 10px #ddd;
-  outline: none;
-  width: max(27em, 20vw);
+  width: max(27em, 20vw);  
 
 }
 
@@ -52,7 +50,7 @@
   border: none;
   background-color: whitesmoke;
   color: white;
-  /* background: rgb(61, 101, 160); */
+  background: rgb(61, 101, 160);
   background: #01df93;
   padding: 1em 2em;
   width: 100%;
@@ -72,7 +70,7 @@
     margin-bottom: 0;
   }
 
-  .input {
+  .inputt {
     width: 15em;
   }
 }

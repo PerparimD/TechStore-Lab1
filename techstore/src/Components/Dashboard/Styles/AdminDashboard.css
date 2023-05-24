@@ -19,6 +19,14 @@
   padding: 0.4em;
 }
 
+.normalMenu{
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius:10px;
+  margin-bottom: 1em;
+}
+
 .td {
   width: 2em;
 }

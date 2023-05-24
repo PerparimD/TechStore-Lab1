@@ -13,6 +13,8 @@ import KodiZbritjes from '../kodiZbritjes/KodiZbritjes';
 import KalkulimiIMallit from '../kalkulimi/KalkulimiIMallit';
 import jwtDecode from 'jwt-decode';
 import Statistika from './Statistika';
+import { faBan, faPenToSquare, faPlus, faXmark, faCheck, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AdminDashboard = (props) => {
   const [eshteAdmin, setEshteAdmin] = useState(false);
@@ -48,7 +50,7 @@ const AdminDashboard = (props) => {
         <Row>
           <Col>
             <Nav variant="pills" className="flex-column">
-              <button className='colum normalMenu' onClick={props.setShfaqAdmin}>Mbyll Admin</button>
+              <button className='colum normalMenu' onClick={props.setShfaqAdmin}>Mbylle <FontAwesomeIcon icon={faXmark} width="17px"/></button>
               {eshteAdmin &&
                 <Nav.Item >
                   <Nav.Link className='colum normalMenu' eventKey="0" style={key === "0" ? ActiveStyle : inActiveStyle} >Statistikat e Dyqanit</Nav.Link>

@@ -7,10 +7,8 @@ import { NavDropdown } from 'react-bootstrap';
 import "./Styles/AdminDashboard.css";
 import ProductTables from '../produktet/ProductTables';
 import { useState, useEffect } from 'react';
-import TabelaEKompanive from '../kompanit/TabelaEKompanive';
 import Mesazhet from '../mesazhet/Mesazhet';
 import TabelaEPerdoruesve from '../users/TabelaEPerdoruesve';
-import TabelaEKategorive from '../kategorit/TabelaEKategorive';
 import KodiZbritjes from '../kodiZbritjes/KodiZbritjes';
 import KalkulimiIMallit from '../kalkulimi/KalkulimiIMallit';
 import jwtDecode from 'jwt-decode';
@@ -60,22 +58,16 @@ const AdminDashboard = (props) => {
                 <Nav.Link className='colum normalMenu' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle} >Produktet</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle} >Kompanit</Nav.Link>
+                <Nav.Link className='colum normalMenu' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle} >Mesazhet</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle} >Mesazhet</Nav.Link>
+                <Nav.Link className='colum normalMenu' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle} >Perdoruesit</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle} >Perdoruesit</Nav.Link>
+                <Nav.Link className='colum normalMenu' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle} >Kodet e Zbritjev</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle} >Kategorite</Nav.Link>
-              </Nav.Item>
-              <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="6" style={key === "6" ? ActiveStyle : inActiveStyle} >Kodet e Zbritjev</Nav.Link>
-              </Nav.Item>
-              <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="7" style={key === "7" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
+                <Nav.Link className='colum normalMenu' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <NavDropdown title="Menu" id="basic-nav-dropdown" className='hamburgerMenu'>
@@ -84,12 +76,10 @@ const AdminDashboard = (props) => {
                     <Nav.Link className='colum' eventKey="0" style={key === "0" ? ActiveStyle : inActiveStyle}>Statistikat e Dyqanit</Nav.Link>
                   }
                   <Nav.Link className='colum' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle}>Produktet</Nav.Link>
-                  <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle}>Kompanit</Nav.Link>
-                  <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle}>Mesazhet</Nav.Link>
-                  <Nav.Link className='colum' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle}>Perdoruesit</Nav.Link>
-                  <Nav.Link className='colum' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle}>Kategorite</Nav.Link>
-                  <Nav.Link className='colum' eventKey="6" style={key === "6" ? ActiveStyle : inActiveStyle}>Kodet e Zbritjev</Nav.Link>
-                  <Nav.Link className='colum' eventKey="7" style={key === "7" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
+                  <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle}>Mesazhet</Nav.Link>
+                  <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle}>Perdoruesit</Nav.Link>
+                  <Nav.Link className='colum' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle}>Kodet e Zbritjev</Nav.Link>
+                  <Nav.Link className='colum' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
                 </NavDropdown>
               </Nav.Item>
             </Nav>
@@ -105,21 +95,15 @@ const AdminDashboard = (props) => {
                 <ProductTables />
               </Tab.Pane>
               <Tab.Pane eventKey="2">
-                <TabelaEKompanive />
-              </Tab.Pane>
-              <Tab.Pane eventKey="3">
                 <Mesazhet />
               </Tab.Pane>
-              <Tab.Pane eventKey="4">
+              <Tab.Pane eventKey="3">
                 <TabelaEPerdoruesve />
               </Tab.Pane>
-              <Tab.Pane eventKey="5">
-                <TabelaEKategorive />
-              </Tab.Pane>
-              <Tab.Pane eventKey="6">
+              <Tab.Pane eventKey="4">
                 <KodiZbritjes />
               </Tab.Pane>
-              <Tab.Pane eventKey="7">
+              <Tab.Pane eventKey="5">
                 <KalkulimiIMallit />
               </Tab.Pane>
             </Tab.Content>

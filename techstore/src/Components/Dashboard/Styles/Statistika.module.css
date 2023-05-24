@@ -29,3 +29,22 @@ table {
   margin: 1em;
   gap: 1em;
 }
+
+.KartaStatistikave{
+  width: 17.5rem;
+}
+
+.TekstiStatistika{
+  font-weight: bold;
+  font-size: 25pt;
+}
+
+@media (max-width: 767px) {
+  .KartaStatistikave{
+    width: 30rem;
+  }
+
+  .cardStatisitkat{
+    flex-wrap: wrap;
+  }
+}

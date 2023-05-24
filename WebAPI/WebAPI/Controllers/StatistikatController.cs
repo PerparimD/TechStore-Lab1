@@ -31,7 +31,21 @@ namespace WebAPI.Controllers
             var totShitjeveSotme = await _context.Porosits.Where(p => p.DataPorosis == DateTime.Today).SumAsync(p => p.TotaliPorosis);
             /* DITA E SOTME */
 
-            var result = new
+            /* MUJORE */
+            var dataESotme = DateTime.Today;
+            var ditaEPareMuajit = new DateTime(dataESotme.Year, dataESotme.Month, 1);
+            var ditaEFunditMuajit = ditaEPareMuajit.AddMonths(1).AddDays(-1);
+
+            var totPorosiveMujore = await _context.Porosits
+                .Where(p => p.DataPorosis >= ditaEPareMuajit && p.DataPorosis <= ditaEFunditMuajit)
+                .CountAsync();
+
+            var totShitjeveMujore = await _context.Porosits
+                .Where(p => p.DataPorosis >= ditaEPareMuajit && p.DataPorosis <= ditaEFunditMuajit)
+                .SumAsync(p => p.TotaliPorosis);
+            /* MUJORE */
+
+            var totalet = new
             {
                 TotaliShitjeve = totShitjeve,
                 TotaliUsers = totUser,
@@ -39,9 +53,11 @@ namespace WebAPI.Controllers
                 TotaliPorosive = totPorosive,
                 TotaliPorosiveSotme = totPorosiveSotme,
                 TotaliShitjeveSotme = totShitjeveSotme,
+                TotaliPorosiveKeteMuaj = totPorosiveMujore,
+                TotaliShitjeveKeteMuaj = totShitjeveMujore,
             };
 
-            return Ok(result);
+            return Ok(totalet);
         }
 
         [HttpGet]
@@ -88,6 +104,56 @@ namespace WebAPI.Controllers
                 .ToListAsync();
 
             return Ok(produktet);
+        }
+
+        [HttpGet]
+        [Route("TotaletJavore")]
+        public async Task<IActionResult> GetShitjetJavore()
+        {
+            var dataESotme = DateTime.Today;
+            var dataFillimit = dataESotme; 
+            var dataMbarimit = dataESotme.AddDays(-6); ; 
+
+            int totaliPorosiveJavore = 0;
+            decimal totaliShitjeveJavore = 0;
+
+            var totaletDitore = new List<Object>();
+
+            for (var date = dataFillimit; date >= dataMbarimit; date = date.AddDays(-1))
+            {
+                var totalPorosive = await _context.Porosits
+                    .Where(p => p.DataPorosis == date)
+                    .CountAsync();
+
+                totaliPorosiveJavore += totalPorosive;
+
+                var totalShitjeve = await _context.Porosits
+                    .Where(p => p.DataPorosis == date)
+                    .SumAsync(p => p.TotaliPorosis);
+
+                totaliShitjeveJavore += (decimal)totalShitjeve;
+
+                var totaliDitor = new
+                {
+                    Data = date,
+                    totaliPorosiveDitore = totalPorosive,
+                    totaliShitjeveDitore = totalShitjeve
+                };
+
+                totaletDitore.Add(totaliDitor);
+            }
+
+            var totalet = new
+            {
+                totaletDitore,
+                TotaletJavore = new
+                {
+                    TotaliShitjeveJavore = totaliShitjeveJavore,
+                    TotaliPorosiveJavore = totaliPorosiveJavore,
+                }
+            };
+
+            return Ok(totalet);
         }
 
     }

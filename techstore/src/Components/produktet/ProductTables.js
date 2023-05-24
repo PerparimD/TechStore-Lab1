@@ -11,6 +11,8 @@ import EditoProduktin from "./EditoProduktin";
 import Modal from "react-bootstrap/Modal";
 import { TailSpin } from 'react-loader-spinner';
 import ZbritjetEProduktit from "./Zbritjet/ZbritjetEProduktit";
+import TabelaEKategorive from "./kategorit/TabelaEKategorive";
+import TabelaEKompanive from "./kompanit/TabelaEKompanive";
 
 const ProductTables = () => {
   const [produkti, setProdukti] = useState([]);
@@ -21,8 +23,10 @@ const ProductTables = () => {
   const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
   const [tipiMesazhit, setTipiMesazhit] = useState("");
   const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
-  const [mbyllZbritjen, setMbyllZbritjen] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [mbyllZbritjen, setMbyllZbritjen] = useState(true);
+  const [mbyllKompanit, setMbyllKompanit] = useState(true);
+  const [mbyllKategorite, setMbyllKategorite] = useState(true);
 
   useEffect(() => {
     const shfaqProduktet = async () => {
@@ -81,13 +85,37 @@ const ProductTables = () => {
 
   const handleMbyllZbritjen = () => {
     setMbyllZbritjen(true);
+    setMbyllKompanit(true);
+    setMbyllKategorite(true);
+  }
+  const handleMbyllKompanit = () => {
+    setMbyllKompanit(true);
+    setMbyllZbritjen(true);
+    setMbyllKategorite(true);
+  }
+  const handleMbyllKategorite = () => {
+    setMbyllKategorite(true);
+    setMbyllZbritjen(true);
+    setMbyllKompanit(true);
   }
 
   return (
     <div className="containerDashboardP">
-      {mbyllZbritjen == false &&
+      {(mbyllZbritjen == false && mbyllKategorite && mbyllKompanit) &&
         <ZbritjetEProduktit
           setMbyllZbritjen={handleMbyllZbritjen}
+          setPerditeso={setPerditeso}
+        />
+      }
+      {(mbyllZbritjen && mbyllKategorite == false && mbyllKompanit) &&
+        <TabelaEKategorive
+          setMbyllKategorite={handleMbyllKategorite}
+          setPerditeso={setPerditeso}
+        />
+      }
+      {(mbyllZbritjen && mbyllKategorite && mbyllKompanit == false) &&
+        <TabelaEKompanive
+          setMbyllKompanit={handleMbyllKompanit}
           setPerditeso={setPerditeso}
         />
       }
@@ -148,13 +176,19 @@ const ProductTables = () => {
             visible={true}
           />
         </div>
-      ) : mbyllZbritjen && <>
+      ) : (mbyllZbritjen && mbyllKategorite && mbyllKompanit) && <>
         <h1 className="title">Tabela e Produkteve</h1>
         <Button className="mb-3 Butoni" onClick={handleShow}>
           Shto Produktin <FontAwesomeIcon icon={faPlus} />
         </Button>
-        <Button className="mb-3 Butoni" onClick={() => { setPerditeso(Date.now()); setMbyllZbritjen(false);  }}>
+        <Button className="mb-3 Butoni" onClick={() => { setPerditeso(Date.now()); setMbyllZbritjen(false); }}>
           Zbritjet e Produkteve <FontAwesomeIcon icon={faInfoCircle} />
+        </Button>
+        <Button className="mb-3 Butoni" onClick={() => { setPerditeso(Date.now()); setMbyllKompanit(false); }}>
+          Kompanit <FontAwesomeIcon icon={faInfoCircle} />
+        </Button>
+        <Button className="mb-3 Butoni" onClick={() => { setPerditeso(Date.now()); setMbyllKategorite(false); }}>
+          Kategorite <FontAwesomeIcon icon={faInfoCircle} />
         </Button>
         <table className="tableBig">
           <thead>

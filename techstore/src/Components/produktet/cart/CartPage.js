@@ -7,6 +7,7 @@ import { faFaceFrown } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Checkout from "./Checkout/Checkout";
 
 function CartPage() {
   const [{ cart }, dispatch] = useStateValue();
@@ -17,6 +18,7 @@ function CartPage() {
   const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
   const [tipiMesazhit, setTipiMesazhit] = useState("");
   const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
+  const [checkout, setCheckout] = useState(false);
   useEffect(() => {
     const KontrolloKodin = async () => {
       try {
@@ -85,56 +87,73 @@ function CartPage() {
         pershkrimi={pershkrimiMesazhit}
         tipi={tipiMesazhit}
       />}
-      <h2 className="cart-title"></h2>
-      <div className="cart-page">
-        <div className="cart-items">
-          {cart.length !== 0 && cart.map((item) => {
-            return (
-              <CartProduct
-                key={item.id}
-                id={item.id}
-                fotoProduktit={item.foto}
-                emriProduktit={item.emri}
-                cmimi={item.cmimi}
-                sasia={item.sasia}
-                sasiaNeStok={item.sasiaNeStok}
-              />
-            );
-
-          })
-          }
-          {cart.length === 0 && <h1 className="shporta-zbrazet">Nuk Keni asnje Produkt ne Shporte! <FontAwesomeIcon icon={faFaceFrown} /></h1>}
-        </div>
-        {cart.length !== 0 &&
-          <div className="details">
-            <h3 className="d-title">Detajet e Shportes</h3>
-            <h4>Totali produkteve: {cart.length}</h4>
-            {teDhenatZbritje.length === 0 &&
-              <div className="promo-input-container">
-                <input
-                  id="promo-input"
-                  type="text"
-                  placeholder="Kodi Zbritjes"
-                  value={promoCode}
-                  onChange={handlePromoCodeChange}
+      {checkout &&
+        <Checkout
+          setCheckout={() => setCheckout(false)}
+          qmimiTotal={qmimiTot.toFixed(2)}
+          zbritja={teDhenatZbritje.qmimiZbritjes ? (teDhenatZbritje.qmimiZbritjes).toFixed(2) : 0}
+          kodiZbrijtes={teDhenatZbritje.kodi ? teDhenatZbritje.kodi : ""}
+          totaliProdukteve={cart.length}
+        />
+      }
+      {!checkout && <>
+        <h2 className="cart-title"></h2>
+        <div className="cart-page">
+          <div className="cart-items">
+            {cart.length !== 0 && cart.map((item) => {
+              return (
+                <CartProduct
+                  key={item.id}
+                  id={item.id}
+                  fotoProduktit={item.foto}
+                  emriProduktit={item.emri}
+                  cmimi={item.cmimi}
+                  sasia={item.sasia}
+                  sasiaNeStok={item.sasiaNeStok}
                 />
-                <button className="promo-button" onClick={handleApplyPromoCode}><FontAwesomeIcon icon={faCheck} /></button>
-              </div>}
-            <h4>Qmimi total: {qmimiTot.toFixed(2)} €</h4>
-            <p><strong>Qmimi total pa TVSH: </strong>{(qmimiTot - qmimiTot * 0.18).toFixed(2)} €</p>
-            <p><strong>TVSH: </strong>{(qmimiTot * 0.18).toFixed(2)} €</p>
-            {teDhenatZbritje.length !== 0 &&
-              <div className="zbritja">
-                <hr />
-                <p><strong>Kodi i Perdorur: </strong>{teDhenatZbritje.kodi}</p>
-                <p><strong>Qmimi i Zbritjes: </strong>{teDhenatZbritje.qmimiZbritjes.toFixed(2)} €</p>
-              </div>
-            }
+              );
 
-            <button className="cart-button"> Buy Now</button>
+            })
+            }
+            {cart.length === 0 && <h1 className="shporta-zbrazet">Nuk Keni asnje Produkt ne Shporte! <FontAwesomeIcon icon={faFaceFrown} /></h1>}
           </div>
-        }
-      </div>
+          {cart.length !== 0 &&
+            <div className="details">
+              <h3 className="d-title">Detajet e Shportes</h3>
+              <h4>Totali produkteve: {cart.length}</h4>
+              {teDhenatZbritje.length === 0 &&
+                <div className="promo-input-container">
+                  <input
+                    id="promo-input"
+                    type="text"
+                    placeholder="Kodi Zbritjes"
+                    value={promoCode}
+                    onChange={handlePromoCodeChange}
+                  />
+                  <button className="promo-button" onClick={handleApplyPromoCode}><FontAwesomeIcon icon={faCheck} /></button>
+                </div>}
+              {teDhenatZbritje.length !== 0 &&
+                <>
+                  <h4>Qmimi total: {(qmimiTot + teDhenatZbritje.qmimiZbritjes).toFixed(2)} €</h4>
+                  <h4>Qmimi total - Zbritja: {qmimiTot.toFixed(2)} €</h4>
+                </>
+              }
+              {teDhenatZbritje.length === 0 && <h4>Qmimi total: {qmimiTot.toFixed(2)} €</h4>}
+              <p><strong>Qmimi total pa TVSH: </strong>{(qmimiTot - qmimiTot * 0.18).toFixed(2)} €</p>
+              <p><strong>TVSH: </strong>{(qmimiTot * 0.18).toFixed(2)} €</p>
+              {teDhenatZbritje.length !== 0 &&
+                <div className="zbritja">
+                  <hr />
+                  <p><strong>Kodi i Perdorur: </strong>{teDhenatZbritje.kodi}</p>
+                  <p><strong>Qmimi i Zbritjes: </strong>{teDhenatZbritje.qmimiZbritjes.toFixed(2)} €</p>
+                </div>
+              }
+
+              <button className="cart-button" onClick={() => setCheckout(true)}> Buy Now</button>
+            </div>
+          }
+        </div>
+      </>}
     </>
   );
 };

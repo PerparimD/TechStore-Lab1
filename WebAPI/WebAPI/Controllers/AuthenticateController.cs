@@ -53,7 +53,8 @@ namespace WebAPI.Controllers
                 var perdoruesiIRI = new IdentityUser()
                 {
                     Email = registerModel.Email,
-                    UserName = registerModel.Username
+                    UserName = registerModel.Username,
+                    PhoneNumber = registerModel.NrTelefonit,
                 };
 
                 var shtuarMeSukses = await _userManager.CreateAsync(perdoruesiIRI, registerModel.Password);
@@ -328,6 +329,7 @@ namespace WebAPI.Controllers
                 
                 Subject = new ClaimsIdentity(new[]
                 {
+                    new Claim("id", user.Id),
                     new Claim("id", user.Id),
                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                     new Claim(JwtRegisteredClaimNames.Email, value:user.Email),

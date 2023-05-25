@@ -196,7 +196,12 @@ public partial class TechStoreDbContext : IdentityDbContext
             entity.Property(e => e.TotaliPorosis)
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("totaliPorosis");
-
+            entity.Property(e => e.Zbritja)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("zbritja");
+            entity.Property(e => e.TotaliProdukteve)
+                .HasColumnName("totaliProdukteve");
+            
             entity.HasOne(d => d.IdKlientiNavigation).WithMany(p => p.Porosits)
                 .HasForeignKey(d => d.IdKlienti)
                 .OnDelete(DeleteBehavior.SetNull)
@@ -309,19 +314,16 @@ public partial class TechStoreDbContext : IdentityDbContext
 
             entity.HasIndex(e => e.IdProdukti, "IX_TeDhenatEPorosis_idProdukti");
 
-            entity.HasIndex(e => e.KodiZbritjes, "IX_TeDhenatEPorosis_kodiZbritjes");
-
             entity.Property(e => e.IdDetajet).HasColumnName("idDetajet");
             entity.Property(e => e.IdPorosia).HasColumnName("idPorosia");
             entity.Property(e => e.IdProdukti).HasColumnName("idProdukti");
-            entity.Property(e => e.KodiZbritjes)
-                .HasMaxLength(12)
-                .IsUnicode(false)
-                .HasColumnName("kodiZbritjes");
             entity.Property(e => e.QmimiTotal)
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("qmimiTotal");
             entity.Property(e => e.SasiaPorositur).HasColumnName("sasiaPorositur");
+            entity.Property(e => e.QmimiProduktit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("qmimiProduktit");
 
             entity.HasOne(d => d.IdPorosiaNavigation).WithMany(p => p.TeDhenatEporosis)
                 .HasForeignKey(d => d.IdPorosia)
@@ -332,10 +334,6 @@ public partial class TechStoreDbContext : IdentityDbContext
                 .HasForeignKey(d => d.IdProdukti)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_TeDhenatPorosis_Produkti");
-
-            entity.HasOne(d => d.KodiZbritjesNavigation).WithMany(p => p.TeDhenatEporosis)
-                .HasForeignKey(d => d.KodiZbritjes)
-                .HasConstraintName("FK_TeDhenatPorosis_KodiZbritjes");
         });
 
         modelBuilder.Entity<TeDhenatPerdoruesit>(entity =>

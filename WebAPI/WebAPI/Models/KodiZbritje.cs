@@ -15,5 +15,4 @@ public partial class KodiZbritje
 
     public virtual Produkti? IdProduktiNavigation { get; set; }
 
-    public virtual ICollection<TeDhenatEporosi> TeDhenatEporosis { get; } = new List<TeDhenatEporosi>();
 }

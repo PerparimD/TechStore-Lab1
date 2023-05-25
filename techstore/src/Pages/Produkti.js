@@ -214,13 +214,13 @@ function Produkti() {
                 {produktet.map((produkti) => {
                     return (
                         <ProduktetNeHome
-                            key={produkti.produktiId}
-                            produktiID={produkti.produktiId}
-                            fotoProduktit={produkti.fotoProduktit}
-                            emriProduktit={produkti.emriProduktit}
-                            cmimi={produkti.qmimiProduktit}
-                            sasiaNeStok={produkti.sasiaNeStok}
-                        />
+                        produktiID={produkti.produktiId}
+                        fotoProduktit={produkti.fotoProduktit}
+                        emriProduktit={produkti.emriProduktit}
+                        cmimi={produkti.qmimiProduktit}
+                        sasiaNeStok={produkti.sasiaNeStok}
+                        cmimiMeZbritje={produkti.qmimiMeZbritjeProduktit}
+                      />
                     );
                 }
                 )}

@@ -14,12 +14,10 @@ public partial class TeDhenatEporosi
     public int? IdPorosia { get; set; }
 
     public int? IdProdukti { get; set; }
-
-    public string? KodiZbritjes { get; set; }
+    public decimal? QmimiProduktit { get; set; }
 
     public virtual Porosit? IdPorosiaNavigation { get; set; }
 
     public virtual Produkti? IdProduktiNavigation { get; set; }
 
-    public virtual KodiZbritje? KodiZbritjesNavigation { get; set; }
 }

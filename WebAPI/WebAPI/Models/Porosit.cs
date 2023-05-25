@@ -15,6 +15,9 @@ public partial class Porosit
 
     public int? IdKlienti { get; set; }
 
+    public decimal? Zbritja { get; set; }
+    public int? TotaliProdukteve { get; set; }
+
     public virtual Perdoruesi? IdKlientiNavigation { get; set; }
 
     public virtual ICollection<TeDhenatEporosi> TeDhenatEporosis { get; } = new List<TeDhenatEporosi>();

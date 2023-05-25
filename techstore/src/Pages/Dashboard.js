@@ -12,7 +12,7 @@ const Dashboard = () => {
   const [shfaqAdmin, setShfaqAdmin] = useState(false);
   const [teDhenat, setTeDhenat] = useState([]);
   const [perditeso, setPerditeso] = useState("");
-  const [loading, setLoading] = useState(true); // Initialize loading state as true
+  const [loading, setLoading] = useState(true); 
 
 
   const navigate = useNavigate();

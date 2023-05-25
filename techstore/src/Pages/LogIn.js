@@ -114,7 +114,7 @@ const LogIn = () => {
                   onChange={(e) => vendosPasswordin(e.target.value)}
                 />
                 <Link to="/SignUp" className="text-white-20 mb-4 p-text">Don't have an Account?</Link>
-                <MDBBtn size="lg" onClick={handleLogIn}>Login</MDBBtn>
+                <button class="btn btn-primary btn-lg" role="button" onClick={handleLogIn}>Login</button>
 
                 
               </MDBCardBody>

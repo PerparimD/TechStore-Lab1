@@ -50,7 +50,7 @@ const AdminDashboard = (props) => {
         <Row>
           <Col>
             <Nav variant="pills" className="flex-column">
-              <button className='colum normalMenu' onClick={props.setShfaqAdmin}>Mbylle <FontAwesomeIcon icon={faXmark} width="17px"/></button>
+              <button className='colum normalMenu buttoniMbylle' onClick={props.setShfaqAdmin}>Mbylle <FontAwesomeIcon icon={faXmark} width="17px"/></button>
               {eshteAdmin &&
                 <Nav.Item >
                   <Nav.Link className='colum normalMenu' eventKey="0" style={key === "0" ? ActiveStyle : inActiveStyle} >Statistikat e Dyqanit</Nav.Link>
@@ -73,7 +73,7 @@ const AdminDashboard = (props) => {
               </Nav.Item>
               <Nav.Item>
                 <NavDropdown title="Menu" id="basic-nav-dropdown" className='hamburgerMenu'>
-                  <button className='colum' onClick={props.setShfaqAdmin}>Mbyll Admin</button>
+                  <button className='colum buttoniMbylle' onClick={props.setShfaqAdmin}>Mbylle <FontAwesomeIcon icon={faXmark} width="17px"/></button>
                   {eshteAdmin &&
                     <Nav.Link className='colum' eventKey="0" style={key === "0" ? ActiveStyle : inActiveStyle}>Statistikat e Dyqanit</Nav.Link>
                   }

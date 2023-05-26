@@ -6,53 +6,39 @@ import {
     MDBCardImage,
     MDBCol,
     MDBContainer,
-    MDBProgress,
-    MDBProgressBar,
     MDBRow,
     MDBTypography,
 } from "mdb-react-ui-kit";
 import React from "react";
-import { useStateValue } from "../../../../Context/StateProvider";
+import "./PagesaMeSukses.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function PagesaMeSukses(props) {
-    const [{ cart }, dispatch] = useStateValue();
-    const [teDhenat, setTeDhenat] = useState([]);
     const [perditeso, setPerditeso] = useState("");
     const [fatura, setFatura] = useState([]);
 
     const getID = localStorage.getItem("id");
     const navigate = useNavigate();
 
+    const [nrFatures, setNrFatures] = useState(0);
+
     useEffect(() => {
         if (getID) {
-            const vendosTeDhenat = async () => {
-                try {
-                    const perdoruesi = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`
-                    );
-                    setTeDhenat(perdoruesi.data);
-                } catch (err) {
-                    console.log(err);
-                }
-            };
-
-            const vendosFature = async () =>{
+            const vendosFature = async () => {
                 try {
                     const fatura = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqPorosineNgaID?nrFatures=${props.nrFatures}`
+                        `https://localhost:7285/api/Porosia/shfaqPorosineNgaID?nrFatures=${props.nrFatures}`
                     );
                     setFatura(fatura.data);
-                    console.log(fatura.data);
-                    console.log(props.nrFatures);
+                    setNrFatures(fatura.data.idPorosia)
                 } catch (err) {
                     console.log(err);
                 }
             }
 
-            vendosTeDhenat();
             vendosFature();
         } else {
             navigate("/login");
@@ -71,55 +57,76 @@ export default function PagesaMeSukses(props) {
                             <MDBCard style={{ borderRadius: "10px" }}>
                                 <MDBCardHeader className="px-4 py-5">
                                     <MDBTypography tag="h5" className="text-muted mb-0">
-                                        Porosia juaj u vendos me sukses, Faleminderit <span style={{ color: "#a8729a" }}>{teDhenat.perdoruesi && teDhenat.perdoruesi.emri}</span>!
+                                        Porosia juaj u vendos me sukses, Faleminderit <span style={{ color: "#01df93" }}>{fatura && fatura.emri}</span>!
                                     </MDBTypography>
                                 </MDBCardHeader>
                                 <MDBCardBody className="p-4">
-                                    <div className="d-flex justify-content-between align-items-center mb-4">
+                                    <div className="d-flex justify-content-between align-items-center mb-0">
                                         <p
                                             className="lead fw-normal mb-0"
-                                            style={{ color: "#a8729a" }}
+                                            style={{ color: "#01df93" }}
                                         >
                                             Fatura
                                         </p>
                                         <p className="small text-muted mb-0">
-                                            Receipt Voucher : 1KAU9-84UIL
+                                            Porosia: #{fatura && fatura.idPorosia}
+                                        </p>
+                                    </div>
+                                    <div className="d-flex justify-content-between align-items-center mb-0">
+                                        <p className="lead fw-normal mb-0"> </p>
+                                        <p className="small text-muted mb-0">
+                                            Statusi : {fatura && fatura.statusiPorosis}
+                                        </p>
+                                    </div>
+                                    <div className="d-flex justify-content-between align-items-center mb-4">
+                                        <p className="lead fw-normal mb-0"> </p>
+                                        <p className="small text-muted mb-0">
+                                            Data Porosise : {fatura && (new Date(fatura.dataPorosis).toLocaleDateString('en-GB', { dateStyle: 'short' }))}
                                         </p>
                                     </div>
 
-                                    {cart.length !== 0 && cart.map((item) => {
+
+                                    {fatura && fatura.teDhenatEporosis && fatura.teDhenatEporosis.map((item) => {
                                         return (
                                             <MDBCard className="shadow-0 border mb-4">
                                                 <MDBCardBody>
                                                     <MDBRow>
 
-                                                        <MDBCol md="2">
-                                                            <MDBCardImage
-                                                                src={`${process.env.PUBLIC_URL}/img/products/${item.foto}`}
-                                                                fluid
-                                                                alt="foto"
-                                                            />
+                                                        <MDBCol md="1" className="col-3 col-md-1">
+                                                            <div className="image-wrapper">
+                                                                <MDBCardImage
+                                                                    src={`${process.env.PUBLIC_URL}/img/products/${item.fotoProduktit}`}
+                                                                    fluid
+                                                                    alt="foto"
+                                                                />
+                                                            </div>
                                                         </MDBCol>
                                                         <MDBCol
-                                                            md="5"
+                                                            md="4"
                                                             className="text-center d-flex justify-content-center align-items-center"
                                                         >
-                                                            <p className="text-muted mb-0">{item.emri}</p>
+                                                            <p className="text-muted mb-0">{item.emriProduktit}</p>
                                                         </MDBCol>
                                                         <MDBCol
-                                                            md="2"
+                                                            md="1"
                                                             className="text-center d-flex justify-content-center align-items-center"
                                                         >
-                                                            <p className="text-muted mb-0 small">Sasia: {item.sasia}</p>
+                                                            <p className="text-muted mb-0 small">Sasia: <strong>{item.sasiaPorositur}</strong></p>
                                                         </MDBCol>
                                                         <MDBCol
-                                                            md="2"
+                                                            md="3"
                                                             className="text-center d-flex justify-content-center align-items-center"
                                                         >
-                                                            <p className="text-muted mb-0 small">{item.cmimi} €</p>
+                                                            <p className="text-muted mb-0 small">Qmimi Produktit: <strong>{parseFloat(item.qmimiProduktit).toFixed(2)} €</strong></p>
+                                                        </MDBCol>
+                                                        <MDBCol
+                                                            md="3"
+                                                            className="text-center d-flex justify-content-center align-items-center"
+                                                        >
+                                                            <p className="text-muted mb-0 small">Qmimi Total: <strong>{parseFloat(item.qmimiTotal).toFixed(2)} €</strong></p>
                                                         </MDBCol>
                                                     </MDBRow>
-                                                    
+
                                                 </MDBCardBody>
                                             </MDBCard>
                                         );
@@ -128,42 +135,93 @@ export default function PagesaMeSukses(props) {
 
 
                                     <div className="d-flex justify-content-between pt-2">
-                                        <p className="fw-bold mb-0">Order Details</p>
-                                        <p className="text-muted mb-0">
-                                            <span className="fw-bold me-4">Total</span> $898.00
-                                        </p>
+                                        <p className="fw-bold mb-0">Te dhenat e dergeses</p>
+                                        <p className="fw-bold mb-0">Te dhenat e porosise</p>
                                     </div>
 
                                     <div className="d-flex justify-content-between pt-2">
-                                        <p className="text-muted mb-0">Invoice Number : 788152</p>
                                         <p className="text-muted mb-0">
-                                            <span className="fw-bold me-4">Discount</span> $19.00
+                                            <span className="fw-bold me-2">Klienti:</span> {fatura && fatura.emri} {fatura && fatura.mbiemri}
                                         </p>
+                                        {(fatura && fatura.zbritja !== 0.00) &&
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">Nentotali:</span> {fatura && (parseFloat(fatura.totaliPorosis) + parseFloat(fatura.zbritja)).toFixed(2)} €
+                                            </p>
+                                        }
+                                        {(fatura && fatura.zbritja === 0.00) &&
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">TVSH 18%:</span> {fatura && parseFloat(fatura.totaliPorosis * 0.18).toFixed(2)} €
+                                            </p>
+                                        }
                                     </div>
 
                                     <div className="d-flex justify-content-between">
                                         <p className="text-muted mb-0">
-                                            Invoice Date : 22 Dec,2019
+                                            <span className="fw-bold me-2">Email:</span> {fatura && fatura.email}
                                         </p>
-                                        <p className="text-muted mb-0">
-                                            <span className="fw-bold me-4">GST 18%</span> 123
-                                        </p>
+                                        {(fatura && fatura.zbritja !== 0.00) &&
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">Zbritja:</span> - {fatura && parseFloat(fatura.zbritja).toFixed(2)} €
+                                            </p>
+                                        }
+                                        {(fatura && fatura.zbritja === 0.00) &&
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">Totali pa TVSH:</span> {fatura && parseFloat(fatura.totaliPorosis - (fatura.totaliPorosis * 0.18)).toFixed(2)} €
+                                            </p>
+                                        }
                                     </div>
 
-                                    <div className="d-flex justify-content-between mb-5">
+                                    <div className="d-flex justify-content-between ">
                                         <p className="text-muted mb-0">
-                                            Recepits Voucher : 18KU-62IIK
+                                            <span className="fw-bold me-2">Numri Kontaktit:</span> {fatura && fatura.nrKontaktit}
                                         </p>
-                                        <p className="text-muted mb-0">
-                                            <span className="fw-bold me-4">Delivery Charges</span>{" "}
-                                            Free
-                                        </p>
+                                        {(fatura && fatura.zbritja !== 0.00) &&
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">TVSH 18%:</span> {fatura && parseFloat(fatura.totaliPorosis * 0.18).toFixed(2)} €
+                                            </p>
+                                        }
+                                        {(fatura && fatura.zbritja === 0.00) &&
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">Transporti:</span> Pa Pagese
+                                            </p>
+                                        }
                                     </div>
+                                    <div className={`d-flex justify-content-between ${fatura && fatura.zbritja === 0.00 ? 'mb-5' : ''}`}>
+                                        <p className="text-muted mb-0">
+                                            <span className="fw-bold me-2">Adresa:</span> {fatura && (fatura.adresa + ", ")} {fatura && (fatura.qyteti + ", ")} {fatura && fatura.shteti} {fatura && fatura.zipKodi}
+                                        </p>
+                                        {(fatura && fatura.zbritja !== 0.00) &&
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">Totali pa TVSH:</span> {fatura && parseFloat(fatura.totaliPorosis - (fatura.totaliPorosis * 0.18)).toFixed(2)} €
+                                            </p>
+                                        }
+                                        {(fatura && fatura.zbritja === 0.00) &&
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">Pagesa:</span> Paguaj pas pranimit
+                                            </p>
+                                        }
+                                    </div>
+                                    {(fatura && fatura.zbritja !== 0.00) &&
+                                        <div className="d-flex justify-content-between">
+                                            <p className="text-muted mb-0"></p>
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">Transporti:</span> Pa Pagese
+                                            </p>
+                                        </div>
+                                    }
+                                    {(fatura && fatura.zbritja !== 0.00) &&
+                                        <div className="d-flex justify-content-between mb-5">
+                                            <p className="text-muted mb-0"></p>
+                                            <p className="text-muted mb-0">
+                                                <span className="fw-bold me-2">Pagesa:</span> Paguaj pas pranimit
+                                            </p>
+                                        </div>
+                                    }
                                 </MDBCardBody>
                                 <MDBCardFooter
                                     className="border-0 px-4 py-5"
                                     style={{
-                                        backgroundColor: "#a8729a",
+                                        backgroundColor: "#01df93",
                                         borderBottomLeftRadius: "10px",
                                         borderBottomRightRadius: "10px",
                                     }}
@@ -172,12 +230,21 @@ export default function PagesaMeSukses(props) {
                                         tag="h5"
                                         className="d-flex align-items-center justify-content-end text-white text-uppercase mb-0"
                                     >
-                                        Total paid: <span className="h2 mb-0 ms-2">$1040</span>
+                                        Totali Porosise: <span className="h2 mb-0 ms-2">{fatura && parseFloat(fatura.totaliPorosis).toFixed(2)} €</span>
                                     </MDBTypography>
                                 </MDBCardFooter>
                             </MDBCard>
+                            <div className="butonatNeQender">
+                            <Link to={`/Fatura/${nrFatures}`}>
+                                <button className="button" name='complete' type="submit" value="Perfundo Porosin " >Printo Faturen</button>
+                                </Link>
+                                <Link to={'/dashboard'}>
+                                    <button className="button" name='complete' type="submit" value="Perfundo Porosin ">Mbyll Detajet</button>
+                                </Link>
+                            </div>
                         </MDBCol>
                     </MDBRow>
+
                 </MDBContainer>
             </section>
         </>

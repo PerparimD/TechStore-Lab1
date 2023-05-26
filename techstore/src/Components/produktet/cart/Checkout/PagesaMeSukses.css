@@ -1,0 +1,28 @@
+.image-wrapper, .butonatNeQender {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.butonatNeQender{
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-top: 1.5em;
+}
+
+@media (max-width: 767px) {
+  .col-3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .image-wrapper{
+    width: 25%;
+  }
+
+  .butonatNeQender{
+    margin-top: 3em;
+  }
+}

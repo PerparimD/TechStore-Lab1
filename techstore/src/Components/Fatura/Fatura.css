@@ -1,0 +1,93 @@
+.fatura * {
+  /* styles specific to elements inside .fatura */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18pt;
+}
+
+.fatura {
+  margin: 2em;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+}
+
+.teDhenatKompanis {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.teDhenatKompanis img {
+  width: 250px;
+  height: auto;
+  margin-bottom: 1em;
+}
+.teDhenatKlientit {
+  width: 100%;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.data {
+  text-align: end;
+  width: 100%;
+}
+
+.tabelaETeDhenaveProduktit {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.tabelaETeDhenaveProduktit table {
+  width: 100%;
+  text-align: center;
+}
+
+.tabelaETeDhenaveProduktit th,
+td {
+  padding: 12px 15px;
+}
+
+.containerFatura {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.detajetDorezimit {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.detajetPoresis {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.fatura h1 {
+  font-size: 30pt;
+}
+
+.fatura h2 {
+  font-size: 25pt;
+}
+
+.fatura h3 {
+  font-size: 20pt;
+}

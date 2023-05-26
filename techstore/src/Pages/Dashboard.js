@@ -7,12 +7,14 @@ import "./Styles/Dashboard.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { TailSpin } from 'react-loader-spinner';
+import PorositeUserit from "../Components/Dashboard/PorositeUserit";
 
 const Dashboard = () => {
   const [shfaqAdmin, setShfaqAdmin] = useState(false);
   const [teDhenat, setTeDhenat] = useState([]);
   const [perditeso, setPerditeso] = useState("");
   const [loading, setLoading] = useState(true); 
+  const [shfaqPorosite, setShfaqPorosite] = useState(true);
 
 
   const navigate = useNavigate();
@@ -106,7 +108,7 @@ const Dashboard = () => {
           <div class="butonatDiv">
             <button disabled
               class="button">Perditeso te Dhenat <i class="fa-solid">&#xf4ff;</i></button>
-            <button disabled class="button">Porosite e tua</button>
+            <button onClick={() => setShfaqPorosite(true)} class="button">Porosite e tua</button>
             {(teDhenat.rolet.includes("Admin") || teDhenat.rolet.includes("Menaxher")) &&
               <button class="button" onClick={() => setShfaqAdmin(true)}>Admin Dashboard</button>
             }
@@ -114,6 +116,7 @@ const Dashboard = () => {
         </div>)}
 
       {shfaqAdmin && <AdminDashboard setShfaqAdmin={() => setShfaqAdmin(false)} />}
+      {shfaqPorosite && <PorositeUserit setShfaqPorosite={() => setShfaqPorosite(false)} idUseri={teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.userId}/>}
 
       <Footer />
 

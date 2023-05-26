@@ -17,7 +17,7 @@ function Checkout(props) {
 
     const getID = localStorage.getItem("id");
     const navigate = useNavigate();
-    let nrFatures = 0;
+    const [nrFatures, setNrFatures] = useState(0);
 
     useEffect(() => {
         if (getID) {
@@ -52,7 +52,7 @@ function Checkout(props) {
                 .then((response) => {
                     if (response.status === 201 || response.status === 200) {
                         setVendosjaPorosisSukses(true);
-                        nrFatures += response.data.idPorosiay
+                        setNrFatures(nrFatures + response.data.idPorosia);
                     }
 
                     let vendosjetESakta = 0;
@@ -82,10 +82,8 @@ function Checkout(props) {
                 .finally(() => {
                     setTimeout(() => {
                         if (rregulloUseEffect) {
-                            // Enable the effect when needed
                             setRregulloUseEffect(false);
                         } else {
-                            // Trigger the effect to execute
                             setVendosjaTeDhenaveSukses(vendosjaTeDhenaveSukses);
                             setVendosjaPorosisSukses(vendosjaPorosisSukses);
                         }
@@ -99,17 +97,15 @@ function Checkout(props) {
 
     useEffect(() => {
         if (rregulloUseEffect) {
-            return; // Return early, effectively disabling the effect
+            return; 
         }
 
-        // Your effect logic here
         if (vendosjaTeDhenaveSukses && vendosjaPorosisSukses) {
             setPagesaMeSukses(true);
-            // localStorage.removeItem("cart");
+            localStorage.removeItem("cart");
             console.log("sukses");
         } else if (!vendosjaTeDhenaveSukses || !vendosjaPorosisSukses) {
             setPagesaDeshtoi(true);
-            console.log("gabim", vendosjaTeDhenaveSukses, vendosjaPorosisSukses);
         }
     }, [vendosjaTeDhenaveSukses, vendosjaPorosisSukses]);
     return (

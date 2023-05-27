@@ -8,13 +8,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { TailSpin } from 'react-loader-spinner';
 import PorositeUserit from "../Components/Dashboard/PorositeUserit";
+import PagesaMeSukses from "../Components/produktet/cart/Checkout/PagesaMeSukses";
 
 const Dashboard = () => {
   const [shfaqAdmin, setShfaqAdmin] = useState(false);
   const [teDhenat, setTeDhenat] = useState([]);
   const [perditeso, setPerditeso] = useState("");
-  const [loading, setLoading] = useState(true); 
-  const [shfaqPorosite, setShfaqPorosite] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [shfaqPorosite, setShfaqPorosite] = useState(false);
+  const [shfaqDetajet, setShfaqDetajet] = useState(false);
+  const [nrFatures, setNumriFatures] = useState(0);
 
 
   const navigate = useNavigate();
@@ -32,7 +35,7 @@ const Dashboard = () => {
         } catch (err) {
           console.log(err);
         } finally {
-          setLoading(false); 
+          setLoading(false);
         }
       };
 
@@ -41,6 +44,18 @@ const Dashboard = () => {
       navigate("/login");
     }
   }, [perditeso]);
+
+  const handleShfaqPorosite = () => {
+    setShfaqAdmin(false);
+    setShfaqDetajet(false);
+    setShfaqPorosite(true);
+  }
+
+  const handleShfaqAdminDashboard = () => {
+    setShfaqAdmin(true);
+    setShfaqDetajet(false);
+    setShfaqPorosite(false);
+  }
   return (
     <div className="dashboard">
       <Helmet>
@@ -108,15 +123,17 @@ const Dashboard = () => {
           <div class="butonatDiv">
             <button disabled
               class="button">Perditeso te Dhenat <i class="fa-solid">&#xf4ff;</i></button>
-            <button onClick={() => setShfaqPorosite(true)} class="button">Porosite e tua</button>
+            <button onClick={handleShfaqPorosite} class="button">Porosite e tua</button>
             {(teDhenat.rolet.includes("Admin") || teDhenat.rolet.includes("Menaxher")) &&
-              <button class="button" onClick={() => setShfaqAdmin(true)}>Admin Dashboard</button>
+              <button class="button" onClick={handleShfaqAdminDashboard}>Admin Dashboard</button>
             }
           </div>
+          {shfaqPorosite && <PorositeUserit setShfaqDetajet={() => setShfaqDetajet(true)} setNumriFatures={(e) => setNumriFatures(e)} setShfaqPorosite={() => setShfaqPorosite(false)} idUseri={teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.userId} />}
+
         </div>)}
 
       {shfaqAdmin && <AdminDashboard setShfaqAdmin={() => setShfaqAdmin(false)} />}
-      {shfaqPorosite && <PorositeUserit setShfaqPorosite={() => setShfaqPorosite(false)} idUseri={teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.userId}/>}
+      {shfaqDetajet && <PagesaMeSukses handleMbyll={() => { setShfaqDetajet(false); setShfaqPorosite(true) }} nrFatures={nrFatures} />}
 
       <Footer />
 

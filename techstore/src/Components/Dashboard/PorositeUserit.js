@@ -3,9 +3,8 @@ import classes from './Styles/PorositeUserit.module.css';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBan, faPenToSquare, faPlus, faClose } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faClose } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
-import PagesaMeSukses from "../produktet/cart/Checkout/PagesaMeSukses";
 
 function PorositeUserit(props) {
     const [porosite, setPorosite] = useState([]);
@@ -30,9 +29,9 @@ function PorositeUserit(props) {
         shfaqKateogrit();
     }, [perditeso]);
 
+
     return (
         <div className={classes.containerDashboardP}>
-            {shfaqDetajet && <PagesaMeSukses nrFatures={nrFatures} />}
 
             {loading ? (
                 <div className="Loader">
@@ -49,14 +48,14 @@ function PorositeUserit(props) {
                 </div>
             ) : (<>
                 <h1 className="title">
-                    Lista e Kategorive te Produkteve
+                    Porosit e Juaja
                 </h1>
                 <Button
                     className="mb-3 Butoni"
                     onClick={() => props.setShfaqPorosite()}
 
                 >
-                    Mbyll Kategorite <FontAwesomeIcon icon={faClose} />
+                    Mbyll Porosite <FontAwesomeIcon icon={faClose} />
                 </Button>
 
 
@@ -76,12 +75,12 @@ function PorositeUserit(props) {
                             <td>{k.idPorosia}</td>
                             <td>{new Date(k.dataPorosis).toLocaleDateString('en-GB', { dateStyle: 'short' })}</td>
                             <td>{k.totaliProdukteve}</td>
-                            <td >{parseFloat(k.totaliPorosis).toFixed(2)}</td>
-                            <td >{k.zbritja !== 0 ? parseFloat(k.zbritja).toFixed(2) : "Nuk Ka Zbritje"}</td>
+                            <td >{parseFloat(k.totaliPorosis).toFixed(2)} €</td>
+                            <td >{k.zbritja !== 0 ? parseFloat(k.zbritja).toFixed(2) + " €": "Nuk Ka Zbritje"}</td>
                             <td >{k.statusiPorosis}</td>
                             <td >
-                                <Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => { setNrFatures(k.idPorosia); setShfaqDetajet(true) }}><FontAwesomeIcon icon={faPenToSquare} /></Button>
-                                <Button variant="danger" ><FontAwesomeIcon icon={faBan} /></Button>
+                                <Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => { props.setNumriFatures(k.idPorosia); props.setShfaqDetajet(); props.setShfaqPorosite() }}><FontAwesomeIcon icon={faInfoCircle} /></Button>
+                                
                             </td>
                         </tr>
                     ))}

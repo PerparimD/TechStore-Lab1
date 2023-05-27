@@ -45,16 +45,63 @@ namespace WebAPI.Controllers
                 .SumAsync(p => p.TotaliPorosis);
             /* MUJORE */
 
+            /* TE MEPARSHME */
+
+            /* DITA E DJESHME */
+            var ditaDjeshme = DateTime.Today.AddDays(-1);
+            var totPorosiveDjeshme = await _context.Porosits.Where(p => p.DataPorosis == ditaDjeshme).CountAsync();
+            var totShitjeveDjeshme = await _context.Porosits.Where(p => p.DataPorosis == ditaDjeshme).SumAsync(p => p.TotaliPorosis);
+            /* DITA E DJESHME */
+
+            /* MUAJI I KALUAR */
+            var dataMuajinKaluar = dataESotme.AddMonths(-1);
+            var ditaEPareMuajitKaluar = new DateTime(dataMuajinKaluar.Year, dataMuajinKaluar.Month, 1);
+            var ditaEFunditMuajitKaluar = ditaEPareMuajitKaluar.AddMonths(1).AddDays(-1);
+
+            var totPorosiveMujoreKaluar = await _context.Porosits
+                .Where(p => p.DataPorosis >= ditaEPareMuajitKaluar && p.DataPorosis <= ditaEFunditMuajitKaluar)
+                .CountAsync();
+
+            var totShitjeveMujoreKaluar = await _context.Porosits
+                .Where(p => p.DataPorosis >= ditaEPareMuajitKaluar && p.DataPorosis <= ditaEFunditMuajitKaluar)
+                .SumAsync(p => p.TotaliPorosis);
+            /* MUAJI I KALUAR */
+
+            /* TE MEPARSHME */
+
             var totalet = new
             {
-                TotaliShitjeve = totShitjeve,
-                TotaliUsers = totUser,
-                TotaliProdukteve = totProdukteve,
-                TotaliPorosive = totPorosive,
-                TotaliPorosiveSotme = totPorosiveSotme,
-                TotaliShitjeveSotme = totShitjeveSotme,
-                TotaliPorosiveKeteMuaj = totPorosiveMujore,
-                TotaliShitjeveKeteMuaj = totShitjeveMujore,
+                /* PERGJITHSHME */
+                    TotaliShitjeve = totShitjeve,
+                    TotaliUsers = totUser,
+                    TotaliProdukteve = totProdukteve,
+                    TotaliPorosive = totPorosive,
+                /* PERGJITHSHME */
+
+                /* DITA E SOTME */
+                    TotaliPorosiveSotme = totPorosiveSotme,
+                    TotaliShitjeveSotme = totShitjeveSotme,
+                /* DITA E SOTME */
+
+                /* MUJORE */
+                    TotaliPorosiveKeteMuaj = totPorosiveMujore,
+                    TotaliShitjeveKeteMuaj = totShitjeveMujore,
+                /* MUJORE */
+
+                /* TE MEPARSHME */
+
+                    /* DITA E DJESHME */
+                        TotaliPorosiveDjeshme = totPorosiveDjeshme,
+                        TotaliShitjeveDjeshme = totShitjeveDjeshme,
+                    /* DITA E DJESHME */
+
+                    /* MUAJI I KALUAR */
+                        TotaliPorosiveMuajinKaluar = totPorosiveMujoreKaluar,
+                        TotaliShitjeveMuajinKaluar = totShitjeveMujoreKaluar,
+                    /* MUAJI I KALUAR */
+
+                /* TE MEPARSHME */
+
             };
 
             return Ok(totalet);

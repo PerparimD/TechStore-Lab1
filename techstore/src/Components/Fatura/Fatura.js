@@ -14,10 +14,11 @@ function Fatura(props) {
     const { nrFatures } = useParams();
 
     const dataPorosise = new Date(fatura.dataPorosis);
-    const dataMberritjes = new Date(dataPorosise.setDate(dataPorosise.getDate() + 4));
     const dita = dataPorosise.getDate().toString().padStart(2, '0');
     const muaji = (dataPorosise.getMonth() + 1).toString().padStart(2, '0');
     const viti = dataPorosise.getFullYear().toString().slice(-2);
+    const dataMberritjes = new Date(dataPorosise.setDate(dataPorosise.getDate() + 4));
+
 
     const barkodi = `TS-${dita}${muaji}${viti}-${fatura.idKlienti}-${nrFatures}`;
 
@@ -44,7 +45,7 @@ function Fatura(props) {
                     );
                     setFatura(fatura.data);
                     console.log(fatura)
-                    if(fatura.status == "200"){
+                    if (fatura.status == "200") {
                         setVendosFature(true);
                     }
                 } catch (err) {
@@ -106,7 +107,7 @@ function Fatura(props) {
             <div className="fatura">
                 <div className="header">
                     <div className="teDhenatKompanis">
-                        <img src="../../img/web/techstoreLogoWhiteSquare.png" style={{ width: "150px", height: "150px" }} />
+                        <img src="../../img/web/techstoreLogoWhiteSquare.png" style={{ width: "150px", height: "auto", marginTop: "0.5em" }} />
                         <h1 style={{ fontSize: "24pt" }}>TechStore SH.P.K.</h1>
                         <p>Rr. Agim Bajrami - Perballe Xhamise, Kaçanik 71000</p>
                         <p>contact@tech.store</p>
@@ -220,7 +221,7 @@ function Fatura(props) {
                         <h1 style={{ fontSize: "24pt" }}>Shenime shtes</h1>
                         <br />
                         <p style={{ fontSize: "18pt" }}>Paguani pas pranimit te porosis</p>
-                        <p style={{ fontSize: "18pt" }}>Porosia arrin me se largu: 
+                        <p style={{ fontSize: "18pt" }}>Porosia arrin me se largu:
                             <strong> {dataMberritjes.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}</strong>
                         </p>
                         <h3 style={{ fontSize: "18pt" }}>Ju lutemi qe pas pranimit ta konfirmoni porosine ne Sistem!</h3>

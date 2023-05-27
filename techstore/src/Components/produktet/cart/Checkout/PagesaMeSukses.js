@@ -56,9 +56,16 @@ export default function PagesaMeSukses(props) {
                         <MDBCol lg="10" xl="8">
                             <MDBCard style={{ borderRadius: "10px" }}>
                                 <MDBCardHeader className="px-4 py-5">
-                                    <MDBTypography tag="h5" className="text-muted mb-0">
-                                        Porosia juaj u vendos me sukses, Faleminderit <span style={{ color: "#01df93" }}>{fatura && fatura.emri}</span>!
-                                    </MDBTypography>
+                                    {props.handleMbyll &&
+                                        <MDBTypography tag="h5" className="text-muted mb-0">
+                                            Detajet e Porosise <span style={{ color: "#01df93" }}>#{fatura && fatura.idPorosia}</span>
+                                        </MDBTypography>
+                                    }
+                                    {!props.handleMbyll &&
+                                        <MDBTypography tag="h5" className="text-muted mb-0">
+                                            Porosia juaj u vendos me sukses, Faleminderit <span style={{ color: "#01df93" }}>{fatura && fatura.emri}</span>!
+                                        </MDBTypography>
+                                    }
                                 </MDBCardHeader>
                                 <MDBCardBody className="p-4">
                                     <div className="d-flex justify-content-between align-items-center mb-0">
@@ -102,13 +109,13 @@ export default function PagesaMeSukses(props) {
                                                             </div>
                                                         </MDBCol>
                                                         <MDBCol
-                                                            md="4"
+                                                            md="3"
                                                             className="text-center d-flex justify-content-center align-items-center"
                                                         >
                                                             <p className="text-muted mb-0">{item.emriProduktit}</p>
                                                         </MDBCol>
                                                         <MDBCol
-                                                            md="1"
+                                                            md="2"
                                                             className="text-center d-flex justify-content-center align-items-center"
                                                         >
                                                             <p className="text-muted mb-0 small">Sasia: <strong>{item.sasiaPorositur}</strong></p>
@@ -235,12 +242,17 @@ export default function PagesaMeSukses(props) {
                                 </MDBCardFooter>
                             </MDBCard>
                             <div className="butonatNeQender">
-                            <Link to={`/Fatura/${nrFatures}`}>
-                                <button className="button" name='complete' type="submit" value="Perfundo Porosin " >Printo Faturen</button>
+                                <Link to={`/Fatura/${nrFatures}`}>
+                                    <button className="button" name='complete' type="submit" value="Perfundo Porosin " >Printo Faturen</button>
                                 </Link>
-                                <Link to={'/dashboard'}>
-                                    <button className="button" name='complete' type="submit" value="Perfundo Porosin ">Mbyll Detajet</button>
-                                </Link>
+                                {!props.handleMbyll &&
+                                    <Link to={'/dashboard'}>
+                                        <button className="button" name='complete' type="submit" value="Perfundo Porosin ">Mbyll Detajet</button>
+                                    </Link>
+                                }
+                                {props.handleMbyll &&
+                                    <button className="button" name='complete' type="submit" onClick={() => props.handleMbyll()}>Mbyll Detajet</button>
+                                }
                             </div>
                         </MDBCol>
                     </MDBRow>

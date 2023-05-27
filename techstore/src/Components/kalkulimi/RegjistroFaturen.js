@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
 import { Table, Form, Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 function RegjistroFaturen(props) {
     const [perditeso, setPerditeso] = useState('');
@@ -27,6 +28,34 @@ function RegjistroFaturen(props) {
     const [sasiaNeStok, setSasiaNeStok] = useState(0);
     const [qmimiB, setQmimiB] = useState(0);
     const [qmimiSH, setQmimiSH] = useState(0);
+
+    const [teDhenat, setTeDhenat] = useState([]);
+
+
+    const navigate = useNavigate();
+
+    const getID = localStorage.getItem("id");
+
+    useEffect(() => {
+        if (getID) {
+            const vendosTeDhenat = async () => {
+                try {
+                    const perdoruesi = await axios.get(
+                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`
+                    );
+                    setTeDhenat(perdoruesi.data);
+                } catch (err) {
+                    console.log(err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            vendosTeDhenat();
+        } else {
+            navigate("/login");
+        }
+    }, [perditeso]);
 
     useEffect(() => {
         const vendosProduktet = async () => {
@@ -88,11 +117,11 @@ function RegjistroFaturen(props) {
     };
 
     const handleSave = () => {
-        if(totFaturesShitese > 0){
+        if (totFaturesShitese > 0) {
             handleMbyllFature();
             props.setMbyllFaturen();
         }
-        else{
+        else {
             props.setMbyllFaturen();
         }
     }
@@ -110,7 +139,7 @@ function RegjistroFaturen(props) {
                 totaliProdukteveRegjistruara: totProdukteve,
                 shumaTotaleRegjistrimit: totFaturesShitese,
                 shumaTotaleBlerese: totFaturesBlerese,
-                stafiId: 2 //Duhet te ndryshohet kur te behet pjesa e authentikimit
+                stafiId: teDhenat.perdoruesi.userId
             }).then(async (response) => {
 
                 for (let produkti of produktetNeKalkulim) {

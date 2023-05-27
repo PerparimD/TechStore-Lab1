@@ -31,6 +31,7 @@ namespace TechStoreWebAPI.Controllers
             List<Porosit> porosit = await _context.Porosits
                 
                 .Where(p=> p.IdKlienti == idPerdoruesi)
+                .OrderByDescending(p => p.IdPorosia)
                 .ToListAsync();
 
             return Ok(porosit);

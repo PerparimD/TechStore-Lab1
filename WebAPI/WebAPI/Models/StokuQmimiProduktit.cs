@@ -17,5 +17,5 @@ public partial class StokuQmimiProduktit
 
     public DateTime? DataPerditsimit { get; set; }
 
-    public virtual Produkti Produkti { get; set; } = null!;
+    public virtual Produkti? Produkti { get; set; }
 }

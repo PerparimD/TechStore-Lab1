@@ -118,44 +118,86 @@ function Statistika() {
             <hr />
             <h1 className="title">Statistikat Ditore dhe Mujore</h1>
             <div className={classes.cardStatisitkat}>
-                <Card className={classes.KartaStatistikave} border="dark">
+                <Card className={classes.KartaStatistikave}
+                    bg={totaleTeNdryshme.totaliShitjeveSotme > totaleTeNdryshme.totaliShitjeveDjeshme ? "success" :
+                        (totaleTeNdryshme.totaliShitjeveDjeshme === totaleTeNdryshme.totaliShitjeveSotme) ? "light" : "danger"}
+                    text={totaleTeNdryshme.totaliShitjeveSotme === totaleTeNdryshme.totaliShitjeveDjeshme ? "dark" : "white"}>
                     <Card.Header>Totali Shitjev Sotme</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <span className={classes.TekstiStatistika} >
                                 {parseFloat(totaleTeNdryshme.totaliShitjeveSotme).toFixed(2)} €
                             </span>
+                            <p>
+                                {totaleTeNdryshme.totaliShitjeveSotme > totaleTeNdryshme.totaliShitjeveDjeshme ?
+                                    (totaleTeNdryshme.totaliShitjeveSotme - totaleTeNdryshme.totaliShitjeveDjeshme) + "€ Shitje me shume se Dje" :
+                                    (totaleTeNdryshme.totaliShitjeveDjeshme === totaleTeNdryshme.totaliShitjeveSotme) ? "Njesoj si Dje" :
+                                        (totaleTeNdryshme.totaliShitjeveDjeshme - totaleTeNdryshme.totaliShitjeveSotme) + "€ Shitje me pak se Dje"
+                                }
+                            </p>
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                <Card className={classes.KartaStatistikave} border="dark">
+                <Card className={classes.KartaStatistikave}
+                    bg={totaleTeNdryshme.totaliPorosiveSotme > totaleTeNdryshme.totaliPorosiveDjeshme ? "success" :
+                        (totaleTeNdryshme.totaliPorosiveDjeshme === totaleTeNdryshme.totaliPorosiveSotme) ? "light" : "danger"}
+                    text={totaleTeNdryshme.totaliPorosiveSotme === totaleTeNdryshme.totaliPorosiveDjeshme ? "dark" : "white"}>
                     <Card.Header>Totali Porosive Sotme</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <span className={classes.TekstiStatistika} >
                                 {totaleTeNdryshme.totaliPorosiveSotme}
                             </span>
+                            <p>
+                                {totaleTeNdryshme.totaliPorosiveSotme > totaleTeNdryshme.totaliPorosiveDjeshme ?
+                                    (totaleTeNdryshme.totaliPorosiveSotme - totaleTeNdryshme.totaliPorosiveDjeshme) + " Porosi me shume se Dje" :
+                                    (totaleTeNdryshme.totaliPorosiveDjeshme === totaleTeNdryshme.totaliPorosiveSotme) ? "Njesoj si Dje" :
+                                        (totaleTeNdryshme.totaliPorosiveDjeshme - totaleTeNdryshme.totaliPorosiveSotme) + " Prosi me pak se Dje"
+                                }
+                            </p>
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                <Card className={classes.KartaStatistikave} border="dark">
+                <Card className={classes.KartaStatistikave}
+                    bg={totaleTeNdryshme.totaliShitjeveKeteMuaj > totaleTeNdryshme.totaliShitjeveMuajinKaluar ? "success" :
+                        (totaleTeNdryshme.totaliShitjeveMuajinKaluar === totaleTeNdryshme.totaliShitjeveKeteMuaj) ? "light" : "danger"}
+                    text={totaleTeNdryshme.totaliShitjeveKeteMuaj === totaleTeNdryshme.totaliShitjeveMuajinKaluar ? "dark" : "white"}>
                     <Card.Header>Totali Shitjev Kete muaj</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <span className={classes.TekstiStatistika} >
                                 {parseFloat(totaleTeNdryshme.totaliShitjeveKeteMuaj).toFixed(2)} €
                             </span>
+                            <p>
+                                {totaleTeNdryshme.totaliShitjeveKeteMuaj > totaleTeNdryshme.totaliShitjeveMuajinKaluar ?
+                                    (totaleTeNdryshme.totaliShitjeveKeteMuaj - totaleTeNdryshme.totaliShitjeveMuajinKaluar) + "€ Shitje me shume se muajin e Kaluar" :
+                                    (totaleTeNdryshme.totaliShitjeveMuajinKaluar === totaleTeNdryshme.totaliShitjeveKeteMuaj) ? "Njesoj si muajin e kaluar" :
+                                        (totaleTeNdryshme.totaliShitjeveMuajinKaluar - totaleTeNdryshme.totaliShitjeveKeteMuaj) + "€ Shitje me pak se muajin e Kaluar"
+                                }
+                            </p>
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                <Card className={classes.KartaStatistikave} border="dark">
+                <Card
+                    className={classes.KartaStatistikave}
+                    bg={totaleTeNdryshme.totaliPorosiveKeteMuaj > totaleTeNdryshme.totaliPorosiveMuajinKaluar ? "success" :
+                        (totaleTeNdryshme.totaliPorosiveMuajinKaluar === totaleTeNdryshme.totaliPorosiveKeteMuaj) ? "light" : "danger"}
+                    text={totaleTeNdryshme.totaliPorosiveKeteMuaj === totaleTeNdryshme.totaliPorosiveMuajinKaluar ? "dark" : "white"}>
                     <Card.Header>Totali Porosive Kete muaj</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <span className={classes.TekstiStatistika} >
                                 {totaleTeNdryshme.totaliPorosiveKeteMuaj}
                             </span>
+                            <p>
+                                {totaleTeNdryshme.totaliPorosiveKeteMuaj > totaleTeNdryshme.totaliPorosiveMuajinKaluar ?
+                                    (totaleTeNdryshme.totaliPorosiveKeteMuaj - totaleTeNdryshme.totaliPorosiveMuajinKaluar) + " Porosi me shume se muajin e Kaluar" :
+                                    (totaleTeNdryshme.totaliPorosiveMuajinKaluar === totaleTeNdryshme.totaliPorosiveKeteMuaj) ? "Njesoj si muajin e kaluar" :
+                                        (totaleTeNdryshme.totaliPorosiveMuajinKaluar - totaleTeNdryshme.totaliPorosiveKeteMuaj) + " Porosi me pak se muajin e Kaluar"
+                                }
+                            </p>
                         </Card.Text>
+
                     </Card.Body>
                 </Card>
             </div>
@@ -214,7 +256,7 @@ function Statistika() {
                     </Card.Body>
                 </Card>
                 <Card border="dark" >
-                    <Card.Header>Shitjet Javore</Card.Header>
+                    <Card.Header>Statistikat Javore</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <table style={{ whiteSpace: "unset", width: "100%" }}>

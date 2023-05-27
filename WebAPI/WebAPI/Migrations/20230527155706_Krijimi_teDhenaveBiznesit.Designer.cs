@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.Models;
 
@@ -11,9 +12,11 @@ using WebAPI.Models;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(TechStoreDbContext))]
-    partial class TechStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230527155706_Krijimi_teDhenaveBiznesit")]
+    partial class Krijimi_teDhenaveBiznesit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -585,15 +588,15 @@ namespace WebAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDTeDhenatBiznesit"));
 
                     b.Property<string>("Adresa")
-                        .HasColumnType("nvarchar(250)")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("Adresa");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(250)")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("Email");
 
                     b.Property<string>("EmriIBiznesit")
-                        .HasColumnType("nvarchar(250)")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("EmriIBiznesit");
 
                     b.Property<int?>("NF")
@@ -609,12 +612,11 @@ namespace WebAPI.Migrations
                         .HasColumnName("NUI");
 
                     b.Property<string>("NrKontaktit")
-                        .HasColumnType("nvarchar(20)")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("NrKontaktit");
 
                     b.Property<string>("ShkurtesaEmritBiznesit")
-                        .HasMaxLength(7)
-                        .HasColumnType("nvarchar(7)")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("ShkurtesaEmritBiznesit");
 
                     b.HasKey("IDTeDhenatBiznesit")

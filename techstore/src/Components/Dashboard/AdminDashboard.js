@@ -15,6 +15,7 @@ import jwtDecode from 'jwt-decode';
 import Statistika from './Statistika';
 import { faBan, faPenToSquare, faPlus, faXmark, faCheck, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import TeDhenatEBiznesit from '../TeDhenatBiznesit/TeDhenatEBiznesit';
 
 const AdminDashboard = (props) => {
   const [eshteAdmin, setEshteAdmin] = useState(false);
@@ -50,38 +51,47 @@ const AdminDashboard = (props) => {
         <Row>
           <Col>
             <Nav variant="pills" className="flex-column">
-              <button className='colum normalMenu buttoniMbylle' onClick={props.setShfaqAdmin}>Mbylle <FontAwesomeIcon icon={faXmark} width="17px"/></button>
+              <button className='colum normalMenu buttoniMbylle' onClick={props.setShfaqAdmin}>Mbylle <FontAwesomeIcon icon={faXmark} width="17px" /></button>
               {eshteAdmin &&
-                <Nav.Item >
-                  <Nav.Link className='colum normalMenu' eventKey="0" style={key === "0" ? ActiveStyle : inActiveStyle} >Statistikat e Dyqanit</Nav.Link>
-                </Nav.Item>
+                <>
+                  <Nav.Item >
+                    <Nav.Link className='colum normalMenu' eventKey="0" style={key === "0" ? ActiveStyle : inActiveStyle} >Statistikat e Dyqanit</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item >
+                    <Nav.Link className='colum normalMenu' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle} >Te Dhenat e Biznesit</Nav.Link>
+                  </Nav.Item>
+                </>
               }
               <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle} >Produktet</Nav.Link>
+                <Nav.Link className='colum normalMenu' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle} >Produktet</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle} >Mesazhet</Nav.Link>
+                <Nav.Link className='colum normalMenu' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle} >Mesazhet</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle} >Perdoruesit</Nav.Link>
+                <Nav.Link className='colum normalMenu' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle} >Perdoruesit</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle} >Kodet e Zbritjev</Nav.Link>
+                <Nav.Link className='colum normalMenu' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle} >Kodet e Zbritjev</Nav.Link>
               </Nav.Item>
               <Nav.Item >
-                <Nav.Link className='colum normalMenu' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
+                <Nav.Link className='colum normalMenu' eventKey="6" style={key === "6" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <NavDropdown title="Menu" id="basic-nav-dropdown" className='hamburgerMenu'>
-                  <button className='colum buttoniMbylle' onClick={props.setShfaqAdmin}>Mbylle <FontAwesomeIcon icon={faXmark} width="17px"/></button>
+                  <button className='colum buttoniMbylle' onClick={props.setShfaqAdmin}>Mbylle <FontAwesomeIcon icon={faXmark} width="17px" /></button>
                   {eshteAdmin &&
-                    <Nav.Link className='colum' eventKey="0" style={key === "0" ? ActiveStyle : inActiveStyle}>Statistikat e Dyqanit</Nav.Link>
+                    <>
+                      <Nav.Link className='colum' eventKey="0" style={key === "0" ? ActiveStyle : inActiveStyle}>Statistikat e Dyqanit</Nav.Link>
+                      <Nav.Link className='colum' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle}>Te Dhenat e Biznesit</Nav.Link>
+                    </>
                   }
-                  <Nav.Link className='colum' eventKey="1" style={key === "1" ? ActiveStyle : inActiveStyle}>Produktet</Nav.Link>
-                  <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle}>Mesazhet</Nav.Link>
-                  <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle}>Perdoruesit</Nav.Link>
-                  <Nav.Link className='colum' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle}>Kodet e Zbritjev</Nav.Link>
-                  <Nav.Link className='colum' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
+                  <Nav.Link className='colum' eventKey="2" style={key === "2" ? ActiveStyle : inActiveStyle}>Produktet</Nav.Link>
+                  <Nav.Link className='colum' eventKey="3" style={key === "3" ? ActiveStyle : inActiveStyle}>Mesazhet</Nav.Link>
+                  <Nav.Link className='colum' eventKey="4" style={key === "4" ? ActiveStyle : inActiveStyle}>Perdoruesit</Nav.Link>
+                  <Nav.Link className='colum' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle}>Kodet e Zbritjev</Nav.Link>
+                  <Nav.Link className='colum' eventKey="6" style={key === "6" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
+
                 </NavDropdown>
               </Nav.Item>
             </Nav>
@@ -94,18 +104,21 @@ const AdminDashboard = (props) => {
                 <Statistika />
               </Tab.Pane>
               <Tab.Pane eventKey="1">
-                <ProductTables />
+                <TeDhenatEBiznesit />
               </Tab.Pane>
               <Tab.Pane eventKey="2">
-                <Mesazhet />
+                <ProductTables />
               </Tab.Pane>
               <Tab.Pane eventKey="3">
-                <TabelaEPerdoruesve />
+                <Mesazhet />
               </Tab.Pane>
               <Tab.Pane eventKey="4">
-                <KodiZbritjes />
+                <TabelaEPerdoruesve />
               </Tab.Pane>
               <Tab.Pane eventKey="5">
+                <KodiZbritjes />
+              </Tab.Pane>
+              <Tab.Pane eventKey="6">
                 <KalkulimiIMallit />
               </Tab.Pane>
             </Tab.Content>

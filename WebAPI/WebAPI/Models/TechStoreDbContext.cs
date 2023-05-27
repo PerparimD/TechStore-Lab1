@@ -33,7 +33,7 @@ public partial class TechStoreDbContext : IdentityDbContext
     public virtual DbSet<RegjistrimiStokut> RegjistrimiStokuts { get; set; }
 
     public virtual DbSet<StokuQmimiProduktit> StokuQmimiProduktits { get; set; }
-
+    public virtual DbSet<TeDhenatBiznesit> TeDhenatBiznesits { get; set; }
     public virtual DbSet<TeDhenatEporosi> TeDhenatEporoses { get; set; }
 
     public virtual DbSet<TeDhenatPerdoruesit> TeDhenatPerdoruesits { get; set; }
@@ -172,7 +172,7 @@ public partial class TechStoreDbContext : IdentityDbContext
                 .HasColumnName("username");
         });
 
-        
+
 
         modelBuilder.Entity<Porosit>(entity =>
         {
@@ -201,7 +201,7 @@ public partial class TechStoreDbContext : IdentityDbContext
                 .HasColumnName("zbritja");
             entity.Property(e => e.TotaliProdukteve)
                 .HasColumnName("totaliProdukteve");
-            
+
             entity.HasOne(d => d.IdKlientiNavigation).WithMany(p => p.Porosits)
                 .HasForeignKey(d => d.IdKlienti)
                 .OnDelete(DeleteBehavior.SetNull)
@@ -302,6 +302,29 @@ public partial class TechStoreDbContext : IdentityDbContext
                 .HasColumnName("sasiaNeStok");
 
             entity.HasOne(d => d.Produkti).WithOne(p => p.StokuQmimiProduktit).HasForeignKey<StokuQmimiProduktit>(d => d.ProduktiId);
+        });
+
+        modelBuilder.Entity<TeDhenatBiznesit>(entity =>
+        {
+            entity.HasKey(e => e.IdteDhenatBiznesit);
+
+            entity.ToTable("TeDhenatBiznesit");
+
+            entity.Property(e => e.IdteDhenatBiznesit)
+                .ValueGeneratedNever()
+                .HasColumnName("IDTeDhenatBiznesit");
+            entity.Property(e => e.Adresa).HasMaxLength(250);
+            entity.Property(e => e.Email).HasMaxLength(250);
+            entity.Property(e => e.EmriIbiznesit)
+                .HasMaxLength(250)
+                .HasColumnName("EmriIBiznesit");
+            entity.Property(e => e.Nf).HasColumnName("NF");
+            entity.Property(e => e.NrKontaktit).HasMaxLength(20);
+            entity.Property(e => e.Nrtvsh).HasColumnName("NRTVSH");
+            entity.Property(e => e.Nui).HasColumnName("NUI");
+            entity.Property(e => e.ShkurtesaEmritBiznesit)
+                .HasMaxLength(7)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<TeDhenatEporosi>(entity =>

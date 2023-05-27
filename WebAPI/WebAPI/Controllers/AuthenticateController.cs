@@ -330,7 +330,6 @@ namespace WebAPI.Controllers
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim("id", user.Id),
-                    new Claim("id", user.Id),
                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                     new Claim(JwtRegisteredClaimNames.Email, value:user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),

@@ -42,9 +42,9 @@ namespace TechStoreWebAPI.Controllers
         {
             var porosit = await _context.Porosits
                 .Include(p => p.TeDhenatEporosis)
-                    .ThenInclude(t => t.IdProduktiNavigation) // Include the connection to another entity (e.g., IdProduktiNavigation)
+                    .ThenInclude(t => t.IdProduktiNavigation)
                 .Include(p => p.IdKlientiNavigation)
-                    .ThenInclude(t => t.TeDhenatPerdoruesit) // Include the connection to another entity (e.g., TeDhenatPerdoruesit)
+                    .ThenInclude(t => t.TeDhenatPerdoruesit)
                 .Where(x => x.IdPorosia == nrFatures)
                 .Select(p => new
                 {

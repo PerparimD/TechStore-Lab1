@@ -152,7 +152,7 @@ function Statistika() {
                                 {totaleTeNdryshme.totaliPorosiveSotme > totaleTeNdryshme.totaliPorosiveDjeshme ?
                                     (totaleTeNdryshme.totaliPorosiveSotme - totaleTeNdryshme.totaliPorosiveDjeshme) + " Porosi me shume se Dje" :
                                     (totaleTeNdryshme.totaliPorosiveDjeshme === totaleTeNdryshme.totaliPorosiveSotme) ? "Njesoj si Dje" :
-                                        (totaleTeNdryshme.totaliPorosiveDjeshme - totaleTeNdryshme.totaliPorosiveSotme) + " Prosi me pak se Dje"
+                                        (totaleTeNdryshme.totaliPorosiveDjeshme - totaleTeNdryshme.totaliPorosiveSotme) + " Porosi me pak se Dje"
                                 }
                             </p>
                         </Card.Text>

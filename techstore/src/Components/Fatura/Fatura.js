@@ -5,12 +5,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useBarcode } from 'next-barcode';
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import jwtDecode from "jwt-decode";
 
 
 function Fatura(props) {
     const [perditeso, setPerditeso] = useState("");
     const [fatura, setFatura] = useState([]);
     const [vendosFature, setVendosFature] = useState(false);
+    const [teDhenatBiznesit, setTeDhenatBiznesit] = useState([]);
+    const [teDhenat, setTeDhenat] = useState();
+
     const { nrFatures } = useParams();
 
     const dataPorosise = new Date(fatura.dataPorosis);
@@ -20,17 +24,11 @@ function Fatura(props) {
     const dataMberritjes = new Date(dataPorosise.setDate(dataPorosise.getDate() + 4));
 
 
-    const barkodi = `TS-${dita}${muaji}${viti}-${fatura.idKlienti}-${nrFatures}`;
+    const barkodi = `${teDhenatBiznesit && teDhenatBiznesit.shkurtesaEmritBiznesit}-${dita}${muaji}${viti}-${fatura.idKlienti}-${nrFatures}`;
 
     const { inputRef } = useBarcode({
         value: `${barkodi}`
     });
-
-    useEffect(() => {
-        if (vendosFature === true) {
-            printoFaturen();
-        }
-    }, [vendosFature]);
 
 
     const getID = localStorage.getItem("id");
@@ -54,6 +52,54 @@ function Fatura(props) {
             }
 
             vendosFature();
+        } else {
+            navigate("/login");
+        }
+    }, [perditeso]);
+
+    useEffect(() => {
+        if(teDhenat && fatura){
+            if(!teDhenat.rolet.includes("Admin", "Menaxher") && teDhenat.perdoruesi.userId !== fatura.idKlienti){
+                navigate("/dashboard")
+            }
+            else{
+                if (vendosFature === true) {
+                    printoFaturen();
+                }
+            }
+        }
+    }, [teDhenat, vendosFature])
+
+    useEffect(() => {
+        const vendosTeDhenatBiznesit = async () => {
+            try {
+                const teDhenat = await axios.get(
+                    "https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat"
+                );
+                setTeDhenatBiznesit(teDhenat.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        vendosTeDhenatBiznesit();
+    }, [perditeso]);
+
+    useEffect(() => {
+        if (getID) {
+            const vendosTeDhenatUserit = async () => {
+                try {
+                    const teDhenatUser = await axios.get(
+                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`
+                    );
+                    setTeDhenat(teDhenatUser.data);
+                    console.log(teDhenatUser)
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+
+            vendosTeDhenatUserit();
         } else {
             navigate("/login");
         }
@@ -108,10 +154,13 @@ function Fatura(props) {
                 <div className="header">
                     <div className="teDhenatKompanis">
                         <img src="../../img/web/techstoreLogoWhiteSquare.png" style={{ width: "150px", height: "auto", marginTop: "0.5em" }} />
-                        <h1 style={{ fontSize: "24pt" }}>TechStore SH.P.K.</h1>
-                        <p>Rr. Agim Bajrami - Perballe Xhamise, Kaçanik 71000</p>
-                        <p>contact@tech.store</p>
-                        <p>+1-111-222-3333</p>
+                        <h1 style={{ fontSize: "24pt" }}>{teDhenatBiznesit && teDhenatBiznesit.emriIbiznesit}</h1>
+                        <p><strong>NUI: </strong>{teDhenatBiznesit && teDhenatBiznesit.nui}</p>
+                        <p><strong>NF: </strong>{teDhenatBiznesit && teDhenatBiznesit.nf}</p>
+                        <p><strong>TVSH: </strong>{teDhenatBiznesit && teDhenatBiznesit.nrtvsh}</p>
+                        <p><strong>Adresa: </strong>{teDhenatBiznesit && teDhenatBiznesit.adresa}</p>
+                        <p><strong>Telefoni: </strong>{teDhenatBiznesit && teDhenatBiznesit.nrKontaktit}</p>
+                        <p><strong>Email: </strong>{teDhenatBiznesit && teDhenatBiznesit.email}</p>
 
                         <div className="teDhenatKlientit">
                             <h1 style={{ fontSize: "24pt" }}>

@@ -19,7 +19,7 @@ import TeDhenatEBiznesit from '../TeDhenatBiznesit/TeDhenatEBiznesit';
 
 const AdminDashboard = (props) => {
   const [eshteAdmin, setEshteAdmin] = useState(false);
-  const [key, setKey] = useState("1");
+  const [key, setKey] = useState("2");
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const AdminDashboard = (props) => {
   return (
     <div className='admin'>
 
-      <Tab.Container className="border" id="left-tabs-example" defaultActiveKey="1" onSelect={key => setKey(key)}>
+      <Tab.Container className="border" id="left-tabs-example" defaultActiveKey="2" onSelect={key => setKey(key)}>
         <Row>
           <Col>
             <Nav variant="pills" className="flex-column">

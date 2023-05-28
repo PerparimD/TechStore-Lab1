@@ -5,7 +5,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 function Footer(props) {
+    const [teDhenatBiznesit, setTeDhenatBiznesit] = useState([]);
+    const [perditeso, setPerditeso] = useState('');
+
+    useEffect(() => {
+        const ShfaqTeDhenat = async () => {
+            try {
+                const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat");
+                setTeDhenatBiznesit(teDhenat.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        ShfaqTeDhenat();
+    }, [perditeso]);
+
     return (
         <footer>
             <div className={classes.footer}>
@@ -24,9 +43,9 @@ function Footer(props) {
                 <div className={classes.footerContact}>
                     <h2 className={classes.footerNavTitle}>Get in touch</h2>
                     <ul>
-                        <li><a href="tel:+11112223333">+1-111-222-3333</a></li>
-                        <li><a href="mailto:contact@tech.store">contact@tech.store</a></li>
-                        <li>Rr. Agim Bajrami - Perballe Xhamise, Kaçanik</li>
+                        <li><a href={teDhenatBiznesit && "tel:" + teDhenatBiznesit.nrKontaktit}>{teDhenatBiznesit && teDhenatBiznesit.nrKontaktit}</a></li>
+                        <li><a href={teDhenatBiznesit && "mailto:" + teDhenatBiznesit.email}>{teDhenatBiznesit && teDhenatBiznesit.email}</a></li>
+                        <li>{teDhenatBiznesit && teDhenatBiznesit.adresa}</li>
                     </ul>
                     <div className={classes.footerSocialIcons}>
                         <a href="https://facebook.com"><i><FontAwesomeIcon icon={faFacebook} /></i></a>
@@ -36,9 +55,9 @@ function Footer(props) {
                 </div>
             </div>
             <div className={classes.copyright}>
-                <FontAwesomeIcon icon={faCopyright} />TechStore SH.P.K.
+                <FontAwesomeIcon icon={faCopyright} />{teDhenatBiznesit && teDhenatBiznesit.emriIbiznesit}
             </div>
-        </footer>
+        </footer >
     );
 }
 

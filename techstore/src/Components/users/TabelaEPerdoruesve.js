@@ -101,7 +101,15 @@ function TabelaEPerdoruesve() {
                             <td > {k.perdoruesi.email} </td>
                             <td >{k.perdoruesi.username}</td>
                             <td>{k.rolet.join(', ')}</td>
-                            <td><Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => handleEdito(k.perdoruesi.userId)}><FontAwesomeIcon icon={faPenToSquare} /></Button></td>
+                            <td>
+                                <Button
+                                    style={{ marginRight: "0.5em" }}
+                                    variant="success"
+                                    onClick={() => handleEdito(k.perdoruesi.aspNetUserId)}
+                                >
+                                    <FontAwesomeIcon icon={faPenToSquare} />
+                                </Button>
+                            </td>
                         </tr>
                     ))}
                 </table>

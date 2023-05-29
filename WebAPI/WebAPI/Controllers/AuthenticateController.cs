@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using WebAPI.Auth;
 using WebAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Controllers
 {
@@ -177,12 +178,9 @@ namespace WebAPI.Controllers
 
             if (perditesoAksesin.Succeeded)
             {
-                var roles = await _userManager.GetRolesAsync(user);
-                var jwtToken = GenerateJwtToken(user, roles);
 
                 return Ok(new AuthResults
                 {
-                    Token = jwtToken,
                     Result = true
                 });
             }
@@ -223,7 +221,7 @@ namespace WebAPI.Controllers
                 {
                     var eKaRolin = await _userManager.IsInRoleAsync(perdoruesi, roli);
 
-                    if (eKaRolin == false)
+                    if (eKaRolin == true)
                     {
                         await _userManager.RemoveFromRoleAsync(perdoruesi, roli);
 
@@ -314,6 +312,15 @@ namespace WebAPI.Controllers
                     Errors = new List<string> { "Ky Rol nuk egziston" }
                 });
             }
+        }
+
+        [HttpGet]
+        [Route("shfaqRolet")]
+        public async Task<IActionResult> ShfaqRolet()
+        {
+            var rolet = await _roleManager.Roles.ToListAsync();
+
+            return Ok(rolet);
         }
 
 

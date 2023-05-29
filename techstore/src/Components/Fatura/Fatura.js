@@ -22,7 +22,7 @@ function Fatura(props) {
     const muaji = (dataPorosise.getMonth() + 1).toString().padStart(2, '0');
     const viti = dataPorosise.getFullYear().toString().slice(-2);
     const dataMberritjes = new Date(dataPorosise.setDate(dataPorosise.getDate() + 4));
-
+    const skadimiGarancionit = new Date(dataPorosise.setDate(dataPorosise.getDate() + 365));
 
     const barkodi = `${teDhenatBiznesit && teDhenatBiznesit.shkurtesaEmritBiznesit}-${dita}${muaji}${viti}-${fatura.idKlienti}-${nrFatures}`;
 
@@ -58,11 +58,11 @@ function Fatura(props) {
     }, [perditeso]);
 
     useEffect(() => {
-        if(teDhenat && fatura){
-            if(!teDhenat.rolet.includes("Admin", "Menaxher") && teDhenat.perdoruesi.userId !== fatura.idKlienti){
+        if (teDhenat && fatura) {
+            if (!teDhenat.rolet.includes("Admin", "Menaxher") && teDhenat.perdoruesi.userId !== fatura.idKlienti) {
                 navigate("/dashboard")
             }
-            else{
+            else {
                 if (vendosFature === true) {
                     printoFaturen();
                 }
@@ -273,7 +273,7 @@ function Fatura(props) {
                         <p style={{ fontSize: "18pt" }}>Porosia arrin me se largu:
                             <strong> {dataMberritjes.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}</strong>
                         </p>
-                        <h3 style={{ fontSize: "18pt" }}>Ju lutemi qe pas pranimit ta konfirmoni porosine ne Sistem!</h3>
+                        <br />
                     </div>
                     <div className="detajetPoresis">
                         <table className="tabelaQmimit">
@@ -316,6 +316,25 @@ function Fatura(props) {
                         </table>
                     </div>
                 </div>
+                <div>
+                    <div className="nenshkrimet">
+                        <div className="nenshkrimi">
+                            <span>_________________________________________________________________</span>
+                            <span>(Emri, Mbiemri, Nenshkrimi & Vula)</span>
+                            <span>(Personi Përgjegjës)</span>
+                        </div>
+                        <div className="nenshkrimi">
+                            <span>_________________________________________________________________</span>
+                            <span>(Emri, Mbiemri, Nenshkrimi)</span>
+                            <span>(Klienti)</span>
+                        </div>
+
+                    </div>
+                    <br />
+                    <h3 style={{ fontSize: "18pt" }}>Te gjitha produktet ne kete fature kane garancion 1 Vjet!</h3>
+                    <h3 style={{ fontSize: "18pt" }}>Garancioni vlene deri me: {skadimiGarancionit.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}</h3>
+                </div>
+
             </div>
 
         </>

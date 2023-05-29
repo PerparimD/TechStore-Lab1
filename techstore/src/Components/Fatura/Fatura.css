@@ -91,3 +91,25 @@ td {
 .fatura h3 {
   font-size: 20pt;
 }
+
+.nenshkrimet {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18em;
+}
+
+.nenshkrimi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nenshkrimi span {
+  margin-top: 0.5em;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.nenshkrimi span:first-child {
+  margin-bottom: 0.5em;
+}

@@ -89,7 +89,7 @@ function Mesazhet() {
                     Mesazhet e derguara nga Perdoruesit
                 </h1>
 
-
+                
                 <table className="tableBig">
                     <tr>
                         <th>ID Mesazhit</th>

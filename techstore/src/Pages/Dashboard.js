@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { TailSpin } from 'react-loader-spinner';
 import PorositeUserit from "../Components/Dashboard/PorositeUserit";
 import PagesaMeSukses from "../Components/produktet/cart/Checkout/PagesaMeSukses";
+import MesazhetUserit from "../Components/Dashboard/MesazhetUserit";
 
 const Dashboard = () => {
   const [shfaqAdmin, setShfaqAdmin] = useState(false);
@@ -17,6 +18,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [shfaqPorosite, setShfaqPorosite] = useState(false);
   const [shfaqDetajet, setShfaqDetajet] = useState(false);
+  const [shfaqMesazhet, setShfaqMesazhet] = useState(false);
   const [nrFatures, setNumriFatures] = useState(0);
 
 
@@ -49,12 +51,21 @@ const Dashboard = () => {
     setShfaqAdmin(false);
     setShfaqDetajet(false);
     setShfaqPorosite(true);
+    setShfaqMesazhet(false);
   }
 
   const handleShfaqAdminDashboard = () => {
     setShfaqAdmin(true);
     setShfaqDetajet(false);
     setShfaqPorosite(false);
+    setShfaqMesazhet(false);
+  }
+
+  const handleShfaqMesazhet = () => {
+    setShfaqAdmin(false);
+    setShfaqDetajet(false);
+    setShfaqPorosite(false);
+    setShfaqMesazhet(true);
   }
   return (
     <div className="dashboard">
@@ -127,9 +138,12 @@ const Dashboard = () => {
             {(teDhenat.rolet.includes("Admin") || teDhenat.rolet.includes("Menaxher")) &&
               <button class="button" onClick={handleShfaqAdminDashboard}>Admin Dashboard</button>
             }
+            {(teDhenat.rolet.includes("User")) &&
+              <button class="button" onClick={handleShfaqMesazhet}>Mesazhet e tua</button>
+            }
           </div>
           {shfaqPorosite && <PorositeUserit setShfaqDetajet={() => setShfaqDetajet(true)} setNumriFatures={(e) => setNumriFatures(e)} setShfaqPorosite={() => setShfaqPorosite(false)} idUseri={teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.userId} />}
-
+          {shfaqMesazhet && <MesazhetUserit setShfaqMesazhet={() => setShfaqMesazhet(false)} idUseri={teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.userId} />}
         </div>)}
 
       {shfaqAdmin && <AdminDashboard setShfaqAdmin={() => setShfaqAdmin(false)} />}

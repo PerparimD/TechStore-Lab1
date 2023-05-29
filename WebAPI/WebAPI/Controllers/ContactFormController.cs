@@ -45,6 +45,35 @@ namespace TechStoreWebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("shfaqMesazhetNgaUseri")]
+        public async Task<IActionResult> GetMesazhetUserit(int idUserit)
+        {
+            List<ContactForm> contactforms = await _context.ContactForms
+                .Include(x => x.User)
+                .OrderByDescending(x => x.MesazhiId)
+                .Where(x=> x.UserId == idUserit)
+                .ToListAsync();
+
+            var mesazhet = contactforms.Select(x => new
+            {
+                x.Emri,
+                x.Email,
+                x.UserId,
+                x.Statusi,
+                x.Mesazhi,
+                x.DataDergeses,
+                x.MesazhiId,
+                User = x.User != null ? new
+                {
+                    x.User.UserId,
+                    x.User.Username
+                } : null
+            });
+
+            return Ok(mesazhet);
+        }
+
+        [HttpGet]
         [Route("shfaqMesazhinSipasIDs")]
         public async Task<IActionResult> Get(int id)
         {

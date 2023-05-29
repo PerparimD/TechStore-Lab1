@@ -130,13 +130,13 @@ function Produkti() {
                                     <tr>
                                         <td>Kompania:</td>
                                         <td>
-                                            <Link to={`/Produktet/kompania/${produkti.kompaniaId}`}>{produkti.emriKompanis}</Link>
+                                            <Link to={`/Produktet/${produkti.emriKompanis}`}>{produkti.emriKompanis}</Link>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Kategoria:</td>
                                         <td>
-                                            <Link to={`/Produktet/kategoria/${produkti.kategoriaId}`}>{produkti.llojiKategoris}</Link>
+                                            <Link to={`/Produktet/kategoria/${produkti.llojiKategoris}`}>{produkti.llojiKategoris}</Link>
 
                                         </td>
                                     </tr>

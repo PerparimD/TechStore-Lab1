@@ -12,14 +12,17 @@ import { faFaceFrown } from "@fortawesome/free-solid-svg-icons";
 
 
 function Produktet(props) {
-  const [kategoria, setKateogria] = useState("");
-  const [kategorit, setKategorit] = useState([]);
+  const {kategoriaNgaProdukti} = useParams();
   const { kompania } = useParams();
+  const [kategoria, setKateogria] = useState(kategoriaNgaProdukti ? kategoriaNgaProdukti : "");
+  const [kategorit, setKategorit] = useState([]);
+  
   const [emriKomapnis, setEmriKompanis] = useState(kompania ? kompania : "");
   const [perditeso, setPerditeso] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [produktet, setProduktet] = useState([]);
+  
 
 
   useEffect(() => {

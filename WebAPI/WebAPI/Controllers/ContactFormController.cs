@@ -20,7 +20,10 @@ namespace TechStoreWebAPI.Controllers
         [Route("shfaqMesazhet")]
         public async Task<IActionResult> Get()
         {
-            List<ContactForm> contactforms = await _context.ContactForms.Include(x => x.User).ToListAsync();
+            List<ContactForm> contactforms = await _context.ContactForms
+                .Include(x => x.User)
+                .OrderByDescending(x => x.MesazhiId)
+                .ToListAsync();
 
             var mesazhet = contactforms.Select(x => new
             {

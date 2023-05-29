@@ -14,7 +14,7 @@ function PorositeUserit(props) {
     const [shfaqDetajet, setShfaqDetajet] = useState(false);
 
     useEffect(() => {
-        const shfaqKateogrit = async () => {
+        const vendosPorosite = async () => {
             try {
                 setLoading(true);
                 const porosija = await axios.get(`https://localhost:7285/api/Porosia/shfaqPorositeUserit?idPerdoruesi=${props.idUseri}`);
@@ -26,7 +26,7 @@ function PorositeUserit(props) {
             }
         };
 
-        shfaqKateogrit();
+        vendosPorosite();
     }, [perditeso]);
 
 

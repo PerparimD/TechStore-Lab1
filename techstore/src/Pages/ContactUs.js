@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../Components/layout/Footer";
 import NavBar from "../Components/layout/NavBar";
 import axios from "axios";
@@ -10,7 +10,6 @@ import { faEnvelopeCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from "react-bootstrap/esm/Button";
-// import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBSelect, CDBContainer } from 'cdbreact';
 
 
 
@@ -21,6 +20,30 @@ const ContactUs = () => {
   const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
   const [tipiMesazhit, setTipiMesazhit] = useState("");
   const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
+  const [user, setUser] = useState([]);
+  const [perditeso, setPerditeso] = useState("");
+
+  const getID = localStorage.getItem("id");
+
+  useEffect(() => {
+    if (getID) {
+      const vendosTeDhenat = async () => {
+        try {
+          const teDhenat = await axios.get(
+            `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`
+          );
+
+          setUser(teDhenat.data)
+
+
+
+        } catch (err) {
+          console.log(err);
+        };
+      }
+      vendosTeDhenat();
+    }
+  }, [perditeso]);
 
   function vendosEmrin(value) {
     setEmri(value);
@@ -38,7 +61,8 @@ const ContactUs = () => {
     axios.post("https://localhost:7285/api/ContactForm/shtoMesazhin", {
       mesazhi: msg,
       emri: emri,
-      email: email
+      email: email,
+      userId: getID ? user.perdoruesi.userId : null
     })
       .then((response) => {
         console.log(response);
@@ -56,14 +80,6 @@ const ContactUs = () => {
         setShfaqMesazhin(true);
       });
   }
-
-  /*
-  Ky funksion do te sherbeje kur te behet funksionalizimi i Userave
-  const [user, setUser] = useState(0);
-  function vendosUser(value){
-    setUser(value);
-  }
-  */
 
   return (
     <div className="body">
@@ -114,11 +130,11 @@ const ContactUs = () => {
               onChange={(e) => vendosMesazhin(e.target.value)} />
           </FloatingLabel>
           <Button
-              className="button"
-              onClick={dergoMesazhin}
-            >
-              Send <FontAwesomeIcon icon={faEnvelopeCircleCheck} />
-            </Button>
+            className="button"
+            onClick={dergoMesazhin}
+          >
+            Send <FontAwesomeIcon icon={faEnvelopeCircleCheck} />
+          </Button>
         </Form>
       </div>
       <Footer />

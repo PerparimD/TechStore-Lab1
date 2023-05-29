@@ -139,9 +139,13 @@ namespace WebAPI.Controllers
                 {
                     Produkti = new
                     {
-                        id = e.ProduktiId,
-                        emri = e.EmriProduktit,
-                        qmimiShites = e.StokuQmimiProduktit.QmimiProduktit,
+                        e.ProduktiId,
+                        e.EmriProduktit,
+                        e.FotoProduktit,
+                        e.StokuQmimiProduktit.SasiaNeStok,
+                        e.StokuQmimiProduktit.QmimiBleres,
+                        e.StokuQmimiProduktit.QmimiProduktit,
+                        e.ZbritjaQmimitProduktit.QmimiMeZbritjeProduktit,
                     },
                     TotaliPorosive = e.TeDhenatEporosis.Sum(q => q.SasiaPorositur),
                     TotaliBlerjeve = e.TeDhenatEporosis.Sum(q => q.QmimiTotal),

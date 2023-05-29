@@ -44,7 +44,7 @@ function Produkti() {
     useEffect(() => {
         const shfaqProduktet = async () => {
             try {
-                const produktet = await axios.get("https://localhost:7285/api/Produkti/15ProduktetMeTeFundit");
+                const produktet = await axios.get("https://localhost:7285/api/Statistikat/15ProduktetMeTeShitura");
                 setProduktet(produktet.data);
             } catch (err) {
                 console.log(err);
@@ -205,21 +205,19 @@ function Produkti() {
                 }
             </div>
 
-
-
             <div className="artikujt">
                 <div className="titulliArtikuj">
-                    <h1 className="">Me te fundit</h1>
+                    <h1 className="">Me te Shiturat</h1>
                 </div>
                 {produktet.map((produkti) => {
                     return (
                         <ProduktetNeHome
-                        produktiID={produkti.produktiId}
-                        fotoProduktit={produkti.fotoProduktit}
-                        emriProduktit={produkti.emriProduktit}
-                        cmimi={produkti.qmimiProduktit}
-                        sasiaNeStok={produkti.sasiaNeStok}
-                        cmimiMeZbritje={produkti.qmimiMeZbritjeProduktit}
+                        produktiID={produkti.produkti.produktiId}
+                        fotoProduktit={produkti.produkti.fotoProduktit}
+                        emriProduktit={produkti.produkti.emriProduktit}
+                        cmimi={produkti.produkti.qmimiProduktit}
+                        sasiaNeStok={produkti.produkti.sasiaNeStok}
+                        cmimiMeZbritje={produkti.produkti.qmimiMeZbritjeProduktit}
                       />
                     );
                 }

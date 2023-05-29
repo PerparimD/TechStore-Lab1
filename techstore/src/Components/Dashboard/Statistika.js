@@ -218,10 +218,10 @@ function Statistika() {
                                     <th>Totali Shitjeve €</th>
                                 </tr>
                                 {top15Produktet.map((k) => (
-                                    <tr key={k.produkti.id}>
-                                        <td>{k.produkti.id}</td>
-                                        <td>{k.produkti.emri}</td>
-                                        <td>{parseFloat(k.produkti.qmimiShites).toFixed(2)} €</td>
+                                    <tr key={k.produkti.produktiId}>
+                                        <td>{k.produkti.produktiId}</td>
+                                        <td>{k.produkti.emriProduktit}</td>
+                                        <td>{parseFloat(k.produkti.qmimiProduktit).toFixed(2)} €</td>
                                         <td>{k.totaliPorosive}</td>
                                         <td>{parseFloat(k.totaliBlerjeve).toFixed(2)} €</td>
                                     </tr>

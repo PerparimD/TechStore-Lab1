@@ -10,19 +10,18 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceFrown } from "@fortawesome/free-solid-svg-icons";
 
-
 function Produktet(props) {
-  const {kategoriaNgaProdukti} = useParams();
+  const { kategoriaNgaProdukti } = useParams();
   const { kompania } = useParams();
   const [kategoria, setKateogria] = useState(kategoriaNgaProdukti ? kategoriaNgaProdukti : "");
   const [kategorit, setKategorit] = useState([]);
-  
+
   const [emriKomapnis, setEmriKompanis] = useState(kompania ? kompania : "");
   const [perditeso, setPerditeso] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [produktet, setProduktet] = useState([]);
-  
+
 
 
   useEffect(() => {
@@ -133,13 +132,13 @@ function Produktet(props) {
 
               return (
                 <ProduktetNeHome
-                      produktiID={item.produktiId}
-                      fotoProduktit={item.fotoProduktit}
-                      emriProduktit={item.emriProduktit}
-                      cmimi={item.qmimiProduktit}
-                      sasiaNeStok={item.sasiaNeStok}
-                      cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
-                    />
+                  produktiID={item.produktiId}
+                  fotoProduktit={item.fotoProduktit}
+                  emriProduktit={item.emriProduktit}
+                  cmimi={item.qmimiProduktit}
+                  sasiaNeStok={item.sasiaNeStok}
+                  cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
+                />
               );
             }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
           : produktet && kategoria !== ""
@@ -147,13 +146,13 @@ function Produktet(props) {
               produktet.filter((item) => item.llojiKategoris === kategoria).map((item) => {
                 return (
                   <ProduktetNeHome
-                      produktiID={item.produktiId}
-                      fotoProduktit={item.fotoProduktit}
-                      emriProduktit={item.emriProduktit}
-                      cmimi={item.qmimiProduktit}
-                      sasiaNeStok={item.sasiaNeStok}
-                      cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
-                    />
+                    produktiID={item.produktiId}
+                    fotoProduktit={item.fotoProduktit}
+                    emriProduktit={item.emriProduktit}
+                    cmimi={item.qmimiProduktit}
+                    sasiaNeStok={item.sasiaNeStok}
+                    cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
+                  />
                 );
               }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
             : produktet && emriKomapnis !== ""
@@ -162,13 +161,13 @@ function Produktet(props) {
                   .filter((item) => item.emriKompanis === kompania).map((item) => {
                     return (
                       <ProduktetNeHome
-                      produktiID={item.produktiId}
-                      fotoProduktit={item.fotoProduktit}
-                      emriProduktit={item.emriProduktit}
-                      cmimi={item.qmimiProduktit}
-                      sasiaNeStok={item.sasiaNeStok}
-                      cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
-                    />
+                        produktiID={item.produktiId}
+                        fotoProduktit={item.fotoProduktit}
+                        emriProduktit={item.emriProduktit}
+                        cmimi={item.qmimiProduktit}
+                        sasiaNeStok={item.sasiaNeStok}
+                        cmimiMeZbritje={item.qmimiMeZbritjeProduktit}
+                      />
                     );
                   }) : <h2>Nuk u gjet asnje produkt! <FontAwesomeIcon icon={faFaceFrown} /> </h2>)
               : searchInput.length === 0 && produktet

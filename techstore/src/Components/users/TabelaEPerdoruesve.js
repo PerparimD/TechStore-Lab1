@@ -5,8 +5,9 @@ import Mesazhi from "../layout/Mesazhi";
 import { TailSpin } from 'react-loader-spinner';
 import EditoPerdorues from "./EditoPerdorues";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import Button from "react-bootstrap/Button";
+import Rolet from "./Rolet/Rolet"
 
 function TabelaEPerdoruesve() {
     const [perdoruesit, setPerdoruesit] = useState([]);
@@ -15,6 +16,7 @@ function TabelaEPerdoruesve() {
     const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
+    const [mbyllRolet, setMbyllRolet] = useState(true);
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
     const token = localStorage.getItem("token");
@@ -48,9 +50,15 @@ function TabelaEPerdoruesve() {
     };
     const handleEditoMbyll = () => setEdito(false);
 
+
     return (
         <div className={classes.containerDashboardP}>
-
+            {mbyllRolet == false &&
+                <Rolet
+                    setMbyllRolet={() => setMbyllRolet(true)}
+                    setPerditeso={() => setPerditeso(Date.now())}
+                />
+            }
             {shfaqMesazhin && <Mesazhi
                 setShfaqMesazhin={setShfaqMesazhin}
                 pershkrimi={pershkrimiMesazhit}
@@ -78,42 +86,46 @@ function TabelaEPerdoruesve() {
                         visible={true}
                     />
                 </div>
-            ) : (<>
-                <h1 className="title">
-                    Lista e Perdoruesve
-                </h1>
+            ) : (
+                mbyllRolet &&
+                <>
+                    <h1 className="title">
+                        Lista e Perdoruesve
+                    </h1>
 
-
-                <table style={{ whiteSpace: "unset", }}>
-                    <tr>
-                        <th>ID User</th>
-                        <th>Emri & Mbiemri</th>
-                        <th>Email</th>
-                        <th>Username</th>
-                        <th>Aksesi</th>
-                        <th>Funksione</th>
-                    </tr>
-
-                    {perdoruesit.map((k) => (
-                        <tr key={k.perdoruesi.userId}>
-                            <td>{k.perdoruesi.userId}</td>
-                            <td>{k.perdoruesi.emri} {k.perdoruesi.mbiemri}</td>
-                            <td > {k.perdoruesi.email} </td>
-                            <td >{k.perdoruesi.username}</td>
-                            <td>{k.rolet.join(', ')}</td>
-                            <td>
-                                <Button
-                                    style={{ marginRight: "0.5em" }}
-                                    variant="success"
-                                    onClick={() => handleEdito(k.perdoruesi.aspNetUserId)}
-                                >
-                                    <FontAwesomeIcon icon={faPenToSquare} />
-                                </Button>
-                            </td>
+                    <Button className="mb-3 Butoni" onClick={() => { setPerditeso(Date.now()); setMbyllRolet(false); }}>
+                        Menaxho Rolet <FontAwesomeIcon icon={faInfoCircle} />
+                    </Button>
+                    <table style={{ whiteSpace: "unset", }}>
+                        <tr>
+                            <th>ID User</th>
+                            <th>Emri & Mbiemri</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Aksesi</th>
+                            <th>Funksione</th>
                         </tr>
-                    ))}
-                </table>
-            </>
+
+                        {perdoruesit.map((k) => (
+                            <tr key={k.perdoruesi.userId}>
+                                <td>{k.perdoruesi.userId}</td>
+                                <td>{k.perdoruesi.emri} {k.perdoruesi.mbiemri}</td>
+                                <td > {k.perdoruesi.email} </td>
+                                <td >{k.perdoruesi.username}</td>
+                                <td>{k.rolet.join(', ')}</td>
+                                <td>
+                                    <Button
+                                        style={{ marginRight: "0.5em" }}
+                                        variant="success"
+                                        onClick={() => handleEdito(k.perdoruesi.aspNetUserId)}
+                                    >
+                                        <FontAwesomeIcon icon={faPenToSquare} />
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </>
             )}
         </div >
     );

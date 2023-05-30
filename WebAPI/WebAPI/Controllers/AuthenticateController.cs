@@ -320,7 +320,25 @@ namespace WebAPI.Controllers
         {
             var rolet = await _roleManager.Roles.ToListAsync();
 
-            return Ok(rolet);
+            var roletWithUsersCount = new List<object>();
+
+            foreach (var roli in rolet)
+            {
+                var usersCount = await _userManager.GetUsersInRoleAsync(roli.Name);
+
+                var roliWithUsersCount = new
+                {
+                    roli.Id,
+                    roli.Name,
+                    roli.NormalizedName,
+                    roli.ConcurrencyStamp,
+                    TotaliPerdoruesve = usersCount.Count
+                };
+
+                roletWithUsersCount.Add(roliWithUsersCount);
+            }
+
+            return Ok(roletWithUsersCount);
         }
 
 

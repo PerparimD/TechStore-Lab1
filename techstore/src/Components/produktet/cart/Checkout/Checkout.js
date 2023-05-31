@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../../../Context/StateProvider";
 import PagesaMeSukses from "./PagesaMeSukses";
+import EditoTeDhenat from "./EditoTeDhenat";
 
 function Checkout(props) {
     const [teDhenat, setTeDhenat] = useState([]);
@@ -14,6 +15,7 @@ function Checkout(props) {
     const [vendosjaTeDhenaveSukses, setVendosjaTeDhenaveSukses] = useState(false);
     const [vendosjaPorosisSukses, setVendosjaPorosisSukses] = useState(false);
     const [rregulloUseEffect, setRregulloUseEffect] = useState(true);
+    const [mbyllPerditesoTeDhenat, setMbyllPerditesoTeDhenat] = useState(true)
 
     const getID = localStorage.getItem("id");
     const navigate = useNavigate();
@@ -97,7 +99,7 @@ function Checkout(props) {
 
     useEffect(() => {
         if (rregulloUseEffect) {
-            return; 
+            return;
         }
 
         if (vendosjaTeDhenaveSukses && vendosjaPorosisSukses) {
@@ -110,7 +112,12 @@ function Checkout(props) {
     }, [vendosjaTeDhenaveSukses, vendosjaPorosisSukses]);
     return (
         <>
-            {pagesaMeSukses && <PagesaMeSukses nrFatures={nrFatures}/>}
+            {pagesaMeSukses && <PagesaMeSukses nrFatures={nrFatures} />}
+            {!mbyllPerditesoTeDhenat &&
+                <EditoTeDhenat
+                    setMbyllPerditesoTeDhenat={() => setMbyllPerditesoTeDhenat(true)}
+                    perditeso={() => setPerditeso(Date.now())}
+                />}
             {(pagesaMeSukses === false && pagesaDeshtoi === false) &&
                 <div className="containerDashboardP">
 
@@ -237,9 +244,7 @@ function Checkout(props) {
                             <td colspan={2} style={{ textAlign: "center" }}>
                                 <button className="button" name='complete' type="submit" value="Perfundo Porosin " onClick={props.setCheckout}>Anulo</button>
                                 <button className="button" name='complete' type="submit" value="Perfundo Porosin " onClick={handlePerfundoPorosine}>Perfundo Porosin</button>
-                                <button className="button">
-                                    Perditeso te Dhenat <i className="fa-solid">&#xf4ff;</i>
-                                </button>
+                                <button className="button" onClick={() => setMbyllPerditesoTeDhenat(false)}>  Perditeso te Dhenat <i className="fa-solid">&#xf4ff;</i> </button>
                             </td>
 
                         </tr>

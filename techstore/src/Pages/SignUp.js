@@ -70,28 +70,28 @@ const SignUp = () => {
         <Row className="mb-3">
           <Form.Group as={Col} className="p-0" controlId="formGridName">
             <Form.Label>Name*</Form.Label>
-            <Form.Control type="name" placeholder="Enter Name" value={emri} onChange={handleChange(setEmri)} required/>
+            <Form.Control type="name" placeholder="Enter Name" value={emri} onChange={handleChange(setEmri)} required />
           </Form.Group>
 
           <Form.Group as={Col} className="p-0" controlId="formGridLastName">
             <Form.Label>Last Name*</Form.Label>
-            <Form.Control type="last name" placeholder="Last Name" value={mbimeri} onChange={handleChange(setMbiemri)} required/>
+            <Form.Control type="last name" placeholder="Last Name" value={mbimeri} onChange={handleChange(setMbiemri)} required />
           </Form.Group>
         </Row>
 
         <Form.Group className="mb-3" controlId="formGridAddress2">
           <Form.Label>Username*</Form.Label>
-          <Form.Control placeholder="Username" value={username} onChange={handleChange(setUsername)} required/>
+          <Form.Control placeholder="Username" value={username} onChange={handleChange(setUsername)} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formGridAddress2">
           <Form.Label>Email*</Form.Label>
-          <Form.Control placeholder="example@hotmail.com" value={email} onChange={handleChange(setEmail)} required/>
+          <Form.Control placeholder="example@hotmail.com" value={email} onChange={handleChange(setEmail)} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formGridAddress2">
           <Form.Label>Password*</Form.Label>
-          <Form.Control type="password" placeholder="Password" value={password} onChange={handleChange(setPassword)} required/>
+          <Form.Control type="password" placeholder="Password" value={password} onChange={handleChange(setPassword)} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formGridAddress2">

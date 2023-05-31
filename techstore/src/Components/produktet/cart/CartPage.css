@@ -174,6 +174,10 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: -1em;
 }
 
+.modalEditoDhenat{
+  margin-top: 1em;
+}
+
 @media (max-width: 1024px) {
   .cart-page {
     flex-wrap: wrap;

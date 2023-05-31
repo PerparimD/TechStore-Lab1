@@ -74,7 +74,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("perditesoPerdorues")]
+        [Route("perditesoPerdorues/{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Perdoruesi p)
         {
             var perdouresi = await _context.Perdoruesis.FirstOrDefaultAsync(x => x.UserId == id);

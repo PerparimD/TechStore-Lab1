@@ -16,5 +16,5 @@ public partial class TeDhenatPerdoruesit
     public string? Adresa { get; set; }
     public string? Shteti { get; set; }
 
-    public virtual Perdoruesi User { get; set; } = null!;
+    public virtual Perdoruesi? User { get; set; }
 }

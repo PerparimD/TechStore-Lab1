@@ -14,6 +14,13 @@ const EditoTeDhenat = (props) => {
   const [perdoruesi, setPerdoruesi] = useState([]);
 
   const getID = localStorage.getItem("id");
+  const getToken = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
 
   useEffect(() => {
     const vendosPerdoruesin = async () => {
@@ -73,6 +80,10 @@ const EditoTeDhenat = (props) => {
       teDhenatPerdoruesit: { ...prev.teDhenatPerdoruesit, zipKodi: value },
     }));
   };
+
+  const handlePerditesoTeDhenat = () =>{
+    axios.put(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${perdoruesi.userId}`, perdoruesi, config);
+  }
 
 
 
@@ -134,7 +145,7 @@ const EditoTeDhenat = (props) => {
           <Button variant="secondary" onClick={() => props.setMbyllPerditesoTeDhenat()}>
             Anulo <FontAwesomeIcon icon={faXmark} />
           </Button>
-          <Button style={{ backgroundColor: "#009879", border: "none" }}>
+          <Button style={{ backgroundColor: "#009879", border: "none" }} onClick={handlePerditesoTeDhenat}>
             Edito te Dhenat <FontAwesomeIcon icon={faPenToSquare} />
           </Button>
         </Modal.Footer>

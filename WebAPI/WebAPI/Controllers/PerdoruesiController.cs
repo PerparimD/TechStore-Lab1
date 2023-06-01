@@ -97,6 +97,12 @@ namespace WebAPI.Controllers
                 perdouresi.Mbiemri = p.Mbiemri;
             }
 
+            perdouresi.TeDhenatPerdoruesit.Shteti = p.TeDhenatPerdoruesit.Shteti;
+            perdouresi.TeDhenatPerdoruesit.Qyteti = p.TeDhenatPerdoruesit.Qyteti;
+            perdouresi.TeDhenatPerdoruesit.ZipKodi = p.TeDhenatPerdoruesit.ZipKodi;
+            perdouresi.TeDhenatPerdoruesit.Adresa = p.TeDhenatPerdoruesit.Adresa;
+            perdouresi.TeDhenatPerdoruesit.NrKontaktit = p.TeDhenatPerdoruesit.NrKontaktit;
+
             _context.Perdoruesis.Update(perdouresi);
             await _context.SaveChangesAsync();
 

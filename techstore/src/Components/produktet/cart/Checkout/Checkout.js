@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../../../Context/StateProvider";
 import PagesaMeSukses from "./PagesaMeSukses";
 import EditoTeDhenat from "./EditoTeDhenat";
+import Mesazhi from "../../../layout/Mesazhi";
 
 function Checkout(props) {
     const [teDhenat, setTeDhenat] = useState([]);
@@ -16,6 +17,9 @@ function Checkout(props) {
     const [vendosjaPorosisSukses, setVendosjaPorosisSukses] = useState(false);
     const [rregulloUseEffect, setRregulloUseEffect] = useState(true);
     const [mbyllPerditesoTeDhenat, setMbyllPerditesoTeDhenat] = useState(true)
+    const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
+    const [tipiMesazhit, setTipiMesazhit] = useState("");
+    const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
     const getID = localStorage.getItem("id");
     const navigate = useNavigate();
@@ -112,11 +116,19 @@ function Checkout(props) {
     }, [vendosjaTeDhenaveSukses, vendosjaPorosisSukses]);
     return (
         <>
+            {shfaqMesazhin && <Mesazhi
+                setShfaqMesazhin={setShfaqMesazhin}
+                pershkrimi={pershkrimiMesazhit}
+                tipi={tipiMesazhit}
+            />}
             {pagesaMeSukses && <PagesaMeSukses nrFatures={nrFatures} />}
             {!mbyllPerditesoTeDhenat &&
                 <EditoTeDhenat
                     setMbyllPerditesoTeDhenat={() => setMbyllPerditesoTeDhenat(true)}
                     perditeso={() => setPerditeso(Date.now())}
+                    setShfaqMesazhin={() => setShfaqMesazhin(true)}
+                    pershkrimi={setPershkrimiMesazhit}
+                    tipi={setTipiMesazhit}
                 />}
             {(pagesaMeSukses === false && pagesaDeshtoi === false) &&
                 <div className="containerDashboardP">

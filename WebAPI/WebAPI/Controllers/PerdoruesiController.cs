@@ -97,13 +97,18 @@ namespace WebAPI.Controllers
                 perdouresi.Mbiemri = p.Mbiemri;
             }
 
-            perdouresi.TeDhenatPerdoruesit.Shteti = p.TeDhenatPerdoruesit.Shteti;
-            perdouresi.TeDhenatPerdoruesit.Qyteti = p.TeDhenatPerdoruesit.Qyteti;
-            perdouresi.TeDhenatPerdoruesit.ZipKodi = p.TeDhenatPerdoruesit.ZipKodi;
-            perdouresi.TeDhenatPerdoruesit.Adresa = p.TeDhenatPerdoruesit.Adresa;
-            perdouresi.TeDhenatPerdoruesit.NrKontaktit = p.TeDhenatPerdoruesit.NrKontaktit;
-
             _context.Perdoruesis.Update(perdouresi);
+            await _context.SaveChangesAsync();
+
+            var teDhenatUser = await _context.TeDhenatPerdoruesits.FirstOrDefaultAsync(x => x.UserId == id);
+
+            teDhenatUser.Qyteti = p.TeDhenatPerdoruesit.Qyteti;
+            teDhenatUser.Shteti = p.TeDhenatPerdoruesit.Shteti;
+            teDhenatUser.Adresa = p.TeDhenatPerdoruesit.Adresa;
+            teDhenatUser.ZipKodi = p.TeDhenatPerdoruesit.ZipKodi;
+            teDhenatUser.NrKontaktit = p.TeDhenatPerdoruesit.NrKontaktit;
+
+            _context.TeDhenatPerdoruesits.Update(teDhenatUser);
             await _context.SaveChangesAsync();
 
             return Ok(perdouresi);

@@ -19,7 +19,23 @@ namespace TechStoreWebAPI.Controllers
         [Route("Porosit")]
         public async Task<IActionResult> Get()
         {
-            List<Porosit> porosit = await _context.Porosits.Include(p => p.TeDhenatEporosis).ToListAsync();
+            var porosit = await _context.Porosits
+                .Include(p => p.IdKlientiNavigation)
+                    .ThenInclude(t => t.TeDhenatPerdoruesit)
+                .Select(p => new 
+                {
+                    p.IdPorosia,
+                    p.TotaliPorosis,
+                    p.DataPorosis,
+                    p.StatusiPorosis,
+                    p.IdKlienti,
+                    p.Zbritja,
+                    p.TotaliProdukteve,
+                    p.IdKlientiNavigation.Emri,
+                    p.IdKlientiNavigation.Mbiemri,
+                })
+                .OrderByDescending(p => p.IdPorosia)
+                .ToListAsync();
 
             return Ok(porosit);
         }
@@ -29,7 +45,6 @@ namespace TechStoreWebAPI.Controllers
         public async Task<IActionResult> GetPorositUseritget(int idPerdoruesi)
         {
             List<Porosit> porosit = await _context.Porosits
-                
                 .Where(p=> p.IdKlienti == idPerdoruesi)
                 .OrderByDescending(p => p.IdPorosia)
                 .ToListAsync();
@@ -124,6 +139,25 @@ namespace TechStoreWebAPI.Controllers
             }
 
             return CreatedAtAction("get", teDhenatEporosi.IdDetajet, teDhenatEporosi);
+        }
+
+        [HttpPut]
+        [Route("perditesoStatusinPorosis")]
+        public async Task<IActionResult> Put(int idPorosia, string statusi)
+        {
+            var porosia = await _context.Porosits.FirstOrDefaultAsync(p => p.IdPorosia == idPorosia);
+
+            if (porosia == null)
+            {
+                return NotFound();
+            }
+
+            porosia.StatusiPorosis = statusi;
+
+            _context.Porosits.Update(porosia);
+            await _context.SaveChangesAsync();
+
+            return Ok(porosia);
         }
     }
 }

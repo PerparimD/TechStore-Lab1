@@ -84,11 +84,11 @@ const EditoTeDhenat = (props) => {
   const handlePerditesoTeDhenat = () =>{
     axios.put(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${perdoruesi.userId}`, perdoruesi, config);
 
-    props.setMbyllPerditesoTeDhenat();
     props.perditeso();
     props.setShfaqMesazhin();
     props.tipi("success");
     props.pershkrimi("Te Dhenat u perditesua me sukses!");
+    props.setMbyllPerditesoTeDhenat();
   }
 
 

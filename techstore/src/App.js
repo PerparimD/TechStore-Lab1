@@ -11,7 +11,6 @@ import Fatura from './Components/Fatura/Fatura'
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
 
-
 function App() {
   return (
     <div className="App">

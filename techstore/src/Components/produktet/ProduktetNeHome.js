@@ -69,18 +69,16 @@ function ProduktetNeHome(props) {
       </Link>
       <div className="butonatDiv">
         {props.sasiaNeStok > 0 &&
-          <Buton Label="Buy Now" name="blej" />}
-        {props.sasiaNeStok > 0 &&
           <button
             onClick={handleShtoNeShporte}
-            className="buttonat"
+            className={`${classes.buttonat} ${classes.butoniAddToCart}`}
           >
-            <FontAwesomeIcon icon={faCartShopping} />
+            Shto ne Shporte <FontAwesomeIcon icon={faCartShopping} />
           </button>
         }
         {props.sasiaNeStok <= 0 &&
           <button
-            className={classes.buttonat} disabled
+            className={"button"} disabled style={{ backgroundColor: "lightgray", color: "black", cursor: "unset" }}
           >
             Out of Stock
           </button>

@@ -5,6 +5,8 @@ import { useStateValue } from "../../../../Context/StateProvider";
 import PagesaMeSukses from "./PagesaMeSukses";
 import EditoTeDhenat from "./EditoTeDhenat";
 import Mesazhi from "../../../layout/Mesazhi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPen } from "@fortawesome/free-solid-svg-icons";
 
 function Checkout(props) {
     const [teDhenat, setTeDhenat] = useState([]);
@@ -109,7 +111,6 @@ function Checkout(props) {
         if (vendosjaTeDhenaveSukses && vendosjaPorosisSukses) {
             setPagesaMeSukses(true);
             localStorage.removeItem("cart");
-            console.log("sukses");
         } else if (!vendosjaTeDhenaveSukses || !vendosjaPorosisSukses) {
             setPagesaDeshtoi(true);
         }
@@ -131,7 +132,7 @@ function Checkout(props) {
                     tipi={setTipiMesazhit}
                 />}
             {(pagesaMeSukses === false && pagesaDeshtoi === false) &&
-                <div className="containerDashboardP">
+                <div className="containerDashboardP containerCheckoutForma">
 
                     <h1>Konfirmimi Porosis</h1>
 
@@ -140,33 +141,32 @@ function Checkout(props) {
                             <th colspan="2" style={{ textAlign: "center", textTransform: "uppercase" }}>Te dhenat e Transportit</th>
                         </tr>
                         <tr>
-                            <th>Klienti</th>
+                            <th>Klienti:</th>
                             <td>
                                 {teDhenat.perdoruesi &&
                                     (teDhenat.perdoruesi.emri + " " + teDhenat.perdoruesi.mbiemri)}
                             </td>
                         </tr>
                         <tr>
-                            <th>Adresa</th>
+                            <th>Adresa:</th>
                             <td id='adresa'>
-                                {teDhenat.perdoruesi &&
+                                {teDhenat.perdoruesi && teDhenat.perdoruesi.teDhenatPerdoruesit &&
                                     (
                                         teDhenat.perdoruesi.teDhenatPerdoruesit.adresa + ", " + teDhenat.perdoruesi.teDhenatPerdoruesit.qyteti + ", " + teDhenat.perdoruesi.teDhenatPerdoruesit.shteti + " " + teDhenat.perdoruesi.teDhenatPerdoruesit.zipKodi
                                     )}
                             </td>
                         </tr>
                         <tr>
-                            <th>Numri Kontaktues</th>
+                            <th>Numri Kontaktues:</th>
                             <td id='nrKontaktit'>
-                                {teDhenat.perdoruesi && teDhenat.perdoruesi.teDhenatPerdoruesit.nrKontaktit}
+                                {teDhenat.perdoruesi && teDhenat.perdoruesi.teDhenatPerdoruesit && teDhenat.perdoruesi.teDhenatPerdoruesit.nrKontaktit}
                             </td>
                         </tr>
-                        <br />
                         <tr>
                             <th colspan="2" style={{ textAlign: "center", textTransform: "uppercase" }}>Te dhenat e Porosise</th>
                         </tr>
                         <tr>
-                            <th>Totali i Produkteve</th>
+                            <th>Totali i Produkteve:</th>
                             <td>
                                 <strong>
                                     {props.totaliProdukteve}
@@ -253,10 +253,12 @@ function Checkout(props) {
                             <td>Transport Normal - Pa Pagese</td>
                         </tr>
                         <tr>
-                            <td colspan={2} style={{ textAlign: "center" }}>
-                                <button className="button" name='complete' type="submit" value="Perfundo Porosin " onClick={props.setCheckout}>Anulo</button>
-                                <button className="button" name='complete' type="submit" value="Perfundo Porosin " onClick={handlePerfundoPorosine}>Perfundo Porosin</button>
-                                <button className="button" onClick={() => setMbyllPerditesoTeDhenat(false)}>  Perditeso te Dhenat <i className="fa-solid">&#xf4ff;</i> </button>
+                            <td colspan={2}>
+                                <div style={{ display: "flex", gap: "1em", justifyContent: "center", marginBottom: "1em" }}>
+                                    <button className="button" name='complete' type="submit" value="Perfundo Porosin " onClick={props.setCheckout}>Anulo</button>
+                                    <button className="button" onClick={() => setMbyllPerditesoTeDhenat(false)}>  Perditeso te Dhenat <FontAwesomeIcon icon={faUserPen} /> </button>
+                                    <button className="button" name='complete' type="submit" value="Perfundo Porosin " onClick={handlePerfundoPorosine}>Perfundo Porosin</button>
+                                </div>
                             </td>
 
                         </tr>

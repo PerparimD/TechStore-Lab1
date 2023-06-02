@@ -1,4 +1,4 @@
-.butonatDiv{
+.butonatDiv {
   display: flex;
 }
 
@@ -17,4 +17,8 @@
 .buttonat:hover {
   background-color: #01df93;
   color: white;
+}
+
+.butoniAddToCart {
+  width: 11em;
 }

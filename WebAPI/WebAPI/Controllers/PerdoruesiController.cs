@@ -102,11 +102,26 @@ namespace WebAPI.Controllers
 
             var teDhenatUser = await _context.TeDhenatPerdoruesits.FirstOrDefaultAsync(x => x.UserId == id);
 
-            teDhenatUser.Qyteti = p.TeDhenatPerdoruesit.Qyteti;
-            teDhenatUser.Shteti = p.TeDhenatPerdoruesit.Shteti;
-            teDhenatUser.Adresa = p.TeDhenatPerdoruesit.Adresa;
-            teDhenatUser.ZipKodi = p.TeDhenatPerdoruesit.ZipKodi;
-            teDhenatUser.NrKontaktit = p.TeDhenatPerdoruesit.NrKontaktit;
+            if (!p.TeDhenatPerdoruesit.Qyteti.IsNullOrEmpty())
+            {
+                teDhenatUser.Qyteti = p.TeDhenatPerdoruesit.Qyteti;
+            }
+            if (!p.TeDhenatPerdoruesit.Shteti.IsNullOrEmpty())
+            {
+                teDhenatUser.Shteti = p.TeDhenatPerdoruesit.Shteti;
+            }
+            if (!p.TeDhenatPerdoruesit.Adresa.IsNullOrEmpty())
+            {
+                teDhenatUser.Adresa = p.TeDhenatPerdoruesit.Adresa;
+            }
+            if (p.TeDhenatPerdoruesit.ZipKodi > 0)
+            {
+                teDhenatUser.ZipKodi = p.TeDhenatPerdoruesit.ZipKodi;
+            }
+            if (!p.TeDhenatPerdoruesit.NrKontaktit.IsNullOrEmpty())
+            {
+                teDhenatUser.NrKontaktit = p.TeDhenatPerdoruesit.NrKontaktit;
+            }
 
             _context.TeDhenatPerdoruesits.Update(teDhenatUser);
             await _context.SaveChangesAsync();

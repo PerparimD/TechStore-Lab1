@@ -10,6 +10,13 @@
     margin-top: 1.5em;
 }
 
+.containerCheckoutForma{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 767px) {
   .col-3{
     display: flex;

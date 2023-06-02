@@ -183,7 +183,7 @@ function Produkti() {
                                     }
                                     {produkti.sasiaNeStok <= 0 &&
                                         <button
-                                            className={"button"} disabled style={{ backgroundColor: "lightgray", color: "black" }}
+                                            className={"button"} disabled style={{ backgroundColor: "lightgray", color: "black", cursor: "unset" }}
                                         >
                                             Out of Stock
                                         </button>

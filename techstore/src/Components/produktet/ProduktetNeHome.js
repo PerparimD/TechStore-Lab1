@@ -43,7 +43,7 @@ function ProduktetNeHome(props) {
 
 
   return (
-    <div className="artikulli" key={props.produktiID}>
+    <div className="artikulli" key={props.produktiID} data-aos="zoom-in">
       {shfaqMesazhin && <Mesazhi
         setShfaqMesazhin={setShfaqMesazhin}
         pershkrimi={pershkrimiMesazhit}

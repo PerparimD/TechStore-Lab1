@@ -14,10 +14,10 @@ const AboutUs = () => {
       </Helmet>
       <NavBar />
       <div className="about-page">
-        <div className="photo">
+        <div className="photo" data-aos="fade-right">
           <img src={lg} alt="" />
         </div>
-        <div className="about-txt">
+        <div className="about-txt" data-aos="fade-left" >
           <h3 class="title">Want to know more about us?</h3>
           <p className="txt">
             What we created is a place where you can find the newest features

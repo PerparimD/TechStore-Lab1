@@ -7,10 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 function ShtoKompanit(props) {
-    const foto = useRef(null);
+    const [foto, setFoto] = useState(null);
     const [emri, setEmri] = useState("");
     const [adresa, setAdresa] = useState("");
-    const [fotoFull, setFotoFull] = useState("");
 
     const handleEmriChange = (value) => {
         setEmri(value);
@@ -19,32 +18,57 @@ function ShtoKompanit(props) {
     const handleAdresaChange = (value) => {
         setAdresa(value);
     };
-    const handleFotoChange = () => {
-        const filePath = foto.current.value;
-        const fileName = filePath.split('\\').pop();
-        setFotoFull(fileName);
+    const handleFotoChange = (event) => {
+        setFoto(event.target.files[0]);
     };
 
-    function handleSubmit() {
-        const logo = fotoFull;
+    async function handleSubmit() {
+        if (foto) {
+            const formData = new FormData();
+            formData.append('foto', foto);
 
-        axios.post('https://localhost:7285/api/Kompania/shtoKompanin', {
-            emriKompanis: emri,
-            logo: logo,
-            adresa: adresa
-        })
-            .then((response) => {
-                console.log(response);
-                props.setTipiMesazhit("success");
-                props.setPershkrimiMesazhit("Kompania u insertua me sukses!")
-                props.perditesoTeDhenat();
-                props.largo();
-                props.shfaqmesazhin();
+            try {
+                await axios.post("https://localhost:7285/api/VendosFotot/ShtoKompanin", formData)
+                    .then(async (response) => {
+                        axios.post('https://localhost:7285/api/Kompania/shtoKompanin', {
+                            emriKompanis: emri,
+                            logo: response.data,
+                            adresa: adresa
+                        })
+                            .then((response) => {
+                                console.log(response);
+                                props.setTipiMesazhit("success");
+                                props.setPershkrimiMesazhit("Kompania u insertua me sukses!")
+                                props.perditesoTeDhenat();
+                                props.largo();
+                                props.shfaqmesazhin();
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                    });
+            } catch (error) {
+                console.error(error);
+            }
+
+        } else {
+            axios.post('https://localhost:7285/api/Kompania/shtoKompanin', {
+                emriKompanis: emri,
+                logo: "KompaniPaFoto.png",
+                adresa: adresa
             })
-            .catch((error) => {
-                console.log(error);
-            });
-
+                .then((response) => {
+                    console.log(response);
+                    props.setTipiMesazhit("success");
+                    props.setPershkrimiMesazhit("Kompania u insertua me sukses!")
+                    props.perditesoTeDhenat();
+                    props.largo();
+                    props.shfaqmesazhin();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     }
     return (
         <Modal className="modalEditShto" show={props.shfaq} onHide={() => props.largo()}>
@@ -68,9 +92,7 @@ function ShtoKompanit(props) {
                         <Form.Control
                             type="file"
                             placeholder="Foto e Kompanis"
-                            ref={foto}
                             onChange={handleFotoChange}
-
                             autoFocus
                         />
                     </Form.Group>

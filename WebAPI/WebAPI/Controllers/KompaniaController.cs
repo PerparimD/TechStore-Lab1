@@ -54,6 +54,17 @@ namespace TechStoreWebAPI.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] Kompanium k)
         {
             var kompania = await _context.Kompania.FirstOrDefaultAsync(x => x.KompaniaId == id);
+
+            if (k.Logo.Equals("KompaniPaFoto.png"))
+            {
+                var fotoVjeter = Path.Combine("..", "..", "techstore", "public", "img", "slider", "sliderIcons", kompania.Logo);
+
+                if (System.IO.File.Exists(fotoVjeter))
+                {
+                    System.IO.File.Delete(fotoVjeter);
+                }
+            }
+
             if (kompania == null)
             {
                 return BadRequest("Id gabim");
@@ -68,6 +79,8 @@ namespace TechStoreWebAPI.Controllers
                 kompania.Logo = k.Logo;
             }
             kompania.Adresa = k.Adresa;
+
+            
 
             _context.Kompania.Update(kompania);
             await _context.SaveChangesAsync();
@@ -84,6 +97,16 @@ namespace TechStoreWebAPI.Controllers
 
             if (kompania == null)
                 return BadRequest("Invalid id");
+
+            if (!kompania.Logo.Equals("KompaniPaFoto.png"))
+            {
+                var fotoVjeter = Path.Combine("..", "..", "techstore", "public", "img", "slider", "sliderIcons", kompania.Logo);
+
+                if (System.IO.File.Exists(fotoVjeter))
+                {
+                    System.IO.File.Delete(fotoVjeter);
+                }
+            }
 
             _context.Kompania.Remove(kompania);
             await _context.SaveChangesAsync();

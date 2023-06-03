@@ -28,6 +28,14 @@ const ProductTables = () => {
   const [mbyllKompanit, setMbyllKompanit] = useState(true);
   const [mbyllKategorite, setMbyllKategorite] = useState(true);
 
+  const getToken = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
+
   useEffect(() => {
     const shfaqProduktet = async () => {
       try {
@@ -68,7 +76,7 @@ const ProductTables = () => {
 
   async function handleDelete() {
     try {
-      await axios.delete(`https://localhost:7285/api/Produkti/` + id);
+      await axios.delete(`https://localhost:7285/api/Produkti/` + id , config);
       setTipiMesazhit("success");
       setPershkrimiMesazhit("Produkti u fshi me sukses!");
       setPerditeso(Date.now());

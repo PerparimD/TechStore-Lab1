@@ -8,7 +8,7 @@ import { faPenToSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 function EditoKompanin(props) {
     const [kompania, setKompania] = useState([]);
-    const foto = useRef(null);
+    const [foto, setFoto] = useState(null);
 
     useEffect(() => {
         const shfaqKompanit = async () => {
@@ -33,32 +33,70 @@ function EditoKompanin(props) {
     };
 
 
-    const handleFotoChange = () => {
-        const filePath = foto.current.value;
-        const fileName = filePath.split('\\').pop();
-        setKompania(prev => ({ ...prev, logo: fileName }));
+    const handleFotoChange = (event) => {
+        setFoto(event.target.files[0]);
     };
 
 
-    function handleSubmit() {
+    async function handleSubmit() {
+        if (foto) {
+            const formData = new FormData();
+            formData.append('foto', foto);
+
+            try {
+                await axios.post(`https://localhost:7285/api/VendosFotot/EditoKompanin?fotoVjeterKompanis=${kompania.logo}`, formData)
+                    .then(async (response) => {
+                        await axios.put(`https://localhost:7285/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`,
+                            {
+                                emriKompanis: kompania.emriKompanis,
+                                logo: response.data,
+                                adresa: kompania.Adresa
+                            }
+                        )
+                            .then(x => {
+                                console.log(x);
+                                props.setTipiMesazhit("success");
+                                props.setPershkrimiMesazhit("Kompania u Perditesua me sukses!")
+                                props.perditesoTeDhenat();
+                                props.largo();
+                                props.shfaqmesazhin();
+                            })
+                            .catch(error => {
+                                console.error('Error saving kompania:', error);
+                                props.setTipiMesazhit("danger");
+                                props.setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te kompanis!")
+                                props.perditesoTeDhenat();
+                                props.shfaqmesazhin();
+                            });
+                    })
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            await axios.put(`https://localhost:7285/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`,
+                {
+                    emriKompanis: kompania.emriKompanis,
+                    logo: "KompaniPaFoto.png",
+                    adresa: kompania.Adresa
+                })
+                .then(x => {
+                    console.log(x);
+                    props.setTipiMesazhit("success");
+                    props.setPershkrimiMesazhit("Kompania u Perditesua me sukses!")
+                    props.perditesoTeDhenat();
+                    props.largo();
+                    props.shfaqmesazhin();
+                })
+                .catch(error => {
+                    console.error('Error saving kompania:', error);
+                    props.setTipiMesazhit("danger");
+                    props.setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te kompanis!")
+                    props.perditesoTeDhenat();
+                    props.shfaqmesazhin();
+                });
+        }
 
 
-        axios.put(`https://localhost:7285/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`, kompania)
-            .then(x => {
-                console.log(x);
-                props.setTipiMesazhit("success");
-                props.setPershkrimiMesazhit("Kompania u Perditesua me sukses!")
-                props.perditesoTeDhenat();
-                props.largo();
-                props.shfaqmesazhin();
-            })
-            .catch(error => {
-                console.error('Error saving kompania:', error);
-                props.setTipiMesazhit("danger");
-                props.setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te kompanis!")
-                props.perditesoTeDhenat();
-                props.shfaqmesazhin();
-            });
 
     }
     return (
@@ -101,7 +139,7 @@ function EditoKompanin(props) {
                             onChange={e => handleAdresaChange(e.target.value)}
                             type="text"
                             placeholder="Adresa Kompanis"
-                            defaultValue={kompania.adresa ?? ''}
+                            value={kompania.adresa}
                             autoFocus
                         />
                     </Form.Group>

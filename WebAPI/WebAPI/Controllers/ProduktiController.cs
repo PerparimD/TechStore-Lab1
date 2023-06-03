@@ -128,6 +128,16 @@ namespace TechStoreWebAPI.Controllers
             var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
             var stokuQmimi = await _context.StokuQmimiProduktits.FirstOrDefaultAsync(x => x.ProduktiId == id);
 
+            if (p.FotoProduktit.Equals("ProduktPaFoto.png"))
+            {
+                var fotoVjeter = Path.Combine("..", "..", "techstore", "public", "img", "products", produkti.FotoProduktit);
+
+                if (System.IO.File.Exists(fotoVjeter))
+                {
+                    System.IO.File.Delete(fotoVjeter);
+                }
+            }
+
             if (produkti == null || stokuQmimi == null)
             {
                 return BadRequest("Produkti me këtë ID nuk ekziston");
@@ -176,6 +186,8 @@ namespace TechStoreWebAPI.Controllers
                 }
             }
 
+            
+
             _context.Produktis.Update(produkti);
             _context.StokuQmimiProduktits.Update(stokuQmimi);
             await _context.SaveChangesAsync();
@@ -191,6 +203,16 @@ namespace TechStoreWebAPI.Controllers
 
             if (produkti == null)
                 return BadRequest("Invalid id");
+
+            if (!produkti.FotoProduktit.Equals("ProduktPaFoto.png"))
+            {
+                var fotoVjeter = Path.Combine("..", "..", "techstore", "public", "img", "products", produkti.FotoProduktit);
+
+                if (System.IO.File.Exists(fotoVjeter))
+                {
+                    System.IO.File.Delete(fotoVjeter);
+                }
+            }
 
             _context.Produktis.Remove(produkti);
             await _context.SaveChangesAsync();

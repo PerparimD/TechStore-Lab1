@@ -9,14 +9,13 @@ import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 
 const ShtoProduktin = (props) => {
-  const fotoP = useRef(null);
-  const [foto, setFoto] = useState("");
   const [emriP, setEmriP] = useState("");
   const [emriK, setEmriK] = useState("");
   const [pershkrimi, setPershkrimi] = useState("");
   const [llojiK, setLlojiK] = useState("");
   const [kompanit, setKompanit] = useState([]);
   const [kategoria, setKategoria] = useState([]);
+  const [foto, setFoto] = useState(null);
 
   const handleEmriPChange = (value) => {
     setEmriP(value);
@@ -34,10 +33,8 @@ const ShtoProduktin = (props) => {
     setLlojiK(value);
   };
 
-  const handleFotoChange = () => {
-    const filePath = fotoP.current.value;
-    const fileName = filePath.split("\\").pop();
-    setFoto(fileName);
+  const handleFotoChange = (event) => {
+    setFoto(event.target.files[0]);
   };
 
   useEffect(() => {
@@ -53,28 +50,70 @@ const ShtoProduktin = (props) => {
         setKategoria(dataKategorit);
       });
   }, []);
-  
 
-  function handleSubmit() {
-    axios
-      .post("https://localhost:7285/api/Produkti/shtoProdukt", {
-        emriProduktit: emriP,
-        pershkrimi: pershkrimi,
-        fotoProduktit: foto,
-        kategoriaId: llojiK,
-        kompaniaId: emriK
-      })
-      .then((response) => {
-        console.log(response);
-        props.setTipiMesazhit("success");
-        props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
-        props.perditesoTeDhenat();
-        props.hide();
-        props.shfaqmesazhin();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const getToken = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
+
+
+  async function handleSubmit() {
+    if (foto) {
+      const formData = new FormData();
+      formData.append('foto', foto);
+
+      try {
+        await axios.post("https://localhost:7285/api/VendosFotot/ShtoProduktin", formData)
+          .then(async (response) => {
+            await axios
+              .post("https://localhost:7285/api/Produkti/shtoProdukt", {
+                emriProduktit: emriP,
+                pershkrimi: pershkrimi,
+                fotoProduktit: response.data,
+                kategoriaId: llojiK,
+                kompaniaId: emriK
+              }, config)
+              .then(async (response) => {
+                console.log(response);
+                props.setTipiMesazhit("success");
+                props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
+                props.perditesoTeDhenat();
+                props.hide();
+                props.shfaqmesazhin();
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          });
+      } catch (error) {
+        console.error(error);
+      }
+
+    } else {
+      await axios
+        .post("https://localhost:7285/api/Produkti/shtoProdukt", {
+          emriProduktit: emriP,
+          pershkrimi: pershkrimi,
+          fotoProduktit: "ProduktPaFoto.png",
+          kategoriaId: llojiK,
+          kompaniaId: emriK
+        }, config)
+        .then((response) => {
+          console.log(response);
+          props.setTipiMesazhit("success");
+          props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
+          props.perditesoTeDhenat();
+          props.hide();
+          props.shfaqmesazhin();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
   }
   return (
     <>
@@ -105,7 +144,6 @@ const ShtoProduktin = (props) => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Foto Produktit</Form.Label>
               <Form.Control
-                ref={fotoP}
                 type="file"
                 placeholder="Foto e Produktit"
                 onChange={handleFotoChange}

@@ -10,9 +10,17 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 function EditoProduktin(props) {
   const [produkti, setProdukti] = useState([]);
-  const foto = useRef(null);
+  const [foto, setFoto] = useState(null);
   const [kompanit, setKompanit] = useState([]);
   const [kategoria, setKategoria] = useState([]);
+
+  const getToken = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
 
   useEffect(() => {
     const shfaqProduktet = async () => {
@@ -49,10 +57,8 @@ function EditoProduktin(props) {
   const handleQmimiPChange = (value) => {
     setProdukti((prev) => ({ ...prev, qmimiProduktit: value }));
   };
-  const handleFotoChange = () => {
-    const filePath = foto.current.value;
-    const fileName = filePath.split("\\").pop();
-    setProdukti((prev) => ({ ...prev, fotoProduktit: fileName }));
+  const handleFotoChange = (event) => {
+    setFoto(event.target.files[0]);
   };
 
   const handleKompaniaChange = (value) => {
@@ -65,33 +71,70 @@ function EditoProduktin(props) {
   };
 
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    if (foto) {
+      const formData = new FormData();
+      formData.append('foto', foto);
 
-    axios.put(`https://localhost:7285/api/Produkti/` + props.id, {
-      emriProduktit: produkti.emriProduktit,
-      kategoriaId: produkti.kategoriaId,
-      kompaniaId: produkti.kompaniaId,
-      pershkrimi: produkti.pershkrimi,
-      fotoProduktit: produkti.fotoProduktit,
-      stokuQmimiProduktit: {
-        qmimiProduktit: produkti.qmimiProduktit,
+      try {
+        await axios.post(`https://localhost:7285/api/VendosFotot/EditoProduktin?fotoVjeterProduktit=${produkti.fotoProduktit}`, formData)
+          .then(async (response) => {
+            await axios.put(`https://localhost:7285/api/Produkti/` + props.id, {
+              emriProduktit: produkti.emriProduktit,
+              kategoriaId: produkti.kategoriaId,
+              kompaniaId: produkti.kompaniaId,
+              pershkrimi: produkti.pershkrimi,
+              fotoProduktit: response.data,
+              stokuQmimiProduktit: {
+                qmimiProduktit: produkti.qmimiProduktit,
+              }
+            }, config)
+              .then(x => {
+                console.log(x);
+                props.setTipiMesazhit("success");
+                props.setPershkrimiMesazhit("Produkti u Perditesua me sukses!")
+                props.perditesoTeDhenat();
+                props.hide();
+                props.shfaqmesazhin();
+              })
+              .catch(error => {
+                console.error('Error saving the product:', error);
+                props.setTipiMesazhit("danger");
+                props.setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te produktit!")
+                props.perditesoTeDhenat();
+                props.shfaqmesazhin();
+              });
+          })
+      } catch (error) {
+        console.error(error);
       }
-    })
-      .then(x => {
-        console.log(x);
-        props.setTipiMesazhit("success");
-        props.setPershkrimiMesazhit("Produkti u Perditesua me sukses!")
-        props.perditesoTeDhenat();
-        props.hide();
-        props.shfaqmesazhin();
-      })
-      .catch(error => {
-        console.error('Error saving the product:', error);
-        props.setTipiMesazhit("danger");
-        props.setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te produktit!")
-        props.perditesoTeDhenat();
-        props.shfaqmesazhin();
-      });
+    } else {
+      await axios.put(`https://localhost:7285/api/Produkti/` + props.id, {
+        emriProduktit: produkti.emriProduktit,
+        kategoriaId: produkti.kategoriaId,
+        kompaniaId: produkti.kompaniaId,
+        pershkrimi: produkti.pershkrimi,
+        fotoProduktit: "ProduktPaFoto.png",
+        stokuQmimiProduktit: {
+          qmimiProduktit: produkti.qmimiProduktit,
+        }
+      }, config)
+        .then(x => {
+          console.log(x);
+          props.setTipiMesazhit("success");
+          props.setPershkrimiMesazhit("Produkti u Perditesua me sukses!")
+          props.perditesoTeDhenat();
+          props.hide();
+          props.shfaqmesazhin();
+        })
+        .catch(error => {
+          console.error('Error saving the product:', error);
+          props.setTipiMesazhit("danger");
+          props.setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te produktit!")
+          props.perditesoTeDhenat();
+          props.shfaqmesazhin();
+        });
+    }
   }
 
   return (
@@ -124,7 +167,6 @@ function EditoProduktin(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Foto Produktit</Form.Label>
               <Form.Control
-                ref={foto}
                 type="file"
                 placeholder="Foto e Produktit"
                 onChange={handleFotoChange}

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class RegjistrimiStokutController : Controller
@@ -15,6 +17,7 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("shfaqRegjistrimet")]
         public async Task<IActionResult> Get()
@@ -34,6 +37,7 @@ namespace WebAPI.Controllers
             return Ok(regjistrimet);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("shfaqRegjistrimetNgaID")]
         public async Task<IActionResult> GetRegjistrimin(int id)
@@ -53,6 +57,7 @@ namespace WebAPI.Controllers
             return Ok(regjistrimet);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("shfaqTeDhenatKalkulimit")]
         public async Task<IActionResult> Get(int idRegjistrimit)
@@ -73,8 +78,7 @@ namespace WebAPI.Controllers
             return Ok(teDhenat);
         }
 
-
-
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("ruajKalkulimin")]
         public async Task<IActionResult> Post(RegjistrimiStokut regjistrimet)
@@ -85,6 +89,7 @@ namespace WebAPI.Controllers
             return CreatedAtAction("Get", regjistrimet.IdRegjistrimit, regjistrimet);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("ruajKalkulimin/teDhenat")]
         public async Task<IActionResult> Post(TeDhenatRegjistrimit teDhenat)
@@ -94,6 +99,8 @@ namespace WebAPI.Controllers
 
             return Ok();
         }
+
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut]
         [Route("ruajKalkulimin/perditesoStokunQmimin")]
         public async Task<IActionResult> Put(int id, [FromBody] StokuQmimiProduktit stoku)

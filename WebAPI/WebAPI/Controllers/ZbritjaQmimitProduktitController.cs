@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class ZbritjaQmimitProduktitController : Controller
@@ -15,6 +17,7 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("shfaqZbritjet")]
         public async Task<IActionResult> get()
@@ -34,6 +37,7 @@ namespace WebAPI.Controllers
             return Ok(prodMeZbritje);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoZbritjenProduktit")]
         public async Task<IActionResult> post(ZbritjaQmimitProduktit zbritja)
@@ -44,6 +48,7 @@ namespace WebAPI.Controllers
             return CreatedAtAction("get", zbritja.ProduktiId, zbritja);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpDelete]
         [Route("fshijZbritjenProduktit")]
         public async Task<IActionResult> Delete(int id)

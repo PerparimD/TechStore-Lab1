@@ -21,11 +21,19 @@ function ProduktiNeZbritje(props) {
   const [zbritjaNeRregull, setZbritjaNeRregull] = useState(false);
   const [kaZbritje, setKaZbritje] = useState(false);
 
+  const getToken = localStorage.getItem("token");
+
+  const authentikimi = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
+
   useEffect(() => {
     const vendosProduktet = async () => {
       try {
         const produktet = await axios.get(
-          `https://localhost:7285/api/Produkti/Products`
+          `https://localhost:7285/api/Produkti/Products`, authentikimi
         );
         setProduktet(produktet.data);
 
@@ -41,7 +49,7 @@ function ProduktiNeZbritje(props) {
     const vendosDetajetProduktit = async () => {
       try {
         await axios.get(
-          `https://localhost:7285/api/Produkti/${produkti}`
+          `https://localhost:7285/api/Produkti/${produkti}`, authentikimi
         ).then((response) => {
           setQmimiBleresProduktit((response.data.qmimiBleres).toFixed(2));
           setQmimiShitesProduktit((response.data.qmimiProduktit).toFixed(2));
@@ -95,7 +103,7 @@ function ProduktiNeZbritje(props) {
         qmimiPaZbritjeProduktit: qmimiShitesProduktit,
         qmimiMeZbritjeProduktit: qmimiZbritur,
         dataSkadimit: dataSkadimit
-      })
+      }, authentikimi)
         .then(() => {
           props.setTipiMesazhit("success");
           props.setPershkrimiMesazhit("Zbritja u shtua me sukses!")

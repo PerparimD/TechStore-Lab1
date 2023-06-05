@@ -21,7 +21,7 @@ function TabelaEPerdoruesve() {
     const [loading, setLoading] = useState(false);
     const token = localStorage.getItem("token");
 
-    const config = {
+    const authentikimi = {
         headers: {
             Authorization: `Bearer ${token}`,
         },
@@ -31,7 +31,7 @@ function TabelaEPerdoruesve() {
         const shfaqPerdoruesit = async () => {
             try {
                 setLoading(true);
-                const perdoruesit = await axios.get("https://localhost:7285/api/Perdoruesi/shfaqPerdoruesit", config);
+                const perdoruesit = await axios.get("https://localhost:7285/api/Perdoruesi/shfaqPerdoruesit", authentikimi);
                 setPerdoruesit(perdoruesit.data);
                 setLoading(false);
                 console.log(perdoruesit)

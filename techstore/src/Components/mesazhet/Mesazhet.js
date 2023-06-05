@@ -14,8 +14,16 @@ function Mesazhet() {
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     function handleEdito(id) {
-        axios.put(`https://localhost:7285/api/ContactForm/konfirmoMesazhin?id=${id}`, {})
+        axios.put(`https://localhost:7285/api/ContactForm/konfirmoMesazhin?id=${id}`, {}, authentikimi)
             .then(x => {
                 console.log(x);
                 setTipiMesazhit("success");
@@ -34,7 +42,7 @@ function Mesazhet() {
 
     async function handleFshij(id) {
         try {
-            await axios.delete(`https://localhost:7285/api/ContactForm/fshiMesazhin?id=${id}`);
+            await axios.delete(`https://localhost:7285/api/ContactForm/fshiMesazhin?id=${id}`, authentikimi);
             setTipiMesazhit("success");
             setPershkrimiMesazhit("Mesazhi u fshi me sukses!")
             setPerditeso(Date.now());
@@ -52,7 +60,7 @@ function Mesazhet() {
         const shfaqKompanit = async () => {
             try {
                 setLoading(true);
-                const mesazhet = await axios.get("https://localhost:7285/api/ContactForm/shfaqMesazhet");
+                const mesazhet = await axios.get("https://localhost:7285/api/ContactForm/shfaqMesazhet", authentikimi);
                 setMesazhet(mesazhet.data);
                 setLoading(false);
             } catch (err) {
@@ -89,7 +97,7 @@ function Mesazhet() {
                     Mesazhet e derguara nga Perdoruesit
                 </h1>
 
-                
+
                 <table className="tableBig">
                     <tr>
                         <th>ID Mesazhit</th>

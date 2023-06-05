@@ -9,11 +9,19 @@ import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 function ShtoRolin(props) {
     const [emri, setEmri] = useState("");
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     const handleEmriChange = (value) => {
         setEmri(value);
     };
     function handleSubmit() {
-        axios.post(`https://localhost:7285/api/Authenticate/shtoRolin?roli=${emri}`)
+        axios.post(`https://localhost:7285/api/Authenticate/shtoRolin?roli=${emri}`, authentikimi)
             .then((response) => {
                 console.log(response);
                 props.setTipiMesazhit("success");

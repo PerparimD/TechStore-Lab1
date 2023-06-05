@@ -73,6 +73,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpPut]
         [Route("perditesoPerdorues/{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Perdoruesi p)

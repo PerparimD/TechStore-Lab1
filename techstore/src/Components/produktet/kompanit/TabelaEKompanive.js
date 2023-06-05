@@ -22,11 +22,19 @@ function TabelaEKompanive(props) {
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const shfaqKompanit = async () => {
             try {
                 setLoading(true);
-                const kompania = await axios.get("https://localhost:7285/api/Kompania/shfaqKompanit");
+                const kompania = await axios.get("https://localhost:7285/api/Kompania/shfaqKompanit", authentikimi);
                 setKompanit(kompania.data);
                 setLoading(false);
             } catch (err) {
@@ -119,7 +127,7 @@ function TabelaEKompanive(props) {
                 </Button>
 
 
-                <table style={{whiteSpace: "unset",}}>
+                <table style={{ whiteSpace: "unset", }}>
                     <tr>
                         <th>Emri i Kompanis</th>
                         <th>Logo</th>

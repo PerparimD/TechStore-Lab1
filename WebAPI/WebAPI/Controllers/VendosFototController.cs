@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using WebAPI.Models;
 
@@ -15,6 +16,7 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("ShtoProduktin")]
         public async Task<IActionResult> ShtoProduktin(IFormFile foto)
@@ -36,6 +38,7 @@ namespace WebAPI.Controllers
             return Ok(emriUnikFotos);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("EditoProduktin")]
         public async Task<IActionResult> EditoProduktin(IFormFile foto, string fotoVjeterProduktit)
@@ -69,6 +72,7 @@ namespace WebAPI.Controllers
             return Ok(emriUnikFotos);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("ShtoKompanin")]
         public async Task<IActionResult> ShtoKompanin(IFormFile foto)
@@ -90,6 +94,7 @@ namespace WebAPI.Controllers
             return Ok(emriUnikFotos);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("EditoKompanin")]
         public async Task<IActionResult> EditoKompanin(IFormFile foto, string fotoVjeterKompanis)
@@ -123,6 +128,39 @@ namespace WebAPI.Controllers
             return Ok(emriUnikFotos);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
+        [HttpPost]
+        [Route("PerditesoTeDhenatBiznesit")]
+        public async Task<IActionResult> PerditesoTeDhenatBiznesit(IFormFile foto, string logoVjeter)
+        {
+            if (foto == null || foto.Length == 0)
+            {
+                return BadRequest("Ju lutem vendosni foton");
+            }
+
+            var follderi = Path.Combine("..", "..", "techstore", "public", "img", "web");
+
+            if (!logoVjeter.Equals("PaLogo.png"))
+            {
+                var fotoVjeter = Path.Combine(follderi, logoVjeter);
+
+                if (System.IO.File.Exists(fotoVjeter))
+                {
+                    System.IO.File.Delete(fotoVjeter);
+                }
+            }
+
+            var emriUnikFotos = GjeneroEmrinUnikFotos(foto.FileName);
+
+            var fotoERe = Path.Combine(follderi, emriUnikFotos);
+
+            using (var stream = new FileStream(fotoERe, FileMode.Create))
+            {
+                await foto.CopyToAsync(stream);
+            }
+
+            return Ok(emriUnikFotos);
+        }
 
 
         private string GjeneroEmrinUnikFotos(string emriFotos)

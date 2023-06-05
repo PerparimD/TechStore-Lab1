@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Data.Entity;
 using WebAPI.Models;
@@ -14,8 +15,9 @@ namespace WebAPI.Controllers
         public TeDhenatBiznesitController(TechStoreDbContext context)
         {
             _context = context;
-        } 
+        }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("ShfaqTeDhenat")]
         public IActionResult Get()
@@ -25,6 +27,7 @@ namespace WebAPI.Controllers
             return Ok(teDhenat);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut]
         [Route("perditesoTeDhenat")]
         public IActionResult Put([FromBody] TeDhenatBiznesit k)
@@ -43,6 +46,7 @@ namespace WebAPI.Controllers
             teDhenat.ShkurtesaEmritBiznesit = k.ShkurtesaEmritBiznesit;
             teDhenat.Nrtvsh = k.Nrtvsh;
             teDhenat.Adresa = k.Adresa;
+            teDhenat.Logo = k.Logo;
 
             _context.SaveChanges();
 

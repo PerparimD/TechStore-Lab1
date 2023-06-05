@@ -9,10 +9,18 @@ import { faPenToSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 function EditoKompanin(props) {
     const [kategoria, setKategoria] = useState([]);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const ShfaqKategorine = async () => {
             try {
-                const kategoria = await axios.get(`https://localhost:7285/api/Kategoria/shfaqKategorinSipasIDs?id=${props.id}`);
+                const kategoria = await axios.get(`https://localhost:7285/api/Kategoria/shfaqKategorinSipasIDs?id=${props.id}`, authentikimi);
                 setKategoria(kategoria.data);
 
             } catch (err) {
@@ -34,7 +42,7 @@ function EditoKompanin(props) {
     function handleSubmit() {
 
 
-        axios.put(`https://localhost:7285/api/Kategoria/perditesoKategorin?id=${kategoria.kategoriaId}`, kategoria)
+        axios.put(`https://localhost:7285/api/Kategoria/perditesoKategorin?id=${kategoria.kategoriaId}`, kategoria, authentikimi)
             .then(x => {
                 console.log(x);
                 props.setTipiMesazhit("success");

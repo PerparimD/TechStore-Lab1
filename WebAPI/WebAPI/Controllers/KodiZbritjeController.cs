@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class KodiZbritjeController : Controller
@@ -15,6 +17,7 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("shfaqKodet")]
         public async Task<IActionResult> Get()
@@ -32,6 +35,8 @@ namespace WebAPI.Controllers
                 .ToListAsync();
             return Ok(kodet);
         }
+
+        [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpGet]
         [Route("gjejKodin")]
         public async Task<IActionResult> Get(string kodi)
@@ -55,7 +60,7 @@ namespace WebAPI.Controllers
             return Ok(kodiZbritjes);
         }
 
-
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoKodin")]
         public async Task<IActionResult> Post(KodiZbritje kodiZbritjes)
@@ -66,6 +71,7 @@ namespace WebAPI.Controllers
             return CreatedAtAction("Get", kodiZbritjes.Kodi, kodiZbritjes);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut]
         [Route("perditesoTeDhenatEKodit")]
         public async Task<IActionResult> Put(String kodi, [FromBody] KodiZbritje k)
@@ -99,6 +105,7 @@ namespace WebAPI.Controllers
             return Ok(teDhenatKodit);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpDelete]
         [Route("fshijKodin")]
         public async Task<IActionResult> Delete(String kodi)

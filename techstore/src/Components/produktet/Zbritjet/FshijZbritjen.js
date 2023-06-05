@@ -8,7 +8,6 @@ function FshijZbritjen(props) {
         try {
             props.setTipiMesazhit("success");
             props.setPershkrimiMesazhit("<h6>Zbritja u fshi me sukses!</h6>")
-            props.perditesoTeDhenat();
             props.fshijZbritjen();
             props.largo();
             props.shfaqmesazhin();

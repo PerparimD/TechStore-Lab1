@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 
 const ShtoProduktin = (props) => {
@@ -16,6 +16,14 @@ const ShtoProduktin = (props) => {
   const [kompanit, setKompanit] = useState([]);
   const [kategoria, setKategoria] = useState([]);
   const [foto, setFoto] = useState(null);
+
+  const getToken = localStorage.getItem("token");
+
+  const authentikimi = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
 
   const handleEmriPChange = (value) => {
     setEmriP(value);
@@ -51,14 +59,6 @@ const ShtoProduktin = (props) => {
       });
   }, []);
 
-  const getToken = localStorage.getItem("token");
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${getToken}`,
-    },
-  };
-
 
   async function handleSubmit() {
     if (foto) {
@@ -66,7 +66,7 @@ const ShtoProduktin = (props) => {
       formData.append('foto', foto);
 
       try {
-        await axios.post("https://localhost:7285/api/VendosFotot/ShtoProduktin", formData)
+        await axios.post("https://localhost:7285/api/VendosFotot/ShtoProduktin", formData, authentikimi)
           .then(async (response) => {
             await axios
               .post("https://localhost:7285/api/Produkti/shtoProdukt", {
@@ -75,7 +75,7 @@ const ShtoProduktin = (props) => {
                 fotoProduktit: response.data,
                 kategoriaId: llojiK,
                 kompaniaId: emriK
-              }, config)
+              }, authentikimi)
               .then(async (response) => {
                 console.log(response);
                 props.setTipiMesazhit("success");
@@ -100,7 +100,7 @@ const ShtoProduktin = (props) => {
           fotoProduktit: "ProduktPaFoto.png",
           kategoriaId: llojiK,
           kompaniaId: emriK
-        }, config)
+        }, authentikimi)
         .then((response) => {
           console.log(response);
           props.setTipiMesazhit("success");

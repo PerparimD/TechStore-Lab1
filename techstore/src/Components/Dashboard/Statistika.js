@@ -7,10 +7,18 @@ function Statistika() {
     const [top15Bleresit, setTop15Bleresit] = useState([]);
     const [top15Produktet, setTop15Produktet] = useState([]);
     const [shitjetJavore, setShitjetJavore] = useState([]);
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const vendosTotalinPerdoruesve = async () => {
             try {
-                const totalet = await axios.get("https://localhost:7285/api/Statistikat/totaleTeNdryshme");
+                const totalet = await axios.get("https://localhost:7285/api/Statistikat/totaleTeNdryshme", authentikimi);
                 setTotaleTeNdryshme(totalet.data);
             } catch (e) {
                 console.error(e);
@@ -19,7 +27,7 @@ function Statistika() {
 
         const vendosTop15Bleresit = async () => {
             try {
-                const bleresit = await axios.get("https://localhost:7285/api/Statistikat/15PerdoruesitMeSeShumtiBlerje");
+                const bleresit = await axios.get("https://localhost:7285/api/Statistikat/15PerdoruesitMeSeShumtiBlerje", authentikimi);
                 setTop15Bleresit(bleresit.data);
             } catch (e) {
                 console.error(e);
@@ -28,7 +36,7 @@ function Statistika() {
 
         const vendosTop15Produktet = async () => {
             try {
-                const produktet = await axios.get("https://localhost:7285/api/Statistikat/15ProduktetMeTeShitura");
+                const produktet = await axios.get("https://localhost:7285/api/Statistikat/15ProduktetMeTeShitura", authentikimi);
                 setTop15Produktet(produktet.data);
             } catch (e) {
                 console.error(e);
@@ -37,7 +45,7 @@ function Statistika() {
 
         const vendosShitjetJavore = async () => {
             try {
-                const dita = await axios.get("https://localhost:7285/api/Statistikat/TotaletJavore");
+                const dita = await axios.get("https://localhost:7285/api/Statistikat/TotaletJavore", authentikimi);
                 setShitjetJavore(dita.data);
 
                 console.log(shitjetJavore, dita.data);

@@ -3,14 +3,10 @@ import { Helmet } from "react-helmet";
 import NavBar from "../Components/layout/NavBar";
 import Footer from "../Components/layout/Footer";
 import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/esm/Button";
 import "./Styles/SignUp.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelopeCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import axios from "axios";
-import Mesazhi from "../Components/layout/Mesazhi";
 import Col from "react-bootstrap/Col";
 import { Row } from "react-bootstrap";
 
@@ -25,6 +21,14 @@ const SignUp = () => {
   const [adresa, setAdresa] = useState("");
   const [shteti, setShteti] = useState("");
   const [zipKodi, setZipKodi] = useState("");
+
+  const getToken = localStorage.getItem("token");
+
+  const authentikimi = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
 
   const handleChange = (setState) => (event) => {
     setState(event.target.value);
@@ -49,7 +53,7 @@ const SignUp = () => {
         shteti: shteti,
         zipKodi: zipKodi !== "" ? zipKodi : 0,
         nrTelefonit: nrTelefonit
-      })
+      }, authentikimi)
       .then((response) => {
         console.log(response);
       })

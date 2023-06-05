@@ -30,7 +30,7 @@ const ProductTables = () => {
 
   const getToken = localStorage.getItem("token");
 
-  const config = {
+  const authentikimi = {
     headers: {
       Authorization: `Bearer ${getToken}`,
     },
@@ -41,7 +41,7 @@ const ProductTables = () => {
       try {
         setLoading(true);
         const produkti = await axios.get(
-          "https://localhost:7285/api/Produkti/Products"
+          "https://localhost:7285/api/Produkti/Products", authentikimi
         );
         setProdukti(produkti.data);
         setLoading(false);
@@ -76,7 +76,7 @@ const ProductTables = () => {
 
   async function handleDelete() {
     try {
-      await axios.delete(`https://localhost:7285/api/Produkti/` + id , config);
+      await axios.delete(`https://localhost:7285/api/Produkti/` + id, authentikimi);
       setTipiMesazhit("success");
       setPershkrimiMesazhit("Produkti u fshi me sukses!");
       setPerditeso(Date.now());

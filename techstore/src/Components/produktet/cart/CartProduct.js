@@ -15,6 +15,14 @@ const CartProduct = (props) => {
   const [tipiMesazhit, setTipiMesazhit] = useState("danger");
   const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
+  const getToken = localStorage.getItem("token");
+
+  const authentikimi = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
+
   useEffect(() => {
     const shfaqMesazhinStorage = localStorage.getItem('shfaqMesazhin');
     const pershkrimiMesazhitStorage = localStorage.getItem('pershkrimiMesazhit');
@@ -37,7 +45,7 @@ const CartProduct = (props) => {
 
   useEffect(() => {
     axios
-      .get(`https://localhost:7285/api/Produkti/${props.id}`)
+      .get(`https://localhost:7285/api/Produkti/${props.id}`, authentikimi)
       .then((response) => {
         setSasiaMaxELejuar(response.data.sasiaNeStok);
       })

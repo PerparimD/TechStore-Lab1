@@ -11,11 +11,19 @@ function EditoKodin(props) {
     const [produktet, setProduktet] = useState([]);
     const [perditeso, setPerditeso] = useState("");
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const vendosProduktet = async () => {
             try {
                 const produktet = await axios.get(
-                    `https://localhost:7285/api/Produkti/Products`
+                    `https://localhost:7285/api/Produkti/Products`, authentikimi
                 );
                 setProduktet(produktet.data);
 
@@ -30,7 +38,7 @@ function EditoKodin(props) {
     useEffect(() => {
         const shfaqKodin = async () => {
             try {
-                const teDhenatKodit = await axios.get(`https://localhost:7285/api/KodiZbritje/gjejKodin?kodi=${props.id}`);
+                const teDhenatKodit = await axios.get(`https://localhost:7285/api/KodiZbritje/gjejKodin?kodi=${props.id}`, authentikimi);
                 setKodi(teDhenatKodit.data);
 
             } catch (err) {
@@ -53,7 +61,7 @@ function EditoKodin(props) {
     function handleSubmit() {
 
 
-        axios.put(`https://localhost:7285/api/KodiZbritje/perditesoTeDhenatEKodit?kodi=${kodi.kodi}`, kodi)
+        axios.put(`https://localhost:7285/api/KodiZbritje/perditesoTeDhenatEKodit?kodi=${kodi.kodi}`, kodi, authentikimi)
             .then(x => {
                 console.log(x);
                 props.setTipiMesazhit("success");
@@ -108,7 +116,7 @@ function EditoKodin(props) {
                             onChange={(e) => handleProduktiChange(e.target.value)}
                         >
                             <option defaultValue hidden value={kodi.produktiId}>
-                                {kodi.emriProduktit !== null?kodi.emriProduktit:"Vlene per te gjitha produktet"}
+                                {kodi.emriProduktit !== null ? kodi.emriProduktit : "Vlene per te gjitha produktet"}
                             </option>
                             <option value={0} key={0}>
                                 Vlene per te gjitha produktet

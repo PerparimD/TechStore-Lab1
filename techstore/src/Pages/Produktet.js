@@ -22,13 +22,21 @@ function Produktet(props) {
   const [searchInput, setSearchInput] = useState("");
   const [produktet, setProduktet] = useState([]);
 
+  const getToken = localStorage.getItem("token");
+
+  const authentikimi = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
+
 
 
   useEffect(() => {
     const vendosProduktet = async () => {
       try {
         const produktet = await axios.get(
-          `https://localhost:7285/api/Produkti/Products`
+          `https://localhost:7285/api/Produkti/Products`, authentikimi
         );
         setProduktet(produktet.data);
         console.log(perditeso)
@@ -63,7 +71,7 @@ function Produktet(props) {
     const vendosKategorit = async () => {
       try {
         const kategorit = await axios.get(
-          `https://localhost:7285/api/Kategoria/shfaqKategorit`
+          `https://localhost:7285/api/Kategoria/shfaqKategorit`, authentikimi
         );
         setKategorit(kategorit.data);
       } catch (err) {

@@ -14,9 +14,10 @@ const EditoTeDhenat = (props) => {
   const [perdoruesi, setPerdoruesi] = useState([]);
 
   const getID = localStorage.getItem("id");
+
   const getToken = localStorage.getItem("token");
 
-  const config = {
+  const authentikimi = {
     headers: {
       Authorization: `Bearer ${getToken}`,
     },
@@ -25,7 +26,7 @@ const EditoTeDhenat = (props) => {
   useEffect(() => {
     const vendosPerdoruesin = async () => {
       try {
-        const perdoruesi = await axios.get(`https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`);
+        const perdoruesi = await axios.get(`https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi);
 
         setPerdoruesi(perdoruesi.data.perdoruesi)
       }
@@ -81,8 +82,8 @@ const EditoTeDhenat = (props) => {
     }));
   };
 
-  const handlePerditesoTeDhenat = () =>{
-    axios.put(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${perdoruesi.userId}`, perdoruesi, config);
+  const handlePerditesoTeDhenat = () => {
+    axios.put(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${perdoruesi.userId}`, perdoruesi, authentikimi);
 
     props.perditeso();
     props.setShfaqMesazhin();

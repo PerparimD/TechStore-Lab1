@@ -3,7 +3,7 @@ import classes from './Styles/PorositeUserit.module.css';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle, faClose } from '@fortawesome/free-solid-svg-icons'
+import { faClose } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
 
 function MesazhetUserit(props) {
@@ -11,11 +11,19 @@ function MesazhetUserit(props) {
     const [perditeso, setPerditeso] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const vendosMesazhet = async () => {
             try {
                 setLoading(true);
-                const mesazhi = await axios.get(`https://localhost:7285/api/ContactForm/shfaqMesazhetNgaUseri?idUserit=${props.idUseri}`);
+                const mesazhi = await axios.get(`https://localhost:7285/api/ContactForm/shfaqMesazhetNgaUseri?idUserit=${props.idUseri}`, authentikimi);
                 setMesazhet(mesazhi.data);
                 setLoading(false);
             } catch (err) {

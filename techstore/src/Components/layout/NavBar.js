@@ -10,14 +10,37 @@ import { useStateValue } from '../../Context/StateProvider';
 import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 function NavBar(props) {
   const navigate = useNavigate();
-  
 
   const [{ cart }, dispatch] = useStateValue();
   const token = localStorage.getItem("token");
+  const [teDhenatBiznesit, setTeDhenatBiznesit] = useState([]);
+  const [perditeso, setPerditeso] = useState('');
+
+  const getToken = localStorage.getItem("token");
+
+  const authentikimi = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
+
+  useEffect(() => {
+    const ShfaqTeDhenat = async () => {
+      try {
+        const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
+        setTeDhenatBiznesit(teDhenat.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    ShfaqTeDhenat();
+  }, [perditeso]);
 
   useEffect(() => {
     if (token) {
@@ -32,7 +55,7 @@ function NavBar(props) {
         navigate("/LogIn");
       }
 
-      if(id !== decodedToken.id){
+      if (id !== decodedToken.id) {
         localStorage.removeItem("token");
         localStorage.removeItem("id");
         navigate("/LogIn");
@@ -45,12 +68,40 @@ function NavBar(props) {
     localStorage.removeItem("id");
   }
 
+
+  const kontrolloProduktet = () => {
+    const produktet = JSON.parse(localStorage.getItem("cart")); // Parse the cart data into an array
+
+    produktet.forEach(produkti => {
+      axios.get(`https://localhost:7285/api/Produkti/${produkti.id}`, authentikimi)
+        .then(response => {
+          const prd = response.data;
+
+          if (produkti.foto !== prd.fotoProduktit || produkti.emri !== prd.emriProduktit ||
+            (produkti.cmimi !== prd.qmimiProduktit && produkti.cmim !== prd.qmimiMeZbritjeProduktit)
+            || produkti.sasia > prd.sasiaNeStok) {
+            const updatedCart = produktet.filter(item => item.id !== produkti.id);
+            localStorage.setItem("cart", JSON.stringify(updatedCart));
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching item:', error);
+        });
+    });
+  }
+
   return (
     <header>
       <nav className={classes.nav}>
         <div className={classes.navleft}>
-          <Link className={classes.logo} to="/"><img src={`${process.env.PUBLIC_URL}/img/web/techstoreLogoWhiteSquare.png`}
-            alt="" /></Link>
+          {teDhenatBiznesit && (teDhenatBiznesit.logo === null || teDhenatBiznesit.logo === "") ?
+            <Link to="/">
+              <h3>{teDhenatBiznesit.shkurtesaEmritBiznesit}</h3>
+            </Link> :
+            <Link className={classes.logo} to="/">
+              <img src={`${process.env.PUBLIC_URL}/img/web/${teDhenatBiznesit.logo}`} alt="" />
+            </Link>
+          }
         </div>
         <ul className={classes.navLinks}>
           <div className={classes.navCenter}>
@@ -73,9 +124,9 @@ function NavBar(props) {
           </div>
           <div className={classes.navRight}>
             <li className={classes.navItem}>
-              <Link to='/Cart'><FontAwesomeIcon icon={faCartShopping} />
+              <a href='/Cart' onClick={kontrolloProduktet}><FontAwesomeIcon icon={faCartShopping} />
                 <span className={classes.badge} value={cart.length} />
-              </Link>
+              </a>
               <span className={classes.line}></span>
             </li>
             {token &&
@@ -108,9 +159,9 @@ function NavBar(props) {
 
         <ul className={classes.mobileShporta}>
           <li className={classes.navItem}>
-            <Link to='/Cart'><FontAwesomeIcon icon={faCartShopping} />
+            <a href='/Cart' onClick={kontrolloProduktet}><FontAwesomeIcon icon={faCartShopping} />
               <span className={classes.badge} value={cart.length} />
-            </Link>
+            </a>
           </li>
         </ul>
         <div className={classes.hamburger}>

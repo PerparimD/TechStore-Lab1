@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class StatistikatController : Controller
@@ -15,6 +17,7 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("totaleTeNdryshme")]
         public async Task<IActionResult> GetTotaleTeNdryshme()
@@ -107,6 +110,7 @@ namespace WebAPI.Controllers
             return Ok(totalet);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("15PerdoruesitMeSeShumtiBlerje")]
         public async Task<IActionResult> GetTop15()
@@ -130,6 +134,7 @@ namespace WebAPI.Controllers
             return Ok(bleresit);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("15ProduktetMeTeShitura")]
         public async Task<IActionResult> GetTop15Prod()
@@ -157,6 +162,7 @@ namespace WebAPI.Controllers
             return Ok(produktet);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("TotaletJavore")]
         public async Task<IActionResult> GetShitjetJavore()

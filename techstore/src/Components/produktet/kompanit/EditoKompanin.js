@@ -10,10 +10,18 @@ function EditoKompanin(props) {
     const [kompania, setKompania] = useState([]);
     const [foto, setFoto] = useState(null);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const shfaqKompanit = async () => {
             try {
-                const kompania = await axios.get(`https://localhost:7285/api/Kompania/shfaqKompanin?id=${props.id}`);
+                const kompania = await axios.get(`https://localhost:7285/api/Kompania/shfaqKompanin?id=${props.id}`, authentikimi);
                 setKompania(kompania.data);
 
             } catch (err) {
@@ -44,14 +52,14 @@ function EditoKompanin(props) {
             formData.append('foto', foto);
 
             try {
-                await axios.post(`https://localhost:7285/api/VendosFotot/EditoKompanin?fotoVjeterKompanis=${kompania.logo}`, formData)
+                await axios.post(`https://localhost:7285/api/VendosFotot/EditoKompanin?fotoVjeterKompanis=${kompania.logo}`, formData, authentikimi)
                     .then(async (response) => {
                         await axios.put(`https://localhost:7285/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`,
                             {
                                 emriKompanis: kompania.emriKompanis,
                                 logo: response.data,
                                 adresa: kompania.Adresa
-                            }
+                            }, authentikimi
                         )
                             .then(x => {
                                 console.log(x);
@@ -78,7 +86,7 @@ function EditoKompanin(props) {
                     emriKompanis: kompania.emriKompanis,
                     logo: "KompaniPaFoto.png",
                     adresa: kompania.Adresa
-                })
+                }, authentikimi)
                 .then(x => {
                     console.log(x);
                     props.setTipiMesazhit("success");

@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import Buton from "../layout/Buton";
 import "./Styles/produktet.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faFaceFrown } from "@fortawesome/free-solid-svg-icons";
 import "../layout/Styles/Buton.module.css";
 import { useStateValue } from "../../Context/StateProvider";
 import Mesazhi from "../layout/Mesazhi";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import classes from '../layout/Styles/Buton.module.css';
 
 

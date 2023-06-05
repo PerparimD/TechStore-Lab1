@@ -19,10 +19,19 @@ function CartPage() {
   const [tipiMesazhit, setTipiMesazhit] = useState("");
   const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
   const [checkout, setCheckout] = useState(false);
+
+  const getToken = localStorage.getItem("token");
+
+  const authentikimi = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
+
   useEffect(() => {
     const KontrolloKodin = async () => {
       try {
-        const kodiZbritjes = await axios.get(`https://localhost:7285/api/KodiZbritje/gjejKodin?kodi=${promoCode}`);
+        const kodiZbritjes = await axios.get(`https://localhost:7285/api/KodiZbritje/gjejKodin?kodi=${promoCode}`, authentikimi);
 
         setTeDhenatZbritjes(kodiZbritjes.data)
 

@@ -22,11 +22,19 @@ function TabelaEKategorive(props) {
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const shfaqKateogrit = async () => {
             try {
                 setLoading(true);
-                const kategoria = await axios.get("https://localhost:7285/api/Kategoria/shfaqKategorit");
+                const kategoria = await axios.get("https://localhost:7285/api/Kategoria/shfaqKategorit", authentikimi);
                 setKategorit(kategoria.data);
                 setLoading(false);
             } catch (err) {

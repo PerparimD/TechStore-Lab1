@@ -25,12 +25,20 @@ const ContactUs = () => {
 
   const getID = localStorage.getItem("id");
 
+  const getToken = localStorage.getItem("token");
+
+  const authentikimi = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
+
   useEffect(() => {
     if (getID) {
       const vendosTeDhenat = async () => {
         try {
           const teDhenat = await axios.get(
-            `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`
+            `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
           );
 
           setUser(teDhenat.data)
@@ -63,7 +71,7 @@ const ContactUs = () => {
       emri: emri,
       email: email,
       userId: getID ? user.perdoruesi.userId : null
-    })
+    }, authentikimi)
       .then((response) => {
         console.log(response);
         setTipiMesazhit("success");

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Models;
 
 namespace TechStoreWebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class KompaniaController : Controller
@@ -16,6 +18,7 @@ namespace TechStoreWebAPI.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("shfaqKompanit")]
         public async Task<IActionResult> Get()
@@ -29,6 +32,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(kompanite);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("shfaqKompanin")]
         public async Task<IActionResult> Get(int id)
@@ -38,6 +42,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(kompania);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoKompanin")]
         public async Task<IActionResult> Post(Kompanium kompanium)
@@ -49,6 +54,7 @@ namespace TechStoreWebAPI.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut]
         [Route("perditesoKompanin")]
         public async Task<IActionResult> Put(int id, [FromBody] Kompanium k)
@@ -89,6 +95,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(kompania);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("fshijKompanin")]
         public async Task<ActionResult> Delete(int id)

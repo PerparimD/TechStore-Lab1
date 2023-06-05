@@ -12,7 +12,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 
-function TabelaEPorosive(props) {
+function TabelaEPorosive() {
     const [porosite, setPorosite] = useState([]);
     const [perditeso, setPerditeso] = useState('');
     const [edito, setEdito] = useState(false);
@@ -29,11 +29,19 @@ function TabelaEPorosive(props) {
     const [dataFillestare, setDataFillestare] = useState(null);
     const [dataFundit, setDataFundit] = useState(null);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const vendosPorosite = async () => {
             try {
                 setLoading(true);
-                const porosia = await axios.get("https://localhost:7285/api/Porosia/Porosit");
+                const porosia = await axios.get("https://localhost:7285/api/Porosia/Porosit", authentikimi);
                 setPorosite(porosia.data);
                 setLoading(false);
             } catch (err) {

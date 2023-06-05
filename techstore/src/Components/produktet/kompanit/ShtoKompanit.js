@@ -11,6 +11,14 @@ function ShtoKompanit(props) {
     const [emri, setEmri] = useState("");
     const [adresa, setAdresa] = useState("");
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     const handleEmriChange = (value) => {
         setEmri(value);
     };
@@ -28,13 +36,13 @@ function ShtoKompanit(props) {
             formData.append('foto', foto);
 
             try {
-                await axios.post("https://localhost:7285/api/VendosFotot/ShtoKompanin", formData)
+                await axios.post("https://localhost:7285/api/VendosFotot/ShtoKompanin", formData, authentikimi)
                     .then(async (response) => {
                         axios.post('https://localhost:7285/api/Kompania/shtoKompanin', {
                             emriKompanis: emri,
                             logo: response.data,
                             adresa: adresa
-                        })
+                        }, authentikimi)
                             .then((response) => {
                                 console.log(response);
                                 props.setTipiMesazhit("success");
@@ -56,7 +64,7 @@ function ShtoKompanit(props) {
                 emriKompanis: emri,
                 logo: "KompaniPaFoto.png",
                 adresa: adresa
-            })
+            }, authentikimi)
                 .then((response) => {
                     console.log(response);
                     props.setTipiMesazhit("success");

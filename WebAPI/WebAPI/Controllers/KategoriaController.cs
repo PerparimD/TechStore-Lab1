@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class KategoriaController : Controller
@@ -16,6 +18,7 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("shfaqKategorinSipasIDs")]
         public async Task<IActionResult> Get(int id)
@@ -32,6 +35,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("shfaqKategorit")]
         public async Task<IActionResult> Get()
@@ -48,6 +52,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut]
         [Route("perditesoKategorin")]
         public async Task<IActionResult> Put(int id, [FromBody] KategoriaProduktit k)
@@ -73,6 +78,7 @@ namespace WebAPI.Controllers
             return Ok(kategoria);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoKategorin")]
         public async Task<IActionResult> Post(KategoriaProduktit kategoriaProduktit)
@@ -83,6 +89,7 @@ namespace WebAPI.Controllers
             return CreatedAtAction("Get", kategoriaProduktit.KategoriaId, kategoriaProduktit);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("fshijKategorin")]
         public async Task<IActionResult> Delete(int id)

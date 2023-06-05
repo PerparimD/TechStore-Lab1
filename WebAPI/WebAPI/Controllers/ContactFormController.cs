@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Models;
 
 namespace TechStoreWebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class ContactFormController : Controller
@@ -16,6 +18,7 @@ namespace TechStoreWebAPI.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("shfaqMesazhet")]
         public async Task<IActionResult> Get()
@@ -44,6 +47,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(mesazhet);
         }
 
+        [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpGet]
         [Route("shfaqMesazhetNgaUseri")]
         public async Task<IActionResult> GetMesazhetUserit(int idUserit)
@@ -73,6 +77,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(mesazhet);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("shfaqMesazhinSipasIDs")]
         public async Task<IActionResult> Get(int id)
@@ -82,6 +87,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(msg);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("shtoMesazhin")]
         public async Task<IActionResult> Post(ContactForm contactform)
@@ -92,6 +98,8 @@ namespace TechStoreWebAPI.Controllers
             return CreatedAtAction("Get", contactform.MesazhiId, contactform);
 
         }
+
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut]
         [Route("konfirmoMesazhin")]
         public async Task<IActionResult> Put(int id, [FromBody] ContactForm m)
@@ -109,6 +117,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(mesazhi);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpDelete]
         [Route("fshiMesazhin")]
         public async Task<ActionResult> Delete(int id)

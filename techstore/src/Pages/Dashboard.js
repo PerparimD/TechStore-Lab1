@@ -14,9 +14,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import EditoPerdorues from "../Components/users/EditoPerdorues";
 import EditoTeDhenat from "../Components/Dashboard/EditoTeDhenat";
 
 const Dashboard = () => {
@@ -42,12 +41,20 @@ const Dashboard = () => {
 
   const getID = localStorage.getItem("id");
 
+  const getToken = localStorage.getItem("token");
+
+  const authentikimi = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
+
   useEffect(() => {
     if (getID) {
       const vendosTeDhenat = async () => {
         try {
           const perdoruesi = await axios.get(
-            `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`
+            `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
           );
           setTeDhenat(perdoruesi.data);
         } catch (err) {
@@ -77,10 +84,10 @@ const Dashboard = () => {
       }
       fetch("https://localhost:7285/api/Perdoruesi/perditesoPerdorues/" + id, {
         method: 'PUT',
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(info)
-      }).then(() => {console.log("Updated")})
-      
+      }).then(() => { console.log("Updated") })
+
     } catch (err) {
       console.log(err);
     } finally {
@@ -143,7 +150,7 @@ const Dashboard = () => {
     setAdresa(value);
   };
 
-  
+
   return (
     <div className="dashboard">
       <Helmet>
@@ -229,10 +236,10 @@ const Dashboard = () => {
             </button>
             {(teDhenat.rolet.includes("Admin") ||
               teDhenat.rolet.includes("Menaxher")) && (
-              <button class="button" onClick={handleShfaqAdminDashboard}>
-                Admin Dashboard
-              </button>
-            )}
+                <button class="button" onClick={handleShfaqAdminDashboard}>
+                  Admin Dashboard
+                </button>
+              )}
             {teDhenat.rolet.includes("User") && (
               <button class="button" onClick={handleShfaqMesazhet}>
                 Mesazhet e tua

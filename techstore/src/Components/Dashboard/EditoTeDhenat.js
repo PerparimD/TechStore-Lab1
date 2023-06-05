@@ -1,16 +1,15 @@
 import React from "react";
-import { useState, useRef, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 const EditoTeDhenat = (props) => {
   const [perdoruesi, setPerdoruesi] = useState([]);
-  
+
 
   const handleEmriChange = (value) => {
     setPerdoruesi((prev) => ({ ...prev, emri: value }));
@@ -36,7 +35,7 @@ const EditoTeDhenat = (props) => {
     setPerdoruesi((prev) => ({ ...prev, adresa: value }));
   };
 
-  
+
 
   return (
     <>

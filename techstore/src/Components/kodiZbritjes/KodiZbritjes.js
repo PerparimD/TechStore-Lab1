@@ -22,11 +22,19 @@ function KodiZbritjes() {
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const shfaqKompanit = async () => {
             try {
                 setLoading(true);
-                const kodi = await axios.get("https://localhost:7285/api/KodiZbritje/shfaqKodet");
+                const kodi = await axios.get("https://localhost:7285/api/KodiZbritje/shfaqKodet", authentikimi);
                 setKodetEZbritjeve(kodi.data);
                 setLoading(false);
             } catch (err) {
@@ -112,7 +120,7 @@ function KodiZbritjes() {
                 </Button>
 
 
-                <table style={{whiteSpace: "unset",}}>
+                <table style={{ whiteSpace: "unset", }}>
                     <tr>
                         <th>Kodi Zbritjes</th>
                         <th>Qmimi Zbritjes</th>

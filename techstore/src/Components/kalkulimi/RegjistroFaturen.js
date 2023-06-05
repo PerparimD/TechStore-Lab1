@@ -36,12 +36,20 @@ function RegjistroFaturen(props) {
 
     const getID = localStorage.getItem("id");
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         if (getID) {
             const vendosTeDhenat = async () => {
                 try {
                     const perdoruesi = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`
+                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(perdoruesi.data);
                 } catch (err) {
@@ -61,7 +69,7 @@ function RegjistroFaturen(props) {
         const vendosProduktet = async () => {
             try {
                 const produktet = await axios.get(
-                    `https://localhost:7285/api/Produkti/Products`
+                    `https://localhost:7285/api/Produkti/Products`, authentikimi
                 );
                 setProduktet(produktet.data);
 
@@ -140,7 +148,7 @@ function RegjistroFaturen(props) {
                 shumaTotaleRegjistrimit: totFaturesShitese,
                 shumaTotaleBlerese: totFaturesBlerese,
                 stafiId: teDhenat.perdoruesi.userId
-            }).then(async (response) => {
+            }, authentikimi).then(async (response) => {
 
                 for (let produkti of produktetNeKalkulim) {
                     await axios.post('https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/teDhenat', {
@@ -149,13 +157,13 @@ function RegjistroFaturen(props) {
                         sasiaStokut: produkti.sasia,
                         qmimiBleres: produkti.qmimiBleres,
                         qmimiShites: produkti.qmimiShites,
-                    });
+                    }, authentikimi);
                     await axios.put(`https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/perditesoStokunQmimin?id=${produkti.produktiId}`, {
                         produktiId: produkti.produktiId,
                         qmimiBleres: produkti.qmimiBleres,
                         qmimiProduktit: produkti.qmimiShites,
                         sasiaNeStok: produkti.sasia
-                    });
+                    }, authentikimi);
                 }
 
                 props.setPerditeso(Date.now());

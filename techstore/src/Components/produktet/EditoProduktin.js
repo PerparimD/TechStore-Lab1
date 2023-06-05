@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -16,7 +16,7 @@ function EditoProduktin(props) {
 
   const getToken = localStorage.getItem("token");
 
-  const config = {
+  const authentikimi = {
     headers: {
       Authorization: `Bearer ${getToken}`,
     },
@@ -25,7 +25,7 @@ function EditoProduktin(props) {
   useEffect(() => {
     const shfaqProduktet = async () => {
       try {
-        const produkti = await axios.get(`https://localhost:7285/api/Produkti/` + props.id);
+        const produkti = await axios.get(`https://localhost:7285/api/Produkti/` + props.id, authentikimi);
         setProdukti(produkti.data);
 
       } catch (err) {
@@ -77,7 +77,7 @@ function EditoProduktin(props) {
       formData.append('foto', foto);
 
       try {
-        await axios.post(`https://localhost:7285/api/VendosFotot/EditoProduktin?fotoVjeterProduktit=${produkti.fotoProduktit}`, formData)
+        await axios.post(`https://localhost:7285/api/VendosFotot/EditoProduktin?fotoVjeterProduktit=${produkti.fotoProduktit}`, formData, authentikimi)
           .then(async (response) => {
             await axios.put(`https://localhost:7285/api/Produkti/` + props.id, {
               emriProduktit: produkti.emriProduktit,
@@ -88,7 +88,7 @@ function EditoProduktin(props) {
               stokuQmimiProduktit: {
                 qmimiProduktit: produkti.qmimiProduktit,
               }
-            }, config)
+            }, authentikimi)
               .then(x => {
                 console.log(x);
                 props.setTipiMesazhit("success");
@@ -118,7 +118,7 @@ function EditoProduktin(props) {
         stokuQmimiProduktit: {
           qmimiProduktit: produkti.qmimiProduktit,
         }
-      }, config)
+      }, authentikimi)
         .then(x => {
           console.log(x);
           props.setTipiMesazhit("success");

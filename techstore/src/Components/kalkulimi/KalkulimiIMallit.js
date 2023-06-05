@@ -17,11 +17,19 @@ function KalkulimiIMallit() {
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const shfaqKalkulimet = async () => {
             try {
                 setLoading(true);
-                const kalkulimi = await axios.get("https://localhost:7285/api/RegjistrimiStokut/shfaqRegjistrimet");
+                const kalkulimi = await axios.get("https://localhost:7285/api/RegjistrimiStokut/shfaqRegjistrimet", authentikimi);
                 setKalkulimet(kalkulimi.data);
                 setLoading(false);
             } catch (err) {
@@ -33,7 +41,7 @@ function KalkulimiIMallit() {
         shfaqKalkulimet();
     }, [perditeso]);
 
-    const handleRegjistroFatuern = () =>{
+    const handleRegjistroFatuern = () => {
         setShto(true)
         setMbyllFaturen(false)
     }
@@ -48,7 +56,7 @@ function KalkulimiIMallit() {
         setMbyllFaturen(false);
         setId(id);
     };
-    
+
     const mbyllTeDhenat = () => {
         setMbyllFaturen(true);
         setShfaqTeDhenat(false);

@@ -9,15 +9,21 @@ import { TailSpin } from 'react-loader-spinner';
 function PorositeUserit(props) {
     const [porosite, setPorosite] = useState([]);
     const [perditeso, setPerditeso] = useState('');
-    const [nrFatures, setNrFatures] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [shfaqDetajet, setShfaqDetajet] = useState(false);
+
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
 
     useEffect(() => {
         const vendosPorosite = async () => {
             try {
                 setLoading(true);
-                const porosija = await axios.get(`https://localhost:7285/api/Porosia/shfaqPorositeUserit?idPerdoruesi=${props.idUseri}`);
+                const porosija = await axios.get(`https://localhost:7285/api/Porosia/shfaqPorositeUserit?idPerdoruesi=${props.idUseri}`, authentikimi);
                 setPorosite(porosija.data);
                 setLoading(false);
             } catch (err) {
@@ -76,11 +82,11 @@ function PorositeUserit(props) {
                             <td>{new Date(k.dataPorosis).toLocaleDateString('en-GB', { dateStyle: 'short' })}</td>
                             <td>{k.totaliProdukteve}</td>
                             <td >{parseFloat(k.totaliPorosis).toFixed(2)} €</td>
-                            <td >{k.zbritja !== 0 ? parseFloat(k.zbritja).toFixed(2) + " €": "Nuk Ka Zbritje"}</td>
+                            <td >{k.zbritja !== 0 ? parseFloat(k.zbritja).toFixed(2) + " €" : "Nuk Ka Zbritje"}</td>
                             <td >{k.statusiPorosis}</td>
                             <td >
                                 <Button style={{ marginRight: "0.5em" }} variant="success" onClick={() => { props.setNumriFatures(k.idPorosia); props.setShfaqDetajet(); props.setShfaqPorosite() }}><FontAwesomeIcon icon={faInfoCircle} /></Button>
-                                
+
                             </td>
                         </tr>
                     ))}

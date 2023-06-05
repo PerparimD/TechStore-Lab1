@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import ShtoRolin from "./ShtoRolin";
 import Mesazhi from "../../layout/Mesazhi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBan, faPenToSquare, faPlus, faClose } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faPlus, faClose } from '@fortawesome/free-solid-svg-icons'
 import LargoRolin from "./LargoRolin";
 import { TailSpin } from 'react-loader-spinner';
 
@@ -20,11 +20,19 @@ function TabelaEKompanive(props) {
     const [emriRolit, setEmriRolit] = useState(0);
     const [loading, setLoading] = useState(false);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const vendosRolet = async () => {
             try {
                 setLoading(true);
-                const roli = await axios.get("https://localhost:7285/api/Authenticate/shfaqRolet");
+                const roli = await axios.get("https://localhost:7285/api/Authenticate/shfaqRolet", authentikimi);
                 setRolet(roli.data);
                 setLoading(false);
             } catch (err) {

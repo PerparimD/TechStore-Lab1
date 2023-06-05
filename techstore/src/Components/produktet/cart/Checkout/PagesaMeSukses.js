@@ -25,12 +25,20 @@ export default function PagesaMeSukses(props) {
 
     const [nrFatures, setNrFatures] = useState(0);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         if (getID) {
             const vendosFature = async () => {
                 try {
                     const fatura = await axios.get(
-                        `https://localhost:7285/api/Porosia/shfaqPorosineNgaID?nrFatures=${props.nrFatures}`
+                        `https://localhost:7285/api/Porosia/shfaqPorosineNgaID?nrFatures=${props.nrFatures}`, authentikimi
                     );
                     setFatura(fatura.data);
                     setNrFatures(fatura.data.idPorosia)

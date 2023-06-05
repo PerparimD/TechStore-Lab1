@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useBarcode } from 'next-barcode';
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import jwtDecode from "jwt-decode";
 
 
 function Fatura(props) {
@@ -34,12 +33,20 @@ function Fatura(props) {
     const getID = localStorage.getItem("id");
     const navigate = useNavigate();
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         if (getID) {
             const vendosFature = async () => {
                 try {
                     const fatura = await axios.get(
-                        `https://localhost:7285/api/Porosia/shfaqPorosineNgaID?nrFatures=${nrFatures}`
+                        `https://localhost:7285/api/Porosia/shfaqPorosineNgaID?nrFatures=${nrFatures}`, authentikimi
                     );
                     setFatura(fatura.data);
                     console.log(fatura)
@@ -74,7 +81,7 @@ function Fatura(props) {
         const vendosTeDhenatBiznesit = async () => {
             try {
                 const teDhenat = await axios.get(
-                    "https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat"
+                    "https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi
                 );
                 setTeDhenatBiznesit(teDhenat.data);
             } catch (err) {
@@ -90,7 +97,7 @@ function Fatura(props) {
             const vendosTeDhenatUserit = async () => {
                 try {
                     const teDhenatUser = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`
+                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(teDhenatUser.data);
                     console.log(teDhenatUser)

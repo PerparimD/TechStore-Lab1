@@ -7,9 +7,11 @@ using System.Text;
 using WebAPI.Auth;
 using WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticateController : ControllerBase
@@ -31,6 +33,7 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
@@ -105,6 +108,7 @@ namespace WebAPI.Controllers
             return BadRequest();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LogInModel login)
@@ -160,6 +164,7 @@ namespace WebAPI.Controllers
             });
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoRolinPerdoruesit")]
         public async Task<IActionResult> PerditesoAksesin(string userID, string roli)
@@ -200,6 +205,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpDelete]
         [Route("FshijRolinUserit")]
         public async Task<IActionResult> FshijRolinUserit(string userID, string roli)
@@ -248,6 +254,7 @@ namespace WebAPI.Controllers
             
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoRolin")]
         public async Task<IActionResult> ShtoRolin(string roli)
@@ -283,6 +290,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("fshijRolin")]
         public async Task<IActionResult> FshijRolet(string emriRolit)
@@ -314,6 +322,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("shfaqRolet")]
         public async Task<IActionResult> ShfaqRolet()

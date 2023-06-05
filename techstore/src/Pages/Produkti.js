@@ -24,10 +24,18 @@ function Produkti() {
     const [tipiMesazhit, setTipiMesazhit] = useState("success");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const teDhenatProd = async () => {
             try {
-                const teDhenatProduktit = await axios.get(`https://localhost:7285/api/Produkti/${produktiID}`)
+                const teDhenatProduktit = await axios.get(`https://localhost:7285/api/Produkti/${produktiID}`, authentikimi)
                 setProdukti(teDhenatProduktit.data);
                 if (teDhenatProduktit.data.pershkrimi !== "") {
                     setKaPershkrim(true);
@@ -44,7 +52,7 @@ function Produkti() {
     useEffect(() => {
         const shfaqProduktet = async () => {
             try {
-                const produktet = await axios.get("https://localhost:7285/api/Statistikat/15ProduktetMeTeShitura");
+                const produktet = await axios.get("https://localhost:7285/api/Statistikat/15ProduktetMeTeShitura", authentikimi);
                 setProduktet(produktet.data);
             } catch (err) {
                 console.log(err);
@@ -212,13 +220,13 @@ function Produkti() {
                 {produktet.map((produkti) => {
                     return (
                         <ProduktetNeHome
-                        produktiID={produkti.produkti.produktiId}
-                        fotoProduktit={produkti.produkti.fotoProduktit}
-                        emriProduktit={produkti.produkti.emriProduktit}
-                        cmimi={produkti.produkti.qmimiProduktit}
-                        sasiaNeStok={produkti.produkti.sasiaNeStok}
-                        cmimiMeZbritje={produkti.produkti.qmimiMeZbritjeProduktit}
-                      />
+                            produktiID={produkti.produkti.produktiId}
+                            fotoProduktit={produkti.produkti.fotoProduktit}
+                            emriProduktit={produkti.produkti.emriProduktit}
+                            cmimi={produkti.produkti.qmimiProduktit}
+                            sasiaNeStok={produkti.produkti.sasiaNeStok}
+                            cmimiMeZbritje={produkti.produkti.qmimiMeZbritjeProduktit}
+                        />
                     );
                 }
                 )}

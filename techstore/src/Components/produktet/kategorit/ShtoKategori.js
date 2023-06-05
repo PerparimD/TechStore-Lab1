@@ -10,6 +10,14 @@ function ShtoKompanit(props) {
     const [llojiKategoris, setLlojiKategoris] = useState("");
     const [pershkrimiKategoris, setPershkrimiKategoris] = useState("");
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     const handleEmriChange = (value) => {
         setLlojiKategoris(value);
     };
@@ -22,7 +30,7 @@ function ShtoKompanit(props) {
         axios.post('https://localhost:7285/api/Kategoria/shtoKategorin', {
             llojiKategoris: llojiKategoris,
             pershkrimiKategoris: pershkrimiKategoris
-        })
+        }, authentikimi)
             .then((response) => {
                 console.log(response);
                 props.setTipiMesazhit("success");

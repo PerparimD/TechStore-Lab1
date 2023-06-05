@@ -24,11 +24,19 @@ function ShtoKodin(props) {
     const [produktet, setProduktet] = useState([]);
     const [perditeso, setPerditeso] = useState("");
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const vendosProduktet = async () => {
             try {
                 const produktet = await axios.get(
-                    `https://localhost:7285/api/Produkti/Products`
+                    `https://localhost:7285/api/Produkti/Products`, authentikimi
                 );
                 setProduktet(produktet.data);
 
@@ -59,7 +67,7 @@ function ShtoKodin(props) {
             kodi: kodi,
             qmimiZbritjes: qmimi,
             idProdukti: produkti
-        })
+        }, authentikimi)
             .then((response) => {
                 console.log(response);
                 props.setTipiMesazhit("success");

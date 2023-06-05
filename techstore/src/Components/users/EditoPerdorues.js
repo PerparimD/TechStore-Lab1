@@ -14,12 +14,20 @@ function EditoPerdorues(props) {
     const [roletUseri, setRoletUseri] = useState([]);
     const [roletSelektim, setRoletSelektim] = useState([]);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     const handleChange = (roli) => setRoletSelektim(roli);
 
     useEffect(() => {
         const vendosPerdoruesin = async () => {
             try {
-                const user = await axios.get(`https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${props.id}`);
+                const user = await axios.get(`https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${props.id}`, authentikimi);
                 setPerdoruesi(user.data);
 
                 setRoletUseri(user.data.rolet);
@@ -37,7 +45,7 @@ function EditoPerdorues(props) {
     useEffect(() => {
         const vendosRolet = async () => {
             try {
-                const rolet = await axios.get(`https://localhost:7285/api/Authenticate/shfaqRolet`);
+                const rolet = await axios.get(`https://localhost:7285/api/Authenticate/shfaqRolet`, authentikimi);
                 setShfaqRolet(rolet.data);
                 console.log(rolet.data);
             } catch (err) {
@@ -52,13 +60,13 @@ function EditoPerdorues(props) {
         try {
             for (const y of roletUseri) {
                 if (y !== 'User') {
-                    await axios.delete(`https://localhost:7285/api/Authenticate/FshijRolinUserit?userID=${props.id}&roli=${y}`);
+                    await axios.delete(`https://localhost:7285/api/Authenticate/FshijRolinUserit?userID=${props.id}&roli=${y}`, authentikimi);
                 }
             }
 
             for (const y of roletSelektim) {
                 if (y !== 'User') {
-                    await axios.post(`https://localhost:7285/api/Authenticate/ShtoRolinPerdoruesit?userID=${props.id}&roli=${y}`);
+                    await axios.post(`https://localhost:7285/api/Authenticate/ShtoRolinPerdoruesit?userID=${props.id}&roli=${y}`, authentikimi);
                 }
             }
 

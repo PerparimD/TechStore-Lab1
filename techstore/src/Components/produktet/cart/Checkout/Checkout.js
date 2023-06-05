@@ -27,12 +27,20 @@ function Checkout(props) {
     const navigate = useNavigate();
     const [nrFatures, setNrFatures] = useState(0);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         if (getID) {
             const vendosTeDhenat = async () => {
                 try {
                     const perdoruesi = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`
+                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(perdoruesi.data);
                 } catch (err) {
@@ -56,7 +64,7 @@ function Checkout(props) {
                     idKlienti: teDhenat.perdoruesi.userId,
                     zbritja: props.zbritja,
                     totaliProdukteve: props.totaliProdukteve,
-                })
+                }, authentikimi)
                 .then((response) => {
                     if (response.status === 201 || response.status === 200) {
                         setVendosjaPorosisSukses(true);
@@ -74,7 +82,7 @@ function Checkout(props) {
                                 idPorosia: response.data.idPorosia,
                                 idProdukti: produkti.id,
                                 qmimiProduktit: produkti.cmimi,
-                            })
+                            }, authentikimi)
                             .then((r) => {
                                 if (r.status === 201 || r.status === 200) {
                                     vendosjetESakta++;

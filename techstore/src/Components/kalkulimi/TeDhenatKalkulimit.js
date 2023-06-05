@@ -13,12 +13,20 @@ function TeDhenatKalkulimit(props) {
     const [produktet, setProduktet] = useState([]);
     const [teDhenatFat, setTeDhenatFat] = useState("");
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const vendosTeDhenat = async () => {
             try {
                 setLoading(true);
                 const produktet = await axios.get(
-                    `https://localhost:7285/api/RegjistrimiStokut/shfaqTeDhenatKalkulimit?idRegjistrimit=${props.id}`
+                    `https://localhost:7285/api/RegjistrimiStokut/shfaqTeDhenatKalkulimit?idRegjistrimit=${props.id}`, authentikimi
                 );
                 setProduktet(produktet.data);
                 setLoading(false);
@@ -32,18 +40,18 @@ function TeDhenatKalkulimit(props) {
     }, [perditeso]);
 
     useEffect(() => {
-        const shfaqTeDhenatFature = async () =>{
-            try{
+        const shfaqTeDhenatFature = async () => {
+            try {
                 setLoading(true);
                 const teDhenat = await axios.get(
-                    `https://localhost:7285/api/RegjistrimiStokut/shfaqRegjistrimetNgaID?id=${props.id}`
+                    `https://localhost:7285/api/RegjistrimiStokut/shfaqRegjistrimetNgaID?id=${props.id}`, authentikimi
                 );
                 setTeDhenatFat(teDhenat.data);
                 setLoading(false);
             }
-            catch(err){
+            catch (err) {
                 console.log(err);
-                setLoading(false);  
+                setLoading(false);
             }
         }
 
@@ -123,12 +131,12 @@ function TeDhenatKalkulimit(props) {
                             {produktet.map((produkti, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                    <td>{produkti.idProduktit + " - " +produkti.emriProduktit}</td>
+                                    <td>{produkti.idProduktit + " - " + produkti.emriProduktit}</td>
                                     <td>{produkti.sasiaStokut}</td>
                                     <td>{parseFloat(produkti.qmimiBleres).toFixed(2)} €</td>
                                     <td>{parseFloat(produkti.qmimiShites).toFixed(2)} €</td>
-                                    <td>{(produkti.sasiaStokut*produkti.qmimiBleres).toFixed(2)} €</td>
-                                    <td>{(produkti.sasiaStokut*produkti.qmimiShites).toFixed(2)} €</td>
+                                    <td>{(produkti.sasiaStokut * produkti.qmimiBleres).toFixed(2)} €</td>
+                                    <td>{(produkti.sasiaStokut * produkti.qmimiShites).toFixed(2)} €</td>
                                 </tr>
                             ))}
                         </tbody>

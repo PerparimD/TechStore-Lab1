@@ -1,8 +1,5 @@
 import ProduktetNeHome from "../Components/produktet/ProduktetNeHome";
-
 import classes from './Styles/Home.module.css'
-
-
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import NavBar from "../Components/layout/NavBar";
@@ -14,10 +11,18 @@ import { Helmet } from 'react-helmet';
 function Home() {
     const [produktet, setProduktet] = useState([]);
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const shfaqProduktet = async () => {
             try {
-                const produktet = await axios.get("https://localhost:7285/api/Produkti/15ProduktetMeTeFundit");
+                const produktet = await axios.get("https://localhost:7285/api/Produkti/15ProduktetMeTeFundit", authentikimi);
                 setProduktet(produktet.data);
             } catch (err) {
                 console.log(err);

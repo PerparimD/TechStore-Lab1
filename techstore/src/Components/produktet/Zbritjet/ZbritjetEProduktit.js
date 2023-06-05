@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import ProduktiNeZbritje from "./ProduktiNeZbritje";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo, faPlus, faClose } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faClose } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
 import Mesazhi from "../../layout/Mesazhi";
 import FshijZbritjen from './FshijZbritjen';
@@ -20,13 +20,20 @@ function ZbritjetEProduktit(props) {
     const [fshij, setFshij] = useState(false);
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
-    
+
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
 
     useEffect(() => {
         const shfaqZbritjet = async () => {
             try {
                 setLoading(true);
-                const zbritja = await axios.get("https://localhost:7285/api/ZbritjaQmimitProduktit/shfaqZbritjet");
+                const zbritja = await axios.get("https://localhost:7285/api/ZbritjaQmimitProduktit/shfaqZbritjet", authentikimi);
                 setZbritjet(zbritja.data);
                 setLoading(false);
             } catch (err) {
@@ -49,14 +56,9 @@ function ZbritjetEProduktit(props) {
         });
     }, [zbritjet])
 
-    const handleFshijZbritjen = (id) => {
-        setId(id);
-        setFshij(true);
-    };
-
     const fshijZbritjen = (id) => {
-        axios.delete(`https://localhost:7285/api/ZbritjaQmimitProduktit/fshijZbritjenProduktit?id=${id}`)
-        setPerditeso(Date.now())
+        axios.delete(`https://localhost:7285/api/ZbritjaQmimitProduktit/fshijZbritjenProduktit?id=${id}`, authentikimi)
+        setPerditeso(Date.now());
     }
 
     const handleFshij = (id) => {
@@ -79,7 +81,6 @@ function ZbritjetEProduktit(props) {
                 largo={handleFshijMbyll}
                 fshijZbritjen={() => fshijZbritjen(id)}
                 shfaqmesazhin={() => setShfaqMesazhin(true)}
-                perditesoTeDhenat={() => setPerditeso(Date.now())}
                 setTipiMesazhit={setTipiMesazhit}
                 setPershkrimiMesazhit={setPershkrimiMesazhit}
             />}

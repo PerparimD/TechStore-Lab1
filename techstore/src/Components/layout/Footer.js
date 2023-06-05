@@ -12,10 +12,18 @@ function Footer(props) {
     const [teDhenatBiznesit, setTeDhenatBiznesit] = useState([]);
     const [perditeso, setPerditeso] = useState('');
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     useEffect(() => {
         const ShfaqTeDhenat = async () => {
             try {
-                const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat");
+                const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
                 setTeDhenatBiznesit(teDhenat.data);
             } catch (err) {
                 console.log(err);
@@ -29,7 +37,14 @@ function Footer(props) {
         <footer>
             <div className={classes.footer}>
                 <div className={classes.footerLogo}>
-                    <img src={`${process.env.PUBLIC_URL}/img/web/techstoreLogoWhiteSquare.png`} alt="" />
+                    {teDhenatBiznesit && (teDhenatBiznesit.logo === null || teDhenatBiznesit.logo === "") ?
+                        <Link to="/">
+                            <h1>{teDhenatBiznesit.shkurtesaEmritBiznesit}</h1>
+                        </Link> :
+                        <Link className={classes.logo} to="/">
+                            <img src={`${process.env.PUBLIC_URL}/img/web/${teDhenatBiznesit.logo}`} alt="" />
+                        </Link>
+                    }
                 </div>
                 <div className={classes.footerNav}>
                     <h2 className={classes.footerNavTitle}>Quick Links</h2>

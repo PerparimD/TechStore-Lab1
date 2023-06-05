@@ -8,9 +8,7 @@ import {
     MDBRow,
     MDBCol,
     MDBInput,
-    MDBInputGroup,
     MDBBtn,
-    MDBCheckbox
 } from 'mdb-react-ui-kit';
 
 function TeDhenatEBiznesit(props) {
@@ -21,6 +19,7 @@ function TeDhenatEBiznesit(props) {
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
     const [loading, setLoading] = useState(false);
+    const [foto, setFoto] = useState(null);
 
     const [formValue, setFormValue] = useState({
         emriBiznesit: "",
@@ -33,15 +32,27 @@ function TeDhenatEBiznesit(props) {
         email: "",
     });
 
+    const getToken = localStorage.getItem("token");
+
+    const authentikimi = {
+        headers: {
+            Authorization: `Bearer ${getToken}`,
+        },
+    };
+
     const onChange = (e) => {
         setFormValue({ ...formValue, [e.target.name]: e.target.value });
     };
-    
+
+    const handleFotoChange = (event) => {
+        setFoto(event.target.files[0]);
+    };
+
     useEffect(() => {
         const ShfaqTeDhenat = async () => {
             try {
                 setLoading(true);
-                const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat");
+                const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
                 setTeDhenatBiznesit(teDhenat.data);
                 setLoading(false);
             } catch (err) {
@@ -58,23 +69,51 @@ function TeDhenatEBiznesit(props) {
 
         setEdito(true)
     };
-    const handleRuaj = (e) => {
+
+    async function handleRuaj(e) {
         e.preventDefault();
 
-        axios.put("https://localhost:7285/api/TeDhenatBiznesit/perditesoTeDhenat", {
-            "emriIbiznesit": formValue.emriBiznesit,
-            "shkurtesaEmritBiznesit": formValue.shkurtesaEmrit,
-            "nui": formValue.nui,
-            "nf": formValue.nf,
-            "nrtvsh": formValue.nrtvsh,
-            "adresa": formValue.adresa,
-            "nrKontaktit": formValue.nrKontaktit,
-            "email": formValue.email
-        })
-        setPerditeso(Date.now());
+        if (foto) {
+            const formData = new FormData();
+            formData.append('foto', foto);
 
-        setEdito(false);
+            try {
+                await axios.post(`https://localhost:7285/api/VendosFotot/PerditesoTeDhenatBiznesit?logoVjeter=${teDhenatBiznesit.logo}`, formData, authentikimi)
+                    .then(async (response) => {
+                        axios.put("https://localhost:7285/api/TeDhenatBiznesit/perditesoTeDhenat", {
+                            "emriIbiznesit": formValue.emriBiznesit,
+                            "shkurtesaEmritBiznesit": formValue.shkurtesaEmrit,
+                            "nui": formValue.nui,
+                            "nf": formValue.nf,
+                            "nrtvsh": formValue.nrtvsh,
+                            "adresa": formValue.adresa,
+                            "nrKontaktit": formValue.nrKontaktit,
+                            "email": formValue.email,
+                            "logo": response.data
+                        }, authentikimi)
+                        setPerditeso(Date.now());
 
+                        setEdito(false);
+                    })
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            await axios.put("https://localhost:7285/api/TeDhenatBiznesit/perditesoTeDhenat", {
+                "emriIbiznesit": formValue.emriBiznesit,
+                "shkurtesaEmritBiznesit": formValue.shkurtesaEmrit,
+                "nui": formValue.nui,
+                "nf": formValue.nf,
+                "nrtvsh": formValue.nrtvsh,
+                "adresa": formValue.adresa,
+                "nrKontaktit": formValue.nrKontaktit,
+                "email": formValue.email,
+                "logo": "PaLogo.png"
+            }, authentikimi)
+            setPerditeso(Date.now());
+
+            setEdito(false);
+        }
     }
 
     useEffect(() => {
@@ -117,7 +156,9 @@ function TeDhenatEBiznesit(props) {
                 (
                     <div className="TeDhenatContainer">
                         <h1 className="title">Te Dhenat e Biznesit</h1>
+
                         <MDBRow tag="form" className='g-3'>
+
                             <MDBCol md="6">
                                 <MDBInput
                                     value={formValue.emriBiznesit}
@@ -203,6 +244,26 @@ function TeDhenatEBiznesit(props) {
                                     id='validationCustom05'
                                     required
                                     label='Numri i Kontaktit'
+                                    disabled={!edito}
+                                />
+                            </MDBCol>
+                            <MDBCol md="4" style={{ margin: '1em' }}>
+                                {teDhenatBiznesit && (teDhenatBiznesit.logo === null || teDhenatBiznesit.logo === "" || teDhenatBiznesit.logo === "PaLogo.png") ?
+                                    <div className="logo">
+                                        <img src={`${process.env.PUBLIC_URL}/img/web/PaLogo.png`} alt="" />
+                                    </div> :
+                                    <div className="logo">
+                                        <img src={`${process.env.PUBLIC_URL}/img/web/${teDhenatBiznesit.logo}`} alt="" />
+                                    </div>
+                                }
+                            </MDBCol>
+                            <MDBCol md="4" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                <MDBInput
+                                    type="file"
+                                    name="image"
+                                    onChange={handleFotoChange}
+                                    id="validationCustom04"
+                                    label='Logo'
                                     disabled={!edito}
                                 />
                             </MDBCol>

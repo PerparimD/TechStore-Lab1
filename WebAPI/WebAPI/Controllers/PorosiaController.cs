@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
 
 namespace TechStoreWebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class PorosiaController : ControllerBase
@@ -15,6 +17,7 @@ namespace TechStoreWebAPI.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpGet]
         [Route("Porosit")]
         public async Task<IActionResult> Get()
@@ -40,6 +43,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(porosit);
         }
 
+        [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpGet]
         [Route("shfaqPorositeUserit")]
         public async Task<IActionResult> GetPorositUseritget(int idPerdoruesi)
@@ -52,6 +56,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(porosit);
         }
 
+        [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpGet]
         [Route("shfaqPorosineNgaID")]
         public async Task<IActionResult> GetPorosineNgaID(int nrFatures)
@@ -94,7 +99,7 @@ namespace TechStoreWebAPI.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpGet]
         [Route("teDhenatEProsis")]
         public async Task<IActionResult> Get(int nrPorosis)
@@ -103,6 +108,7 @@ namespace TechStoreWebAPI.Controllers
             return Ok(porsia);
         }
 
+        [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpPost]
         [Route("vendosPorosine")]
         public async Task<IActionResult> Post([FromBody] Porosit porosit)
@@ -113,6 +119,7 @@ namespace TechStoreWebAPI.Controllers
             return CreatedAtAction("get", porosit.IdPorosia, porosit);
         }
 
+        [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpPost]
         [Route("vendosTeDhenatPorosise")]
         public async Task<IActionResult> Post([FromBody] TeDhenatEporosi teDhenatEporosi)
@@ -141,6 +148,7 @@ namespace TechStoreWebAPI.Controllers
             return CreatedAtAction("get", teDhenatEporosi.IdDetajet, teDhenatEporosi);
         }
 
+        [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut]
         [Route("perditesoStatusinPorosis")]
         public async Task<IActionResult> Put(int idPorosia, string statusi)

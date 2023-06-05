@@ -13,7 +13,7 @@ import KodiZbritjes from '../kodiZbritjes/KodiZbritjes';
 import KalkulimiIMallit from '../kalkulimi/KalkulimiIMallit';
 import jwtDecode from 'jwt-decode';
 import Statistika from './Statistika';
-import { faBan, faPenToSquare, faPlus, faXmark, faCheck, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TeDhenatEBiznesit from '../TeDhenatBiznesit/TeDhenatEBiznesit';
 import TabelaEPorosive from '../Porosite/TabelaEPorosive';

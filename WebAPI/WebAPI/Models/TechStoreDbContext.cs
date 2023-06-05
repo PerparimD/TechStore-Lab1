@@ -325,6 +325,9 @@ public partial class TechStoreDbContext : IdentityDbContext
             entity.Property(e => e.ShkurtesaEmritBiznesit)
                 .HasMaxLength(7)
                 .IsUnicode(false);
+            entity.Property(e => e.Logo)
+                .HasMaxLength(40)
+                .HasColumnName("Logo");
         });
 
         modelBuilder.Entity<TeDhenatEporosi>(entity =>

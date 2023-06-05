@@ -107,7 +107,7 @@ function CartPage() {
       }
       {!checkout && <>
         <h2 className="cart-title"></h2>
-        <div className="cart-page">
+        <div className="cart-page" >
           <div className="cart-items">
             {cart.length !== 0 && cart.map((item) => {
               return (

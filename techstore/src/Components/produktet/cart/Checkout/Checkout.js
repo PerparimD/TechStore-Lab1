@@ -140,13 +140,13 @@ function Checkout(props) {
                     tipi={setTipiMesazhit}
                 />}
             {(pagesaMeSukses === false && pagesaDeshtoi === false) &&
-                <div className="containerDashboardP containerCheckoutForma">
+                <div className="containerDashboardPP containerCheckoutForma">
 
-                    <h1>Konfirmimi Porosis</h1>
+                    <h3 className="titleP">Konfirmimi Porosis</h3>
 
                     <table>
                         <tr>
-                            <th colspan="2" style={{ textAlign: "center", textTransform: "uppercase" }}>Te dhenat e Transportit</th>
+                            <th colspan="2" style={{ textAlign: "center", textTransform: "uppercase", borderBottom: "0" }}>Te dhenat e Transportit</th>
                         </tr>
                         <tr>
                             <th>Klienti:</th>
@@ -171,7 +171,7 @@ function Checkout(props) {
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2" style={{ textAlign: "center", textTransform: "uppercase" }}>Te dhenat e Porosise</th>
+                            <th colspan="2" style={{ textAlign: "center", textTransform: "uppercase", borderBottom: "0" }}>Te dhenat e Porosise</th>
                         </tr>
                         <tr>
                             <th>Totali i Produkteve:</th>

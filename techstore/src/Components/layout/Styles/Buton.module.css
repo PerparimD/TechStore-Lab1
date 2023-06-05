@@ -1,5 +1,6 @@
 .butonatDiv {
   display: flex;
+  margin-top: 0;
 }
 
 .buttonat {
@@ -22,3 +23,5 @@
 .butoniAddToCart {
   width: 11em;
 }
+
+

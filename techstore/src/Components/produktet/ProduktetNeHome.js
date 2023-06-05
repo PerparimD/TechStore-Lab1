@@ -49,7 +49,7 @@ function ProduktetNeHome(props) {
         tipi={tipiMesazhit}
       />}
       <Link to={`/Produkti/${props.produktiID}`}>
-        <div>
+        <div className="emri-foto">
           {props.cmimiMeZbritje != null &&
             <div className="zbritjaBadge">
               <p className="">- {props.cmimiMeZbritje != null && (((props.cmimi - props.cmimiMeZbritje) / props.cmimi) * 100).toFixed(0)} %</p>
@@ -61,11 +61,11 @@ function ProduktetNeHome(props) {
           />
           <p className="artikulliLabel">{props.emriProduktit}</p>
         </div>
-        <div className="cmimet">
+      </Link>
+      <div className="cmimet">
           <p className="cmimi">{props.cmimiMeZbritje != null ? parseFloat(props.cmimiMeZbritje).toFixed(2) : props.cmimi.toFixed(2)} €</p>
           <p className="cmimiPaZbritje">{props.cmimiMeZbritje != null && props.cmimi.toFixed(2) + " €"} </p>
         </div>
-      </Link>
       <div className="butonatDiv">
         {props.sasiaNeStok > 0 &&
           <button
@@ -77,7 +77,7 @@ function ProduktetNeHome(props) {
         }
         {props.sasiaNeStok <= 0 &&
           <button
-            className={"button"} disabled style={{ backgroundColor: "lightgray", color: "black", cursor: "unset" }}
+            className={"button"} disabled style={{ backgroundColor: "lightgray", color: "black", cursor: "unset", marginTop: "0" }}
           >
             Out of Stock
           </button>

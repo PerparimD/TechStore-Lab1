@@ -3,6 +3,9 @@
   justify-content: center;
   align-items: center;
 }
+.titleP{
+  margin-bottom: 0.8em;
+}
 
 .butonatNeQender{
     flex-wrap: wrap;
@@ -15,6 +18,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.containerDashboardPP tr th {
+  margin-top: 3em;
+  background-color: rgb(138, 137, 137);
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 1px solid #b8b5b5;
+}
+
+.containerDashboardPP th,
+.containerDashboardPP td {
+  padding: 12px 15px;
+}
+
+.containerDashboardPP tr td {
+  border-bottom: 1px solid #dddddd;
 }
 
 @media (max-width: 767px) {

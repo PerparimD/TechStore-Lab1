@@ -43,7 +43,6 @@ namespace TechStoreWebAPI.Controllers
                })
                .ToListAsync();
 
-            //var produktet = await _context.Produktis.ToListAsync();
             return Ok(Produkti);
         }
 
@@ -128,7 +127,7 @@ namespace TechStoreWebAPI.Controllers
             var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
             var stokuQmimi = await _context.StokuQmimiProduktits.FirstOrDefaultAsync(x => x.ProduktiId == id);
 
-            if (p.FotoProduktit.Equals("ProduktPaFoto.png"))
+            if (!produkti.FotoProduktit.Equals("ProduktPaFoto.png"))
             {
                 var fotoVjeter = Path.Combine("..", "..", "techstore", "public", "img", "products", produkti.FotoProduktit);
 

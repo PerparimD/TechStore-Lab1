@@ -87,7 +87,7 @@ function CartPage() {
 
   const handleApplyPromoCode = () => {
     setKontrollo(Date.now());
-    console.log(teDhenatZbritje)
+    
   }
   return (
     <>

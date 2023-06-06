@@ -17,7 +17,7 @@ function ProduktetNeHome(props) {
 
   const handleShtoNeShporte = () => {
     const eshteNeShporte = cart.find((item) => item.id === props.produktiID);
-    console.log(props.sasiaNeStok)
+    
 
     if (eshteNeShporte && eshteNeShporte.sasia >= props.sasiaNeStok) {
       setTipiMesazhit("danger")

@@ -44,7 +44,7 @@ function EditoKompanin(props) {
 
         axios.put(`https://localhost:7285/api/Kategoria/perditesoKategorin?id=${kategoria.kategoriaId}`, kategoria, authentikimi)
             .then(x => {
-                console.log(x);
+                
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Kategoria u Perditesua me sukses!")
                 props.perditesoTeDhenat();

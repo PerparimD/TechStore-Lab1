@@ -44,7 +44,7 @@ function ShtoKompanit(props) {
                             adresa: adresa
                         }, authentikimi)
                             .then((response) => {
-                                console.log(response);
+                                
                                 props.setTipiMesazhit("success");
                                 props.setPershkrimiMesazhit("Kompania u insertua me sukses!")
                                 props.perditesoTeDhenat();
@@ -66,7 +66,7 @@ function ShtoKompanit(props) {
                 adresa: adresa
             }, authentikimi)
                 .then((response) => {
-                    console.log(response);
+                    
                     props.setTipiMesazhit("success");
                     props.setPershkrimiMesazhit("Kompania u insertua me sukses!")
                     props.perditesoTeDhenat();

@@ -37,7 +37,7 @@ function PerditesoStatusinPorosis(props) {
 
         axios.put(`https://localhost:7285/api/Porosia/perditesoStatusinPorosis?idPorosia=${props.id}&statusi=${statusiPorosis}`, authentikimi)
             .then(x => {
-                console.log(x);
+                
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Statusi u Perditesua me sukses!")
                 props.perditesoTeDhenat();

@@ -39,7 +39,6 @@ function Produktet(props) {
           `https://localhost:7285/api/Produkti/Products`, authentikimi
         );
         setProduktet(produktet.data);
-        console.log(perditeso)
 
       } catch (err) {
         console.log(err);

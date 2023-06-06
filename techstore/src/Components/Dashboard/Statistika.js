@@ -48,7 +48,7 @@ function Statistika() {
                 const dita = await axios.get("https://localhost:7285/api/Statistikat/TotaletJavore", authentikimi);
                 setShitjetJavore(dita.data);
 
-                console.log(shitjetJavore, dita.data);
+                
             } catch (e) {
                 console.error(e);
             }
@@ -60,7 +60,7 @@ function Statistika() {
         vendosTop15Produktet();
         vendosShitjetJavore();
 
-        console.log(shitjetJavore);
+        
     }, [])
 
     function shfaqDiten(data) {

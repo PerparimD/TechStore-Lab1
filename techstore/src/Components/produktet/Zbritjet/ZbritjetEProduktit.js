@@ -50,7 +50,7 @@ function ZbritjetEProduktit(props) {
         zbritjet.forEach(zbritja => {
             const dataSkadimit = new Date(zbritja.dataSkadimit).toLocaleDateString('en-GB', { dateStyle: 'short' });
             if (dataSkadimit < currentDate) {
-                console.log(zbritja);
+                
                 fshijZbritjen(zbritja.produktiId);
             }
         });

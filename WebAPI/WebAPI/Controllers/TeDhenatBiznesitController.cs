@@ -6,6 +6,7 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("/api/[controller]")]
     public class TeDhenatBiznesitController : Controller

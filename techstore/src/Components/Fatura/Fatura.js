@@ -49,7 +49,7 @@ function Fatura(props) {
                         `https://localhost:7285/api/Porosia/shfaqPorosineNgaID?nrFatures=${nrFatures}`, authentikimi
                     );
                     setFatura(fatura.data);
-                    console.log(fatura)
+                    
                     if (fatura.status == "200") {
                         setVendosFature(true);
                     }
@@ -100,7 +100,7 @@ function Fatura(props) {
                         `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(teDhenatUser.data);
-                    console.log(teDhenatUser)
+                    
                 } catch (err) {
                     console.log(err);
                 }
@@ -150,7 +150,7 @@ function Fatura(props) {
                 navigate("/dashboard");
             })
             .catch((error) => {
-                console.log('An error occurred while generating the PDF:', error);
+                
             });
     }
 

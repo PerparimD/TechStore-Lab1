@@ -11,7 +11,8 @@ import { Link } from "react-router-dom";
 import Mesazhi from "../Components/layout/Mesazhi";
 import { useStateValue } from "../Context/StateProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import EditoProduktin from "../Components/produktet/EditoProduktin";
 
 function Produkti() {
     const { produktiID } = useParams();
@@ -23,6 +24,7 @@ function Produkti() {
     const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
     const [tipiMesazhit, setTipiMesazhit] = useState("success");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
+    const [edito, setEdito] = useState(false);
 
     const getToken = localStorage.getItem("token");
 
@@ -64,7 +66,6 @@ function Produkti() {
 
     const handleShtoNeShporte = () => {
         const eshteNeShporte = cart.find((item) => item.id === produkti.produktiId);
-        console.log(produkti.sasiaNeStok)
 
         if (eshteNeShporte && eshteNeShporte.sasia >= produkti.sasiaNeStok) {
             setTipiMesazhit("danger")
@@ -106,6 +107,11 @@ function Produkti() {
         localStorage.setItem('tipiMesazhit', tipiMesazhit);
     }, [shfaqMesazhin, pershkrimiMesazhit, tipiMesazhit]);
 
+    const handleEdito = (e) => {
+        e.preventDefault();
+        setEdito(true);
+    };
+
     return (
         <div className="container">
             <Helmet>
@@ -117,6 +123,17 @@ function Produkti() {
                 pershkrimi={pershkrimiMesazhit}
                 tipi={tipiMesazhit}
             />}
+            {edito && (
+                <EditoProduktin
+                    show={edito}
+                    hide={() => setEdito(false)}
+                    id={produkti.produktiId}
+                    shfaqmesazhin={() => setShfaqMesazhin(true)}
+                    perditesoTeDhenat={() => setPerditeso(Date.now())}
+                    setTipiMesazhit={setTipiMesazhit}
+                    setPershkrimiMesazhit={setPershkrimiMesazhit}
+                />
+            )}
             <div className="produkti">
                 <div className="detajet">
 
@@ -177,16 +194,21 @@ function Produkti() {
                                     Disponueshmëria: {produkti.sasiaNeStok > 10 ? "Me shume se 10 artikuj" : produkti.sasiaNeStok + " artikuj"}
                                 </p>
 
-                                <div>
-                                    {produkti.sasiaNeStok > 0 &&
-                                        <button onClick={handleShtoNeShporte} type="submit" className="button" >Buy Now</button>
-                                    }
+                                <div style={{display: "flex", gap: "1em"}}>
                                     {produkti.sasiaNeStok > 0 &&
                                         <button
                                             onClick={handleShtoNeShporte}
-                                            className="buttonat"
+                                            className="button"
                                         >
-                                            <FontAwesomeIcon icon={faCartShopping} />
+                                            Shto ne Shporte  <FontAwesomeIcon icon={faCartShopping} />
+                                        </button>
+                                    }
+                                    {produkti.sasiaNeStok > 0 &&
+                                        <button
+                                            onClick={(e) => handleEdito(e)}
+                                            className="button"
+                                        >
+                                            Perditeso <FontAwesomeIcon icon={faPenToSquare} />
                                         </button>
                                     }
                                     {produkti.sasiaNeStok <= 0 &&

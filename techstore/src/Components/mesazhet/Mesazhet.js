@@ -25,7 +25,7 @@ function Mesazhet() {
     function handleEdito(id) {
         axios.put(`https://localhost:7285/api/ContactForm/konfirmoMesazhin?id=${id}`, {}, authentikimi)
             .then(x => {
-                console.log(x);
+                
                 setTipiMesazhit("success");
                 setPershkrimiMesazhit("Statusi i Mesazhit u Perditesua me sukses!")
                 setPerditeso(Date.now());

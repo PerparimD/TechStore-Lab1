@@ -63,7 +63,6 @@ function EditoKodin(props) {
 
         axios.put(`https://localhost:7285/api/KodiZbritje/perditesoTeDhenatEKodit?kodi=${kodi.kodi}`, kodi, authentikimi)
             .then(x => {
-                console.log(x);
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Te dhenat e kodit u Perditesuan me sukses!")
                 props.perditesoTeDhenat();

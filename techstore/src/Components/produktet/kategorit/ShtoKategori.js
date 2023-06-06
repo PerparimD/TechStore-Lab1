@@ -32,7 +32,7 @@ function ShtoKompanit(props) {
             pershkrimiKategoris: pershkrimiKategoris
         }, authentikimi)
             .then((response) => {
-                console.log(response);
+                
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Kategoria u insertua me sukses!")
                 props.perditesoTeDhenat();

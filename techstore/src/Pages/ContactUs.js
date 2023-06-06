@@ -73,7 +73,7 @@ const ContactUs = () => {
       userId: getID ? user.perdoruesi.userId : null
     }, authentikimi)
       .then((response) => {
-        console.log(response);
+        
         setTipiMesazhit("success");
         setPershkrimiMesazhit("Mesazhi u Dergua me Sukses!")
         setShfaqMesazhin(true);

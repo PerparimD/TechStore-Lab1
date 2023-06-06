@@ -77,7 +77,7 @@ const ShtoProduktin = (props) => {
                 kompaniaId: emriK
               }, authentikimi)
               .then(async (response) => {
-                console.log(response);
+                
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
                 props.perditesoTeDhenat();
@@ -102,7 +102,7 @@ const ShtoProduktin = (props) => {
           kompaniaId: emriK
         }, authentikimi)
         .then((response) => {
-          console.log(response);
+          
           props.setTipiMesazhit("success");
           props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
           props.perditesoTeDhenat();

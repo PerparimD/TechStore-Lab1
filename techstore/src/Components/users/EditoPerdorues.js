@@ -32,7 +32,6 @@ function EditoPerdorues(props) {
 
                 setRoletUseri(user.data.rolet);
                 setRoletSelektim(user.data.rolet)
-                console.log(user)
 
             } catch (err) {
                 console.log(err);
@@ -47,7 +46,6 @@ function EditoPerdorues(props) {
             try {
                 const rolet = await axios.get(`https://localhost:7285/api/Authenticate/shfaqRolet`, authentikimi);
                 setShfaqRolet(rolet.data);
-                console.log(rolet.data);
             } catch (err) {
                 console.log(err);
             }

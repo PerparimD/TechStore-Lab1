@@ -10,13 +10,10 @@ import { TailSpin } from "react-loader-spinner";
 import PorositeUserit from "../Components/Dashboard/PorositeUserit";
 import PagesaMeSukses from "../Components/produktet/cart/Checkout/PagesaMeSukses";
 import MesazhetUserit from "../Components/Dashboard/MesazhetUserit";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import EditoTeDhenat from "../Components/Dashboard/EditoTeDhenat";
+import Mesazhi from "../Components/layout/Mesazhi";
 
 const Dashboard = () => {
   const [shfaqAdmin, setShfaqAdmin] = useState(false);
@@ -36,6 +33,10 @@ const Dashboard = () => {
   const [adresa, setAdresa] = useState("");
   const [nrKontaktit, setNrKontaktit] = useState("");
   const [id, setId] = useState();
+  const [mbyllPerditesoTeDhenat, setMbyllPerditesoTeDhenat] = useState(true)
+  const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
+  const [tipiMesazhit, setTipiMesazhit] = useState("");
+  const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
   const navigate = useNavigate();
 
@@ -86,7 +87,7 @@ const Dashboard = () => {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(info)
-      }).then(() => { console.log("Updated") })
+      })
 
     } catch (err) {
       console.log(err);
@@ -123,7 +124,7 @@ const Dashboard = () => {
   };
   const handleShow = (ID) => {
     setId(ID);
-    setShow(true);
+    setMbyllPerditesoTeDhenat(false);
   };
 
   const handleEmriChange = (value) => {
@@ -229,7 +230,7 @@ const Dashboard = () => {
               onClick={() => handleShow(teDhenat.perdoruesi.userId)}
               class="button"
             >
-              Perditeso te Dhenat <i class="fa-solid">&#xf4ff;</i>
+              Perditeso te Dhenat <FontAwesomeIcon icon={faPenToSquare} />
             </button>
             <button onClick={handleShfaqPorosite} class="button">
               Porosite e tua
@@ -264,6 +265,19 @@ const Dashboard = () => {
               }
             />
           )}
+          {!mbyllPerditesoTeDhenat &&
+            <EditoTeDhenat
+              setMbyllPerditesoTeDhenat={() => setMbyllPerditesoTeDhenat(true)}
+              perditeso={() => setPerditeso(Date.now())}
+              setShfaqMesazhin={() => setShfaqMesazhin(true)}
+              pershkrimi={setPershkrimiMesazhit}
+              tipi={setTipiMesazhit}
+            />}
+          {shfaqMesazhin && <Mesazhi
+            setShfaqMesazhin={setShfaqMesazhin}
+            pershkrimi={pershkrimiMesazhit}
+            tipi={tipiMesazhit}
+          />}
         </div>
       )}
 
@@ -281,87 +295,6 @@ const Dashboard = () => {
       )}
 
       <Footer />
-
-      <Modal className="modalEditShto" show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Perditeso Te Dhenat</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Emri </Form.Label>
-              <Form.Control
-                onChange={(e) => handleEmriChange(e.target.value)}
-                type="text"
-                placeholder="Emri"
-                value={emri}
-              />
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Mbiemri</Form.Label>
-                <Form.Control
-                  onChange={(e) => handleMbiemriChange(e.target.value)}
-                  as="textarea"
-                  placeholder="Mbiemri"
-                  value={mbiemri}
-                />
-              </Form.Group>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>UserName</Form.Label>
-              <Form.Control
-                onChange={(e) => handleusernameChange(e.target.value)}
-                type="text"
-                placeholder="Username"
-                value={username}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                placeholder="Email"
-                onChange={(e) => handleEmailChange(e.target.value)}
-                value={email}
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Nr.Kontaktit</Form.Label>
-              <Form.Control
-                placeholder="Nr.Kontaktit"
-                onChange={(e) => handlenrKontaktitChange(e.target.value)}
-                value={nrKontaktit}
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Adresa</Form.Label>
-              <Form.Control
-                placeholder="Adresa"
-                onChange={(e) => handleAdresaChange(e.target.value)}
-                value={adresa}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Anulo <FontAwesomeIcon icon={faXmark} />
-          </Button>
-          <Button
-            style={{ backgroundColor: "#009879", border: "none" }}
-            onClick={perditesoTeDhenat}
-          >
-            Edito Produktin <FontAwesomeIcon icon={faPenToSquare} />
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };

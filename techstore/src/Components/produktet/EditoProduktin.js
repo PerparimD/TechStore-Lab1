@@ -84,13 +84,10 @@ function EditoProduktin(props) {
               kategoriaId: produkti.kategoriaId,
               kompaniaId: produkti.kompaniaId,
               pershkrimi: produkti.pershkrimi,
-              fotoProduktit: response.data,
-              stokuQmimiProduktit: {
-                qmimiProduktit: produkti.qmimiProduktit,
-              }
+              fotoProduktit: response.data
             }, authentikimi)
               .then(x => {
-                console.log(x);
+                
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Produkti u Perditesua me sukses!")
                 props.perditesoTeDhenat();
@@ -114,13 +111,10 @@ function EditoProduktin(props) {
         kategoriaId: produkti.kategoriaId,
         kompaniaId: produkti.kompaniaId,
         pershkrimi: produkti.pershkrimi,
-        fotoProduktit: "ProduktPaFoto.png",
-        stokuQmimiProduktit: {
-          qmimiProduktit: produkti.qmimiProduktit,
-        }
+        fotoProduktit: "ProduktPaFoto.png"
       }, authentikimi)
         .then(x => {
-          console.log(x);
+          
           props.setTipiMesazhit("success");
           props.setPershkrimiMesazhit("Produkti u Perditesua me sukses!")
           props.perditesoTeDhenat();
@@ -139,7 +133,7 @@ function EditoProduktin(props) {
 
   return (
     <>
-      <Modal className="modalEditShto" show={props.show} onHide={props.hide}>
+      <Modal className="modalEditShto" style={{marginTop: "3em"}} show={props.show} onHide={props.hide}>
         <Modal.Header closeButton>
           <Modal.Title>Edito Produktin</Modal.Title>
         </Modal.Header>
@@ -215,21 +209,6 @@ function EditoProduktin(props) {
                   );
                 })}
               </select>
-            </Form.Group>
-
-
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Qmimi i Produktit</Form.Label>
-              <Form.Control
-                onChange={(e) => handleQmimiPChange(e.target.value)}
-                value={produkti.qmimiProduktit}
-                type="number"
-                placeholder="Qmimi i Produktit"
-                autoFocus
-              />
             </Form.Group>
           </Form>
         </Modal.Body>

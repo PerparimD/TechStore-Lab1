@@ -23,7 +23,6 @@ function ShtoRolin(props) {
     function handleSubmit() {
         axios.post(`https://localhost:7285/api/Authenticate/shtoRolin?roli=${emri}`, authentikimi)
             .then((response) => {
-                console.log(response);
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Roli u insertua me sukses!")
                 props.perditesoTeDhenat();

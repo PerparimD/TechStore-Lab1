@@ -5,6 +5,7 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class VendosFototController : Controller
@@ -161,7 +162,6 @@ namespace WebAPI.Controllers
 
             return Ok(emriUnikFotos);
         }
-
 
         private string GjeneroEmrinUnikFotos(string emriFotos)
         {

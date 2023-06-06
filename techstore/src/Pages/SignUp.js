@@ -54,9 +54,6 @@ const SignUp = () => {
         zipKodi: zipKodi !== "" ? zipKodi : 0,
         nrTelefonit: nrTelefonit
       }, authentikimi)
-      .then((response) => {
-        console.log(response);
-      })
       .catch((error) => {
         console.error(error);
       });

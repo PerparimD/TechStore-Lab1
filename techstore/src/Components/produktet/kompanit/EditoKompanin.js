@@ -62,7 +62,7 @@ function EditoKompanin(props) {
                             }, authentikimi
                         )
                             .then(x => {
-                                console.log(x);
+                                
                                 props.setTipiMesazhit("success");
                                 props.setPershkrimiMesazhit("Kompania u Perditesua me sukses!")
                                 props.perditesoTeDhenat();
@@ -88,7 +88,7 @@ function EditoKompanin(props) {
                     adresa: kompania.Adresa
                 }, authentikimi)
                 .then(x => {
-                    console.log(x);
+                    
                     props.setTipiMesazhit("success");
                     props.setPershkrimiMesazhit("Kompania u Perditesua me sukses!")
                     props.perditesoTeDhenat();

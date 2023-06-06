@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import EditoTeDhenat from "../Components/Dashboard/EditoTeDhenat";
 import Mesazhi from "../Components/layout/Mesazhi";
+import PerditesoTeDhenat from "../Components/Dashboard/PerditesoTeDhenat";
 
 const Dashboard = () => {
   const [shfaqAdmin, setShfaqAdmin] = useState(false);
@@ -265,14 +266,14 @@ const Dashboard = () => {
               }
             />
           )}
-          {!mbyllPerditesoTeDhenat &&
+          {/* {!mbyllPerditesoTeDhenat &&
             <EditoTeDhenat
               setMbyllPerditesoTeDhenat={() => setMbyllPerditesoTeDhenat(true)}
               perditeso={() => setPerditeso(Date.now())}
               setShfaqMesazhin={() => setShfaqMesazhin(true)}
               pershkrimi={setPershkrimiMesazhit}
               tipi={setTipiMesazhit}
-            />}
+            />} */}
           {shfaqMesazhin && <Mesazhi
             setShfaqMesazhin={setShfaqMesazhin}
             pershkrimi={pershkrimiMesazhit}
@@ -293,6 +294,16 @@ const Dashboard = () => {
           nrFatures={nrFatures}
         />
       )}
+      {!mbyllPerditesoTeDhenat &&
+        (
+          <PerditesoTeDhenat
+            setMbyllPerditesoTeDhenat={() => setMbyllPerditesoTeDhenat(true)}
+            perditeso={() => setPerditeso(Date.now())}
+            setShfaqMesazhin={() => setShfaqMesazhin(true)}
+            pershkrimi={setPershkrimiMesazhit}
+            tipi={setTipiMesazhit}
+          />
+        )}
 
       <Footer />
     </div>

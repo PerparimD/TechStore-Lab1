@@ -31,6 +31,19 @@
   width: 2em;
 }
 
+.PerditesoTeDhenatContainer{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+
+.titulliPerditeso{
+  text-align: center;
+}
+
 @media (max-width: 767px) {
   .normalMenu {
     display: none;

@@ -104,39 +104,32 @@ function PerditesoTeDhenat(props) {
 
     async function handleRuaj(e) {
         e.preventDefault();
+        try {
+            const kontrolloEmail = await axios.get(`https://localhost:7285/api/Perdoruesi/KontrolloEmail?email=${formValue.email}`, authentikimi)
 
-        // try {
-        //     await axios.post(`https://localhost:7285/api/VendosFotot/PerditesoTeDhenatBiznesit?logoVjeter=${teDhenatBiznesit.logo}`, formData, authentikimi)
-        //         .then(async (response) => {
-        //             axios.put("https://localhost:7285/api/TeDhenatBiznesit/perditesoTeDhenat", {
-        //                 "emriIbiznesit": formValue.emriBiznesit,
-        //                 "shkurtesaEmritBiznesit": formValue.shkurtesaEmrit,
-        //                 "nui": formValue.nui,
-        //                 "nf": formValue.nf,
-        //                 "nrtvsh": formValue.nrtvsh,
-        //                 "adresa": formValue.adresa,
-        //                 "nrKontaktit": formValue.nrKontaktit,
-        //                 "email": formValue.email,
-        //                 "logo": response.data
-        //             }, authentikimi)
-        //             setPerditeso(Date.now());
+            if (kontrolloEmail.data === false || teDhenat.perdoruesi.email === formValue.email) {
+                await axios.post(`https://localhost:7285/api/Perdoruesi/NdryshoEmail?emailIVjeter=${teDhenat.perdoruesi.email}&emailIRI=${formValue.email}`, authentikimi)
+                    .then(async () => {
+                        await axios.post(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${teDhenat.perdoruesi.userId}`, {
+                            "emri": formValue.emri,
+                            "mbiemri": formValue.mbiemri,
+                            "email": formValue.email,
+                            "username": formValue.username,
+                            "teDhenatPerdoruesit": {
+                                "nrKontaktit": formValue.nrKontaktit,
+                                "qyteti": formValue.qyteti,
+                                "zipKodi": formValue.zipKodi,
+                                "adresa": formValue.adresa,
+                                "shteti": formValue.shteti
+                            }
+                        }, authentikimi)
+                    })
+            }
 
-        //             setEdito(false);
-        //         })
-        // } catch (error) {
-        //     console.error(error);
-        // }
-        // await axios.put("https://localhost:7285/api/TeDhenatBiznesit/perditesoTeDhenat", {
-        //     "emriIbiznesit": formValue.emriBiznesit,
-        //     "shkurtesaEmritBiznesit": formValue.shkurtesaEmrit,
-        //     "nui": formValue.nui,
-        //     "nf": formValue.nf,
-        //     "nrtvsh": formValue.nrtvsh,
-        //     "adresa": formValue.adresa,
-        //     "nrKontaktit": formValue.nrKontaktit,
-        //     "email": formValue.email,
-        //     "logo": "PaLogo.png"
-        // }, authentikimi)
+        } catch (error) {
+            console.error(error);
+        }
+
         setPerditeso(Date.now());
 
         setEditoAdresen(false);

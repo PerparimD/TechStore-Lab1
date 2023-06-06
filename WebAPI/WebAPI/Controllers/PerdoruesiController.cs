@@ -129,6 +129,73 @@ namespace WebAPI.Controllers
 
             return Ok(perdouresi);
         }
+
+        [Authorize(Roles = "Admin, Menaxher, User")]
+        [HttpGet]
+        [Route("KontrolloEmail")]
+        public async Task<IActionResult> KontrolloEmail(string email)
+        {
+            var perdoruesi = await _userManager.FindByEmailAsync(email);
+
+            var emailIPerdorur = false;
+
+            if(perdoruesi != null)
+            {
+                emailIPerdorur = true;
+            }
+
+
+            return Ok(emailIPerdorur);
+        }
+
+        [Authorize(Roles = "Admin, Menaxher, User")]
+        [HttpPost]
+        [Route("NdryshoEmail")]
+        public async Task<IActionResult> NdryshoEmail(string emailIVjeter, string emailIRI)
+        {
+            var perdoruesi = await _userManager.FindByEmailAsync(emailIVjeter);
+
+            if (perdoruesi == null)
+            {
+                return BadRequest("Perdoreusi nuk egziston");
+            }
+
+            var tokeniPerNderrimEmail = await _userManager.GenerateChangeEmailTokenAsync(perdoruesi, emailIRI);
+
+            var emailINdryshuar = await _userManager.ChangeEmailAsync(perdoruesi, emailIRI, tokeniPerNderrimEmail);
+
+            if (!emailINdryshuar.Succeeded)
+            {
+                return BadRequest("Ndodhi nje gabim gjate perditesimit te email");
+            }
+
+
+            return Ok(emailINdryshuar);
+        }
+
+        [Authorize(Roles = "Admin, Menaxher, User")]
+        [HttpPost]
+        [Route("NdryshoFjalekalimin")]
+        public async Task<IActionResult> NdryshoFjalekalimin(string AspNetID, string fjalekalimiAktual, string fjalekalimiIRi)
+        {
+            var perdoruesi = await _userManager.FindByIdAsync(AspNetID);
+
+
+            if (perdoruesi == null)
+            {
+                return BadRequest("Perdoreusi nuk egziston");
+            }
+
+            var passwodiINdryshuar = await _userManager.ChangePasswordAsync(perdoruesi, fjalekalimiAktual, fjalekalimiIRi);
+
+            if (!passwodiINdryshuar.Succeeded)
+            {
+                return BadRequest("Ndodhi nje gabim gjate perditesimit te fjalekalimit");
+            }
+
+
+            return Ok(passwodiINdryshuar);
+        }
     }
     public class RoletEPerdoruesit
     {

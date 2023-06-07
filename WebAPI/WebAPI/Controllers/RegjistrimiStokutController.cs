@@ -23,6 +23,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Get()
         {
             var regjistrimet = await _context.RegjistrimiStokuts
+                .OrderByDescending(x => x.IdRegjistrimit)
                 .Select(x => new
                 {
                     x.IdRegjistrimit,
@@ -114,6 +115,7 @@ namespace WebAPI.Controllers
             produkti.SasiaNeStok += stoku.SasiaNeStok;
             produkti.DataPerditsimit = DateTime.Now;
             produkti.QmimiProduktit = stoku.QmimiProduktit;
+            produkti.QmimiBleres = stoku.QmimiBleres;
             if(stoku.DataKrijimit == null) {
                 produkti.DataKrijimit = produkti.DataKrijimit;
             }

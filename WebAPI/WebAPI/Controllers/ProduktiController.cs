@@ -27,6 +27,7 @@ namespace TechStoreWebAPI.Controllers
 
             var Produkti = await _context.Produktis
                 .OrderByDescending(x => x.StokuQmimiProduktit.SasiaNeStok)
+                .ThenByDescending(x => x.ProduktiId)
                .Select(x => new {
                    x.ProduktiId,
                    x.EmriProduktit,
@@ -54,6 +55,7 @@ namespace TechStoreWebAPI.Controllers
 
             var Produkti = await _context.Produktis
                .OrderBy(x => x.StokuQmimiProduktit.SasiaNeStok)
+               .ThenByDescending(x => x.ProduktiId)
                .Select(x => new {
                    x.ProduktiId,
                    x.EmriProduktit,
@@ -153,16 +155,6 @@ namespace TechStoreWebAPI.Controllers
         {
             var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
             var stokuQmimi = await _context.StokuQmimiProduktits.FirstOrDefaultAsync(x => x.ProduktiId == id);
-
-            if (!produkti.FotoProduktit.Equals("ProduktPaFoto.png"))
-            {
-                var fotoVjeter = Path.Combine("..", "..", "techstore", "public", "img", "products", produkti.FotoProduktit);
-
-                if (System.IO.File.Exists(fotoVjeter))
-                {
-                    System.IO.File.Delete(fotoVjeter);
-                }
-            }
 
             if (produkti == null || stokuQmimi == null)
             {

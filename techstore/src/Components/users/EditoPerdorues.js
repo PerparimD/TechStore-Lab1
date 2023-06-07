@@ -58,13 +58,13 @@ function EditoPerdorues(props) {
         try {
             for (const y of roletUseri) {
                 if (y !== 'User') {
-                    await axios.delete(`https://localhost:7285/api/Authenticate/FshijRolinUserit?userID=${props.id}&roli=${y}`, authentikimi);
+                    await axios.delete(`https://localhost:7285/api/Authenticate/FshijRolinUserit?userID=${props.id}&roli=${y}`, {}, authentikimi);
                 }
             }
 
             for (const y of roletSelektim) {
                 if (y !== 'User') {
-                    await axios.post(`https://localhost:7285/api/Authenticate/ShtoRolinPerdoruesit?userID=${props.id}&roli=${y}`, authentikimi);
+                    await axios.post(`https://localhost:7285/api/Authenticate/ShtoRolinPerdoruesit?userID=${props.id}&roli=${y}`, {}, authentikimi);
                 }
             }
 

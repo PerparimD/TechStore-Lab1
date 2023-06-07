@@ -35,7 +35,7 @@ function PerditesoStatusinPorosis(props) {
     function handleSubmit() {
 
 
-        axios.put(`https://localhost:7285/api/Porosia/perditesoStatusinPorosis?idPorosia=${props.id}&statusi=${statusiPorosis}`, authentikimi)
+        axios.put(`https://localhost:7285/api/Porosia/perditesoStatusinPorosis?idPorosia=${props.id}&statusi=${statusiPorosis}`, {}, authentikimi)
             .then(x => {
                 
                 props.setTipiMesazhit("success");

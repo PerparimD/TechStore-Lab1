@@ -84,7 +84,7 @@ function EditoKompanin(props) {
             await axios.put(`https://localhost:7285/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`,
                 {
                     emriKompanis: kompania.emriKompanis,
-                    logo: "KompaniPaFoto.png",
+                    logo: kompania.logo,
                     adresa: kompania.Adresa
                 }, authentikimi)
                 .then(x => {

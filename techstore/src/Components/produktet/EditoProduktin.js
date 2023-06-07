@@ -111,7 +111,7 @@ function EditoProduktin(props) {
         kategoriaId: produkti.kategoriaId,
         kompaniaId: produkti.kompaniaId,
         pershkrimi: produkti.pershkrimi,
-        fotoProduktit: "ProduktPaFoto.png"
+        fotoProduktit: produkti.fotoProduktit
       }, authentikimi)
         .then(x => {
           

@@ -128,6 +128,7 @@ namespace WebAPI.Controllers
                     TotaliBlerjeve = e.Porosits.Sum(q => q.TotaliPorosis),
                 })
                 .OrderByDescending(g => g.TotaliPorosive)
+                .ThenByDescending(g => g.TotaliBlerjeve)
                 .Take(15)
                 .ToListAsync();
 
@@ -156,6 +157,7 @@ namespace WebAPI.Controllers
                     TotaliBlerjeve = e.TeDhenatEporosis.Sum(q => q.QmimiTotal),
                 })
                 .OrderByDescending(g => g.TotaliPorosive)
+                .ThenByDescending(g => g.TotaliBlerjeve)
                 .Take(15)
                 .ToListAsync();
 

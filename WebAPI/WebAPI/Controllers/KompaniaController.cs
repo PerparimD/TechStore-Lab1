@@ -61,16 +61,6 @@ namespace TechStoreWebAPI.Controllers
         {
             var kompania = await _context.Kompania.FirstOrDefaultAsync(x => x.KompaniaId == id);
 
-            if (k.Logo.Equals("KompaniPaFoto.png"))
-            {
-                var fotoVjeter = Path.Combine("..", "..", "techstore", "public", "img", "slider", "sliderIcons", kompania.Logo);
-
-                if (System.IO.File.Exists(fotoVjeter))
-                {
-                    System.IO.File.Delete(fotoVjeter);
-                }
-            }
-
             if (kompania == null)
             {
                 return BadRequest("Id gabim");

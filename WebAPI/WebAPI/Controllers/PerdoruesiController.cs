@@ -174,6 +174,18 @@ namespace WebAPI.Controllers
         }
 
         [Authorize(Roles = "Admin, Menaxher, User")]
+        [HttpGet]
+        [Route("KontrolloFjalekalimin")]
+        public async Task<IActionResult> KontrolloFjalekalimin(string AspNetID, string fjalekalimi)
+        {
+            var perdoruesi = await _userManager.FindByIdAsync(AspNetID);
+
+            var kontrolloFjalekalimin = await _userManager.CheckPasswordAsync(perdoruesi, fjalekalimi);
+
+            return Ok(kontrolloFjalekalimin);
+        }
+
+        [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpPost]
         [Route("NdryshoFjalekalimin")]
         public async Task<IActionResult> NdryshoFjalekalimin(string AspNetID, string fjalekalimiAktual, string fjalekalimiIRi)

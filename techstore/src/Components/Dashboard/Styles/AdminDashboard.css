@@ -19,11 +19,11 @@
   padding: 0.4em;
 }
 
-.buttoniMbylle{
+.buttoniMbylle {
   background-color: red;
   color: white;
   border: none;
-  border-radius:10px;
+  border-radius: 10px;
   margin-bottom: 1em;
 }
 
@@ -31,7 +31,7 @@
   width: 2em;
 }
 
-.PerditesoTeDhenatContainer{
+.PerditesoTeDhenatContainer {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -40,8 +40,13 @@
   margin: 0 auto;
 }
 
-.titulliPerditeso{
+.titulliPerditeso {
   text-align: center;
+}
+
+.butonatPerditesoTeDhenat {
+  display: flex;
+  gap: 0.5em;
 }
 
 @media (max-width: 767px) {
@@ -55,4 +60,3 @@
     display: none;
   }
 }
-

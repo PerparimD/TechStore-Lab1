@@ -120,36 +120,9 @@ const Dashboard = () => {
 
   const handleEditoMbyll = () => setEdito(false);
 
-  const handleClose = () => {
-    setShow(false);
-  };
   const handleShow = (ID) => {
     setId(ID);
     setMbyllPerditesoTeDhenat(false);
-  };
-
-  const handleEmriChange = (value) => {
-    setEmri(value);
-  };
-
-  const handleMbiemriChange = (value) => {
-    setMbiemri(value);
-  };
-
-  const handleEmailChange = (value) => {
-    setEmail(value);
-  };
-
-  const handleusernameChange = (value) => {
-    setUsername(value);
-  };
-
-  const handlenrKontaktitChange = (value) => {
-    setNrKontaktit(value);
-  };
-
-  const handleAdresaChange = (value) => {
-    setAdresa(value);
   };
 
 

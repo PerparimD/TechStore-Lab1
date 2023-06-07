@@ -64,12 +64,17 @@
 }
 
 .cmimet{
+  display: flex;
+  /* justify-content: space-between; */
+  align-items:center;
+  gap: 0.5em;
   margin-top: auto;
 
 }
 
 .cmimi {
   font-weight: bold;
+  color:#676464;
   font-size: 13pt;
 }
 

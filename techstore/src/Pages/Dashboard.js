@@ -204,6 +204,7 @@ const Dashboard = () => {
               onClick={() => handleShow(teDhenat.perdoruesi.userId)}
               class="button"
             >
+              
               Perditeso te Dhenat <FontAwesomeIcon icon={faPenToSquare} />
             </button>
             <button onClick={handleShfaqPorosite} class="button">

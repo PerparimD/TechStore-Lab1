@@ -37,12 +37,13 @@
 }
 
 .inputt {
-  border: none;
-  border-bottom: 1px solid #d3d3d3;
+  border: 0;
+  border-bottom: 1.4px solid #d3d3d3;
+  border-radius: 0;
   color: #ddd;
   background-color: inherit;
   width: max(27em, 20vw);  
-
+  
 }
 
 

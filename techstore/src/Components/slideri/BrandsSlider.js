@@ -69,7 +69,7 @@ function BrandsSlider() {
         ref={(el) => (kornizaEBrendeveRef.current[0] = el)}
       >
         {kompanit.map((kompania) => (
-          <div className={classes.kartelaEBrendit} key={kompania.kompaniaId} data-aos="fade-right">
+          <div className={classes.kartelaEBrendit} key={kompania.kompaniaId} data-aos="zoom-out">
             <div className={classes.logoBrendit}>
               <Link to={`/Produktet/${kompania.emriKompanis}`}>
                 <img

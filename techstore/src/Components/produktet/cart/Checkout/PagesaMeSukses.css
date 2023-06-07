@@ -21,12 +21,15 @@
 }
 .containerDashboardPP tr th {
   margin-top: 3em;
-  background-color: rgb(138, 137, 137);
+  background-color: #0f243b;
   color: #ffffff;
   text-align: left;
   font-weight: bold;
   border-bottom: 1px solid #b8b5b5;
+  opacity: 0.7;
 }
+
+
 
 .containerDashboardPP th,
 .containerDashboardPP td {

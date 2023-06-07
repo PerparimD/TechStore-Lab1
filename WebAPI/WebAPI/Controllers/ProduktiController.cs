@@ -26,7 +26,34 @@ namespace TechStoreWebAPI.Controllers
         {
 
             var Produkti = await _context.Produktis
-               .OrderByDescending(x => x.ProduktiId)
+                .OrderByDescending(x => x.StokuQmimiProduktit.SasiaNeStok)
+               .Select(x => new {
+                   x.ProduktiId,
+                   x.EmriProduktit,
+                   x.Pershkrimi,
+                   x.FotoProduktit,
+                   x.KategoriaId,
+                   x.Kategoria.LlojiKategoris,
+                   x.KompaniaId,
+                   x.Kompania.EmriKompanis,
+                   x.StokuQmimiProduktit.SasiaNeStok,
+                   x.StokuQmimiProduktit.QmimiProduktit,
+                   x.StokuQmimiProduktit.QmimiBleres,
+                   x.ZbritjaQmimitProduktit.QmimiMeZbritjeProduktit
+               })
+               .ToListAsync();
+
+            return Ok(Produkti);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("ProduktetPerKalkulim")]
+        public async Task<ActionResult> ProduktetPerKalkulim()
+        {
+
+            var Produkti = await _context.Produktis
+               .OrderBy(x => x.StokuQmimiProduktit.SasiaNeStok)
                .Select(x => new {
                    x.ProduktiId,
                    x.EmriProduktit,

@@ -72,7 +72,6 @@ function CartPage() {
   }, [kontrollo]);
 
   useEffect(() => {
-    // Calculate the total price from the items in the cart
     let totali = 0;
     cart.forEach((item) => {
       totali += item.cmimi * item.sasia;

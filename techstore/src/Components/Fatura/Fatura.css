@@ -98,6 +98,12 @@ td {
   margin-top: 18em;
 }
 
+.nenshkrimet2Faqe {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30em;
+}
+
 .nenshkrimi {
   display: flex;
   flex-direction: column;

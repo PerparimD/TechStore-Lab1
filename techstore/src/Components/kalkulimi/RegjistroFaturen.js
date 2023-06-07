@@ -69,7 +69,7 @@ function RegjistroFaturen(props) {
         const vendosProduktet = async () => {
             try {
                 const produktet = await axios.get(
-                    `https://localhost:7285/api/Produkti/Products`, authentikimi
+                    `https://localhost:7285/api/Produkti/ProduktetPerKalkulim`, authentikimi
                 );
                 setProduktet(produktet.data);
 

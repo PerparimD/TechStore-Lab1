@@ -70,9 +70,9 @@ function NavBar(props) {
 
 
   const kontrolloProduktet = () => {
-    const produktet = JSON.parse(localStorage.getItem("cart")); // Parse the cart data into an array
+    const produktet = JSON.parse(localStorage.getItem("cart")); 
 
-    produktet.forEach(produkti => {
+    produktet && produktet.forEach(produkti => {
       axios.get(`https://localhost:7285/api/Produkti/${produkti.id}`, authentikimi)
         .then(response => {
           const prd = response.data;

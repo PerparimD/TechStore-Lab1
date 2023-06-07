@@ -9,6 +9,9 @@ import { useState } from "react";
 import axios from "axios";
 import Col from "react-bootstrap/Col";
 import { Row } from "react-bootstrap";
+import Mesazhi from "../Components/layout/Mesazhi";
+import { Link } from "react-router-dom";
+
 
 const SignUp = () => {
   const [emri, setEmri] = useState("");
@@ -21,6 +24,10 @@ const SignUp = () => {
   const [adresa, setAdresa] = useState("");
   const [shteti, setShteti] = useState("");
   const [zipKodi, setZipKodi] = useState("");
+
+  const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
+  const [tipiMesazhit, setTipiMesazhit] = useState("");
+  const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
   const getToken = localStorage.getItem("token");
 
@@ -38,25 +45,70 @@ const SignUp = () => {
     setShteti(event.target.value);
   };
 
-  function CreateAcc(e) {
+  function isNullOrEmpty(value) {
+    return value === null || value === "" || value === undefined;
+  }
+
+  async function CreateAcc(e) {
     e.preventDefault();
 
-    axios
-      .post("https://localhost:7285/api/Authenticate/register", {
-        name: emri,
-        lastName: mbimeri,
-        email: email,
-        username: username,
-        password: password,
-        adresa: adresa,
-        qyteti: qyteti,
-        shteti: shteti,
-        zipKodi: zipKodi !== "" ? zipKodi : 0,
-        nrTelefonit: nrTelefonit
-      }, authentikimi)
-      .catch((error) => {
-        console.error(error);
-      });
+    if (
+      isNullOrEmpty(emri) ||
+      isNullOrEmpty(mbimeri) ||
+      isNullOrEmpty(username) ||
+      isNullOrEmpty(email) ||
+      isNullOrEmpty(password)
+    ) {
+      setPershkrimiMesazhit("<strong>Ju lutemi plotesoni te gjitha fushat me *</strong>");
+      setTipiMesazhit("danger");
+      setShfaqMesazhin(true);
+    } else {
+      const kontrolloEmail = await axios.get(`https://localhost:7285/api/Perdoruesi/KontrolloEmail?email=${email}`, authentikimi)
+      const passREGEX = /^[A-Z][A-Za-z0-9@$!%*?&]*[a-z][A-Za-z0-9@$!%*?&]*[0-9][A-Za-z0-9@$!%*?&]*$/
+      const telefoniREGEX = /^(?:\+\d{11}|\d{9})$/
+
+
+      if (kontrolloEmail.data === true) {
+        setPershkrimiMesazhit("<strong>Ky email nuk eshte i vlefshem!</strong>");
+        setTipiMesazhit("danger");
+        setShfaqMesazhin(true);
+      } else if (!passREGEX.test(password)) {
+        setPershkrimiMesazhit("Fjalekalimi duhet te permbaj <strong>shkronja, numra dhe simbole si dhe shkroja e pare duhet te jete e madhe!</strong>");
+        setTipiMesazhit("danger");
+        setShfaqMesazhin(true);
+      } else if (!isNullOrEmpty(nrTelefonit) && !telefoniREGEX.test(nrTelefonit)) {
+        setPershkrimiMesazhit("Numri telefonit duhet te jete ne formatin: <strong>045123123 ose +38343123132</strong>");
+        setTipiMesazhit("danger");
+        setShfaqMesazhin(true);
+      }
+
+      else {
+        axios
+          .post("https://localhost:7285/api/Authenticate/register", {
+            name: emri,
+            lastName: mbimeri,
+            email: email,
+            username: username,
+            password: password,
+            adresa: adresa,
+            qyteti: qyteti,
+            shteti: shteti,
+            zipKodi: zipKodi !== "" ? zipKodi : 0,
+            nrTelefonit: nrTelefonit
+          }, authentikimi)
+          .then(() => {
+            setPershkrimiMesazhit("<strong>Llogaria juaj u krija me sukses! Ju Deshirojme blerje te kendshme</strong>");
+            setTipiMesazhit("success");
+            setShfaqMesazhin(true);
+          })
+          .catch((error) => {
+            console.error(error);
+            setPershkrimiMesazhit("<strong>Ju lutemi kontaktoni me stafin pasi ndodhi nje gabim ne server!</strong>");
+            setTipiMesazhit("danger");
+            setShfaqMesazhin(true);
+          });
+      }
+    }
   }
 
   return (
@@ -65,6 +117,11 @@ const SignUp = () => {
         <title>Sign Up | Tech Store</title>
       </Helmet>
       <NavBar />
+      {shfaqMesazhin && <Mesazhi
+        setShfaqMesazhin={setShfaqMesazhin}
+        pershkrimi={pershkrimiMesazhit}
+        tipi={tipiMesazhit}
+      />}
       <Form className="sign-up-form">
         <Form.Text className="formTitle">Sign Up</Form.Text>
 
@@ -126,9 +183,12 @@ const SignUp = () => {
             <Form.Control type="number" placeholder="71000" value={zipKodi} onChange={handleChange(setZipKodi)} />
           </Form.Group>
         </Row>
-        <Button variant="primary" type="submit" onClick={CreateAcc}>
-          Create Account
-        </Button>
+        <div style={{display: "flex", flexDirection: "column", width: "30%"}}>
+          <Link to="/login" className="text-white-20 mb-4 p-text">Keni llogari? Kyçuni</Link>
+          <Button variant="primary" type="submit" onClick={CreateAcc}>
+            Create Account
+          </Button>
+        </div>
       </Form>
       <Footer />
     </div>

@@ -49,7 +49,7 @@ function Fatura(props) {
                         `https://localhost:7285/api/Porosia/shfaqPorosineNgaID?nrFatures=${nrFatures}`, authentikimi
                     );
                     setFatura(fatura.data);
-                    
+
                     if (fatura.status == "200") {
                         setVendosFature(true);
                     }
@@ -100,7 +100,7 @@ function Fatura(props) {
                         `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(teDhenatUser.data);
-                    
+
                 } catch (err) {
                     console.log(err);
                 }
@@ -143,14 +143,13 @@ function Fatura(props) {
                 }
 
                 var klienti = (fatura ? fatura.emri + " " + fatura.mbiemri : "")
-                var nrFatures = (fatura?.idPorosia)
                 var dataFatures = (fatura ? new Date(fatura.dataPorosis).toLocaleDateString('en-GB', { dateStyle: 'short' }) : "")
 
-                pdf.save(klienti + " - " + nrFatures + " - " + dataFatures + ".pdf");
+                pdf.save(klienti + " - " + barkodi + " - " + dataFatures + ".pdf");
                 navigate("/dashboard");
             })
             .catch((error) => {
-                
+
             });
     }
 
@@ -276,7 +275,10 @@ function Fatura(props) {
 
                         <h1 style={{ fontSize: "24pt" }}>Shenime shtes</h1>
                         <br />
-                        <p style={{ fontSize: "18pt" }}>Paguani pas pranimit te porosis</p>
+                        <h3 style={{ fontSize: "18pt" }}>Paguani pas pranimit te porosis ose me transfer bankar!</h3>
+                        <p style={{ fontSize: "18pt" }}>Ne rast te pageses me transfer bankar vendosni numrin e references <strong>{barkodi}</strong></p>
+
+
                         <p style={{ fontSize: "18pt" }}>Porosia arrin me se largu:
                             <strong> {dataMberritjes.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}</strong>
                         </p>
@@ -338,6 +340,7 @@ function Fatura(props) {
 
                     </div>
                     <br />
+                    <h3 style={{ fontSize: "18pt" }}>Ne rast te pageses me transfer bankar ju lutem kontakotni me stafin!</h3>
                     <h3 style={{ fontSize: "18pt" }}>Te gjitha produktet ne kete fature kane garancion 1 Vjet!</h3>
                     <h3 style={{ fontSize: "18pt" }}>Garancioni vlene deri me: {skadimiGarancionit.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}</h3>
                 </div>

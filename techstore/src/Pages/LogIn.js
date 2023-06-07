@@ -17,6 +17,8 @@ import {
   MDBInput,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
+import Mesazhi from "../Components/layout/Mesazhi";
+
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -25,6 +27,10 @@ const LogIn = () => {
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [roles, setRoles] = useState([]);
+
+  const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
+  const [tipiMesazhit, setTipiMesazhit] = useState("");
+  const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
   const getToken = localStorage.getItem("token");
 
@@ -68,19 +74,16 @@ const LogIn = () => {
 
         localStorage.setItem("id", decodedToken.id);
 
-        const roles = decodedToken.role;
-        setRoles(roles);
-
-        if (roles.includes("Admin") || roles.includes("Menaxher")) {
-          navigate("/dashboard");
-        } else {
-          navigate("/dashboard");
-        }
+        navigate("/dashboard");
       } else {
-        throw new Error("Authentication failed");
+        setPershkrimiMesazhit("<strong>Ju lutemi kontaktoni me stafin pasi ndodhi nje gabim ne server!</strong>");
+        setTipiMesazhit("danger");
+        setShfaqMesazhin(true);
       }
     } catch (error) {
-      console.error("Error:", error);
+      setPershkrimiMesazhit("<strong>Ju lutemi kontrolloni te dhenat e juaja!</strong>");
+      setTipiMesazhit("danger");
+      setShfaqMesazhin(true);
     }
   };
 
@@ -91,6 +94,11 @@ const LogIn = () => {
         <title>Log In | Tech Store</title>
       </Helmet>
       <NavBar />
+      {shfaqMesazhin && <Mesazhi
+        setShfaqMesazhin={setShfaqMesazhin}
+        pershkrimi={pershkrimiMesazhit}
+        tipi={tipiMesazhit}
+      />}
       <MDBContainer fluid >
         <MDBRow className="d-flex justify-content-center align-items-center h-100">
           <MDBCol col="12">

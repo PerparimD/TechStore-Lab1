@@ -14,6 +14,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faEye, faEyeSlash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 
 function PerditesoTeDhenat(props) {
     const [teDhenat, setTeDhenat] = useState([]);
@@ -22,6 +24,8 @@ function PerditesoTeDhenat(props) {
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const [shteti, setShteti] = useState("");
 
 
     const [editoTeDhenat, setEditoTeDhenat] = useState(false);
@@ -82,6 +86,10 @@ function PerditesoTeDhenat(props) {
             navigate("/login");
         }
     }, [perditeso]);
+
+    const handleShtetiChange = (event) => {
+        setFormValue({ ...formValue, shteti: event.target.value });
+    };
 
     const onChange = (e) => {
         setFormValue({ ...formValue, [e.target.name]: e.target.value });
@@ -456,16 +464,14 @@ function PerditesoTeDhenat(props) {
                                     disabled={!editoAdresen}
                                 />
                             </MDBCol>
-                            <MDBCol md="6">
-                                <MDBInput
-                                    value={formValue.shteti}
-                                    name='shteti'
-                                    onChange={onChange}
-                                    id='shteti'
-                                    required
-                                    label='Shteti'
-                                    disabled={!editoAdresen}
-                                />
+                            <MDBCol md="6" >
+                                <Form.Select value={formValue.shteti} onChange={handleShtetiChange} disabled={!editoAdresen}>
+                                    <option hidden disabled>Zgjedhni Shtetin</option>
+                                    <option>Kosovë</option>
+                                    <option>Shqipëri</option>
+                                    <option>Maqedoni e Veriut</option>
+                                </Form.Select>
+                                <Form.Label>State</Form.Label>
                             </MDBCol>
                             <MDBCol md="6">
                                 <MDBInput
@@ -524,7 +530,7 @@ function PerditesoTeDhenat(props) {
                                     <div className="butonatPerditesoTeDhenat">
                                         <MDBBtn onClick={EditoFjalekalimin} color="success">Ruaj</MDBBtn>
                                         <MDBBtn type="button" onClick={handleTogglePassword}>
-                                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                            {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                                         </MDBBtn>
                                         <MDBBtn onClick={handleAnuloPerditesimin} color="secondary">Anulo</MDBBtn>
                                     </div>

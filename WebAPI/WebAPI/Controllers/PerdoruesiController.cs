@@ -130,7 +130,7 @@ namespace WebAPI.Controllers
             return Ok(perdouresi);
         }
 
-        [Authorize(Roles = "Admin, Menaxher, User")]
+        [AllowAnonymous]
         [HttpGet]
         [Route("KontrolloEmail")]
         public async Task<IActionResult> KontrolloEmail(string email)

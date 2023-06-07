@@ -48,7 +48,7 @@ function Statistika() {
                 const dita = await axios.get("https://localhost:7285/api/Statistikat/TotaletJavore", authentikimi);
                 setShitjetJavore(dita.data);
 
-                
+
             } catch (e) {
                 console.error(e);
             }
@@ -60,7 +60,7 @@ function Statistika() {
         vendosTop15Produktet();
         vendosShitjetJavore();
 
-        
+
     }, [])
 
     function shfaqDiten(data) {
@@ -138,9 +138,9 @@ function Statistika() {
                             </span>
                             <p>
                                 {totaleTeNdryshme.totaliShitjeveSotme > totaleTeNdryshme.totaliShitjeveDjeshme ?
-                                    (totaleTeNdryshme.totaliShitjeveSotme - totaleTeNdryshme.totaliShitjeveDjeshme) + "€ Shitje me shume se Dje" :
+                                    (totaleTeNdryshme.totaliShitjeveSotme - totaleTeNdryshme.totaliShitjeveDjeshme).toFixed(2) + "€ Shitje me shume se Dje" :
                                     (totaleTeNdryshme.totaliShitjeveDjeshme === totaleTeNdryshme.totaliShitjeveSotme) ? "Njesoj si Dje" :
-                                        (totaleTeNdryshme.totaliShitjeveDjeshme - totaleTeNdryshme.totaliShitjeveSotme) + "€ Shitje me pak se Dje"
+                                        (totaleTeNdryshme.totaliShitjeveDjeshme - totaleTeNdryshme.totaliShitjeveSotme).toFixed(2) + "€ Shitje me pak se Dje"
                                 }
                             </p>
                         </Card.Text>
@@ -178,9 +178,9 @@ function Statistika() {
                             </span>
                             <p>
                                 {totaleTeNdryshme.totaliShitjeveKeteMuaj > totaleTeNdryshme.totaliShitjeveMuajinKaluar ?
-                                    (totaleTeNdryshme.totaliShitjeveKeteMuaj - totaleTeNdryshme.totaliShitjeveMuajinKaluar) + "€ Shitje me shume se muajin e Kaluar" :
+                                    (totaleTeNdryshme.totaliShitjeveKeteMuaj - totaleTeNdryshme.totaliShitjeveMuajinKaluar).toFixed(2) + "€ Shitje me shume se muajin e Kaluar" :
                                     (totaleTeNdryshme.totaliShitjeveMuajinKaluar === totaleTeNdryshme.totaliShitjeveKeteMuaj) ? "Njesoj si muajin e kaluar" :
-                                        (totaleTeNdryshme.totaliShitjeveMuajinKaluar - totaleTeNdryshme.totaliShitjeveKeteMuaj) + "€ Shitje me pak se muajin e Kaluar"
+                                        (totaleTeNdryshme.totaliShitjeveMuajinKaluar - totaleTeNdryshme.totaliShitjeveKeteMuaj).toFixed(2) + "€ Shitje me pak se muajin e Kaluar"
                                 }
                             </p>
                         </Card.Text>

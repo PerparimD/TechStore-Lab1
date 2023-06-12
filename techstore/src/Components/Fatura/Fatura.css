@@ -1,4 +1,4 @@
-.fatura * {
+.fatura *, .PjesaNenshkrimeve * {
   /* styles specific to elements inside .fatura */
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@
   font-size: 18pt;
 }
 
-.fatura {
+.fatura, .PjesaNenshkrimeve {
   margin: 2em;
 }
 
@@ -80,15 +80,15 @@ td {
   align-items: flex-end;
 }
 
-.fatura h1 {
+.fatura h1, .PjesaNenshkrimeve h1 {
   font-size: 30pt;
 }
 
-.fatura h2 {
+.fatura h2, .PjesaNenshkrimeve h2 {
   font-size: 25pt;
 }
 
-.fatura h3 {
+.fatura h3, .PjesaNenshkrimeve h3 {
   font-size: 20pt;
 }
 

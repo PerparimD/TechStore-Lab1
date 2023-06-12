@@ -1,11 +1,10 @@
-/* eslint-disable no-undef */
 import { React, useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faBan, faL } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 
 const ShtoProduktin = (props) => {
@@ -16,6 +15,28 @@ const ShtoProduktin = (props) => {
   const [kompanit, setKompanit] = useState([]);
   const [kategoria, setKategoria] = useState([]);
   const [foto, setFoto] = useState(null);
+  const [perditeso, setPerditeso] = useState("");
+
+  const [produktet, setProduktet] = useState([]);
+  const [kontrolloProduktin, setKontrolloProduktin] = useState(false);
+  const [konfirmoProduktin, setKonfirmoProduktin] = useState(false);
+  const [fushatEZbrazura, setFushatEZbrazura] = useState(false);
+
+  useEffect(() => {
+    const vendosProduktet = async () => {
+      try {
+        const produktet = await axios.get(
+          `https://localhost:7285/api/Produkti/Products`, authentikimi
+        );
+        setProduktet(produktet.data);
+
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    vendosProduktet();
+  }, [perditeso]);
 
   const getToken = localStorage.getItem("token");
 
@@ -77,7 +98,7 @@ const ShtoProduktin = (props) => {
                 kompaniaId: emriK
               }, authentikimi)
               .then(async (response) => {
-                
+
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
                 props.perditesoTeDhenat();
@@ -102,7 +123,7 @@ const ShtoProduktin = (props) => {
           kompaniaId: emriK
         }, authentikimi)
         .then((response) => {
-          
+
           props.setTipiMesazhit("success");
           props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
           props.perditesoTeDhenat();
@@ -115,8 +136,74 @@ const ShtoProduktin = (props) => {
     }
 
   }
+
+  function isNullOrEmpty(value) {
+    return value === null || value === "" || value === undefined;
+  }
+
+  const handleKontrolli = () => {
+    if (
+      isNullOrEmpty(emriP) ||
+      isNullOrEmpty(emriK) ||
+      isNullOrEmpty(llojiK)
+    ) {
+      setFushatEZbrazura(true);
+    } else {
+      if (konfirmoProduktin == false && produktet.filter((item) => item.emriProduktit === emriP).length !== 0) {
+        setKontrolloProduktin(true);
+      }
+      else {
+        handleSubmit();
+      }
+    }
+
+  }
   return (
     <>
+      {fushatEZbrazura &&
+        <Modal size="sm" show={fushatEZbrazura} onHide={() => setFushatEZbrazura(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title style={{ color: "red" }} as="h6">Ndodhi nje gabim</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <strong style={{ fontSize: "10pt" }}> Ju lutemi plotesoni te gjitha fushat me *</strong>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button size="sm" onClick={() => setFushatEZbrazura(false)} variant="secondary">
+              Mbylle <FontAwesomeIcon icon={faXmark} />
+            </Button >
+          </Modal.Footer>
+
+        </Modal>
+      }
+      {kontrolloProduktin &&
+        <Modal size="sm" show={kontrolloProduktin} onHide={() => setKontrolloProduktin(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title as="h6">Konfirmo vendosjen</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <span style={{ fontSize: "10pt" }}>
+              Nje produkt me te njejtin emer ekziston ne sistem!
+            </span>
+            <br />
+            <strong style={{ fontSize: "10pt" }}>
+              A jeni te sigurt qe deshironi te vazhdoni?
+            </strong>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button size="sm" variant="secondary" onClick={() => setKontrolloProduktin(false)}>
+              Korrigjo <FontAwesomeIcon icon={faXmark} />
+            </Button>
+            <Button
+              size="sm"
+              variant="warning"
+              onClick={() => { handleSubmit(); }}
+            >
+              Vazhdoni
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      }
       <Modal className="modalEditShto" show={props.show} onHide={props.hide}>
         <Modal.Header closeButton>
           <Modal.Title>Shto Produkt</Modal.Title>
@@ -124,7 +211,7 @@ const ShtoProduktin = (props) => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Emri Produktit</Form.Label>
+              <Form.Label>Emri Produktit*</Form.Label>
               <Form.Control
                 onChange={(e) => handleEmriPChange(e.target.value)}
                 value={emriP}
@@ -153,7 +240,7 @@ const ShtoProduktin = (props) => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Kompania</Form.Label>
+              <Form.Label>Kompania*</Form.Label>
               <select
                 placeholder="Kompania e Produktit"
                 className="form-select"
@@ -161,7 +248,7 @@ const ShtoProduktin = (props) => {
                 onChange={(e) => handleKompaniaChange(e.target.value)}
               >
                 <option defaultValue disabled value="">
-                  Kompania e Produktit
+                  Kompania e Produktit*
                 </option>
                 {kompanit.map((item) => {
                   return (
@@ -201,7 +288,7 @@ const ShtoProduktin = (props) => {
           </Button>
           <Button
             style={{ backgroundColor: "#009879", border: "none" }}
-            onClick={handleSubmit}
+            onClick={handleKontrolli}
           >
             Save Changes
           </Button>

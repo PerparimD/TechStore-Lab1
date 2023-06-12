@@ -108,7 +108,7 @@ function TeDhenatEBiznesit(props) {
                 "adresa": formValue.adresa,
                 "nrKontaktit": formValue.nrKontaktit,
                 "email": formValue.email,
-                "logo": "PaLogo.png"
+                "logo": teDhenatBiznesit.logo
             }, authentikimi)
             setPerditeso(Date.now());
 
@@ -269,11 +269,11 @@ function TeDhenatEBiznesit(props) {
                             </MDBCol>
                             <div className='col-12'>
                                 {!edito &&
-                                    <MDBBtn onClick={handleEdito}>Ndrysho te dhenat</MDBBtn>
+                                    <button className="btn btn-primary btn-small" role="button"  onClick={handleEdito}>Ndrysho te dhenat</button>
                                 }
 
                                 {edito &&
-                                    <MDBBtn onClick={handleRuaj}>Ruaj</MDBBtn>
+                                    <button className="btn btn-primary btn-small" role="button"  onClick={handleRuaj}>Ruaj</button>
                                 }
                             </div>
                         </MDBRow>

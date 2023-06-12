@@ -2,9 +2,9 @@ import "./Fatura.css";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useBarcode } from 'next-barcode';
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import Barkodi from "./Barkodi";
 
 
 function Fatura(props) {
@@ -24,11 +24,6 @@ function Fatura(props) {
     const skadimiGarancionit = new Date(dataPorosise.setDate(dataPorosise.getDate() + 365));
 
     const barkodi = `${teDhenatBiznesit && teDhenatBiznesit.shkurtesaEmritBiznesit}-${dita}${muaji}${viti}-${fatura.idKlienti}-${nrFatures}`;
-
-    const { inputRef } = useBarcode({
-        value: `${barkodi}`
-    });
-
 
     const getID = localStorage.getItem("id");
     const navigate = useNavigate();
@@ -71,7 +66,7 @@ function Fatura(props) {
             }
             else {
                 if (vendosFature === true) {
-                    printoFaturen();
+                    FaturaPerRuajtje();
                 }
             }
         }
@@ -114,26 +109,27 @@ function Fatura(props) {
 
 
 
-    function printoFaturen() {
-        const invoiceRef = document.querySelector('.fatura');
+    function FaturaPerRuajtje() {
+        const FaturaRef = document.querySelector('.fatura');
+        const PjesaNenshkrimeveRef = document.querySelector('.PjesaNenshkrimeve');
 
-        html2canvas(invoiceRef, { useCORS: true })
-            .then((canvas) => {
-                var contentWidth = canvas.width;
-                var contentHeight = canvas.height;
+        html2canvas(FaturaRef, { useCORS: true })
+            .then((invoiceCanvas) => {
+                var contentWidth = invoiceCanvas.width;
+                var contentHeight = invoiceCanvas.height;
                 var pageHeight = (contentWidth / 592.28) * 841.89;
                 var leftHeight = contentHeight;
                 var position = 0;
                 var imgWidth = 555.28;
                 var imgHeight = (imgWidth / contentWidth) * contentHeight;
-                var pageData = canvas.toDataURL('image/jpeg', 1.0);
+                var invoicePageData = invoiceCanvas.toDataURL('image/jpeg', 1.0);
                 var pdf = new jsPDF('', 'pt', 'a4');
 
                 if (leftHeight < pageHeight) {
-                    pdf.addImage(pageData, 'JPEG', 20, 0, imgWidth, imgHeight);
+                    pdf.addImage(invoicePageData, 'JPEG', 20, 0, imgWidth, imgHeight);
                 } else {
                     while (leftHeight > 0) {
-                        pdf.addImage(pageData, 'JPEG', 20, position, imgWidth, imgHeight);
+                        pdf.addImage(invoicePageData, 'JPEG', 20, position, imgWidth, imgHeight);
                         leftHeight -= pageHeight;
                         position -= 841.89;
                         if (leftHeight > 0) {
@@ -142,16 +138,55 @@ function Fatura(props) {
                     }
                 }
 
-                var klienti = (fatura ? fatura.emri + " " + fatura.mbiemri : "")
-                var dataFatures = (fatura ? new Date(fatura.dataPorosis).toLocaleDateString('en-GB', { dateStyle: 'short' }) : "")
+                if (PjesaNenshkrimeveRef) {
+                    html2canvas(PjesaNenshkrimeveRef, { useCORS: true })
+                        .then((PjesaNenshkrimeveCanvas) => {
+                            var PjesaNenshkrimeveWidth = PjesaNenshkrimeveCanvas.width;
+                            var PjesaNenshkrimeveHeight = PjesaNenshkrimeveCanvas.height;
+                            var PjesaNenshkrimevePageHeight = (PjesaNenshkrimeveWidth / 592.28) * 841.89;
+                            var PjesaNenshkrimeveLeftHeight = PjesaNenshkrimeveHeight;
+                            var PjesaNenshkrimevePosition = 0;
+                            var PjesaNenshkrimeveImgWidth = 555.28;
+                            var PjesaNenshkrimeveImgHeight = (PjesaNenshkrimeveImgWidth / PjesaNenshkrimeveWidth) * PjesaNenshkrimeveHeight;
+                            var PjesaNenshkrimevePageData = PjesaNenshkrimeveCanvas.toDataURL('image/jpeg', 1.0);
 
-                pdf.save(klienti + " - " + barkodi + " - " + dataFatures + ".pdf");
-                navigate("/dashboard");
+                            if (PjesaNenshkrimeveLeftHeight < PjesaNenshkrimevePageHeight) {
+                                pdf.addPage();
+                                pdf.addImage(PjesaNenshkrimevePageData, 'JPEG', 20, 0, PjesaNenshkrimeveImgWidth, PjesaNenshkrimeveImgHeight);
+                            } else {
+                                while (PjesaNenshkrimeveLeftHeight > 0) {
+                                    pdf.addPage();
+                                    pdf.addImage(PjesaNenshkrimevePageData, 'JPEG', 20, PjesaNenshkrimevePosition, PjesaNenshkrimeveImgWidth, PjesaNenshkrimeveImgHeight);
+                                    PjesaNenshkrimeveLeftHeight -= PjesaNenshkrimevePageHeight;
+                                    PjesaNenshkrimevePosition -= 841.89;
+                                    if (PjesaNenshkrimeveLeftHeight > 0) {
+                                        pdf.addPage();
+                                    }
+                                }
+                            }
+
+                            ruajFaturen(pdf);
+                        })
+                        .catch((error) => {
+                            ruajFaturen(pdf);
+                        });
+                } else {
+                    ruajFaturen(pdf);
+                }
             })
             .catch((error) => {
-
+                console.error(error);
             });
     }
+
+    function ruajFaturen(pdf) {
+        var klienti = (fatura ? fatura.emri + " " + fatura.mbiemri : "");
+        var dataFatures = (fatura ? new Date(fatura.dataPorosis).toLocaleDateString('en-GB', { dateStyle: 'short' }) : "");
+
+        pdf.save(klienti + " - " + barkodi + " - " + dataFatures + ".pdf");
+        navigate("/dashboard");
+    }
+
 
 
     return (
@@ -179,13 +214,18 @@ function Fatura(props) {
 
                     <div className="data">
                         <span id="nrFatures">
-                            <svg ref={inputRef} style={{ width: "200px", height: "200px" }} />
+                            <Barkodi value={barkodi} />
                         </span>
                         <br />
                         <br />
                         <h3>Data e Porosis:
                             <span style={{ fontSize: "18pt" }} id="dataPorosis">
                                 &nbsp;{fatura && (new Date(fatura.dataPorosis).toLocaleDateString('en-GB', { dateStyle: 'short' }))}
+                            </span>
+                        </h3>
+                        <h3>Statusi:
+                            <span style={{ fontSize: "18pt" }} id="dataPorosis">
+                                &nbsp;{fatura && fatura.statusiPorosis}
                             </span>
                         </h3>
                     </div>
@@ -325,26 +365,58 @@ function Fatura(props) {
                         </table>
                     </div>
                 </div>
-                <div>
-                    <div className="nenshkrimet">
-                        <div className="nenshkrimi">
-                            <span>_________________________________________________________________</span>
-                            <span>(Emri, Mbiemri, Nenshkrimi & Vula)</span>
-                            <span>(Personi Përgjegjës)</span>
-                        </div>
-                        <div className="nenshkrimi">
-                            <span>_________________________________________________________________</span>
-                            <span>(Emri, Mbiemri, Nenshkrimi)</span>
-                            <span>(Klienti)</span>
-                        </div>
 
+
+            </div>
+
+            <div className="PjesaNenshkrimeve">
+                <div className="header">
+                    <div className="teDhenatKompanis">
+                        <img src="../../img/web/techstoreLogoWhiteSquare.png" style={{ width: "150px", height: "auto", marginTop: "0.5em" }} />
+                        <h1 style={{ fontSize: "24pt" }}>{teDhenatBiznesit && teDhenatBiznesit.emriIbiznesit}</h1>
+                        <p><strong>NUI: </strong>{teDhenatBiznesit && teDhenatBiznesit.nui}</p>
+                        <p><strong>NF: </strong>{teDhenatBiznesit && teDhenatBiznesit.nf}</p>
+                        <p><strong>TVSH: </strong>{teDhenatBiznesit && teDhenatBiznesit.nrtvsh}</p>
+                        <p><strong>Adresa: </strong>{teDhenatBiznesit && teDhenatBiznesit.adresa}</p>
+                        <p><strong>Telefoni: </strong>{teDhenatBiznesit && teDhenatBiznesit.nrKontaktit}</p>
+                        <p><strong>Email: </strong>{teDhenatBiznesit && teDhenatBiznesit.email}</p>
                     </div>
-                    <br />
-                    <h3 style={{ fontSize: "18pt" }}>Ne rast te pageses me transfer bankar ju lutem kontakotni me stafin!</h3>
-                    <h3 style={{ fontSize: "18pt" }}>Te gjitha produktet ne kete fature kane garancion 1 Vjet!</h3>
-                    <h3 style={{ fontSize: "18pt" }}>Garancioni vlene deri me: {skadimiGarancionit.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}</h3>
-                </div>
 
+                    <div className="data">
+                        <span id="nrFatures">
+                            <Barkodi value={barkodi} />
+                        </span>
+                        <br />
+                        <br />
+                        <h3>Data e Porosis:
+                            <span style={{ fontSize: "18pt" }} id="dataPorosis">
+                                &nbsp;{fatura && (new Date(fatura.dataPorosis).toLocaleDateString('en-GB', { dateStyle: 'short' }))}
+                            </span>
+                        </h3>
+                        <h3>Statusi:
+                            <span style={{ fontSize: "18pt" }} id="dataPorosis">
+                                &nbsp;{fatura && fatura.statusiPorosis}
+                            </span>
+                        </h3>
+                    </div>
+                </div>
+                <div className="nenshkrimet">
+                    <div className="nenshkrimi">
+                        <span>_________________________________________________________________</span>
+                        <span>(Emri, Mbiemri, Nenshkrimi & Vula)</span>
+                        <span>(Personi Përgjegjës)</span>
+                    </div>
+                    <div className="nenshkrimi">
+                        <span>_________________________________________________________________</span>
+                        <span>(Emri, Mbiemri, Nenshkrimi)</span>
+                        <span>(Klienti)</span>
+                    </div>
+
+                </div>
+                <br />
+                <h3 style={{ fontSize: "18pt" }}>Ne rast te pageses me transfer bankar ju lutem kontakotni me stafin!</h3>
+                <h3 style={{ fontSize: "18pt" }}>Te gjitha produktet ne kete fature kane garancion 1 Vjet!</h3>
+                <h3 style={{ fontSize: "18pt" }}>Garancioni vlene deri me: {skadimiGarancionit.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}</h3>
             </div>
 
         </>

@@ -8,7 +8,6 @@ import {
     MDBRow,
     MDBCol,
     MDBInput,
-    MDBBtn,
 } from 'mdb-react-ui-kit';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -127,8 +126,8 @@ function PerditesoTeDhenat(props) {
         setEditoTeDhenat(false);
     };
 
-    const handleAnuloPerditesimin = (e) => {
-        e.preventDefault();
+    const handleAnuloPerditesimin = (event) => {
+        event.preventDefault();
 
         setEditoFjalekalimin(false);
         setEditoAdresen(false);
@@ -369,7 +368,7 @@ function PerditesoTeDhenat(props) {
                     <h1 className="titulliPerditeso">Perditesimi i Te Dhenave</h1>
                     <div className="PerditesoTeDhenatContainer">
 
-                        <MDBBtn onClick={() => props.setMbyllPerditesoTeDhenat()} color="secondary">Mbyll <FontAwesomeIcon icon={faX} /></MDBBtn>
+                        <button className="btn btn-secondary btn-small" role="button"  onClick={() => props.setMbyllPerditesoTeDhenat()}>Mbyll <FontAwesomeIcon icon={faX} /></button>
 
                         <h1 className="title">Te Dhenat Personale</h1>
                         <MDBRow tag="form" className='g-3'>
@@ -431,13 +430,13 @@ function PerditesoTeDhenat(props) {
                             </MDBCol>
                             <div className='col-12'>
                                 {!editoTeDhenat &&
-                                    <MDBBtn onClick={handleEditoTeDhenat}>Ndrysho te dhenat Personale <FontAwesomeIcon icon={faPenToSquare} /></MDBBtn>
+                                    <button className="btn btn-primary btn-small" role="button"  onClick={handleEditoTeDhenat}>Ndrysho te dhenat Personale <FontAwesomeIcon icon={faPenToSquare} /></button>
                                 }
 
                                 {editoTeDhenat &&
                                     <div className="butonatPerditesoTeDhenat">
-                                        <MDBBtn onClick={EditoTeDhenat} color="success">Ruaj</MDBBtn>
-                                        <MDBBtn onClick={handleAnuloPerditesimin} color="secondary">Anulo</MDBBtn>
+                                        <button className="btn btn-success btn-small" role="button"  onClick={EditoTeDhenat}>Ruaj</button>
+                                        <button className="btn btn-secondary btn-small" role="button"  onClick={handleAnuloPerditesimin}>Anulo</button>
                                     </div>
                                 }
                             </div>
@@ -487,13 +486,13 @@ function PerditesoTeDhenat(props) {
                             </MDBCol>
                             <div className='col-12'>
                                 {!editoAdresen &&
-                                    <MDBBtn onClick={handleEditoAdresen}>Ndrysho Adresen <FontAwesomeIcon icon={faPenToSquare} /></MDBBtn>
+                                    <button className="btn btn-primary btn-small" role="button"  onClick={handleEditoAdresen}>Ndrysho Adresen <FontAwesomeIcon icon={faPenToSquare} /></button>
                                 }
 
                                 {editoAdresen &&
                                     <div className="butonatPerditesoTeDhenat">
-                                        <MDBBtn onClick={EditoAdresen} color="success">Ruaj</MDBBtn>
-                                        <MDBBtn onClick={handleAnuloPerditesimin} color="secondary">Anulo</MDBBtn>
+                                        <button className="btn btn-success btn-small" role="button"  onClick={EditoAdresen}>Ruaj</button>
+                                        <button className="btn btn-secondary btn-small" role="button"  onClick={handleAnuloPerditesimin}>Anulo</button>
                                     </div>
                                 }
                             </div>
@@ -523,16 +522,16 @@ function PerditesoTeDhenat(props) {
                             </MDBCol>
                             <div className='col-12'>
                                 {!editoFjalekalimin &&
-                                    <MDBBtn onClick={handleEditoFjalekalimn}>Ndrysho Fjalekalimin <FontAwesomeIcon icon={faPenToSquare} /></MDBBtn>
+                                    <button className="btn btn-primary btn-small" role="button"  onClick={handleEditoFjalekalimn}>Ndrysho Fjalekalimin <FontAwesomeIcon icon={faPenToSquare} /></button>
                                 }
 
                                 {editoFjalekalimin &&
                                     <div className="butonatPerditesoTeDhenat">
-                                        <MDBBtn onClick={EditoFjalekalimin} color="success">Ruaj</MDBBtn>
-                                        <MDBBtn type="button" onClick={handleTogglePassword}>
+                                        <button className="btn btn-success btn-small" role="button"  onClick={EditoFjalekalimin}>Ruaj</button>
+                                        <button type="button" onClick={handleTogglePassword}>
                                             {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-                                        </MDBBtn>
-                                        <MDBBtn onClick={handleAnuloPerditesimin} color="secondary">Anulo</MDBBtn>
+                                        </button>
+                                        <button className="btn btn-secondary btn-small" role="button"  onClick={handleAnuloPerditesimin}>Anulo</button>
                                     </div>
                                 }
 

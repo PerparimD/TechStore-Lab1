@@ -12,7 +12,6 @@ import PagesaMeSukses from "../Components/produktet/cart/Checkout/PagesaMeSukses
 import MesazhetUserit from "../Components/Dashboard/MesazhetUserit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import EditoTeDhenat from "../Components/Dashboard/EditoTeDhenat";
 import Mesazhi from "../Components/layout/Mesazhi";
 import PerditesoTeDhenat from "../Components/Dashboard/PerditesoTeDhenat";
 
@@ -133,9 +132,6 @@ const Dashboard = () => {
       </Helmet>
       <NavBar />
 
-      {edito && (
-        <EditoTeDhenat show={handleShow} hide={handleEditoMbyll} id={getID} />
-      )}
 
       {loading ? (
         <div className="Loader">
@@ -240,14 +236,6 @@ const Dashboard = () => {
               }
             />
           )}
-          {/* {!mbyllPerditesoTeDhenat &&
-            <EditoTeDhenat
-              setMbyllPerditesoTeDhenat={() => setMbyllPerditesoTeDhenat(true)}
-              perditeso={() => setPerditeso(Date.now())}
-              setShfaqMesazhin={() => setShfaqMesazhin(true)}
-              pershkrimi={setPershkrimiMesazhit}
-              tipi={setTipiMesazhit}
-            />} */}
           {shfaqMesazhin && <Mesazhi
             setShfaqMesazhin={setShfaqMesazhin}
             pershkrimi={pershkrimiMesazhit}

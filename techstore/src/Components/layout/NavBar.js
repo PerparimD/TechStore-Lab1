@@ -94,7 +94,7 @@ function NavBar(props) {
     <header>
       <nav className={classes.nav}>
         <div className={classes.navleft}>
-          {teDhenatBiznesit && (teDhenatBiznesit.logo === null || teDhenatBiznesit.logo === "") ?
+          {teDhenatBiznesit && (teDhenatBiznesit.logo === null || teDhenatBiznesit.logo === "" || teDhenatBiznesit.logo === "PaLogo.png") ?
             <Link to="/">
               <h3>{teDhenatBiznesit.shkurtesaEmritBiznesit}</h3>
             </Link> :

@@ -207,6 +207,7 @@ const ProductTables = () => {
               <th>Kompania</th>
               <th>Kategoria</th>
               <th>Qmimi i Produktit</th>
+              <th>Sasia ne Stok</th>
               <th>Funksione</th>
             </tr>
           </thead>
@@ -228,6 +229,7 @@ const ProductTables = () => {
                   <td>{p.emriKompanis}</td>
                   <td>{p.llojiKategoris}</td>
                   <td>{(p.qmimiProduktit).toFixed(2)} €</td>
+                  <td>{p.sasiaNeStok}</td>
                   <td>
                     <Button
                       style={{ marginRight: "0.5em" }}

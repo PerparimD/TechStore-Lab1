@@ -4,10 +4,11 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Mesazhi from "../layout/Mesazhi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faXmark, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
 import { Table, Form, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 
 function RegjistroFaturen(props) {
     const [perditeso, setPerditeso] = useState('');
@@ -28,6 +29,9 @@ function RegjistroFaturen(props) {
     const [sasiaNeStok, setSasiaNeStok] = useState(0);
     const [qmimiB, setQmimiB] = useState(0);
     const [qmimiSH, setQmimiSH] = useState(0);
+
+    const [edito, setEdito] = useState(false);
+    const [konfirmoMbylljenFatures, setKonfirmoMbylljenFatures] = useState(false);
 
     const [teDhenat, setTeDhenat] = useState([]);
 
@@ -82,32 +86,51 @@ function RegjistroFaturen(props) {
     }, [perditeso]);
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const produkti = {
-            emriProduktit: emriProduktit,
-            produktiId: produktiID,
-            sasia: sasia,
-            qmimiBleres: qmimiBleres,
-            qmimiShites: qmimiShites,
-        };
-        setproduktetNeKalkulim([...produktetNeKalkulim, produkti]);
-        updateTotals([...produktetNeKalkulim, produkti]);
+        if (produktiID === 0 ||
+            sasia <= 0 ||
+            qmimiShites <= 0 ||
+            qmimiBleres <= 0) {
+            event.preventDefault();
+            setPershkrimiMesazhit("Ju lutem plotesoni te gjitha te dhenat!");
+            setTipiMesazhit("danger");
+            setShfaqMesazhin(true);
+        } else {
+            event.preventDefault();
+            const produkti = {
+                emriProduktit: emriProduktit,
+                produktiId: produktiID,
+                sasia: sasia,
+                qmimiBleres: qmimiBleres,
+                qmimiShites: qmimiShites,
+            };
+            setproduktetNeKalkulim([...produktetNeKalkulim, produkti]);
+            updateTotals([...produktetNeKalkulim, produkti]);
 
-        setProduktiID(0);
-        setQmimiBleres("");
-        setSasia("");
-        setQmimiShites("");
-        setSasiaNeStok(0);
-        setQmimiB(0);
-        setQmimiSH(0);
+            setProduktiID(0);
+            setQmimiBleres("");
+            setSasia("");
+            setQmimiShites("");
+            setSasiaNeStok(0);
+            setQmimiB(0);
+            setQmimiSH(0);
+        }
     };
 
     const handleProduktiChange = (value, text, sasia, qmimiB, qmimiSH) => {
-        setProduktiID(value);
-        setemriProduktit(text);
-        setSasiaNeStok(sasia);
-        setQmimiB(qmimiB);
-        setQmimiSH(qmimiSH);
+        const kontrolloProduktin = produktetNeKalkulim.filter((item) => item.produktiId === value);
+
+        if (kontrolloProduktin.length > 0) {
+            setPershkrimiMesazhit("Produkti eshte shtuar nje here! Ju keni mundesi ta editoni ate");
+            setTipiMesazhit("danger");
+            setShfaqMesazhin(true);
+            setProduktiID(0);
+        } else {
+            setProduktiID(value);
+            setemriProduktit(text);
+            setSasiaNeStok(sasia);
+            setQmimiB(qmimiB);
+            setQmimiSH(qmimiSH);
+        }
     };
 
     const updateTotals = (newproduktetNeKalkulim) => {
@@ -167,6 +190,7 @@ function RegjistroFaturen(props) {
                 }
 
                 props.setPerditeso(Date.now());
+                props.setMbyllFaturen();
             })
 
 
@@ -174,6 +198,56 @@ function RegjistroFaturen(props) {
             console.error(error);
         }
     }
+
+    function handleFshij(id) {
+        const eReja = produktetNeKalkulim.filter((item) => item.produktiId !== id);
+
+        setproduktetNeKalkulim(eReja);
+    }
+
+    function handleEdit(id) {
+        setEdito(true);
+        const produkti = produktetNeKalkulim.filter((item) => item.produktiId === id);
+
+        setProduktiID(produkti[0].produktiId);
+        setemriProduktit(produkti[0].emriProduktit);
+        setSasia(produkti[0].sasia);
+        setQmimiBleres(produkti[0].qmimiBleres);
+        setQmimiShites(produkti[0].qmimiShites);
+    }
+
+    function handleEdito(id) {
+        if (produktiID === 0 ||
+            sasia <= 0 ||
+            qmimiShites <= 0 ||
+            qmimiBleres <= 0) {
+            setPershkrimiMesazhit("Ju lutem plotesoni te gjitha te dhenat!");
+            setTipiMesazhit("danger");
+            setShfaqMesazhin(true);
+        } else {
+            const eReja = produktetNeKalkulim.filter((item) => item.produktiId !== id);
+
+            const produkti = {
+                emriProduktit: emriProduktit,
+                produktiId: produktiID,
+                sasia: sasia,
+                qmimiBleres: qmimiBleres,
+                qmimiShites: qmimiShites,
+            };
+            setproduktetNeKalkulim([...eReja, produkti]);
+            updateTotals([...eReja, produkti]);
+
+            setProduktiID(0);
+            setQmimiBleres("");
+            setSasia("");
+            setQmimiShites("");
+            setSasiaNeStok(0);
+            setQmimiB(0);
+            setQmimiSH(0);
+            setEdito(false);
+        }
+    }
+
 
 
     return (
@@ -183,6 +257,32 @@ function RegjistroFaturen(props) {
                 pershkrimi={pershkrimiMesazhit}
                 tipi={tipiMesazhit}
             />}
+            {konfirmoMbylljenFatures &&
+                <Modal show={konfirmoMbylljenFatures} onHide={() => setKonfirmoMbylljenFatures(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title as="h6">Konfirmo Mbylljen e Fatures</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <strong style={{ fontSize: "10pt" }}>
+                            A jeni te sigurt qe deshironi ta mbyllni Faturen?
+                        </strong>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button
+                            variant="secondary"
+                            onClick={() => setKonfirmoMbylljenFatures(false)}
+                        >
+                            Edito Faturen <FontAwesomeIcon icon={faPenToSquare} />
+                        </Button>
+                        <Button
+                            variant="warning"
+                            onClick={handleMbyllFature}
+                        >
+                            Konfirmo <FontAwesomeIcon icon={faPlus} />
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            }
             {loading ? (
                 <div className="Loader">
                     <TailSpin
@@ -203,7 +303,7 @@ function RegjistroFaturen(props) {
 
                 <Button
                     className="mb-3 Butoni"
-                    onClick={handleSave}
+                    onClick={() => setKonfirmoMbylljenFatures(true)}
                 >
                     Mbyll Faturen <FontAwesomeIcon icon={faPlus} />
                 </Button>
@@ -217,6 +317,7 @@ function RegjistroFaturen(props) {
                                         placeholder="Produkti"
                                         className="form-select"
                                         value={produktiID ? produktiID : 0}
+                                        disabled={edito}
                                         onChange={(e) =>
                                             handleProduktiChange(e.target.value,
                                                 e.target.options[e.target.selectedIndex].text,
@@ -251,13 +352,7 @@ function RegjistroFaturen(props) {
                                         type="number"
                                         value={sasia}
                                         onChange={(e) => {
-                                            if (e.target.value > 0) {
-                                                setSasia(e.target.value);
-                                            } else {
-                                                setPershkrimiMesazhit("Sasia duhet te jete me e madhe se 0!");
-                                                setTipiMesazhit("danger");
-                                                setShfaqMesazhin(true);
-                                            }
+                                            setSasia(e.target.value);
                                         }}
                                         onKeyDown={(e) => { ndrroField(e, "qmimiBleres") }}
                                     />
@@ -269,13 +364,7 @@ function RegjistroFaturen(props) {
                                         type="number"
                                         value={qmimiBleres}
                                         onChange={(e) => {
-                                            if (e.target.value > 0) {
-                                                setQmimiBleres(e.target.value);
-                                            } else {
-                                                setPershkrimiMesazhit("Qmimi Bleres duhet te jete me i madhe se 0!");
-                                                setTipiMesazhit("danger");
-                                                setShfaqMesazhin(true);
-                                            }
+                                            setQmimiBleres(e.target.value);
                                         }}
                                         onKeyDown={(e) => { ndrroField(e, "qmimiShites") }}
                                     />
@@ -287,22 +376,20 @@ function RegjistroFaturen(props) {
                                         type="number"
                                         value={qmimiShites}
                                         onChange={(e) => {
-                                            if (e.target.value > 0) {
-                                                setQmimiShites(e.target.value);
-                                            } else {
-                                                setPershkrimiMesazhit("Qmimi Shites duhet te jete me i madhe se 0!");
-                                                setTipiMesazhit("danger");
-                                                setShfaqMesazhin(true);
-                                            }
+                                            setQmimiShites(e.target.value);
                                         }}
                                     />
                                 </Form.Group>
                                 <br />
-                                <Button variant="primary" type="submit">
-                                    Shto Produktin
-                                </Button>
-
-
+                                <div style={{ display: "flex", gap: "0.3em" }}>
+                                    <Button variant="success" type="submit" disabled={edito}>
+                                        Shto Produktin <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
+                                    {edito &&
+                                        <Button variant="warning" onClick={() => handleEdito(produktiID)}>
+                                            Edito Produktin <FontAwesomeIcon icon={faPenToSquare} />
+                                        </Button>}
+                                </div>
                             </Form>
                         </Col>
                         <Col>
@@ -326,6 +413,7 @@ function RegjistroFaturen(props) {
                                 <th>Qmimi Shites</th>
                                 <th>Totali Bleres</th>
                                 <th>Totali Shites</th>
+                                <th>Funksione</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -338,6 +426,12 @@ function RegjistroFaturen(props) {
                                     <td>{parseFloat(produkti.qmimiShites).toFixed(2)} €</td>
                                     <td>{(produkti.sasia * produkti.qmimiBleres).toFixed(2)} €</td>
                                     <td>{(produkti.sasia * produkti.qmimiShites).toFixed(2)} €</td>
+                                    <td>
+                                        <div style={{ display: "flex", gap: "0.3em" }}>
+                                            <Button size="sm" variant="danger" onClick={() => handleFshij(produkti.produktiId)}><FontAwesomeIcon icon={faXmark} /></Button>
+                                            <Button size="sm" variant="warning" onClick={() => handleEdit(produkti.produktiId)}><FontAwesomeIcon icon={faPenToSquare} /></Button>
+                                        </div>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

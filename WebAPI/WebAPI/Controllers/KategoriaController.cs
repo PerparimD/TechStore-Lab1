@@ -42,7 +42,11 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var kategorit = await _context.KategoriaProduktits.ToListAsync();
+                var kategorit = _context.KategoriaProduktits
+                    .Where(k => k.LlojiKategoris != null)
+                    .AsEnumerable()
+                    .OrderBy(k => k.LlojiKategoris.ToString())
+                    .ToList();
 
                 return Ok(kategorit);
             }

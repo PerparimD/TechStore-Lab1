@@ -86,7 +86,7 @@ function CartPage() {
 
   const handleApplyPromoCode = () => {
     setKontrollo(Date.now());
-    
+
   }
   return (
     <>

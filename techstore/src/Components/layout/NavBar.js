@@ -70,19 +70,23 @@ function NavBar(props) {
 
 
   const kontrolloProduktet = () => {
-    const produktet = JSON.parse(localStorage.getItem("cart")); 
+    const produktet = JSON.parse(localStorage.getItem("cart"));
 
     produktet && produktet.forEach(produkti => {
       axios.get(`https://localhost:7285/api/Produkti/${produkti.id}`, authentikimi)
         .then(response => {
           const prd = response.data;
 
-          if (produkti.foto !== prd.fotoProduktit || produkti.emri !== prd.emriProduktit ||
-            (produkti.cmimi !== prd.qmimiProduktit && produkti.cmim !== prd.qmimiMeZbritjeProduktit)
-            || produkti.sasia > prd.sasiaNeStok) {
+          if (
+            produkti.foto !== prd.fotoProduktit ||
+            produkti.emri !== prd.emriProduktit ||
+            (produkti.cmimi !== prd.qmimiProduktit && produkti.cmimi !== prd.qmimiMeZbritjeProduktit) ||
+            produkti.sasia > prd.sasiaNeStok
+          ) {
             const updatedCart = produktet.filter(item => item.id !== produkti.id);
             localStorage.setItem("cart", JSON.stringify(updatedCart));
           }
+
         })
         .catch(error => {
           console.error('Error fetching item:', error);

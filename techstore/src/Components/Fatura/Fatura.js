@@ -194,7 +194,7 @@ function Fatura(props) {
             <div className="fatura">
                 <div className="header">
                     <div className="teDhenatKompanis">
-                        <img src="../../img/web/techstoreLogoWhiteSquare.png" style={{ width: "150px", height: "auto", marginTop: "0.5em" }} />
+                        <img src={`${process.env.PUBLIC_URL}/img/web/${teDhenatBiznesit.logo}`} style={{ width: "150px", height: "auto", marginTop: "0.5em" }} />
                         <h1 style={{ fontSize: "24pt" }}>{teDhenatBiznesit && teDhenatBiznesit.emriIbiznesit}</h1>
                         <p><strong>NUI: </strong>{teDhenatBiznesit && teDhenatBiznesit.nui}</p>
                         <p><strong>NF: </strong>{teDhenatBiznesit && teDhenatBiznesit.nf}</p>
@@ -359,7 +359,7 @@ function Fatura(props) {
                                     <strong>Qmimi Total: </strong>
                                 </td>
                                 <td style={{ fontSize: "18pt" }}>
-                                    <strong>{fatura && parseFloat(fatura.totaliPorosis * 0.18).toFixed(2)} €</strong>
+                                    <strong>{fatura && parseFloat(fatura.totaliPorosis).toFixed(2)} €</strong>
                                 </td>
                             </tr>
                         </table>
@@ -372,7 +372,7 @@ function Fatura(props) {
             <div className="PjesaNenshkrimeve">
                 <div className="header">
                     <div className="teDhenatKompanis">
-                        <img src="../../img/web/techstoreLogoWhiteSquare.png" style={{ width: "150px", height: "auto", marginTop: "0.5em" }} />
+                        <img src={`${process.env.PUBLIC_URL}/img/web/${teDhenatBiznesit.logo}`} style={{ width: "150px", height: "auto", marginTop: "0.5em" }} />
                         <h1 style={{ fontSize: "24pt" }}>{teDhenatBiznesit && teDhenatBiznesit.emriIbiznesit}</h1>
                         <p><strong>NUI: </strong>{teDhenatBiznesit && teDhenatBiznesit.nui}</p>
                         <p><strong>NF: </strong>{teDhenatBiznesit && teDhenatBiznesit.nf}</p>
@@ -414,7 +414,7 @@ function Fatura(props) {
 
                 </div>
                 <br />
-                <h3 style={{ fontSize: "18pt" }}>Ne rast te pageses me transfer bankar ju lutem kontakotni me stafin!</h3>
+                <h3 style={{ fontSize: "18pt" }}>Ne rast te pageses me transfer bankar ju lutem kontaktoni me stafin!</h3>
                 <h3 style={{ fontSize: "18pt" }}>Te gjitha produktet ne kete fature kane garancion 1 Vjet!</h3>
                 <h3 style={{ fontSize: "18pt" }}>Garancioni vlene deri me: {skadimiGarancionit.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}</h3>
             </div>

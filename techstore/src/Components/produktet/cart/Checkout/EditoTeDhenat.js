@@ -13,6 +13,8 @@ import { Row, Col } from "react-bootstrap";
 const EditoTeDhenat = (props) => {
   const [perdoruesi, setPerdoruesi] = useState([]);
 
+  const [fushatEZbrazura, setFushatEZbrazura] = useState(false);
+
   const getID = localStorage.getItem("id");
 
   const getToken = localStorage.getItem("token");
@@ -82,20 +84,52 @@ const EditoTeDhenat = (props) => {
     }));
   };
 
-  const handlePerditesoTeDhenat = () => {
-    axios.put(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${perdoruesi.userId}`, perdoruesi, authentikimi);
+  function isNullOrEmpty(value) {
+    return value === null || value === "" || value === undefined;
+  }
 
-    props.perditeso();
-    props.setShfaqMesazhin();
-    props.tipi("success");
-    props.pershkrimi("Te Dhenat u perditesua me sukses!");
-    props.setMbyllPerditesoTeDhenat();
+  const handlePerditesoTeDhenat = () => {
+    if (
+      isNullOrEmpty(perdoruesi.emri) ||
+      isNullOrEmpty(perdoruesi.mbiemri) ||
+      isNullOrEmpty(perdoruesi.teDhenatPerdoruesit.nrKontaktit) ||
+      isNullOrEmpty(perdoruesi.teDhenatPerdoruesit.adresa) ||
+      isNullOrEmpty(perdoruesi.teDhenatPerdoruesit.qyteti) ||
+      isNullOrEmpty(perdoruesi.teDhenatPerdoruesit.shteti) ||
+      perdoruesi.teDhenatPerdoruesit.zipKodi <= 0
+    ) {
+      setFushatEZbrazura(true);
+    } else {
+      axios.put(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${perdoruesi.userId}`, perdoruesi, authentikimi);
+
+      props.perditeso();
+      props.setShfaqMesazhin();
+      props.tipi("success");
+      props.pershkrimi("Te Dhenat u perditesua me sukses!");
+      props.setMbyllPerditesoTeDhenat();
+    }
   }
 
 
 
   return (
     <>
+      {fushatEZbrazura &&
+        <Modal size="sm" show={fushatEZbrazura} onHide={() => setFushatEZbrazura(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title style={{ color: "red" }} as="h6">Ndodhi nje gabim</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <strong style={{ fontSize: "10pt" }}>Ju lutemi plotesoni te gjitha fushat me <span style={{ color: "red" }}>*</span></strong>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button size="sm" onClick={() => setFushatEZbrazura(false)} variant="secondary">
+              Mbylle <FontAwesomeIcon icon={faXmark} />
+            </Button >
+          </Modal.Footer>
+
+        </Modal>
+      }
       <Modal className="modalEditoDhenat" show={true} onHide={() => props.setMbyllPerditesoTeDhenat()}>
         <Modal.Header closeButton>
           <Modal.Title>Perditeso Te Dhenat</Modal.Title>
@@ -105,34 +139,34 @@ const EditoTeDhenat = (props) => {
 
             <Row className="mb-3">
               <Form.Group as={Col} className="p-0" controlId="formGridName">
-                <Form.Label>Emri</Form.Label>
+                <Form.Label>Emri<span style={{ color: "red" }}>*</span></Form.Label>
                 <Form.Control type="name" placeholder="Enter Name" value={perdoruesi && perdoruesi.emri} onChange={(e) => handleEmriChange(e.target.value)} required />
               </Form.Group>
 
               <Form.Group as={Col} className="p-0" controlId="formGridLastName">
-                <Form.Label>Mbiemri</Form.Label>
+                <Form.Label>Mbiemri<span style={{ color: "red" }}>*</span></Form.Label>
                 <Form.Control type="last name" placeholder="Last Name" value={perdoruesi && perdoruesi.mbiemri} onChange={(e) => handleMbiemriChange(e.target.value)} required />
               </Form.Group>
             </Row>
 
             <Form.Group className="mb-3" controlId="formGridAddress2">
-              <Form.Label>Numri Telefonit</Form.Label>
+              <Form.Label>Numri Telefonit<span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control placeholder="045123123 ose +38343123132" value={perdoruesi && perdoruesi.teDhenatPerdoruesit && perdoruesi.teDhenatPerdoruesit.nrKontaktit} onChange={(e) => handleNumriChange(e.target.value)} />
             </Form.Group>
             <Row>
               <Form.Group as={Col} className="p-0" controlId="formGridCity">
-                <Form.Label>Adresa</Form.Label>
+                <Form.Label>Adresa<span style={{ color: "red" }}>*</span></Form.Label>
                 <Form.Control placeholder="Agim Bajrami 60" value={perdoruesi && perdoruesi.teDhenatPerdoruesit && perdoruesi.teDhenatPerdoruesit.adresa} onChange={(e) => handleAdresaChange(e.target.value)} />
               </Form.Group>
               <Form.Group as={Col} className="p-0" controlId="formGridCity">
-                <Form.Label>Qyteti</Form.Label>
+                <Form.Label>Qyteti<span style={{ color: "red" }}>*</span></Form.Label>
                 <Form.Control placeholder="Kaçanik" value={perdoruesi && perdoruesi.teDhenatPerdoruesit && perdoruesi.teDhenatPerdoruesit.qyteti} onChange={(e) => handleQytetiChange(e.target.value)} />
               </Form.Group>
             </Row>
 
             <Row className="mb-3">
               <Form.Group as={Col} className="p-0" controlId="formGridState">
-                <Form.Label>Shteti</Form.Label>
+                <Form.Label>Shteti<span style={{ color: "red" }}>*</span></Form.Label>
                 <Form.Select value={perdoruesi && perdoruesi.teDhenatPerdoruesit && perdoruesi.teDhenatPerdoruesit.shteti} onChange={(e) => handleShtetiChange(e.target.value)}>
                   <option hidden disabled>Zgjedhni Shtetin</option>
                   <option>Kosovë</option>
@@ -142,7 +176,7 @@ const EditoTeDhenat = (props) => {
               </Form.Group>
 
               <Form.Group as={Col} className="p-0" controlId="formGridZip">
-                <Form.Label>Zip Kodi</Form.Label>
+                <Form.Label>Zip Kodi<span style={{ color: "red" }}>*</span></Form.Label>
                 <Form.Control type="number" placeholder="71000" value={perdoruesi && perdoruesi.teDhenatPerdoruesit && perdoruesi.teDhenatPerdoruesit.zipKodi} onChange={(e) => handleZipKodiChange(e.target.value)} />
               </Form.Group>
             </Row>

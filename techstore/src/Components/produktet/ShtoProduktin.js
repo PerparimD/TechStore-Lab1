@@ -158,6 +158,7 @@ const ShtoProduktin = (props) => {
     }
 
   }
+  
   return (
     <>
       {fushatEZbrazura &&
@@ -166,7 +167,7 @@ const ShtoProduktin = (props) => {
             <Modal.Title style={{ color: "red" }} as="h6">Ndodhi nje gabim</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <strong style={{ fontSize: "10pt" }}> Ju lutemi plotesoni te gjitha fushat me *</strong>
+            <strong style={{ fontSize: "10pt" }}>Ju lutemi plotesoni te gjitha fushat me <span style={{ color: "red" }}>*</span></strong>
           </Modal.Body>
           <Modal.Footer>
             <Button size="sm" onClick={() => setFushatEZbrazura(false)} variant="secondary">
@@ -211,12 +212,13 @@ const ShtoProduktin = (props) => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Emri Produktit*</Form.Label>
+              <Form.Label>Emri Produktit<span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control
                 onChange={(e) => handleEmriPChange(e.target.value)}
                 value={emriP}
                 type="text"
                 placeholder="Emri Produktit"
+                autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -232,6 +234,7 @@ const ShtoProduktin = (props) => {
               <Form.Label>Foto Produktit</Form.Label>
               <Form.Control
                 type="file"
+                accept="image/*"
                 placeholder="Foto e Produktit"
                 onChange={handleFotoChange}
               />
@@ -240,7 +243,7 @@ const ShtoProduktin = (props) => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Kompania*</Form.Label>
+              <Form.Label>Kompania<span style={{ color: "red" }}>*</span></Form.Label>
               <select
                 placeholder="Kompania e Produktit"
                 className="form-select"
@@ -248,7 +251,7 @@ const ShtoProduktin = (props) => {
                 onChange={(e) => handleKompaniaChange(e.target.value)}
               >
                 <option defaultValue disabled value="">
-                  Kompania e Produktit*
+                  Kompania e Produktit
                 </option>
                 {kompanit.map((item) => {
                   return (
@@ -261,7 +264,7 @@ const ShtoProduktin = (props) => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Kategoria</Form.Label>
+              <Form.Label>Kategoria<span style={{ color: "red" }}>*</span></Form.Label>
               <select
                 placeholder="Kategoria e Produktit"
                 className="form-select"

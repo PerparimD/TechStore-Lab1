@@ -14,6 +14,28 @@ function EditoProduktin(props) {
   const [kompanit, setKompanit] = useState([]);
   const [kategoria, setKategoria] = useState([]);
 
+  const [perditeso, setPerditeso] = useState("");
+  const [produktet, setProduktet] = useState([]);
+  const [kontrolloProduktin, setKontrolloProduktin] = useState(false);
+  const [konfirmoProduktin, setKonfirmoProduktin] = useState(false);
+  const [fushatEZbrazura, setFushatEZbrazura] = useState(false);
+
+  useEffect(() => {
+    const vendosProduktet = async () => {
+      try {
+        const produktet = await axios.get(
+          `https://localhost:7285/api/Produkti/Products`, authentikimi
+        );
+        setProduktet(produktet.data);
+
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    vendosProduktet();
+  }, [perditeso]);
+
   const getToken = localStorage.getItem("token");
 
   const authentikimi = {
@@ -70,6 +92,9 @@ function EditoProduktin(props) {
     setProdukti((prev) => ({ ...prev, kategoriaId: value }));
   };
 
+  function isNullOrEmpty(value) {
+    return value === null || value === "" || value === undefined;
+  }
 
   async function handleSubmit() {
     if (foto) {
@@ -87,7 +112,7 @@ function EditoProduktin(props) {
               fotoProduktit: response.data
             }, authentikimi)
               .then(x => {
-                
+
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Produkti u Perditesua me sukses!")
                 props.perditesoTeDhenat();
@@ -114,7 +139,7 @@ function EditoProduktin(props) {
         fotoProduktit: produkti.fotoProduktit
       }, authentikimi)
         .then(x => {
-          
+
           props.setTipiMesazhit("success");
           props.setPershkrimiMesazhit("Produkti u Perditesua me sukses!")
           props.perditesoTeDhenat();
@@ -131,16 +156,77 @@ function EditoProduktin(props) {
     }
   }
 
+  const handleKontrolli = () => {
+    if (
+      isNullOrEmpty(produkti.emriProduktit) ||
+      isNullOrEmpty(produkti.kompaniaId) ||
+      isNullOrEmpty(produkti.kategoriaId)
+    ) {
+      setFushatEZbrazura(true);
+    } else {
+      if (konfirmoProduktin == false && produktet.filter((item) => item.emriProduktit === produkti.emriProduktit).length !== 0) {
+        setKontrolloProduktin(true);
+      }
+      else {
+        handleSubmit();
+      }
+    }
+  }
+
   return (
     <>
-      <Modal className="modalEditShto" style={{marginTop: "3em"}} show={props.show} onHide={props.hide}>
+      {fushatEZbrazura &&
+        <Modal size="sm" show={fushatEZbrazura} onHide={() => setFushatEZbrazura(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title style={{ color: "red" }} as="h6">Ndodhi nje gabim</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <strong style={{ fontSize: "10pt" }}>Ju lutemi plotesoni te gjitha fushat me <span style={{ color: "red" }}>*</span></strong>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button size="sm" onClick={() => setFushatEZbrazura(false)} variant="secondary">
+              Mbylle <FontAwesomeIcon icon={faXmark} />
+            </Button >
+          </Modal.Footer>
+
+        </Modal>
+      }
+      {kontrolloProduktin &&
+        <Modal size="sm" show={kontrolloProduktin} onHide={() => setKontrolloProduktin(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title as="h6">Konfirmo vendosjen</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <span style={{ fontSize: "10pt" }}>
+              Nje produkt me te njejtin emer ekziston ne sistem!
+            </span>
+            <br />
+            <strong style={{ fontSize: "10pt" }}>
+              A jeni te sigurt qe deshironi te vazhdoni?
+            </strong>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button size="sm" variant="secondary" onClick={() => setKontrolloProduktin(false)}>
+              Korrigjo <FontAwesomeIcon icon={faXmark} />
+            </Button>
+            <Button
+              size="sm"
+              variant="warning"
+              onClick={() => { handleSubmit(); }}
+            >
+              Vazhdoni
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      }
+      <Modal className="modalEditShto" style={{ marginTop: "3em" }} show={props.show} onHide={props.hide}>
         <Modal.Header closeButton>
           <Modal.Title>Edito Produktin</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Emri Produktit</Form.Label>
+              <Form.Label>Emri Produktit<span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control
                 onChange={(e) => handleEmriPChange(e.target.value)}
                 value={produkti.emriProduktit}
@@ -155,6 +241,7 @@ function EditoProduktin(props) {
                   value={produkti.pershkrimi}
                   as="textarea"
                   placeholder="Pershkrimi Produktit"
+                  autoFocus
                 />
               </Form.Group>
             </Form.Group>
@@ -162,13 +249,13 @@ function EditoProduktin(props) {
               <Form.Label>Foto Produktit</Form.Label>
               <Form.Control
                 type="file"
+                accept="image/*"
                 placeholder="Foto e Produktit"
                 onChange={handleFotoChange}
-                autoFocus
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Kompania</Form.Label>
+              <Form.Label>Kompania<span style={{ color: "red" }}>*</span></Form.Label>
               <select
                 placeholder="Kompania e Produktit"
                 className="form-select"
@@ -191,7 +278,7 @@ function EditoProduktin(props) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Kategoria</Form.Label>
+              <Form.Label>Kategoria<span style={{ color: "red" }}>*</span></Form.Label>
               <select
                 placeholder="Kategoria e Produktit"
                 className="form-select"
@@ -218,7 +305,7 @@ function EditoProduktin(props) {
           </Button>
           <Button
             style={{ backgroundColor: "#009879", border: "none" }}
-            onClick={handleSubmit}
+            onClick={handleKontrolli}
           >
             Edito Produktin <FontAwesomeIcon icon={faPenToSquare} />
           </Button>

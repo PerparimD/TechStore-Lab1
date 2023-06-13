@@ -115,7 +115,7 @@ const LogIn = () => {
                 <MDBInput
                   wrapperClass="mb-4 w-100"
                   label="Email address"
-                  id="formControlLg"
+                  id="formControlEmailAddress"
                   type="email"
                   size="lg"
                   onChange={(e) => vendosEmail(e.target.value)}
@@ -123,7 +123,7 @@ const LogIn = () => {
                 <MDBInput
                   wrapperClass="mb-4 w-100"
                   label="Password"
-                  id="formControlLg"
+                  id="formControlPassword"
                   type="password"
                   size="lg"
                   onChange={(e) => vendosPasswordin(e.target.value)}

@@ -9,12 +9,10 @@ import {
     MDBCol,
     MDBInput,
 } from 'mdb-react-ui-kit';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faEye, faEyeSlash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
 
 function PerditesoTeDhenat(props) {
     const [teDhenat, setTeDhenat] = useState([]);
@@ -23,9 +21,6 @@ function PerditesoTeDhenat(props) {
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
     const [loading, setLoading] = useState(false);
-
-    const [shteti, setShteti] = useState("");
-
 
     const [editoTeDhenat, setEditoTeDhenat] = useState(false);
     const [editoAdresen, setEditoAdresen] = useState(false);

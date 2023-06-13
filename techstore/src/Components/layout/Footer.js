@@ -60,7 +60,7 @@ function Footer(props) {
                     <ul>
                         <li><a href={teDhenatBiznesit && "tel:" + teDhenatBiznesit.nrKontaktit}>{teDhenatBiznesit && teDhenatBiznesit.nrKontaktit}</a></li>
                         <li><a href={teDhenatBiznesit && "mailto:" + teDhenatBiznesit.email}>{teDhenatBiznesit && teDhenatBiznesit.email}</a></li>
-                        <li>{teDhenatBiznesit && teDhenatBiznesit.adresa}</li>
+                        <li style={{color: "black"}}>{teDhenatBiznesit && teDhenatBiznesit.adresa}</li>
                     </ul>
                     <div className={classes.footerSocialIcons}>
                         <a href="https://facebook.com"><i><FontAwesomeIcon icon={faFacebook} /></i></a>
@@ -70,7 +70,7 @@ function Footer(props) {
                 </div>
             </div>
             <div className={classes.copyright}>
-                <FontAwesomeIcon icon={faCopyright} />{teDhenatBiznesit && teDhenatBiznesit.emriIbiznesit}
+                <FontAwesomeIcon icon={faCopyright} /> {teDhenatBiznesit && teDhenatBiznesit.emriIbiznesit}
             </div>
         </footer >
     );

@@ -127,43 +127,84 @@ const SignUp = () => {
 
         <Row className="mb-3">
           <Form.Group as={Col} className="p-0" controlId="formGridName">
-            <Form.Label>Name*</Form.Label>
-            <Form.Control type="name" placeholder="Enter Name" value={emri} onChange={handleChange(setEmri)} required />
+            <Form.Label>Name<span style={{ color: "red" }}>*</span></Form.Label>
+            <Form.Control
+              type="name"
+              placeholder="Enter Name"
+              value={emri}
+              onChange={handleChange(setEmri)}
+              required
+              autoFocus
+            />
           </Form.Group>
 
           <Form.Group as={Col} className="p-0" controlId="formGridLastName">
-            <Form.Label>Last Name*</Form.Label>
-            <Form.Control type="last name" placeholder="Last Name" value={mbimeri} onChange={handleChange(setMbiemri)} required />
+            <Form.Label>Last Name<span style={{ color: "red" }}>*</span></Form.Label>
+            <Form.Control
+              type="last name"
+              placeholder="Last Name"
+              value={mbimeri}
+              onChange={handleChange(setMbiemri)}
+              required
+            />
           </Form.Group>
         </Row>
 
-        <Form.Group className="mb-3" controlId="formGridAddress2">
-          <Form.Label>Username*</Form.Label>
-          <Form.Control placeholder="Username" value={username} onChange={handleChange(setUsername)} required />
+        <Form.Group className="mb-3" controlId="formGridUsername">
+          <Form.Label>Username<span style={{ color: "red" }}>*</span></Form.Label>
+          <Form.Control
+            placeholder="Username"
+            value={username}
+            onChange={handleChange(setUsername)}
+            required
+          />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formGridAddress2">
-          <Form.Label>Email*</Form.Label>
-          <Form.Control placeholder="example@hotmail.com" value={email} onChange={handleChange(setEmail)} required />
+        <Form.Group className="mb-3" controlId="formGridEmail">
+          <Form.Label>Email<span style={{ color: "red" }}>*</span></Form.Label>
+          <Form.Control
+            placeholder="example@hotmail.com"
+            value={email}
+            onChange={handleChange(setEmail)}
+            required
+          />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formGridAddress2">
-          <Form.Label>Password*</Form.Label>
-          <Form.Control type="password" placeholder="Password" value={password} onChange={handleChange(setPassword)} required />
+        <Form.Group className="mb-3" controlId="formGridPassword">
+          <Form.Label>Password<span style={{ color: "red" }}>*</span></Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handleChange(setPassword)}
+            required
+          />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formGridAddress2">
+        <Form.Group className="mb-3" controlId="formGridPhoneNumber">
           <Form.Label>Phone Number</Form.Label>
-          <Form.Control placeholder="045123123 ose +38343123132" value={nrTelefonit} onChange={handleChange(setNrTelefonit)} />
+          <Form.Control
+            placeholder="045123123 ose +38343123132"
+            value={nrTelefonit}
+            onChange={handleChange(setNrTelefonit)}
+          />
         </Form.Group>
         <Row>
-          <Form.Group as={Col} className="p-0" controlId="formGridCity">
+          <Form.Group as={Col} className="p-0" controlId="formGridAdresa">
             <Form.Label>Adresa</Form.Label>
-            <Form.Control placeholder="Agim Bajrami 60" value={adresa} onChange={handleChange(setAdresa)} />
+            <Form.Control
+              placeholder="Agim Bajrami 60"
+              value={adresa}
+              onChange={handleChange(setAdresa)}
+            />
           </Form.Group>
-          <Form.Group as={Col} className="p-0" controlId="formGridCity">
+          <Form.Group as={Col} className="p-0" controlId="formGridQyteti">
             <Form.Label>Qyteti</Form.Label>
-            <Form.Control placeholder="Kaçanik" value={qyteti} onChange={handleChange(setQyteti)} />
+            <Form.Control
+              placeholder="Kaçanik"
+              value={qyteti}
+              onChange={handleChange(setQyteti)}
+            />
           </Form.Group>
         </Row>
 
@@ -180,10 +221,15 @@ const SignUp = () => {
 
           <Form.Group as={Col} className="p-0" controlId="formGridZip">
             <Form.Label>Zip</Form.Label>
-            <Form.Control type="number" placeholder="71000" value={zipKodi} onChange={handleChange(setZipKodi)} />
+            <Form.Control
+              type="number"
+              placeholder="71000"
+              value={zipKodi}
+              onChange={handleChange(setZipKodi)}
+            />
           </Form.Group>
         </Row>
-        <div style={{display: "flex", flexDirection: "column", width: "30%"}}>
+        <div style={{ display: "flex", flexDirection: "column", width: "30%" }}>
           <Link to="/login" className="text-white-20 mb-4 p-text">Keni llogari? Kyçuni</Link>
           <Button variant="primary" type="submit" onClick={CreateAcc}>
             Create Account

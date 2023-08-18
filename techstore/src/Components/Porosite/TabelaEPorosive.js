@@ -158,8 +158,8 @@ function TabelaEPorosive() {
                                         <td>{p.idKlienti} - {p.emri} {p.mbiemri}</td>
                                         <td>{p.totaliProdukteve}</td>
                                         <td>{parseFloat(p.totaliPorosis).toFixed(2)} €</td>
-                                        <td>{parseFloat(p.totaliPorosis - (p.totaliPorosis * 0.18)).toFixed(2)} €</td>
-                                        <td>{parseFloat((p.totaliPorosis * 0.18)).toFixed(2)} €</td>
+                                        <td>{parseFloat(p.totaliPorosis - (p.totaliPorosis * 0.152542)).toFixed(2)} €</td>
+                                        <td>{parseFloat((p.totaliPorosis * 0.152542)).toFixed(2)} €</td>
                                         <td>{parseFloat(p.zbritja).toFixed(2)} €</td>
                                         <td>{new Date(p.dataPorosis).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}</td>
                                         <td>{p.statusiPorosis}</td>

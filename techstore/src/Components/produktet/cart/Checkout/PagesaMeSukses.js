@@ -165,7 +165,7 @@ export default function PagesaMeSukses(props) {
                                         }
                                         {(fatura && fatura.zbritja === 0.00) &&
                                             <p className="text-muted mb-0">
-                                                <span className="fw-bold me-2">TVSH 18%:</span> {fatura && parseFloat(fatura.totaliPorosis * 0.18).toFixed(2)} €
+                                                <span className="fw-bold me-2">TVSH 18%:</span> {fatura && parseFloat(fatura.totaliPorosis * 0.152542).toFixed(2)} €
                                             </p>
                                         }
                                     </div>
@@ -181,7 +181,7 @@ export default function PagesaMeSukses(props) {
                                         }
                                         {(fatura && fatura.zbritja === 0.00) &&
                                             <p className="text-muted mb-0">
-                                                <span className="fw-bold me-2">Totali pa TVSH:</span> {fatura && parseFloat(fatura.totaliPorosis - (fatura.totaliPorosis * 0.18)).toFixed(2)} €
+                                                <span className="fw-bold me-2">Totali pa TVSH:</span> {fatura && parseFloat(fatura.totaliPorosis - (fatura.totaliPorosis * 0.152542)).toFixed(2)} €
                                             </p>
                                         }
                                     </div>
@@ -192,7 +192,7 @@ export default function PagesaMeSukses(props) {
                                         </p>
                                         {(fatura && fatura.zbritja !== 0.00) &&
                                             <p className="text-muted mb-0">
-                                                <span className="fw-bold me-2">TVSH 18%:</span> {fatura && parseFloat(fatura.totaliPorosis * 0.18).toFixed(2)} €
+                                                <span className="fw-bold me-2">TVSH 18%:</span> {fatura && parseFloat(fatura.totaliPorosis * 0.152542).toFixed(2)} €
                                             </p>
                                         }
                                         {(fatura && fatura.zbritja === 0.00) &&
@@ -207,7 +207,7 @@ export default function PagesaMeSukses(props) {
                                         </p>
                                         {(fatura && fatura.zbritja !== 0.00) &&
                                             <p className="text-muted mb-0">
-                                                <span className="fw-bold me-2">Totali pa TVSH:</span> {fatura && parseFloat(fatura.totaliPorosis - (fatura.totaliPorosis * 0.18)).toFixed(2)} €
+                                                <span className="fw-bold me-2">Totali pa TVSH:</span> {fatura && parseFloat(fatura.totaliPorosis - (fatura.totaliPorosis * 0.152542)).toFixed(2)} €
                                             </p>
                                         }
                                         {(fatura && fatura.zbritja === 0.00) &&

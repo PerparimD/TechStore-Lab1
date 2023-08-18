@@ -99,7 +99,7 @@ const CartProduct = (props) => {
           <div className="blerja">
             <form>
               <h2>{props.cmimi.toFixed(2)} €</h2>
-              <p>{(props.cmimi - props.cmimi * 0.18).toFixed(2)} € pa TVSH</p>
+              <p>{(props.cmimi - props.cmimi * 0.152542).toFixed(2)} € pa TVSH</p>
 
               <div className="funksionet">
                 <div className="sasia">

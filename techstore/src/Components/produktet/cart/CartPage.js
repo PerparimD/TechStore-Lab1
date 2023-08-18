@@ -147,8 +147,8 @@ function CartPage() {
                 </>
               }
               {teDhenatZbritje.length === 0 && <h4>Qmimi total: {qmimiTot.toFixed(2)} €</h4>}
-              <p><strong>Qmimi total pa TVSH: </strong>{(qmimiTot - qmimiTot * 0.18).toFixed(2)} €</p>
-              <p><strong>TVSH: </strong>{(qmimiTot * 0.18).toFixed(2)} €</p>
+              <p><strong>Qmimi total pa TVSH: </strong>{(qmimiTot - qmimiTot * 0.152542).toFixed(2)} €</p>
+              <p><strong>TVSH: </strong>{(qmimiTot * 0.152542).toFixed(2)} €</p>
               {teDhenatZbritje.length !== 0 &&
                 <div className="zbritja">
                   <hr />

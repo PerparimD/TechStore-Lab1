@@ -106,8 +106,8 @@ function TeDhenatKalkulimit(props) {
                             <p>Profiti: Qmimi Bleres - Qmimi Shites (Perfshihet TVSH)</p>
                         </Col>
                         <Col className={classes.mobileResponsive}>
-                            <p><strong>Qmimi Bleres Pa TVSH:</strong> {(teDhenatFat.shumaTotaleBlerese - teDhenatFat.shumaTotaleBlerese * 0.18).toFixed(2)} €</p>
-                            <p><strong>Qmimi Bleres - TVSH-ja:</strong> {(teDhenatFat.shumaTotaleBlerese * 0.18).toFixed(2)} €</p>
+                            <p><strong>Qmimi Bleres Pa TVSH:</strong> {(teDhenatFat.shumaTotaleBlerese - teDhenatFat.shumaTotaleBlerese * 0.152542).toFixed(2)} €</p>
+                            <p><strong>Qmimi Bleres - TVSH-ja:</strong> {(teDhenatFat.shumaTotaleBlerese * 0.152542).toFixed(2)} €</p>
                             <h5><strong>Qmimi Bleres: </strong> {parseFloat(teDhenatFat.shumaTotaleBlerese).toFixed(2)} €</h5>
                         </Col>
                         <Col className={classes.mobileResponsive}>

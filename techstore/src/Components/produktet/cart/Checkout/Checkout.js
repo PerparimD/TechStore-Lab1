@@ -207,7 +207,7 @@ function Checkout(props) {
                                     <th>Totali pa TVSH:</th>
                                     <td>
                                         <strong>
-                                            {(props.qmimiTotal - props.qmimiTotal * 0.18).toFixed(2)} €
+                                            {(props.qmimiTotal - props.qmimiTotal * 0.152542).toFixed(2)} €
                                         </strong>
                                     </td>
                                 </tr>
@@ -215,7 +215,7 @@ function Checkout(props) {
                                     <th>TVSH:</th>
                                     <td>
                                         <strong>
-                                            {(props.qmimiTotal * 0.18).toFixed(2)} €
+                                            {(props.qmimiTotal * 0.152542).toFixed(2)} €
                                         </strong>
                                     </td>
                                 </tr>
@@ -235,7 +235,7 @@ function Checkout(props) {
                                     <th>Totali pa TVSH:</th>
                                     <td>
                                         <strong>
-                                            {(props.qmimiTotal - props.qmimiTotal * 0.18).toFixed(2)} €
+                                            {(props.qmimiTotal - props.qmimiTotal * 0.152542).toFixed(2)} €
                                         </strong>
                                     </td>
                                 </tr>
@@ -243,7 +243,7 @@ function Checkout(props) {
                                     <th>TVSH:</th>
                                     <td>
                                         <strong>
-                                            {(props.qmimiTotal * 0.18).toFixed(2)} €
+                                            {(props.qmimiTotal * 0.152542).toFixed(2)} €
                                         </strong>
                                     </td>
                                 </tr>

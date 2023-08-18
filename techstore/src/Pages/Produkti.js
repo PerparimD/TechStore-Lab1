@@ -187,8 +187,8 @@ function Produkti() {
                                 </h1>
                                 <p>
                                     {produkti.qmimiMeZbritjeProduktit != null ?
-                                        parseFloat(produkti.qmimiMeZbritjeProduktit - (produkti.qmimiMeZbritjeProduktit * 0.18)).toFixed(2)
-                                        : parseFloat(produkti.qmimiProduktit - (produkti.qmimiProduktit * 0.18)).toFixed(2)} € pa TVSH
+                                        parseFloat(produkti.qmimiMeZbritjeProduktit - (produkti.qmimiMeZbritjeProduktit * 0.152542)).toFixed(2)
+                                        : parseFloat(produkti.qmimiProduktit - (produkti.qmimiProduktit * 0.152542)).toFixed(2)} € pa TVSH
                                 </p>
                                 <p>
                                     Disponueshmëria: {produkti.sasiaNeStok > 10 ? "Me shume se 10 artikuj" : produkti.sasiaNeStok + " artikuj"}

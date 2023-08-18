@@ -107,8 +107,6 @@ function Fatura(props) {
         }
     }, [perditeso]);
 
-
-
     function FaturaPerRuajtje() {
         const FaturaRef = document.querySelector('.fatura');
         const PjesaNenshkrimeveRef = document.querySelector('.PjesaNenshkrimeve');
@@ -346,13 +344,13 @@ function Fatura(props) {
                                 <td>
                                     <strong>Totali Pa TVSH: </strong>
                                 </td>
-                                <td>{fatura && parseFloat(fatura.totaliPorosis - (fatura.totaliPorosis * 0.18)).toFixed(2)} €</td>
+                                <td>{fatura && parseFloat(fatura.totaliPorosis - (fatura.totaliPorosis * 0.152542)).toFixed(2)} €</td>
                             </tr>
                             <tr>
                                 <td>
                                     <strong>TVSH 18%: </strong>
                                 </td>
-                                <td>{fatura && parseFloat(fatura.totaliPorosis * 0.18).toFixed(2)} €</td>
+                                <td>{fatura && parseFloat(fatura.totaliPorosis * 0.152542).toFixed(2)} €</td>
                             </tr>
                             <tr>
                                 <td style={{ fontSize: "18pt" }}>

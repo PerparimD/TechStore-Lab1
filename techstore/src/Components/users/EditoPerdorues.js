@@ -58,7 +58,7 @@ function EditoPerdorues(props) {
         try {
             for (const y of roletUseri) {
                 if (y !== 'User') {
-                    await axios.delete(`https://localhost:7285/api/Authenticate/FshijRolinUserit?userID=${props.id}&roli=${y}`, {}, authentikimi);
+                    await axios.delete(`https://localhost:7285/api/Authenticate/FshijRolinUserit?userID=${props.id}&roli=${y}`, authentikimi);
                 }
             }
 

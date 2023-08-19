@@ -34,7 +34,7 @@ Profesoret:
 
 ## Konfigurimi
 
-Se pari ju duhet te importoni databazen e Web-it ne **SQL Server)** e cila gjendet ne folderin Databaza me emrin **TechStoreDB.sql** ose **TechStoreDBEmpty.sql**.
+Se pari ju duhet te importoni databazen e Web-it ne **SQL Server** e cila gjendet ne folderin Databaza me emrin **TechStoreDB.sql** ose **TechStoreDBEmpty.sql**.
 
 Pasi qe te behet konfigurimi ju mund te kyqeni me keto te dhena:
 

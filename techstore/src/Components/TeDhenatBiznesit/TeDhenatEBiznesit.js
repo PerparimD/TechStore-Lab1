@@ -161,7 +161,7 @@ function TeDhenatEBiznesit(props) {
 
                             <MDBCol md="6">
                                 <MDBInput
-                                    value={formValue.emriBiznesit}
+                                    value={formValue.emriBiznesit ?? ''}
                                     name='emriBiznesit'
                                     onChange={onChange}
                                     id='validationCustom01'
@@ -172,7 +172,7 @@ function TeDhenatEBiznesit(props) {
                             </MDBCol>
                             <MDBCol md="6">
                                 <MDBInput
-                                    value={formValue.shkurtesaEmrit}
+                                    value={formValue.shkurtesaEmrit ?? ''}
                                     name='shkurtesaEmrit'
                                     onChange={onChange}
                                     id='validationCustom02'
@@ -183,7 +183,7 @@ function TeDhenatEBiznesit(props) {
                             </MDBCol>
                             <MDBCol md="4">
                                 <MDBInput
-                                    value={formValue.nui}
+                                    value={formValue.nui ?? ''}
                                     name='nui'
                                     onChange={onChange}
                                     id='validationCustom03'
@@ -194,7 +194,7 @@ function TeDhenatEBiznesit(props) {
                             </MDBCol>
                             <MDBCol md="4">
                                 <MDBInput
-                                    value={formValue.nf}
+                                    value={formValue.nf ?? ''}
                                     name='nf'
                                     onChange={onChange}
                                     id='validationCustom03'
@@ -205,7 +205,7 @@ function TeDhenatEBiznesit(props) {
                             </MDBCol>
                             <MDBCol md="4">
                                 <MDBInput
-                                    value={formValue.nrtvsh}
+                                    value={formValue.nrtvsh ?? ''}
                                     name='nrtvsh'
                                     onChange={onChange}
                                     id='validationCustom03'
@@ -216,7 +216,7 @@ function TeDhenatEBiznesit(props) {
                             </MDBCol>
                             <MDBCol md="4">
                                 <MDBInput
-                                    value={formValue.email}
+                                    value={formValue.email ?? ''}
                                     name='email'
                                     onChange={onChange}
                                     id='validationCustom02'
@@ -227,7 +227,7 @@ function TeDhenatEBiznesit(props) {
                             </MDBCol>
                             <MDBCol md="4">
                                 <MDBInput
-                                    value={formValue.adresa}
+                                    value={formValue.adresa ?? ''}
                                     name='adresa'
                                     onChange={onChange}
                                     id='validationCustom03'
@@ -238,7 +238,7 @@ function TeDhenatEBiznesit(props) {
                             </MDBCol>
                             <MDBCol md="4">
                                 <MDBInput
-                                    value={formValue.nrKontaktit}
+                                    value={formValue.nrKontaktit ?? ''}
                                     name='nrKontaktit'
                                     onChange={onChange}
                                     id='validationCustom05'

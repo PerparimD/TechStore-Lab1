@@ -32,5 +32,16 @@ Profesoret:
 - **[Logos World](https://logos-world.net/)** - Disa nga logot e brendeve të cilat janë të vendosura ne slider,
 - **[Behance | Abbas - Techstore](https://www.behance.net/gallery/130956581/Tech-Store-Brand-identity)** - Logo e TechStore
 
+## Konfigurimi
+
+Se pari ju duhet te importoni databazen e Web-it ne **SQL Server)** e cila gjendet ne folderin Databaza me emrin **TechStoreDB.sql** ose **TechStoreDBEmpty.sql**.
+
+Pasi qe te behet konfigurimi ju mund te kyqeni me keto te dhena:
+
+| **Email** | **Password** | **Aksesi**                    |
+| ------------ | ------------ | ----------------------------- |
+| admin@techstore.com        | Admin1@        | Administrator (Akses i Plote) |
+| menagjer@techstore.com       | Menagjer1@     | Menagjer (Akses i Pjesshem)   |
+| user@techstore.com           | User1@         | Klient (Akses i thjesht)      |
 
 

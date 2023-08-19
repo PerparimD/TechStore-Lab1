@@ -44,4 +44,37 @@ Pasi qe te behet konfigurimi ju mund te kyqeni me keto te dhena:
 | menagjer@techstore.com       | Menagjer1@     | Menagjer (Akses i Pjesshem)   |
 | user@techstore.com           | User1@         | Klient (Akses i thjesht)      |
 
+## Disa nga shembujt e pamjes se TechStore
+
+### Home
+
+![Home | TechStore](GitHubImages/Home.png?raw=true)
+
+### Detajet e Produktit
+
+![About Us | TechStore](GitHubImages/FaqjaProduktit.png?raw=true)
+
+### Filtrimi Produkteve Nga Kategoria
+
+![Produktet | TechStore](GitHubImages/FiltrimiProdukteveKategori.png?raw=true)
+
+### Statistikat e Dyqanit
+
+![Dashboard | TechStore](GitHubImages/StatistikatDyqanit.png?raw=true)
+
+### Dashboard - Te Dhenat e Biznesit
+
+![Dashboard | TechStore](GitHubImages/TeDhenatEBiznesit.png?raw=true)
+
+### Fatura
+
+![Fatura | TechStore](GitHubImages/Fatura.png?raw=true)
+
+### Shporta Blerjes
+
+![Cart | TechStore](GitHubImages/Shporta.png?raw=true)
+
+### SignUp
+
+![SignUp | TechStore](GitHubImages/SignUpForma.png?raw=true)
 

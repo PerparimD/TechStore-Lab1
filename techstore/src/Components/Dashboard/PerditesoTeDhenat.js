@@ -370,7 +370,7 @@ function PerditesoTeDhenat(props) {
 
                             <MDBCol md="6">
                                 <MDBInput
-                                    value={formValue.emri}
+                                    value={formValue.emri ?? ''}
                                     name='emri'
                                     onChange={onChange}
                                     id='emri'
@@ -381,7 +381,7 @@ function PerditesoTeDhenat(props) {
                             </MDBCol>
                             <MDBCol md="6">
                                 <MDBInput
-                                    value={formValue.mbiemri}
+                                    value={formValue.mbiemri ?? ''}
                                     name='mbiemri'
                                     onChange={onChange}
                                     id='mbiemri'
@@ -392,7 +392,7 @@ function PerditesoTeDhenat(props) {
                             </MDBCol>
                             <MDBCol md="4">
                                 <MDBInput
-                                    value={formValue.email}
+                                    value={formValue.email ?? ''}
                                     name='email'
                                     onChange={onChange}
                                     id='email'
@@ -403,7 +403,7 @@ function PerditesoTeDhenat(props) {
                             </MDBCol>
                             <MDBCol md="4">
                                 <MDBInput
-                                    value={formValue.username}
+                                    value={formValue.username ?? ''}
                                     name='username'
                                     onChange={onChange}
                                     id='username'
@@ -414,7 +414,7 @@ function PerditesoTeDhenat(props) {
                             </MDBCol>
                             <MDBCol md="4">
                                 <MDBInput
-                                    value={formValue.nrKontaktit}
+                                    value={formValue.nrKontaktit ?? ''}
                                     name='nrKontaktit'
                                     onChange={onChange}
                                     id='nrKontaktit'
@@ -438,7 +438,7 @@ function PerditesoTeDhenat(props) {
                             <h1 className="title">Adresa</h1>
                             <MDBCol md="6">
                                 <MDBInput
-                                    value={formValue.adresa}
+                                    value={formValue.adresa ?? '' ? formValue.adresa : ""}
                                     name='adresa'
                                     onChange={onChange}
                                     id='adresa'
@@ -449,7 +449,7 @@ function PerditesoTeDhenat(props) {
                             </MDBCol>
                             <MDBCol md="6">
                                 <MDBInput
-                                    value={formValue.qyteti}
+                                    value={formValue.qyteti ?? '' ? formValue.qyteti : ""}
                                     name='qyteti'
                                     onChange={onChange}
                                     id='qyteti'
@@ -459,7 +459,7 @@ function PerditesoTeDhenat(props) {
                                 />
                             </MDBCol>
                             <MDBCol md="6" >
-                                <Form.Select value={formValue.shteti} onChange={handleShtetiChange} disabled={!editoAdresen}>
+                                <Form.Select value={formValue.shteti ?? ''} onChange={handleShtetiChange} disabled={!editoAdresen}>
                                     <option hidden disabled>Zgjedhni Shtetin</option>
                                     <option>Kosovë</option>
                                     <option>Shqipëri</option>
@@ -469,7 +469,7 @@ function PerditesoTeDhenat(props) {
                             </MDBCol>
                             <MDBCol md="6">
                                 <MDBInput
-                                    value={formValue.zipKodi}
+                                    value={formValue.zipKodi ?? ''}
                                     name='zipKodi'
                                     type="number"
                                     onChange={onChange}

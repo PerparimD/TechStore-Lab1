@@ -25,6 +25,7 @@ function Produkti() {
     const [tipiMesazhit, setTipiMesazhit] = useState("success");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
     const [edito, setEdito] = useState(false);
+    const [teDhenat, setTeDhenat] = useState([]);
 
     const getToken = localStorage.getItem("token");
 
@@ -33,6 +34,25 @@ function Produkti() {
             Authorization: `Bearer ${getToken}`,
         },
     };
+
+    const getID = localStorage.getItem("id");
+
+    useEffect(() => {
+        if (getID) {
+            const vendosTeDhenat = async () => {
+                try {
+                    const perdoruesi = await axios.get(
+                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
+                    );
+                    setTeDhenat(perdoruesi.data);
+                } catch (err) {
+                    console.log(err);
+                }
+            };
+
+            vendosTeDhenat();
+        }
+    }, [perditeso]);
 
     useEffect(() => {
         const teDhenatProd = async () => {
@@ -194,7 +214,7 @@ function Produkti() {
                                     Disponueshmëria: {produkti.sasiaNeStok > 10 ? "Me shume se 10 artikuj" : produkti.sasiaNeStok + " artikuj"}
                                 </p>
 
-                                <div style={{display: "flex", gap: "1em"}}>
+                                <div style={{ display: "flex", gap: "1em" }}>
                                     {produkti.sasiaNeStok > 0 &&
                                         <button
                                             onClick={handleShtoNeShporte}
@@ -203,7 +223,8 @@ function Produkti() {
                                             Shto ne Shporte  <FontAwesomeIcon icon={faCartShopping} />
                                         </button>
                                     }
-                                    {produkti.sasiaNeStok > 0 &&
+                                    {teDhenat != '' && (teDhenat.rolet.includes("Admin") ||
+                                        teDhenat.rolet.includes("Menaxher")) && produkti.sasiaNeStok > 0 &&
                                         <button
                                             onClick={(e) => handleEdito(e)}
                                             className="button"

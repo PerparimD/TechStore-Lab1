@@ -56,7 +56,7 @@ function PerditesoStatusinPorosis(props) {
     return (
         <Modal className="modalEditShto" show={true} onHide={() => props.largo()}>
             <Modal.Header closeButton>
-                <Modal.Title>Perdoteso Statusin e Porosise</Modal.Title>
+                <Modal.Title>Perditeso Statusin e Porosise</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>

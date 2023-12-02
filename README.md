@@ -34,7 +34,12 @@ Profesoret:
 
 ## Konfigurimi
 
-Se pari ju duhet te importoni databazen e Web-it ne **SQL Server** e cila gjendet ne folderin Databaza me emrin **TechStoreDB.sql** ose **TechStoreDBEmpty.sql**, pastaj duhet te behet konfigurimi i Connection String ne WebAPI/WebAPI/appsettings.json dhe duhet te nderrohet emri i Server me ate te serverit tuaj.
+Se pari duhet te behet konfigurimi i Connection String ne WebAPI/WebAPI/appsettings.json dhe duhet te nderrohet emri i Server me ate te serverit tuaj, pastaj ju duhet te beni run komanden **EntityFrameworkCore\update-database** ne **Serverin e Projektit - WebAPI** e cili do te mundesoj gjenerimin ne teresi te databases dhe insertimin e te dhenave bazike, ne rast se deshironi te perdorni te dhenat e TechStore ato mund te i gjeni ne file-in e cila gjendet ne folderin Databaza me emrin **TechStoreDB.sql** kete file duhet ta beni execute ne **SQL Server** pasi qe te keni bere run komanden e cekurme lart ne **Visual Studio**, pasi te keni perfunduar me keto hapa ju duhet qe te beni **run** serverin dhe pastaj ne VSC pjesen e React qe gjendet tek **techstore** duhet te hapet ne terminal pastaj duhen te behen run keto komonda: 
+
+- **npm i** - Bene instalimin automatik te paketave te nevojtura,
+- **npm run build** - Bene Build Projektin,
+*Keto duhen te behen vetem ne qoftese e keni hapur projketin per here te pare*
+- **npm start** - Bene startimin e projektit (*Kjo duhet te behet gjithmone kur startojme projektin e React*).
 
 Pasi qe te behet konfigurimi ju mund te kyqeni me keto te dhena:
 

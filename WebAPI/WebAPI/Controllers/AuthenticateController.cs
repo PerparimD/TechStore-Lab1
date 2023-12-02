@@ -8,6 +8,7 @@ using WebAPI.Auth;
 using WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using WebAPI.Data;
 
 namespace WebAPI.Controllers
 {
@@ -27,7 +28,7 @@ namespace WebAPI.Controllers
             IConfiguration configuration,
             TechStoreDbContext context)
         {
-            _userManager = userManager; 
+            _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
             _context = context;
@@ -75,7 +76,7 @@ namespace WebAPI.Controllers
                         Email = perdoruesiIRI.Email,
                         Mbiemri = registerModel.LastName,
                     };
-                    await _context.Perdoruesis.AddAsync(perdoruesi);
+                    await _context.Perdoruesi.AddAsync(perdoruesi);
                     await _context.SaveChangesAsync();
 
                     TeDhenatPerdoruesit teDhenatPerdoruesit = new TeDhenatPerdoruesit
@@ -87,7 +88,7 @@ namespace WebAPI.Controllers
                         ZipKodi = registerModel.ZipKodi > 0 ? registerModel.ZipKodi : 0,
                         NrKontaktit = !registerModel.NrTelefonit.IsNullOrEmpty() ? registerModel.NrTelefonit : null
                     };
-                    await _context.TeDhenatPerdoruesits.AddAsync(teDhenatPerdoruesit);
+                    await _context.TeDhenatPerdoruesit.AddAsync(teDhenatPerdoruesit);
                     await _context.SaveChangesAsync();
 
                     return Ok(new AuthResults()
@@ -115,10 +116,10 @@ namespace WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 var useri_ekziston = await _userManager.FindByEmailAsync(login.Email);
 
-                if(useri_ekziston == null)
+                if (useri_ekziston == null)
                 {
                     return BadRequest(new AuthResults()
                     {
@@ -212,7 +213,7 @@ namespace WebAPI.Controllers
         {
             var perdoruesi = await _userManager.FindByIdAsync(userID);
 
-            if(perdoruesi == null)
+            if (perdoruesi == null)
             {
                 return BadRequest(new AuthResults
                 {
@@ -223,7 +224,7 @@ namespace WebAPI.Controllers
             {
                 var ekzistonRoli = await _roleManager.FindByNameAsync(roli);
 
-                if(ekzistonRoli != null)
+                if (ekzistonRoli != null)
                 {
                     var eKaRolin = await _userManager.IsInRoleAsync(perdoruesi, roli);
 
@@ -251,7 +252,7 @@ namespace WebAPI.Controllers
                 });
             }
 
-            
+
         }
 
         [Authorize(Roles = "Admin, Menaxher")]
@@ -270,8 +271,8 @@ namespace WebAPI.Controllers
             }
             else
             {
-                var role = new IdentityRole(roli); 
-                var result = await _roleManager.CreateAsync(role); 
+                var role = new IdentityRole(roli);
+                var result = await _roleManager.CreateAsync(role);
 
                 if (result.Succeeded)
                 {
@@ -301,7 +302,7 @@ namespace WebAPI.Controllers
             {
                 var roliUFshi = await _roleManager.DeleteAsync(roliEkziston);
 
-                if(roliUFshi.Succeeded)
+                if (roliUFshi.Succeeded)
                 {
                     return Ok(new AuthResults { Result = true });
                 }
@@ -360,7 +361,7 @@ namespace WebAPI.Controllers
             // Token descriptor
             var TokenDescriptor = new SecurityTokenDescriptor()
             {
-                
+
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim("id", user.Id),

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using WebAPI.Data;
 using WebAPI.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -25,10 +26,11 @@ namespace TechStoreWebAPI.Controllers
         public async Task<ActionResult> Get()
         {
 
-            var Produkti = await _context.Produktis
+            var Produkti = await _context.Produkti
                 .OrderByDescending(x => x.StokuQmimiProduktit.SasiaNeStok)
                 .ThenByDescending(x => x.ProduktiId)
-               .Select(x => new {
+               .Select(x => new
+               {
                    x.ProduktiId,
                    x.EmriProduktit,
                    x.Pershkrimi,
@@ -53,10 +55,11 @@ namespace TechStoreWebAPI.Controllers
         public async Task<ActionResult> ProduktetPerKalkulim()
         {
 
-            var Produkti = await _context.Produktis
+            var Produkti = await _context.Produkti
                .OrderBy(x => x.StokuQmimiProduktit.SasiaNeStok)
                .ThenByDescending(x => x.ProduktiId)
-               .Select(x => new {
+               .Select(x => new
+               {
                    x.ProduktiId,
                    x.EmriProduktit,
                    x.Pershkrimi,
@@ -79,12 +82,13 @@ namespace TechStoreWebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
-            var produkti = await _context.Produktis
+            var produkti = await _context.Produkti
                 .Include(p => p.Kompania)
                 .Include(p => p.Kategoria)
                 .Include(p => p.StokuQmimiProduktit)
                 .Where(p => p.ProduktiId == id)
-                .Select(p => new {
+                .Select(p => new
+                {
                     p.ProduktiId,
                     p.EmriProduktit,
                     p.Pershkrimi,
@@ -113,10 +117,11 @@ namespace TechStoreWebAPI.Controllers
         [Route("15ProduktetMeTeFundit")]
         public async Task<IActionResult> Get15Produkte()
         {
-            var Kthe15TeFundit = await _context.Produktis
+            var Kthe15TeFundit = await _context.Produkti
                 .OrderByDescending(x => x.ProduktiId)
                 .Take(15)
-                .Select(x => new {
+                .Select(x => new
+                {
                     x.ProduktiId,
                     x.EmriProduktit,
                     x.FotoProduktit,
@@ -135,7 +140,7 @@ namespace TechStoreWebAPI.Controllers
         [Route("shtoProdukt")]
         public async Task<IActionResult> Post(Produkti produkti)
         {
-            await _context.Produktis.AddAsync(produkti);
+            await _context.Produkti.AddAsync(produkti);
             await _context.SaveChangesAsync();
 
             StokuQmimiProduktit s = new StokuQmimiProduktit
@@ -143,7 +148,7 @@ namespace TechStoreWebAPI.Controllers
                 ProduktiId = produkti.ProduktiId
             };
 
-            await _context.StokuQmimiProduktits.AddAsync(s);
+            await _context.StokuQmimiProduktit.AddAsync(s);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Get", produkti.ProduktiId, produkti);
@@ -153,8 +158,8 @@ namespace TechStoreWebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Produkti p)
         {
-            var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
-            var stokuQmimi = await _context.StokuQmimiProduktits.FirstOrDefaultAsync(x => x.ProduktiId == id);
+            var produkti = await _context.Produkti.FirstOrDefaultAsync(x => x.ProduktiId == id);
+            var stokuQmimi = await _context.StokuQmimiProduktit.FirstOrDefaultAsync(x => x.ProduktiId == id);
 
             if (produkti == null || stokuQmimi == null)
             {
@@ -204,10 +209,10 @@ namespace TechStoreWebAPI.Controllers
                 }
             }
 
-            
 
-            _context.Produktis.Update(produkti);
-            _context.StokuQmimiProduktits.Update(stokuQmimi);
+
+            _context.Produkti.Update(produkti);
+            _context.StokuQmimiProduktit.Update(stokuQmimi);
             await _context.SaveChangesAsync();
 
             return Ok(produkti);
@@ -217,7 +222,7 @@ namespace TechStoreWebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var produkti = await _context.Produktis.FirstOrDefaultAsync(x => x.ProduktiId == id);
+            var produkti = await _context.Produkti.FirstOrDefaultAsync(x => x.ProduktiId == id);
 
             if (produkti == null)
                 return BadRequest("Invalid id");
@@ -232,7 +237,7 @@ namespace TechStoreWebAPI.Controllers
                 }
             }
 
-            _context.Produktis.Remove(produkti);
+            _context.Produkti.Remove(produkti);
             await _context.SaveChangesAsync();
 
             return NoContent();

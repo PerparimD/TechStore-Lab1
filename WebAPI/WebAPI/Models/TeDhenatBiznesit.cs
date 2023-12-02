@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WebAPI.Models;
 
 public partial class TeDhenatBiznesit
 {
+    [Key]
     public int IdteDhenatBiznesit { get; set; }
 
     public string? EmriIbiznesit { get; set; }

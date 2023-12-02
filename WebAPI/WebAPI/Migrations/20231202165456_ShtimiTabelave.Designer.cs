@@ -5,22 +5,22 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebAPI.Models;
+using WebAPI.Data;
 
 #nullable disable
 
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(TechStoreDbContext))]
-    [Migration("20230519193547_initial")]
-    partial class initial
+    [Migration("20231202165456_ShtimiTabelave")]
+    partial class ShtimiTabelave
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -227,135 +227,93 @@ namespace WebAPI.Migrations
                 {
                     b.Property<int>("MesazhiId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("mesazhiID");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MesazhiId"));
 
                     b.Property<DateTime?>("DataDergeses")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
-                        .HasColumnName("dataDergeses")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(250)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(250)")
-                        .HasColumnName("email");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Emri")
-                        .HasMaxLength(250)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(250)")
-                        .HasColumnName("emri");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mesazhi")
-                        .HasColumnType("text")
-                        .HasColumnName("mesazhi");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Statusi")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(60)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(60)")
-                        .HasColumnName("statusi")
-                        .HasDefaultValueSql("('Mesazhi juaj eshte derguar tek Stafi')");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("userID");
+                        .HasColumnType("int");
 
-                    b.HasKey("MesazhiId")
-                        .HasName("PK__ContactF__0E3F7CF3731C8CDE");
+                    b.HasKey("MesazhiId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ContactForm", (string)null);
+                    b.ToTable("ContactForm");
                 });
 
             modelBuilder.Entity("WebAPI.Models.KategoriaProduktit", b =>
                 {
                     b.Property<int>("KategoriaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("kategoriaID");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KategoriaId"));
 
                     b.Property<string>("LlojiKategoris")
-                        .HasColumnType("text")
-                        .HasColumnName("llojiKategoris");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PershkrimiKategoris")
-                        .HasColumnType("text")
-                        .HasColumnName("pershkrimiKategoris");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("KategoriaId")
-                        .HasName("PK__Kategori__AC39DE2ACE8BCA8A");
+                    b.HasKey("KategoriaId");
 
-                    b.ToTable("KategoriaProduktit", (string)null);
+                    b.ToTable("KategoriaProduktit");
                 });
 
             modelBuilder.Entity("WebAPI.Models.KodiZbritje", b =>
                 {
                     b.Property<string>("Kodi")
-                        .HasMaxLength(12)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(12)")
-                        .HasColumnName("kodi");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DataKrijimit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasColumnName("dataKrijimit")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("IdProdukti")
-                        .HasColumnType("int")
-                        .HasColumnName("idProdukti");
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("QmimiZbritjes")
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("qmimiZbritjes");
+                        .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Kodi")
-                        .HasName("PK__KodiZbri__25A8748FB3E013A8");
+                    b.HasKey("Kodi");
 
                     b.HasIndex("IdProdukti");
 
-                    b.ToTable("KodiZbritjes");
+                    b.ToTable("KodiZbritje");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.Kompanium", b =>
+            modelBuilder.Entity("WebAPI.Models.Kompania", b =>
                 {
                     b.Property<int>("KompaniaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("kompaniaID");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KompaniaId"));
 
                     b.Property<string>("Adresa")
-                        .HasMaxLength(40)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("adresa");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmriKompanis")
-                        .HasColumnType("text")
-                        .HasColumnName("emriKompanis");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Logo")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(40)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("logo")
-                        .HasDefaultValueSql("('kompaniPaFoto.png')");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("KompaniaId")
-                        .HasName("PK__Kompania__2026D74DCB37AA9A");
+                    b.HasKey("KompaniaId");
 
                     b.ToTable("Kompania");
                 });
@@ -364,324 +322,290 @@ namespace WebAPI.Migrations
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("userID");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<int?>("Aksesi")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("aksesi")
-                        .HasDefaultValueSql("((0))");
+                    b.Property<string>("AspNetUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("email");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Emri")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("emri");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mbiemri")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("mbiemri");
-
-                    b.Property<string>("UserPw")
-                        .HasMaxLength(70)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(70)")
-                        .HasColumnName("userPW");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("username");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId")
-                        .HasName("PK__Perdorue__CB9A1CDFC4C4A0AA");
+                    b.HasKey("UserId");
 
-                    b.HasIndex(new[] { "Username" }, "UQ__Perdorue__F3DBC5728A6B6DAE")
-                        .IsUnique()
-                        .HasFilter("[username] IS NOT NULL");
+                    b.HasIndex("AspNetUserId");
 
-                    b.ToTable("Perdoruesi", (string)null);
+                    b.ToTable("Perdoruesi");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Porosit", b =>
                 {
                     b.Property<int>("IdPorosia")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("idPorosia");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPorosia"));
 
                     b.Property<DateTime?>("DataPorosis")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
-                        .HasColumnName("dataPorosis")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("IdKlienti")
-                        .HasColumnType("int")
-                        .HasColumnName("idKlienti");
+                        .HasColumnType("int");
 
                     b.Property<string>("StatusiPorosis")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("statusiPorosis")
-                        .HasDefaultValueSql("('Ne Procesim')");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("TotaliPorosis")
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("totaliPorosis");
+                        .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("IdPorosia")
-                        .HasName("PK__Porosit__A9F27D2AB271ADFC");
+                    b.Property<int?>("TotaliProdukteve")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Zbritja")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("IdPorosia");
 
                     b.HasIndex("IdKlienti");
 
-                    b.ToTable("Porosit", (string)null);
+                    b.ToTable("Porosit");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Produkti", b =>
                 {
                     b.Property<int>("ProduktiId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("produktiID");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProduktiId"));
 
                     b.Property<string>("EmriProduktit")
-                        .HasColumnType("text")
-                        .HasColumnName("emriProduktit");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FotoProduktit")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(40)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("fotoProduktit")
-                        .HasDefaultValueSql("('produktPaFoto.png')");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("KategoriaId")
-                        .HasColumnType("int")
-                        .HasColumnName("kategoriaID");
+                        .HasColumnType("int");
 
                     b.Property<int?>("KompaniaId")
-                        .HasColumnType("int")
-                        .HasColumnName("kompaniaID");
+                        .HasColumnType("int");
 
                     b.Property<string>("Pershkrimi")
-                        .HasColumnType("text")
-                        .HasColumnName("pershkrimi");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProduktiId")
-                        .HasName("PK__Produkti__76A3DFCF91A50347");
+                    b.HasKey("ProduktiId");
 
                     b.HasIndex("KategoriaId");
 
                     b.HasIndex("KompaniaId");
 
-                    b.ToTable("Produkti", (string)null);
+                    b.ToTable("Produkti");
                 });
 
             modelBuilder.Entity("WebAPI.Models.RegjistrimiStokut", b =>
                 {
                     b.Property<int>("IdRegjistrimit")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("idRegjistrimit");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRegjistrimit"));
 
                     b.Property<DateTime?>("DataRegjistrimit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasColumnName("dataRegjistrimit")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal?>("ShumaTotaleBlerese")
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("shumaTotaleBlerese");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("ShumaTotaleRegjistrimit")
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("shumaTotaleRegjistrimit");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("StafiId")
-                        .HasColumnType("int")
-                        .HasColumnName("stafiID");
+                        .HasColumnType("int");
 
                     b.Property<int?>("TotaliProdukteveRegjistruara")
-                        .HasColumnType("int")
-                        .HasColumnName("totaliProdukteveRegjistruara");
+                        .HasColumnType("int");
 
                     b.HasKey("IdRegjistrimit");
 
                     b.HasIndex("StafiId");
 
-                    b.ToTable("RegjistrimiStokut", (string)null);
+                    b.ToTable("RegjistrimiStokut");
                 });
 
             modelBuilder.Entity("WebAPI.Models.StokuQmimiProduktit", b =>
                 {
-                    b.Property<int>("ProduktiId")
-                        .HasColumnType("int")
-                        .HasColumnName("produktiID");
+                    b.Property<int>("StokuID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StokuID"));
 
                     b.Property<DateTime?>("DataKrijimit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasColumnName("dataKrijimit")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DataPerditsimit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasColumnName("dataPerditsimit")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProduktiId")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("QmimiBleres")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("qmimiBleres")
-                        .HasDefaultValueSql("((0))");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("QmimiProduktit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("qmimiProduktit")
-                        .HasDefaultValueSql("((0))");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("SasiaNeStok")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("sasiaNeStok")
-                        .HasDefaultValueSql("((0))");
+                        .HasColumnType("int");
 
-                    b.HasKey("ProduktiId")
-                        .HasName("PK_StokuProduktit");
+                    b.HasKey("StokuID");
 
-                    b.ToTable("StokuQmimiProduktit", (string)null);
+                    b.HasIndex("ProduktiId")
+                        .IsUnique();
+
+                    b.ToTable("StokuQmimiProduktit");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.TeDhenatEporosi", b =>
+            modelBuilder.Entity("WebAPI.Models.TeDhenatBiznesit", b =>
+                {
+                    b.Property<int>("IdteDhenatBiznesit")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdteDhenatBiznesit"));
+
+                    b.Property<string>("Adresa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmriIbiznesit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Logo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Nf")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NrKontaktit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Nrtvsh")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Nui")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShkurtesaEmritBiznesit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdteDhenatBiznesit");
+
+                    b.ToTable("TeDhenatBiznesit");
+                });
+
+            modelBuilder.Entity("WebAPI.Models.TeDhenatEPorosis", b =>
                 {
                     b.Property<int>("IdDetajet")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("idDetajet");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDetajet"));
 
                     b.Property<int?>("IdPorosia")
-                        .HasColumnType("int")
-                        .HasColumnName("idPorosia");
+                        .HasColumnType("int");
 
                     b.Property<int?>("IdProdukti")
-                        .HasColumnType("int")
-                        .HasColumnName("idProdukti");
+                        .HasColumnType("int");
 
-                    b.Property<string>("KodiZbritjes")
-                        .HasMaxLength(12)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(12)")
-                        .HasColumnName("kodiZbritjes");
+                    b.Property<decimal?>("QmimiProduktit")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("QmimiTotal")
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("qmimiTotal");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("SasiaPorositur")
-                        .HasColumnType("int")
-                        .HasColumnName("sasiaPorositur");
+                        .HasColumnType("int");
 
-                    b.HasKey("IdDetajet")
-                        .HasName("PK__TeDhenat__494F491F84D65D51");
+                    b.HasKey("IdDetajet");
 
                     b.HasIndex("IdPorosia");
 
                     b.HasIndex("IdProdukti");
 
-                    b.HasIndex("KodiZbritjes");
-
-                    b.ToTable("TeDhenatEPorosis", (string)null);
+                    b.ToTable("TeDhenatEPorosis");
                 });
 
             modelBuilder.Entity("WebAPI.Models.TeDhenatPerdoruesit", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("userID");
+                    b.Property<int>("TeDhenatId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeDhenatId"));
 
                     b.Property<string>("Adresa")
-                        .HasMaxLength(40)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("adresa");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NrKontaktit")
-                        .HasMaxLength(15)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(15)")
-                        .HasColumnName("nrKontaktit");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Qyteti")
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("qyteti");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Shteti")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ZipKodi")
-                        .HasColumnType("int")
-                        .HasColumnName("zipKodi");
+                        .HasColumnType("int");
 
-                    b.HasKey("UserId");
+                    b.HasKey("TeDhenatId");
 
-                    b.ToTable("TeDhenatPerdoruesit", (string)null);
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("TeDhenatPerdoruesit");
                 });
 
             modelBuilder.Entity("WebAPI.Models.TeDhenatRegjistrimit", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("IdProduktit")
-                        .HasColumnType("int")
-                        .HasColumnName("idProduktit");
+                        .HasColumnType("int");
 
                     b.Property<int?>("IdRegjistrimit")
-                        .HasColumnType("int")
-                        .HasColumnName("idRegjistrimit");
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("QmimiBleres")
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("qmimiBleres");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("QmimiShites")
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("qmimiShites");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("SasiaStokut")
-                        .HasColumnType("int")
-                        .HasColumnName("sasiaStokut");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -689,42 +613,38 @@ namespace WebAPI.Migrations
 
                     b.HasIndex("IdRegjistrimit");
 
-                    b.ToTable("TeDhenatRegjistrimit", (string)null);
+                    b.ToTable("TeDhenatRegjistrimit");
                 });
 
             modelBuilder.Entity("WebAPI.Models.ZbritjaQmimitProduktit", b =>
                 {
-                    b.Property<int>("ProduktiId")
-                        .HasColumnType("int")
-                        .HasColumnName("produktiID");
+                    b.Property<int>("ZbritjaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ZbritjaID"));
 
                     b.Property<DateTime?>("DataSkadimit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasColumnName("dataSkadimit")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DataZbritjes")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasColumnName("dataZbritjes")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProduktiId")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("QmimiMeZbritjeProduktit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("qmimiMeZbritjeProduktit")
-                        .HasDefaultValueSql("((0))");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("QmimiPaZbritjeProduktit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(18, 2)")
-                        .HasColumnName("qmimiPaZbritjeProduktit")
-                        .HasDefaultValueSql("((0))");
+                        .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("ProduktiId");
+                    b.HasKey("ZbritjaID");
 
-                    b.ToTable("ZbritjaQmimitProduktit", (string)null);
+                    b.HasIndex("ProduktiId")
+                        .IsUnique();
+
+                    b.ToTable("ZbritjaQmimitProduktit");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -781,49 +701,50 @@ namespace WebAPI.Migrations
             modelBuilder.Entity("WebAPI.Models.ContactForm", b =>
                 {
                     b.HasOne("WebAPI.Models.Perdoruesi", "User")
-                        .WithMany("ContactForms")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_ContactForm_Perdoruesi");
+                        .WithMany("ContactForm")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebAPI.Models.KodiZbritje", b =>
                 {
-                    b.HasOne("WebAPI.Models.Produkti", "IdProduktiNavigation")
+                    b.HasOne("WebAPI.Models.Produkti", "Produkti")
                         .WithMany("KodiZbritjes")
-                        .HasForeignKey("IdProdukti")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_KodiZbritjes_Produkti");
+                        .HasForeignKey("IdProdukti");
 
-                    b.Navigation("IdProduktiNavigation");
+                    b.Navigation("Produkti");
+                });
+
+            modelBuilder.Entity("WebAPI.Models.Perdoruesi", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "AspNetUser")
+                        .WithMany()
+                        .HasForeignKey("AspNetUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AspNetUser");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Porosit", b =>
                 {
-                    b.HasOne("WebAPI.Models.Perdoruesi", "IdKlientiNavigation")
-                        .WithMany("Porosits")
-                        .HasForeignKey("IdKlienti")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_Porosit_Klienti");
+                    b.HasOne("WebAPI.Models.Perdoruesi", "Klienti")
+                        .WithMany("Porosit")
+                        .HasForeignKey("IdKlienti");
 
-                    b.Navigation("IdKlientiNavigation");
+                    b.Navigation("Klienti");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Produkti", b =>
                 {
                     b.HasOne("WebAPI.Models.KategoriaProduktit", "Kategoria")
-                        .WithMany("Produktis")
-                        .HasForeignKey("KategoriaId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_Produkti_Kategoria");
+                        .WithMany("Produkti")
+                        .HasForeignKey("KategoriaId");
 
-                    b.HasOne("WebAPI.Models.Kompanium", "Kompania")
-                        .WithMany("Produktis")
-                        .HasForeignKey("KompaniaId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_Produkti_Kompania");
+                    b.HasOne("WebAPI.Models.Kompania", "Kompania")
+                        .WithMany("Produkti")
+                        .HasForeignKey("KompaniaId");
 
                     b.Navigation("Kategoria");
 
@@ -833,10 +754,8 @@ namespace WebAPI.Migrations
             modelBuilder.Entity("WebAPI.Models.RegjistrimiStokut", b =>
                 {
                     b.HasOne("WebAPI.Models.Perdoruesi", "Stafi")
-                        .WithMany("RegjistrimiStokuts")
-                        .HasForeignKey("StafiId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_Regjistrimi_Perdoruesi");
+                        .WithMany("RegjistrimiStokut")
+                        .HasForeignKey("StafiId");
 
                     b.Navigation("Stafi");
                 });
@@ -852,49 +771,45 @@ namespace WebAPI.Migrations
                     b.Navigation("Produkti");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.TeDhenatEporosi", b =>
+            modelBuilder.Entity("WebAPI.Models.TeDhenatEPorosis", b =>
                 {
-                    b.HasOne("WebAPI.Models.Porosit", "IdPorosiaNavigation")
-                        .WithMany("TeDhenatEporosis")
-                        .HasForeignKey("IdPorosia")
+                    b.HasOne("WebAPI.Models.Porosit", "Porosia")
+                        .WithMany("TeDhenatEPorosis")
+                        .HasForeignKey("IdPorosia");
+
+                    b.HasOne("WebAPI.Models.Produkti", "Produkti")
+                        .WithMany("TeDhenatEPorosis")
+                        .HasForeignKey("IdProdukti");
+
+                    b.Navigation("Porosia");
+
+                    b.Navigation("Produkti");
+                });
+
+            modelBuilder.Entity("WebAPI.Models.TeDhenatPerdoruesit", b =>
+                {
+                    b.HasOne("WebAPI.Models.Perdoruesi", "User")
+                        .WithOne("TeDhenatPerdoruesit")
+                        .HasForeignKey("WebAPI.Models.TeDhenatPerdoruesit", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("FK_TeDhenatPorosis_Porosia");
+                        .IsRequired();
 
-                    b.HasOne("WebAPI.Models.Produkti", "IdProduktiNavigation")
-                        .WithMany("TeDhenatEporosis")
-                        .HasForeignKey("IdProdukti")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_TeDhenatPorosis_Produkti");
-
-                    b.HasOne("WebAPI.Models.KodiZbritje", "KodiZbritjesNavigation")
-                        .WithMany("TeDhenatEporosis")
-                        .HasForeignKey("KodiZbritjes")
-                        .HasConstraintName("FK_TeDhenatPorosis_KodiZbritjes");
-
-                    b.Navigation("IdPorosiaNavigation");
-
-                    b.Navigation("IdProduktiNavigation");
-
-                    b.Navigation("KodiZbritjesNavigation");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebAPI.Models.TeDhenatRegjistrimit", b =>
                 {
-                    b.HasOne("WebAPI.Models.Produkti", "IdProduktitNavigation")
-                        .WithMany("TeDhenatRegjistrimits")
-                        .HasForeignKey("IdProduktit")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_Produkti_TeDhenatRegjistrimit");
+                    b.HasOne("WebAPI.Models.Produkti", "Produkti")
+                        .WithMany("TeDhenatRegjistrimit")
+                        .HasForeignKey("IdProduktit");
 
-                    b.HasOne("WebAPI.Models.RegjistrimiStokut", "IdRegjistrimitNavigation")
-                        .WithMany("TeDhenatRegjistrimits")
-                        .HasForeignKey("IdRegjistrimit")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("FK_RegjistrimiStokut_TeDhenatRegjistrimit");
+                    b.HasOne("WebAPI.Models.RegjistrimiStokut", "Regjistrimi")
+                        .WithMany("TeDhenatRegjistrimit")
+                        .HasForeignKey("IdRegjistrimit");
 
-                    b.Navigation("IdProduktitNavigation");
+                    b.Navigation("Produkti");
 
-                    b.Navigation("IdRegjistrimitNavigation");
+                    b.Navigation("Regjistrimi");
                 });
 
             modelBuilder.Entity("WebAPI.Models.ZbritjaQmimitProduktit", b =>
@@ -910,31 +825,28 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("WebAPI.Models.KategoriaProduktit", b =>
                 {
-                    b.Navigation("Produktis");
+                    b.Navigation("Produkti");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.KodiZbritje", b =>
+            modelBuilder.Entity("WebAPI.Models.Kompania", b =>
                 {
-                    b.Navigation("TeDhenatEporosis");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.Kompanium", b =>
-                {
-                    b.Navigation("Produktis");
+                    b.Navigation("Produkti");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Perdoruesi", b =>
                 {
-                    b.Navigation("ContactForms");
+                    b.Navigation("ContactForm");
 
-                    b.Navigation("Porosits");
+                    b.Navigation("Porosit");
 
-                    b.Navigation("RegjistrimiStokuts");
+                    b.Navigation("RegjistrimiStokut");
+
+                    b.Navigation("TeDhenatPerdoruesit");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Porosit", b =>
                 {
-                    b.Navigation("TeDhenatEporosis");
+                    b.Navigation("TeDhenatEPorosis");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Produkti", b =>
@@ -943,16 +855,16 @@ namespace WebAPI.Migrations
 
                     b.Navigation("StokuQmimiProduktit");
 
-                    b.Navigation("TeDhenatEporosis");
+                    b.Navigation("TeDhenatEPorosis");
 
-                    b.Navigation("TeDhenatRegjistrimits");
+                    b.Navigation("TeDhenatRegjistrimit");
 
                     b.Navigation("ZbritjaQmimitProduktit");
                 });
 
             modelBuilder.Entity("WebAPI.Models.RegjistrimiStokut", b =>
                 {
-                    b.Navigation("TeDhenatRegjistrimits");
+                    b.Navigation("TeDhenatRegjistrimit");
                 });
 #pragma warning restore 612, 618
         }

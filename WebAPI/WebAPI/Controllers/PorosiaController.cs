@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
 using WebAPI.Models;
 
 namespace TechStoreWebAPI.Controllers
@@ -22,10 +23,10 @@ namespace TechStoreWebAPI.Controllers
         [Route("Porosit")]
         public async Task<IActionResult> Get()
         {
-            var porosit = await _context.Porosits
-                .Include(p => p.IdKlientiNavigation)
+            var porosit = await _context.Porosit
+                .Include(p => p.Klienti)
                     .ThenInclude(t => t.TeDhenatPerdoruesit)
-                .Select(p => new 
+                .Select(p => new
                 {
                     p.IdPorosia,
                     p.TotaliPorosis,
@@ -34,8 +35,8 @@ namespace TechStoreWebAPI.Controllers
                     p.IdKlienti,
                     p.Zbritja,
                     p.TotaliProdukteve,
-                    p.IdKlientiNavigation.Emri,
-                    p.IdKlientiNavigation.Mbiemri,
+                    p.Klienti.Emri,
+                    p.Klienti.Mbiemri,
                 })
                 .OrderByDescending(p => p.IdPorosia)
                 .ToListAsync();
@@ -48,8 +49,8 @@ namespace TechStoreWebAPI.Controllers
         [Route("shfaqPorositeUserit")]
         public async Task<IActionResult> GetPorositUseritget(int idPerdoruesi)
         {
-            List<Porosit> porosit = await _context.Porosits
-                .Where(p=> p.IdKlienti == idPerdoruesi)
+            List<Porosit> porosit = await _context.Porosit
+                .Where(p => p.IdKlienti == idPerdoruesi)
                 .OrderByDescending(p => p.IdPorosia)
                 .ToListAsync();
 
@@ -61,10 +62,10 @@ namespace TechStoreWebAPI.Controllers
         [Route("shfaqPorosineNgaID")]
         public async Task<IActionResult> GetPorosineNgaID(int nrFatures)
         {
-            var porosit = await _context.Porosits
-                .Include(p => p.TeDhenatEporosis)
-                    .ThenInclude(t => t.IdProduktiNavigation)
-                .Include(p => p.IdKlientiNavigation)
+            var porosit = await _context.Porosit
+                .Include(p => p.TeDhenatEPorosis)
+                    .ThenInclude(t => t.Produkti)
+                .Include(p => p.Klienti)
                     .ThenInclude(t => t.TeDhenatPerdoruesit)
                 .Where(x => x.IdPorosia == nrFatures)
                 .Select(p => new
@@ -76,21 +77,21 @@ namespace TechStoreWebAPI.Controllers
                     p.IdKlienti,
                     p.Zbritja,
                     p.TotaliProdukteve,
-                    p.IdKlientiNavigation.Emri,
-                    p.IdKlientiNavigation.Mbiemri,
-                    p.IdKlientiNavigation.Email,
-                    p.IdKlientiNavigation.TeDhenatPerdoruesit.NrKontaktit,
-                    p.IdKlientiNavigation.TeDhenatPerdoruesit.Adresa,
-                    p.IdKlientiNavigation.TeDhenatPerdoruesit.Qyteti,
-                    p.IdKlientiNavigation.TeDhenatPerdoruesit.Shteti,
-                    p.IdKlientiNavigation.TeDhenatPerdoruesit.ZipKodi,
-                    TeDhenatEporosis = p.TeDhenatEporosis.Select(t => new
+                    p.Klienti.Emri,
+                    p.Klienti.Mbiemri,
+                    p.Klienti.Email,
+                    p.Klienti.TeDhenatPerdoruesit.NrKontaktit,
+                    p.Klienti.TeDhenatPerdoruesit.Adresa,
+                    p.Klienti.TeDhenatPerdoruesit.Qyteti,
+                    p.Klienti.TeDhenatPerdoruesit.Shteti,
+                    p.Klienti.TeDhenatPerdoruesit.ZipKodi,
+                    TeDhenatEPorosis = p.TeDhenatEPorosis.Select(t => new
                     {
                         t.QmimiTotal,
                         t.QmimiProduktit,
                         t.SasiaPorositur,
-                        t.IdProduktiNavigation.EmriProduktit,
-                        t.IdProduktiNavigation.FotoProduktit,
+                        t.Produkti.EmriProduktit,
+                        t.Produkti.FotoProduktit,
                     }),
                 })
                 .FirstOrDefaultAsync();
@@ -104,7 +105,7 @@ namespace TechStoreWebAPI.Controllers
         [Route("teDhenatEProsis")]
         public async Task<IActionResult> Get(int nrPorosis)
         {
-            List<TeDhenatEporosi> porsia = await _context.TeDhenatEporoses.Where(x => x.IdPorosia == nrPorosis).ToListAsync();
+            List<TeDhenatEPorosis> porsia = await _context.TeDhenatEPorosis.Where(x => x.IdPorosia == nrPorosis).ToListAsync();
             return Ok(porsia);
         }
 
@@ -113,7 +114,7 @@ namespace TechStoreWebAPI.Controllers
         [Route("vendosPorosine")]
         public async Task<IActionResult> Post([FromBody] Porosit porosit)
         {
-            await _context.Porosits.AddAsync(porosit);
+            await _context.Porosit.AddAsync(porosit);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("get", porosit.IdPorosia, porosit);
@@ -122,12 +123,12 @@ namespace TechStoreWebAPI.Controllers
         [Authorize(Roles = "Admin, Menaxher, User")]
         [HttpPost]
         [Route("vendosTeDhenatPorosise")]
-        public async Task<IActionResult> Post([FromBody] TeDhenatEporosi teDhenatEporosi)
+        public async Task<IActionResult> Post([FromBody] TeDhenatEPorosis teDhenatEporosi)
         {
-            await _context.TeDhenatEporoses.AddAsync(teDhenatEporosi);
+            await _context.TeDhenatEPorosis.AddAsync(teDhenatEporosi);
             await _context.SaveChangesAsync();
 
-            var produkti = await _context.StokuQmimiProduktits.FindAsync(teDhenatEporosi.IdProdukti);
+            var produkti = await _context.StokuQmimiProduktit.FindAsync(teDhenatEporosi.IdProdukti);
             if (produkti == null)
             {
                 return NotFound();
@@ -153,7 +154,7 @@ namespace TechStoreWebAPI.Controllers
         [Route("perditesoStatusinPorosis")]
         public async Task<IActionResult> Put(int idPorosia, string statusi)
         {
-            var porosia = await _context.Porosits.FirstOrDefaultAsync(p => p.IdPorosia == idPorosia);
+            var porosia = await _context.Porosit.FirstOrDefaultAsync(p => p.IdPorosia == idPorosia);
 
             if (porosia == null)
             {
@@ -162,7 +163,7 @@ namespace TechStoreWebAPI.Controllers
 
             porosia.StatusiPorosis = statusi;
 
-            _context.Porosits.Update(porosia);
+            _context.Porosit.Update(porosia);
             await _context.SaveChangesAsync();
 
             return Ok(porosia);

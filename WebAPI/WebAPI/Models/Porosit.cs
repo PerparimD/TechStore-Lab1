@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAPI.Models;
 
 public partial class Porosit
 {
+    [Key]
     public int IdPorosia { get; set; }
 
     public decimal? TotaliPorosis { get; set; }
@@ -17,8 +20,8 @@ public partial class Porosit
 
     public decimal? Zbritja { get; set; }
     public int? TotaliProdukteve { get; set; }
+    [ForeignKey("IdKlienti")]
+    public virtual Perdoruesi? Klienti { get; set; }
 
-    public virtual Perdoruesi? IdKlientiNavigation { get; set; }
-
-    public virtual ICollection<TeDhenatEporosi> TeDhenatEporosis { get; } = new List<TeDhenatEporosi>();
+    public virtual List<TeDhenatEPorosis>? TeDhenatEPorosis { get; set; }
 }

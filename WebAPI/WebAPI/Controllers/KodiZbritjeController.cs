@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -30,7 +31,7 @@ namespace WebAPI.Controllers
                     x.QmimiZbritjes,
                     x.DataKrijimit,
                     x.IdProdukti,
-                    x.IdProduktiNavigation.EmriProduktit
+                    x.Produkti.EmriProduktit
                 })
                 .ToListAsync();
             return Ok(kodet);
@@ -43,12 +44,13 @@ namespace WebAPI.Controllers
         {
             var kodiZbritjes = await _context.KodiZbritjes
                 .Where(x => x.Kodi.Equals(kodi))
-                .Select(x => new {
+                .Select(x => new
+                {
                     x.Kodi,
                     x.QmimiZbritjes,
                     x.DataKrijimit,
                     x.IdProdukti,
-                    x.IdProduktiNavigation.EmriProduktit
+                    x.Produkti.EmriProduktit
                 })
                 .FirstOrDefaultAsync();
 
@@ -63,7 +65,7 @@ namespace WebAPI.Controllers
         [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoKodin")]
-        public async Task<IActionResult> Post(KodiZbritje kodiZbritjes)
+        public async Task<IActionResult> Post(KodiZbritjes kodiZbritjes)
         {
             await _context.KodiZbritjes.AddAsync(kodiZbritjes);
             await _context.SaveChangesAsync();
@@ -74,16 +76,16 @@ namespace WebAPI.Controllers
         [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut]
         [Route("perditesoTeDhenatEKodit")]
-        public async Task<IActionResult> Put(String kodi, [FromBody] KodiZbritje k)
+        public async Task<IActionResult> Put(String kodi, [FromBody] KodiZbritjes k)
         {
             var teDhenatKodit = await _context.KodiZbritjes.FirstOrDefaultAsync(x => x.Kodi.Equals(kodi));
 
-            if(teDhenatKodit == null)
+            if (teDhenatKodit == null)
             {
                 return BadRequest("Nuk u gjet asnje kode!");
             }
 
-            if(k.QmimiZbritjes > 0)
+            if (k.QmimiZbritjes > 0)
             {
                 teDhenatKodit.QmimiZbritjes = k.QmimiZbritjes;
             }
@@ -97,7 +99,7 @@ namespace WebAPI.Controllers
                 teDhenatKodit.IdProdukti = k.IdProdukti;
             }
 
-            
+
 
             _context.KodiZbritjes.Update(teDhenatKodit);
             await _context.SaveChangesAsync();

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -22,7 +23,7 @@ namespace WebAPI.Controllers
         [Route("shfaqZbritjet")]
         public async Task<IActionResult> get()
         {
-            var prodMeZbritje = await _context.Produktis
+            var prodMeZbritje = await _context.Produkti
                 .Where(x => x.ZbritjaQmimitProduktit.QmimiMeZbritjeProduktit != null)
                 .Select(x => new
                 {
@@ -40,9 +41,9 @@ namespace WebAPI.Controllers
         [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoZbritjenProduktit")]
-        public async Task<IActionResult> post(ZbritjaQmimitProduktit zbritja)
+        public async Task<IActionResult> Post(ZbritjaQmimitProduktit zbritja)
         {
-            await _context.ZbritjaQmimitProduktits.AddAsync(zbritja);
+            await _context.ZbritjaQmimitProduktit.AddAsync(zbritja);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("get", zbritja.ProduktiId, zbritja);
@@ -53,14 +54,14 @@ namespace WebAPI.Controllers
         [Route("fshijZbritjenProduktit")]
         public async Task<IActionResult> Delete(int id)
         {
-            var produkti = await _context.ZbritjaQmimitProduktits.FirstOrDefaultAsync(x => x.ProduktiId == id);
+            var produkti = await _context.ZbritjaQmimitProduktit.FirstOrDefaultAsync(x => x.ProduktiId == id);
 
-            if(produkti == null)
+            if (produkti == null)
             {
                 return BadRequest("Ky produkt nuk ka zbritje!");
             }
 
-            _context.ZbritjaQmimitProduktits.Remove(produkti);
+            _context.ZbritjaQmimitProduktit.Remove(produkti);
             await _context.SaveChangesAsync();
 
             return NoContent();

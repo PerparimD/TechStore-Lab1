@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using WebAPI.Models;
+using WebAPI.Data;
 
 namespace WebAPI.Controllers
 {
@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         [Route("ShtoProduktin")]
         public async Task<IActionResult> ShtoProduktin(IFormFile foto)
         {
-            if(foto == null || foto.Length == 0) 
+            if (foto == null || foto.Length == 0)
             {
                 return BadRequest("Ju lutem vendosni foton");
             }
@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
 
             var follderi = Path.Combine("..", "..", "techstore", "public", "img", "products", emriUnikFotos);
 
-            using(var stream = new FileStream(follderi, FileMode.Create))
+            using (var stream = new FileStream(follderi, FileMode.Create))
             {
                 await foto.CopyToAsync(stream);
             }

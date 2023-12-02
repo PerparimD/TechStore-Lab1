@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAPI.Models;
 
-public partial class KodiZbritje
+public partial class KodiZbritjes
 {
+    [Key]
     public string Kodi { get; set; } = null!;
 
     public DateTime? DataKrijimit { get; set; }
@@ -13,6 +16,7 @@ public partial class KodiZbritje
 
     public int? IdProdukti { get; set; }
 
-    public virtual Produkti? IdProduktiNavigation { get; set; }
+    [ForeignKey("IdProdukti")]
+    public virtual Produkti? Produkti { get; set; }
 
 }

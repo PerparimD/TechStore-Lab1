@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -22,7 +23,7 @@ namespace WebAPI.Controllers
         [Route("shfaqRegjistrimet")]
         public async Task<IActionResult> Get()
         {
-            var regjistrimet = await _context.RegjistrimiStokuts
+            var regjistrimet = await _context.RegjistrimiStokut
                 .OrderByDescending(x => x.IdRegjistrimit)
                 .Select(x => new
                 {
@@ -43,7 +44,7 @@ namespace WebAPI.Controllers
         [Route("shfaqRegjistrimetNgaID")]
         public async Task<IActionResult> GetRegjistrimin(int id)
         {
-            var regjistrimet = await _context.RegjistrimiStokuts
+            var regjistrimet = await _context.RegjistrimiStokut
                 .Select(x => new
                 {
                     x.IdRegjistrimit,
@@ -63,13 +64,13 @@ namespace WebAPI.Controllers
         [Route("shfaqTeDhenatKalkulimit")]
         public async Task<IActionResult> Get(int idRegjistrimit)
         {
-            var teDhenat = await _context.TeDhenatRegjistrimits
+            var teDhenat = await _context.TeDhenatRegjistrimit
                 .Where(x => x.IdRegjistrimit == idRegjistrimit)
                 .Select(x => new
                 {
                     x.IdRegjistrimit,
                     x.IdProduktit,
-                    x.IdProduktitNavigation.EmriProduktit,
+                    x.Produkti.EmriProduktit,
                     x.SasiaStokut,
                     x.QmimiBleres,
                     x.QmimiShites
@@ -84,8 +85,8 @@ namespace WebAPI.Controllers
         [Route("ruajKalkulimin")]
         public async Task<IActionResult> Post(RegjistrimiStokut regjistrimet)
         {
-            await _context.RegjistrimiStokuts.AddAsync(regjistrimet);
-            await _context.SaveChangesAsync(); 
+            await _context.RegjistrimiStokut.AddAsync(regjistrimet);
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction("Get", regjistrimet.IdRegjistrimit, regjistrimet);
         }
@@ -95,7 +96,7 @@ namespace WebAPI.Controllers
         [Route("ruajKalkulimin/teDhenat")]
         public async Task<IActionResult> Post(TeDhenatRegjistrimit teDhenat)
         {
-            await _context.TeDhenatRegjistrimits.AddAsync(teDhenat);
+            await _context.TeDhenatRegjistrimit.AddAsync(teDhenat);
             await _context.SaveChangesAsync();
 
             return Ok();
@@ -106,7 +107,7 @@ namespace WebAPI.Controllers
         [Route("ruajKalkulimin/perditesoStokunQmimin")]
         public async Task<IActionResult> Put(int id, [FromBody] StokuQmimiProduktit stoku)
         {
-            var produkti = await _context.StokuQmimiProduktits.FindAsync(id);
+            var produkti = await _context.StokuQmimiProduktit.FindAsync(id);
             if (produkti == null)
             {
                 return NotFound();
@@ -116,7 +117,8 @@ namespace WebAPI.Controllers
             produkti.DataPerditsimit = DateTime.Now;
             produkti.QmimiProduktit = stoku.QmimiProduktit;
             produkti.QmimiBleres = stoku.QmimiBleres;
-            if(stoku.DataKrijimit == null) {
+            if (stoku.DataKrijimit == null)
+            {
                 produkti.DataKrijimit = produkti.DataKrijimit;
             }
 

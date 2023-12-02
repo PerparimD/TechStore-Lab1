@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAPI.Models;
+using WebAPI.Data;
 
 namespace WebAPI.Controllers
 {
@@ -22,90 +22,101 @@ namespace WebAPI.Controllers
         [Route("totaleTeNdryshme")]
         public async Task<IActionResult> GetTotaleTeNdryshme()
         {
-            /* PERGJITHSHME */
-            var totShitjeve = await _context.Porosits.SumAsync(p => p.TotaliPorosis);
-            var totUser = await _context.Perdoruesis.CountAsync();
-            var totProdukteve = await _context.Produktis.CountAsync();
-            var totPorosive = await _context.Porosits.CountAsync();
-            /* PERGJITHSHME */
+           /*PERGJITHSHME*/
+           var totShitjeve = await _context.Porosit.SumAsync(p => p.TotaliPorosis);
+            var totUser = await _context.Perdoruesi.CountAsync();
+            var totProdukteve = await _context.Produkti.CountAsync();
+            var totPorosive = await _context.Porosit.CountAsync();
+            /*PERGJITHSHME*/
 
-            /* DITA E SOTME */
-            var totPorosiveSotme = await _context.Porosits.Where(p => p.DataPorosis == DateTime.Today).CountAsync();
-            var totShitjeveSotme = await _context.Porosits.Where(p => p.DataPorosis == DateTime.Today).SumAsync(p => p.TotaliPorosis);
-            /* DITA E SOTME */
+            /*DITA E SOTME*/
+            var totPorosiveSotme = await _context.Porosit.Where(p => p.DataPorosis == DateTime.Today).CountAsync();
+            var totShitjeveSotme = await _context.Porosit.Where(p => p.DataPorosis == DateTime.Today).SumAsync(p => p.TotaliPorosis);
+            /*DITA E SOTME*/
 
-            /* MUJORE */
+            /*MUJORE*/
             var dataESotme = DateTime.Today;
             var ditaEPareMuajit = new DateTime(dataESotme.Year, dataESotme.Month, 1);
             var ditaEFunditMuajit = ditaEPareMuajit.AddMonths(1).AddDays(-1);
 
-            var totPorosiveMujore = await _context.Porosits
+            var totPorosiveMujore = await _context.Porosit
                 .Where(p => p.DataPorosis >= ditaEPareMuajit && p.DataPorosis <= ditaEFunditMuajit)
                 .CountAsync();
 
-            var totShitjeveMujore = await _context.Porosits
+            var totShitjeveMujore = await _context.Porosit
                 .Where(p => p.DataPorosis >= ditaEPareMuajit && p.DataPorosis <= ditaEFunditMuajit)
                 .SumAsync(p => p.TotaliPorosis);
-            /* MUJORE */
+            /*MUJORE*/
 
-            /* TE MEPARSHME */
+            /*TE MEPARSHME*/
 
-            /* DITA E DJESHME */
+            /*DITA E DJESHME*/
             var ditaDjeshme = DateTime.Today.AddDays(-1);
-            var totPorosiveDjeshme = await _context.Porosits.Where(p => p.DataPorosis == ditaDjeshme).CountAsync();
-            var totShitjeveDjeshme = await _context.Porosits.Where(p => p.DataPorosis == ditaDjeshme).SumAsync(p => p.TotaliPorosis);
-            /* DITA E DJESHME */
+            var totPorosiveDjeshme = await _context.Porosit.Where(p => p.DataPorosis == ditaDjeshme).CountAsync();
+            var totShitjeveDjeshme = await _context.Porosit.Where(p => p.DataPorosis == ditaDjeshme).SumAsync(p => p.TotaliPorosis);
+           /* DITA E DJESHME*/
 
-            /* MUAJI I KALUAR */
+            /*MUAJI I KALUAR*/
             var dataMuajinKaluar = dataESotme.AddMonths(-1);
             var ditaEPareMuajitKaluar = new DateTime(dataMuajinKaluar.Year, dataMuajinKaluar.Month, 1);
             var ditaEFunditMuajitKaluar = ditaEPareMuajitKaluar.AddMonths(1).AddDays(-1);
 
-            var totPorosiveMujoreKaluar = await _context.Porosits
+            var totPorosiveMujoreKaluar = await _context.Porosit
                 .Where(p => p.DataPorosis >= ditaEPareMuajitKaluar && p.DataPorosis <= ditaEFunditMuajitKaluar)
                 .CountAsync();
 
-            var totShitjeveMujoreKaluar = await _context.Porosits
+            var totShitjeveMujoreKaluar = await _context.Porosit
                 .Where(p => p.DataPorosis >= ditaEPareMuajitKaluar && p.DataPorosis <= ditaEFunditMuajitKaluar)
                 .SumAsync(p => p.TotaliPorosis);
-            /* MUAJI I KALUAR */
+           /* MUAJI I KALUAR*/
 
-            /* TE MEPARSHME */
+            /*TE MEPARSHME*/
 
-            var totalet = new
-            {
-                /* PERGJITHSHME */
-                    TotaliShitjeve = totShitjeve,
-                    TotaliUsers = totUser,
-                    TotaliProdukteve = totProdukteve,
-                    TotaliPorosive = totPorosive,
-                /* PERGJITHSHME */
+           var totalet = new
+           {
+              /* PERGJITHSHME*/
 
-                /* DITA E SOTME */
-                    TotaliPorosiveSotme = totPorosiveSotme,
-                    TotaliShitjeveSotme = totShitjeveSotme,
-                /* DITA E SOTME */
+                   TotaliShitjeve = totShitjeve,
+               TotaliUsers = totUser,
+               TotaliProdukteve = totProdukteve,
+               TotaliPorosive = totPorosive,
+              /* PERGJITHSHME
+*/
 
-                /* MUJORE */
-                    TotaliPorosiveKeteMuaj = totPorosiveMujore,
-                    TotaliShitjeveKeteMuaj = totShitjeveMujore,
-                /* MUJORE */
+                //DITA E SOTME
 
-                /* TE MEPARSHME */
+                   TotaliPorosiveSotme = totPorosiveSotme,
+               TotaliShitjeveSotme = totShitjeveSotme,
+               //DITA E SOTME
 
-                    /* DITA E DJESHME */
-                        TotaliPorosiveDjeshme = totPorosiveDjeshme,
-                        TotaliShitjeveDjeshme = totShitjeveDjeshme,
-                    /* DITA E DJESHME */
 
-                    /* MUAJI I KALUAR */
-                        TotaliPorosiveMuajinKaluar = totPorosiveMujoreKaluar,
-                        TotaliShitjeveMuajinKaluar = totShitjeveMujoreKaluar,
-                    /* MUAJI I KALUAR */
+                //MUJORE
 
-                /* TE MEPARSHME */
+                   TotaliPorosiveKeteMuaj = totPorosiveMujore,
+               TotaliShitjeveKeteMuaj = totShitjeveMujore,
+              // MUJORE
 
-            };
+
+                //TE MEPARSHME
+
+
+                    //DITA E DJESHME
+
+                       TotaliPorosiveDjeshme = totPorosiveDjeshme,
+               TotaliShitjeveDjeshme = totShitjeveDjeshme,
+              // DITA E DJESHME
+
+
+                    //MUAJI I KALUAR
+
+                       TotaliPorosiveMuajinKaluar = totPorosiveMujoreKaluar,
+               TotaliShitjeveMuajinKaluar = totShitjeveMujoreKaluar,
+               //MUAJI I KALUAR
+
+
+                //TE MEPARSHME
+
+           };
 
             return Ok(totalet);
         }
@@ -115,7 +126,7 @@ namespace WebAPI.Controllers
         [Route("15PerdoruesitMeSeShumtiBlerje")]
         public async Task<IActionResult> GetTop15()
         {
-            var bleresit = await _context.Perdoruesis
+            var bleresit = await _context.Perdoruesi
                 .Select(e => new
                 {
                     User = new
@@ -124,8 +135,8 @@ namespace WebAPI.Controllers
                         emri = e.Emri,
                         mbiemri = e.Mbiemri,
                     },
-                    TotaliPorosive = e.Porosits.Count(),
-                    TotaliBlerjeve = e.Porosits.Sum(q => q.TotaliPorosis),
+                    TotaliPorosive = e.Porosit.Count(),
+                    TotaliBlerjeve = e.Porosit.Sum(q => q.TotaliPorosis),
                 })
                 .OrderByDescending(g => g.TotaliPorosive)
                 .ThenByDescending(g => g.TotaliBlerjeve)
@@ -140,7 +151,7 @@ namespace WebAPI.Controllers
         [Route("15ProduktetMeTeShitura")]
         public async Task<IActionResult> GetTop15Prod()
         {
-            var produktet = await _context.Produktis
+            var produktet = await _context.Produkti
                 .Select(e => new
                 {
                     Produkti = new
@@ -153,8 +164,8 @@ namespace WebAPI.Controllers
                         e.StokuQmimiProduktit.QmimiProduktit,
                         e.ZbritjaQmimitProduktit.QmimiMeZbritjeProduktit,
                     },
-                    TotaliPorosive = e.TeDhenatEporosis.Sum(q => q.SasiaPorositur),
-                    TotaliBlerjeve = e.TeDhenatEporosis.Sum(q => q.QmimiTotal),
+                    TotaliPorosive = e.TeDhenatEPorosis.Sum(q => q.SasiaPorositur),
+                    TotaliBlerjeve = e.TeDhenatEPorosis.Sum(q => q.QmimiTotal),
                 })
                 .OrderByDescending(g => g.TotaliPorosive)
                 .ThenByDescending(g => g.TotaliBlerjeve)
@@ -170,8 +181,8 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetShitjetJavore()
         {
             var dataESotme = DateTime.Today;
-            var dataFillimit = dataESotme; 
-            var dataMbarimit = dataESotme.AddDays(-6); ; 
+            var dataFillimit = dataESotme;
+            var dataMbarimit = dataESotme.AddDays(-6); ;
 
             int totaliPorosiveJavore = 0;
             decimal totaliShitjeveJavore = 0;
@@ -180,13 +191,13 @@ namespace WebAPI.Controllers
 
             for (var date = dataFillimit; date >= dataMbarimit; date = date.AddDays(-1))
             {
-                var totalPorosive = await _context.Porosits
+                var totalPorosive = await _context.Porosit
                     .Where(p => p.DataPorosis == date)
                     .CountAsync();
 
                 totaliPorosiveJavore += totalPorosive;
 
-                var totalShitjeve = await _context.Porosits
+                var totalShitjeve = await _context.Porosit
                     .Where(p => p.DataPorosis == date)
                     .SumAsync(p => p.TotaliPorosis);
 

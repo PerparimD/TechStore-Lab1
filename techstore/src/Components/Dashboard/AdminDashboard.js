@@ -17,6 +17,8 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TeDhenatEBiznesit from '../TeDhenatBiznesit/TeDhenatEBiznesit';
 import TabelaEPorosive from '../Porosite/TabelaEPorosive';
+import Banka57449 from '../MbrojtjaProjektit/Banka57449';
+import Personi57449 from '../MbrojtjaProjektit/Personi57449';
 
 const AdminDashboard = (props) => {
   const [eshteAdmin, setEshteAdmin] = useState(false);
@@ -81,6 +83,12 @@ const AdminDashboard = (props) => {
               <Nav.Item >
                 <Nav.Link className='colum normalMenu' eventKey="7" style={key === "7" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
               </Nav.Item>
+              <Nav.Item >
+                <Nav.Link className='colum normalMenu' eventKey="8" style={key === "8" ? ActiveStyle : inActiveStyle}>Banka57449</Nav.Link>
+              </Nav.Item>
+              <Nav.Item >
+                <Nav.Link className='colum normalMenu' eventKey="9" style={key === "9" ? ActiveStyle : inActiveStyle}>Personi57449</Nav.Link>
+              </Nav.Item>
               <Nav.Item>
                 <NavDropdown title="Menu" id="basic-nav-dropdown" className='hamburgerMenu'>
                   <button className='colum buttoniMbylle' onClick={props.setShfaqAdmin}>Mbylle <FontAwesomeIcon icon={faXmark} width="17px" /></button>
@@ -96,7 +104,8 @@ const AdminDashboard = (props) => {
                   <Nav.Link className='colum' eventKey="5" style={key === "5" ? ActiveStyle : inActiveStyle}>Perdoruesit</Nav.Link>
                   <Nav.Link className='colum' eventKey="6" style={key === "6" ? ActiveStyle : inActiveStyle}>Kodet e Zbritjev</Nav.Link>
                   <Nav.Link className='colum' eventKey="7" style={key === "7" ? ActiveStyle : inActiveStyle}>Kalkulimi i Mallit</Nav.Link>
-
+                  <Nav.Link className='colum' eventKey="8" style={key === "8" ? ActiveStyle : inActiveStyle}>Banka57449</Nav.Link>
+                  <Nav.Link className='colum' eventKey="9" style={key === "9" ? ActiveStyle : inActiveStyle}>Personi57449</Nav.Link>
                 </NavDropdown>
               </Nav.Item>
             </Nav>
@@ -128,6 +137,12 @@ const AdminDashboard = (props) => {
               </Tab.Pane>
               <Tab.Pane eventKey="7">
                 <KalkulimiIMallit />
+              </Tab.Pane>
+              <Tab.Pane eventKey="8">
+                <Banka57449 />
+              </Tab.Pane>
+              <Tab.Pane eventKey="9">
+                <Personi57449 />
               </Tab.Pane>
             </Tab.Content>
           </Col>

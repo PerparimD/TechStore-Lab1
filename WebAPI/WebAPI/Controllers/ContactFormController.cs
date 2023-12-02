@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using WebAPI.Data;
 using WebAPI.Models;
 
 namespace TechStoreWebAPI.Controllers
@@ -23,12 +24,12 @@ namespace TechStoreWebAPI.Controllers
         [Route("shfaqMesazhet")]
         public async Task<IActionResult> Get()
         {
-            List<ContactForm> contactforms = await _context.ContactForms
+            List<ContactForm> ContactForm = await _context.ContactForm
                 .Include(x => x.User)
                 .OrderByDescending(x => x.MesazhiId)
                 .ToListAsync();
 
-            var mesazhet = contactforms.Select(x => new
+            var mesazhet = ContactForm.Select(x => new
             {
                 x.Emri,
                 x.Email,
@@ -52,13 +53,13 @@ namespace TechStoreWebAPI.Controllers
         [Route("shfaqMesazhetNgaUseri")]
         public async Task<IActionResult> GetMesazhetUserit(int idUserit)
         {
-            List<ContactForm> contactforms = await _context.ContactForms
+            List<ContactForm> ContactForm = await _context.ContactForm
                 .Include(x => x.User)
                 .OrderByDescending(x => x.MesazhiId)
-                .Where(x=> x.UserId == idUserit)
+                .Where(x => x.UserId == idUserit)
                 .ToListAsync();
 
-            var mesazhet = contactforms.Select(x => new
+            var mesazhet = ContactForm.Select(x => new
             {
                 x.Emri,
                 x.Email,
@@ -82,7 +83,7 @@ namespace TechStoreWebAPI.Controllers
         [Route("shfaqMesazhinSipasIDs")]
         public async Task<IActionResult> Get(int id)
         {
-            var msg = await _context.ContactForms.FirstOrDefaultAsync(x => x.MesazhiId == id);
+            var msg = await _context.ContactForm.FirstOrDefaultAsync(x => x.MesazhiId == id);
 
             return Ok(msg);
         }
@@ -92,7 +93,7 @@ namespace TechStoreWebAPI.Controllers
         [Route("shtoMesazhin")]
         public async Task<IActionResult> Post(ContactForm contactform)
         {
-            await _context.ContactForms.AddAsync(contactform);
+            await _context.ContactForm.AddAsync(contactform);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Get", contactform.MesazhiId, contactform);
@@ -104,13 +105,13 @@ namespace TechStoreWebAPI.Controllers
         [Route("konfirmoMesazhin")]
         public async Task<IActionResult> Put(int id, [FromBody] ContactForm m)
         {
-            var mesazhi = await _context.ContactForms.FirstOrDefaultAsync(x => x.MesazhiId == id);
+            var mesazhi = await _context.ContactForm.FirstOrDefaultAsync(x => x.MesazhiId == id);
             if (mesazhi == null)
             {
                 return BadRequest("Nuk ka asnje mesazhe me kete ID");
             }
             mesazhi.Statusi = "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email";
-            _context.ContactForms.Update(mesazhi);
+            _context.ContactForm.Update(mesazhi);
             await _context.SaveChangesAsync();
 
 
@@ -122,12 +123,12 @@ namespace TechStoreWebAPI.Controllers
         [Route("fshiMesazhin")]
         public async Task<ActionResult> Delete(int id)
         {
-            var mesazhi = await _context.ContactForms.FirstOrDefaultAsync(x => x.MesazhiId == id);
+            var mesazhi = await _context.ContactForm.FirstOrDefaultAsync(x => x.MesazhiId == id);
 
             if (mesazhi == null)
                 return BadRequest("Invalid id");
 
-            _context.ContactForms.Remove(mesazhi);
+            _context.ContactForm.Remove(mesazhi);
             await _context.SaveChangesAsync();
 
             return NoContent();

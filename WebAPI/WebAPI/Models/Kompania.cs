@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebAPI.Models;
 
-public partial class Kompanium
+public partial class Kompania
 {
+    [Key]
     public int KompaniaId { get; set; }
 
     public string? EmriKompanis { get; set; }
@@ -12,6 +14,5 @@ public partial class Kompanium
     public string? Logo { get; set; }
 
     public string? Adresa { get; set; }
-
-    public virtual ICollection<Produkti> Produktis { get; } = new List<Produkti>();
+    public virtual List<Produkti>? Produkti { get; set; }
 }

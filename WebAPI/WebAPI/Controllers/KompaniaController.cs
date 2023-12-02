@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using WebAPI.Data;
 using WebAPI.Models;
 
 namespace TechStoreWebAPI.Controllers
@@ -45,7 +46,7 @@ namespace TechStoreWebAPI.Controllers
         [Authorize(Roles = "Admin, Menaxher")]
         [HttpPost]
         [Route("shtoKompanin")]
-        public async Task<IActionResult> Post(Kompanium kompanium)
+        public async Task<IActionResult> Post(Kompania kompanium)
         {
             await _context.Kompania.AddAsync(kompanium);
             await _context.SaveChangesAsync();
@@ -57,7 +58,7 @@ namespace TechStoreWebAPI.Controllers
         [Authorize(Roles = "Admin, Menaxher")]
         [HttpPut]
         [Route("perditesoKompanin")]
-        public async Task<IActionResult> Put(int id, [FromBody] Kompanium k)
+        public async Task<IActionResult> Put(int id, [FromBody] Kompania k)
         {
             var kompania = await _context.Kompania.FirstOrDefaultAsync(x => x.KompaniaId == id);
 
@@ -76,7 +77,7 @@ namespace TechStoreWebAPI.Controllers
             }
             kompania.Adresa = k.Adresa;
 
-            
+
 
             _context.Kompania.Update(kompania);
             await _context.SaveChangesAsync();

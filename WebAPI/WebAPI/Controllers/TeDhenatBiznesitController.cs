@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Data.Entity;
+using WebAPI.Data;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -23,7 +24,7 @@ namespace WebAPI.Controllers
         [Route("ShfaqTeDhenat")]
         public IActionResult Get()
         {
-            var teDhenat = _context.TeDhenatBiznesits.First();
+            var teDhenat = _context.TeDhenatBiznesit.First();
 
             return Ok(teDhenat);
         }
@@ -33,7 +34,7 @@ namespace WebAPI.Controllers
         [Route("perditesoTeDhenat")]
         public IActionResult Put([FromBody] TeDhenatBiznesit k)
         {
-            var teDhenat = _context.TeDhenatBiznesits.FirstOrDefault(x => x.IdteDhenatBiznesit == 1);
+            var teDhenat = _context.TeDhenatBiznesit.FirstOrDefault(x => x.IdteDhenatBiznesit == 1);
             if (teDhenat == null)
             {
                 return BadRequest("Kategoria nuk egziston");
@@ -43,7 +44,7 @@ namespace WebAPI.Controllers
             teDhenat.Nf = k.Nf;
             teDhenat.Nui = k.Nui;
             teDhenat.Email = k.Email;
-            teDhenat.EmriIbiznesit  = k.EmriIbiznesit;
+            teDhenat.EmriIbiznesit = k.EmriIbiznesit;
             teDhenat.ShkurtesaEmritBiznesit = k.ShkurtesaEmritBiznesit;
             teDhenat.Nrtvsh = k.Nrtvsh;
             teDhenat.Adresa = k.Adresa;

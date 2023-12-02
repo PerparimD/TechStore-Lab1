@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using WebAPI.Data;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -25,7 +26,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var kategoria = await _context.KategoriaProduktits.FirstOrDefaultAsync(x => x.KategoriaId == id);
+                var kategoria = await _context.KategoriaProduktit.FirstOrDefaultAsync(x => x.KategoriaId == id);
 
                 return Ok(kategoria);
             }
@@ -42,7 +43,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var kategorit = _context.KategoriaProduktits
+                var kategorit = _context.KategoriaProduktit
                     .Where(k => k.LlojiKategoris != null)
                     .AsEnumerable()
                     .OrderBy(k => k.LlojiKategoris.ToString())
@@ -61,8 +62,8 @@ namespace WebAPI.Controllers
         [Route("perditesoKategorin")]
         public async Task<IActionResult> Put(int id, [FromBody] KategoriaProduktit k)
         {
-            var kategoria = await _context.KategoriaProduktits.FirstOrDefaultAsync(x => x.KategoriaId == id);
-            if(id < 0)
+            var kategoria = await _context.KategoriaProduktit.FirstOrDefaultAsync(x => x.KategoriaId == id);
+            if (id < 0)
             {
                 return BadRequest("Kategoria nuk egziston");
             }
@@ -71,12 +72,12 @@ namespace WebAPI.Controllers
             {
                 kategoria.LlojiKategoris = k.LlojiKategoris;
             }
-            if(!k.PershkrimiKategoris.IsNullOrEmpty())
+            if (!k.PershkrimiKategoris.IsNullOrEmpty())
             {
                 kategoria.PershkrimiKategoris = k.PershkrimiKategoris;
             }
 
-            _context.KategoriaProduktits.Update(kategoria);
+            _context.KategoriaProduktit.Update(kategoria);
             await _context.SaveChangesAsync();
 
             return Ok(kategoria);
@@ -87,7 +88,7 @@ namespace WebAPI.Controllers
         [Route("shtoKategorin")]
         public async Task<IActionResult> Post(KategoriaProduktit kategoriaProduktit)
         {
-            await _context.KategoriaProduktits.AddAsync(kategoriaProduktit);
+            await _context.KategoriaProduktit.AddAsync(kategoriaProduktit);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Get", kategoriaProduktit.KategoriaId, kategoriaProduktit);
@@ -98,11 +99,11 @@ namespace WebAPI.Controllers
         [Route("fshijKategorin")]
         public async Task<IActionResult> Delete(int id)
         {
-            var kategoria = await _context.KategoriaProduktits.FirstOrDefaultAsync(x => x.KategoriaId == id);
+            var kategoria = await _context.KategoriaProduktit.FirstOrDefaultAsync(x => x.KategoriaId == id);
 
-            _context.KategoriaProduktits.Remove(kategoria);
+            _context.KategoriaProduktit.Remove(kategoria);
             await _context.SaveChangesAsync();
-                
+
             return Ok("Kategoria u fshie me sukses!");
         }
     }

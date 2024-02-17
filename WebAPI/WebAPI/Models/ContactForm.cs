@@ -12,15 +12,15 @@ public partial class ContactForm
 
     public int? UserId { get; set; }
 
-    public string? Mesazhi { get; set; }
+    public string? Mesazhi { get; set; } = "";
 
-    public DateTime? DataDergeses { get; set; }
+    public DateTime? DataDergeses { get; set; } = DateTime.Now;
 
-    public string? Statusi { get; set; }
+    public string? Statusi { get; set; } = "Mesazhi juaj eshte derguar tek Stafi";
 
-    public string? Emri { get; set; }
+    public string? Emri { get; set; } = "";
 
-    public string? Email { get; set; }
+    public string? Email { get; set; } = "";
     [ForeignKey("UserId")]
     public virtual Perdoruesi? User { get; set; }
 }

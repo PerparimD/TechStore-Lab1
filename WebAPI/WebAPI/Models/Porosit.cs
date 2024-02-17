@@ -10,16 +10,16 @@ public partial class Porosit
     [Key]
     public int IdPorosia { get; set; }
 
-    public decimal? TotaliPorosis { get; set; }
+    public decimal? TotaliPorosis { get; set; } = 0;
 
-    public DateTime? DataPorosis { get; set; }
+    public DateTime? DataPorosis { get; set; } = DateTime.Now;
 
-    public string? StatusiPorosis { get; set; }
+    public string? StatusiPorosis { get; set; } = 'Ne Procesim';
 
     public int? IdKlienti { get; set; }
 
-    public decimal? Zbritja { get; set; }
-    public int? TotaliProdukteve { get; set; }
+    public decimal? Zbritja { get; set; } = 0;
+    public int? TotaliProdukteve { get; set; } = 0;
     [ForeignKey("IdKlienti")]
     public virtual Perdoruesi? Klienti { get; set; }
 

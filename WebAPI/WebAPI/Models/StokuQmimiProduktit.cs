@@ -11,15 +11,15 @@ public partial class StokuQmimiProduktit
     public int StokuID { get; set; }
     public int ProduktiId { get; set; }
 
-    public int? SasiaNeStok { get; set; }
+    public int? SasiaNeStok { get; set; } = 0;
 
-    public decimal? QmimiBleres { get; set; }
+    public decimal? QmimiBleres { get; set; } = 0;
 
-    public decimal? QmimiProduktit { get; set; }
+    public decimal? QmimiProduktit { get; set; } = 0;
 
-    public DateTime? DataKrijimit { get; set; }
+    public DateTime? DataKrijimit { get; set; } = DateTime.Now;
 
-    public DateTime? DataPerditsimit { get; set; }
+    public DateTime? DataPerditsimit { get; set; } = DateTime.Now;
     [ForeignKey(nameof(ProduktiId))]
     public virtual Produkti? Produkti { get; set; }
 }

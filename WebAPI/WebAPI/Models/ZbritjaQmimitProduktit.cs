@@ -11,13 +11,13 @@ public partial class ZbritjaQmimitProduktit
     public int ZbritjaID { get; set; }
     public int ProduktiId { get; set; }
 
-    public decimal? QmimiPaZbritjeProduktit { get; set; }
+    public decimal? QmimiPaZbritjeProduktit { get; set; } = 0;
 
-    public decimal? QmimiMeZbritjeProduktit { get; set; }
+    public decimal? QmimiMeZbritjeProduktit { get; set; } = 0;
 
-    public DateTime? DataZbritjes { get; set; }
+    public DateTime? DataZbritjes { get; set; } = DateTime.Now;
 
-    public DateTime? DataSkadimit { get; set; }
+    public DateTime? DataSkadimit { get; set; } = DateTime.Now;
     [ForeignKey(nameof(ProduktiId))]
     public virtual Produkti? Produkti { get; set; }
 }

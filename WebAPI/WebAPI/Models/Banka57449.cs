@@ -6,7 +6,7 @@ namespace WebAPI.Models
     {
         [Key]
         public int Id57449 { get; set; }
-        public string? Emri57449 { get; set; }
+        public string? Emri57449 { get; set; } = "";
         public virtual List<Personi57449>? Personi57449 { get; set; }
     }
 }

@@ -10,11 +10,11 @@ public partial class Produkti
     [Key]
     public int ProduktiId { get; set; }
 
-    public string? EmriProduktit { get; set; }
+    public string? EmriProduktit { get; set; } = "";
 
-    public string? Pershkrimi { get; set; }
+    public string? Pershkrimi { get; set; } = "";
 
-    public string? FotoProduktit { get; set; }
+    public string? FotoProduktit { get; set; } = "produktPaFoto.png";
 
     public int? KompaniaId { get; set; }
 

@@ -9,14 +9,14 @@ public partial class TeDhenatEPorosis
     [Key]
     public int IdDetajet { get; set; }
 
-    public decimal? QmimiTotal { get; set; }
+    public decimal? QmimiTotal { get; set; } = 0;
 
-    public int? SasiaPorositur { get; set; }
+    public int? SasiaPorositur { get; set; } = 0;
 
     public int? IdPorosia { get; set; }
 
     public int? IdProdukti { get; set; }
-    public decimal? QmimiProduktit { get; set; }
+    public decimal? QmimiProduktit { get; set; } = 0;
 
     [ForeignKey(nameof(IdPorosia))]
     public virtual Porosit? Porosia { get; set; }

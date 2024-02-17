@@ -10,9 +10,9 @@ public partial class KodiZbritjes
     [Key]
     public string Kodi { get; set; } = null!;
 
-    public DateTime? DataKrijimit { get; set; }
+    public DateTime? DataKrijimit { get; set; } = DateTime.Now;
 
-    public decimal? QmimiZbritjes { get; set; }
+    public decimal? QmimiZbritjes { get; set; } = 0;
 
     public int? IdProdukti { get; set; }
 

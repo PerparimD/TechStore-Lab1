@@ -10,15 +10,15 @@ public partial class RegjistrimiStokut
     [Key]
     public int IdRegjistrimit { get; set; }
 
-    public DateTime? DataRegjistrimit { get; set; }
+    public DateTime? DataRegjistrimit { get; set; } = DateTime.Now();
 
     public int? StafiId { get; set; }
 
-    public int? TotaliProdukteveRegjistruara { get; set; }
+    public int? TotaliProdukteveRegjistruara { get; set; } = 0;
 
-    public decimal? ShumaTotaleRegjistrimit { get; set; }
+    public decimal? ShumaTotaleRegjistrimit { get; set; } = 0;
 
-    public decimal? ShumaTotaleBlerese { get; set; }
+    public decimal? ShumaTotaleBlerese { get; set; } = 0;
     [ForeignKey(nameof(StafiId))]
     public virtual Perdoruesi? Stafi { get; set; }
 

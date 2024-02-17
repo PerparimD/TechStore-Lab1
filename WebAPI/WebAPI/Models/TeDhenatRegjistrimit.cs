@@ -14,11 +14,11 @@ public partial class TeDhenatRegjistrimit
 
     public int? IdProduktit { get; set; }
 
-    public int? SasiaStokut { get; set; }
+    public int? SasiaStokut { get; set; } = 0;
 
-    public decimal? QmimiBleres { get; set; }
+    public decimal? QmimiBleres { get; set; } = 0;
 
-    public decimal? QmimiShites { get; set; }
+    public decimal? QmimiShites { get; set; } = 0;
     [ForeignKey(nameof(IdProduktit))]
     public virtual Produkti? Produkti { get; set; }
     [ForeignKey(nameof(IdRegjistrimit))]

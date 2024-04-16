@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.Data;
 
@@ -11,9 +12,11 @@ using WebAPI.Data;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(TechStoreDbContext))]
-    partial class TechStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240416152322_KrijimiDatabazesMbrojtjaProjektitDet2")]
+    partial class KrijimiDatabazesMbrojtjaProjektitDet2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,6 +223,22 @@ namespace WebAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("WebAPI.Models.Banka57449", b =>
+                {
+                    b.Property<int>("Id57449")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id57449"));
+
+                    b.Property<string>("Emri57449")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id57449");
+
+                    b.ToTable("Banka57449");
+                });
+
             modelBuilder.Entity("WebAPI.Models.ContactForm", b =>
                 {
                     b.Property<int>("MesazhiId")
@@ -315,92 +334,6 @@ namespace WebAPI.Migrations
                     b.ToTable("Kompania");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.MbrojtjaEProjektit.Banka57449", b =>
-                {
-                    b.Property<int>("Id57449")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id57449"));
-
-                    b.Property<string>("Emri57449")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id57449");
-
-                    b.ToTable("Banka57449");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.MbrojtjaEProjektit.Personi57449", b =>
-                {
-                    b.Property<int>("Id57449")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id57449"));
-
-                    b.Property<int?>("Banka57449ID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Emri57449")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mbiemri57449")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id57449");
-
-                    b.HasIndex("Banka57449ID");
-
-                    b.ToTable("Personi57449");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.MbrojtjaEProjektit.Planet212257449", b =>
-                {
-                    b.Property<int>("PlanetId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlanetId"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("isDeleted")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PlanetId");
-
-                    b.ToTable("Planet212257449");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.MbrojtjaEProjektit.Satellite212257449", b =>
-                {
-                    b.Property<int>("SatelliteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SatelliteId"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PlanetId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("isDeleted")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SatelliteId");
-
-                    b.HasIndex("PlanetId");
-
-                    b.ToTable("Satellite212257449");
-                });
-
             modelBuilder.Entity("WebAPI.Models.Perdoruesi", b =>
                 {
                     b.Property<int>("UserId")
@@ -432,31 +365,50 @@ namespace WebAPI.Migrations
                     b.ToTable("Perdoruesi");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.Player", b =>
+            modelBuilder.Entity("WebAPI.Models.Personi57449", b =>
                 {
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("Id57449")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id57449"));
 
-                    b.Property<int?>("BirthYear")
+                    b.Property<int?>("Banka57449ID")
                         .HasColumnType("int");
+
+                    b.Property<string>("Emri57449")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mbiemri57449")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id57449");
+
+                    b.HasIndex("Banka57449ID");
+
+                    b.ToTable("Personi57449");
+                });
+
+            modelBuilder.Entity("WebAPI.Models.Planet212257449", b =>
+                {
+                    b.Property<int>("PlanetId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlanetId"));
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Number")
-                        .HasColumnType("int");
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("int");
+                    b.Property<string>("isDeleted")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PlayerId");
+                    b.HasKey("PlanetId");
 
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("Player");
+                    b.ToTable("Planet212257449");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Porosit", b =>
@@ -552,6 +504,30 @@ namespace WebAPI.Migrations
                     b.HasIndex("StafiId");
 
                     b.ToTable("RegjistrimiStokut");
+                });
+
+            modelBuilder.Entity("WebAPI.Models.Satellite212257449", b =>
+                {
+                    b.Property<int>("SatelliteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SatelliteId"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PlanetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("isDeleted")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SatelliteId");
+
+                    b.HasIndex("PlanetId");
+
+                    b.ToTable("Satellite212257449");
                 });
 
             modelBuilder.Entity("WebAPI.Models.StokuQmimiProduktit", b =>
@@ -726,22 +702,6 @@ namespace WebAPI.Migrations
                     b.ToTable("TeDhenatRegjistrimit");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.Team", b =>
-                {
-                    b.Property<int>("TeamId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TeamId");
-
-                    b.ToTable("Team");
-                });
-
             modelBuilder.Entity("WebAPI.Models.ZbritjaQmimitProduktit", b =>
                 {
                     b.Property<int>("ZbritjaID")
@@ -842,24 +802,6 @@ namespace WebAPI.Migrations
                     b.Navigation("Produkti");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.MbrojtjaEProjektit.Personi57449", b =>
-                {
-                    b.HasOne("WebAPI.Models.MbrojtjaEProjektit.Banka57449", "Banka57449")
-                        .WithMany("Personi57449")
-                        .HasForeignKey("Banka57449ID");
-
-                    b.Navigation("Banka57449");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.MbrojtjaEProjektit.Satellite212257449", b =>
-                {
-                    b.HasOne("WebAPI.Models.MbrojtjaEProjektit.Planet212257449", "Planet")
-                        .WithMany("Satellite")
-                        .HasForeignKey("PlanetId");
-
-                    b.Navigation("Planet");
-                });
-
             modelBuilder.Entity("WebAPI.Models.Perdoruesi", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "AspNetUser")
@@ -871,13 +813,13 @@ namespace WebAPI.Migrations
                     b.Navigation("AspNetUser");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.Player", b =>
+            modelBuilder.Entity("WebAPI.Models.Personi57449", b =>
                 {
-                    b.HasOne("WebAPI.Models.Team", "Team")
-                        .WithMany("Player")
-                        .HasForeignKey("TeamId");
+                    b.HasOne("WebAPI.Models.Banka57449", "Banka57449")
+                        .WithMany("Personi57449")
+                        .HasForeignKey("Banka57449ID");
 
-                    b.Navigation("Team");
+                    b.Navigation("Banka57449");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Porosit", b =>
@@ -911,6 +853,15 @@ namespace WebAPI.Migrations
                         .HasForeignKey("StafiId");
 
                     b.Navigation("Stafi");
+                });
+
+            modelBuilder.Entity("WebAPI.Models.Satellite212257449", b =>
+                {
+                    b.HasOne("WebAPI.Models.Planet212257449", "Planet")
+                        .WithMany()
+                        .HasForeignKey("PlanetId");
+
+                    b.Navigation("Planet");
                 });
 
             modelBuilder.Entity("WebAPI.Models.StokuQmimiProduktit", b =>
@@ -976,6 +927,11 @@ namespace WebAPI.Migrations
                     b.Navigation("Produkti");
                 });
 
+            modelBuilder.Entity("WebAPI.Models.Banka57449", b =>
+                {
+                    b.Navigation("Personi57449");
+                });
+
             modelBuilder.Entity("WebAPI.Models.KategoriaProduktit", b =>
                 {
                     b.Navigation("Produkti");
@@ -984,16 +940,6 @@ namespace WebAPI.Migrations
             modelBuilder.Entity("WebAPI.Models.Kompania", b =>
                 {
                     b.Navigation("Produkti");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.MbrojtjaEProjektit.Banka57449", b =>
-                {
-                    b.Navigation("Personi57449");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.MbrojtjaEProjektit.Planet212257449", b =>
-                {
-                    b.Navigation("Satellite");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Perdoruesi", b =>
@@ -1028,11 +974,6 @@ namespace WebAPI.Migrations
             modelBuilder.Entity("WebAPI.Models.RegjistrimiStokut", b =>
                 {
                     b.Navigation("TeDhenatRegjistrimit");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.Team", b =>
-                {
-                    b.Navigation("Player");
                 });
 #pragma warning restore 612, 618
         }

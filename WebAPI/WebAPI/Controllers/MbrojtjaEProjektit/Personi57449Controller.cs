@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
-using WebAPI.Models;
+using WebAPI.Models.MbrojtjaEProjektit;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers.MbrojtjaProjektit
 {
     [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]

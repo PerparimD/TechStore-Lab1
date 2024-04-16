@@ -10,7 +10,7 @@ public partial class RegjistrimiStokut
     [Key]
     public int IdRegjistrimit { get; set; }
 
-    public DateTime? DataRegjistrimit { get; set; } = DateTime.Now();
+    public DateTime? DataRegjistrimit { get; set; } = DateTime.Now;
 
     public int? StafiId { get; set; }
 

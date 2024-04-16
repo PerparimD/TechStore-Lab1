@@ -14,7 +14,7 @@ public partial class Porosit
 
     public DateTime? DataPorosis { get; set; } = DateTime.Now;
 
-    public string? StatusiPorosis { get; set; } = 'Ne Procesim';
+    public string? StatusiPorosis { get; set; } = "Ne Procesim";
 
     public int? IdKlienti { get; set; }
 

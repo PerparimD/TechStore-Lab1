@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
-using WebAPI.Models;
+using WebAPI.Models.MbrojtjaEProjektit;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers.MbrojtjaProjektit
 {
 
     [Authorize(AuthenticationSchemes = "Bearer")]
@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
         {
             var banka = await _context.Banka57449.FirstOrDefaultAsync(x => x.Id57449 == idBanka);
 
-            if(banka == null)
+            if (banka == null)
             {
                 return BadRequest("Banka nuk egziston");
             }
@@ -78,7 +78,7 @@ namespace WebAPI.Controllers
         {
             var banka = await _context.Banka57449.FirstOrDefaultAsync(x => x.Id57449 == idBanka);
 
-            if( banka == null)
+            if (banka == null)
             {
                 return BadRequest("Banka nuk egziston");
             }

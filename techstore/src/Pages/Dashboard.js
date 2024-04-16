@@ -149,7 +149,7 @@ const Dashboard = () => {
       ) : (
         <div class="containerDashboard">
           <h3 class="titulliPershkrim">
-            Miresevini {teDhenat.perdoruesi.emri}
+            Miresevini {teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.emri}
           </h3>
           <h4 className="info">Te dhenat personale:</h4>
           <table>
@@ -157,47 +157,47 @@ const Dashboard = () => {
               <td>
                 <strong>Emri:</strong>
               </td>
-              <td>{teDhenat.perdoruesi.emri}</td>
+              <td>{teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.emri}</td>
             </tr>
             <tr>
               <td>
                 <strong>Mbiemri:</strong>
               </td>
-              <td>{teDhenat.perdoruesi.mbiemri}</td>
+              <td>{teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.mbiemri}</td>
             </tr>
             <tr>
               <td>
                 <strong>Username:</strong>
               </td>
-              <td>{teDhenat.perdoruesi.username}</td>
+              <td>{teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.username}</td>
             </tr>
             <tr>
               <td>
                 <strong>Email:</strong>
               </td>
-              <td>{teDhenat.perdoruesi.email}</td>
+              <td>{teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.email}</td>
             </tr>
             <tr>
               <td>
                 <strong>Numri Kontaktit:</strong>
               </td>
-              <td>{teDhenat.perdoruesi.teDhenatPerdoruesit.nrKontaktit}</td>
+              <td>{teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.teDhenatPerdoruesit && teDhenat.perdoruesi.teDhenatPerdoruesit.nrKontaktit}</td>
             </tr>
             <tr>
               <td>
                 <strong>Adresa: </strong>
               </td>
               <td>
-                {teDhenat.perdoruesi.teDhenatPerdoruesit.adresa},{" "}
-                {teDhenat.perdoruesi.teDhenatPerdoruesit.qyteti},{" "}
-                {teDhenat.perdoruesi.teDhenatPerdoruesit.shteti}{" "}
-                {teDhenat.perdoruesi.teDhenatPerdoruesit.zipKodi}
+                {teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.teDhenatPerdoruesit && teDhenat.perdoruesi.teDhenatPerdoruesit.adresa},{" "}
+                {teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.teDhenatPerdoruesit && teDhenat.perdoruesi.teDhenatPerdoruesit.qyteti},{" "}
+                {teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.teDhenatPerdoruesit && teDhenat.perdoruesi.teDhenatPerdoruesit.shteti}{" "}
+                {teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.teDhenatPerdoruesit && teDhenat.perdoruesi.teDhenatPerdoruesit.zipKodi}
               </td>
             </tr>
           </table>
           <div class="butonatDiv">
             <button
-              onClick={() => handleShow(teDhenat.perdoruesi.userId)}
+              onClick={() => handleShow(teDhenat && teDhenat.perdoruesi && teDhenat.perdoruesi.userId)}
               class="button"
             >
               
@@ -206,13 +206,13 @@ const Dashboard = () => {
             <button onClick={handleShfaqPorosite} class="button">
               Porosite e tua
             </button>
-            {(teDhenat.rolet.includes("Admin") ||
-              teDhenat.rolet.includes("Menaxher")) && (
+            {(teDhenat && teDhenat.rolet && teDhenat.rolet.includes("Admin") ||
+              teDhenat && teDhenat.rolet && teDhenat.rolet.includes("Menaxher")) && (
                 <button class="button" onClick={handleShfaqAdminDashboard}>
                   Admin Dashboard
                 </button>
               )}
-            {teDhenat.rolet.includes("User") && (
+            {teDhenat && teDhenat.rolet && teDhenat.rolet.includes("User") && (
               <button class="button" onClick={handleShfaqMesazhet}>
                 Mesazhet e tua
               </button>

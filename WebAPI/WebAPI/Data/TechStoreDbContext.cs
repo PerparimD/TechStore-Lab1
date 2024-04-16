@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using WebAPI.Models;
+using WebAPI.Models.MbrojtjaEProjektit;
 
 namespace WebAPI.Data;
 
@@ -30,4 +31,8 @@ public partial class TechStoreDbContext : IdentityDbContext
     public DbSet<ZbritjaQmimitProduktit> ZbritjaQmimitProduktit { get; set; }
     public DbSet<Banka57449> Banka57449 { get; set; }
     public DbSet<Personi57449> Personi57449 { get; set; }
+    public DbSet<Planet212257449> Planet212257449 { get; set; }
+    public DbSet<Satellite212257449> Satellite212257449 { get; set; }
+    public DbSet<Team> Team { get; set; }
+    public DbSet<Player> Player { get; set; }
 }

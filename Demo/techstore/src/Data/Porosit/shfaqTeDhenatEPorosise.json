@@ -1,0 +1,2932 @@
+[
+  {
+    "idDetajet": 1,
+    "qmimiTotal": 396,
+    "sasiaPorositur": 1,
+    "idPorosia": 1,
+    "idProdukti": 57,
+    "qmimiProduktit": 396,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 2,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 1,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 3,
+    "qmimiTotal": 49.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 1,
+    "idProdukti": 54,
+    "qmimiProduktit": 49.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 4,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 2,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 5,
+    "qmimiTotal": 49.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 2,
+    "idProdukti": 54,
+    "qmimiProduktit": 49.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 6,
+    "qmimiTotal": 396,
+    "sasiaPorositur": 1,
+    "idPorosia": 2,
+    "idProdukti": 57,
+    "qmimiProduktit": 396,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 7,
+    "qmimiTotal": 1299,
+    "sasiaPorositur": 1,
+    "idPorosia": 3,
+    "idProdukti": 58,
+    "qmimiProduktit": 1299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 8,
+    "qmimiTotal": 19.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 3,
+    "idProdukti": 56,
+    "qmimiProduktit": 19.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 9,
+    "qmimiTotal": 396,
+    "sasiaPorositur": 1,
+    "idPorosia": 4,
+    "idProdukti": 57,
+    "qmimiProduktit": 396,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 10,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 5,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 11,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 5,
+    "idProdukti": 54,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 12,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 5,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 13,
+    "qmimiTotal": 24.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 5,
+    "idProdukti": 52,
+    "qmimiProduktit": 24.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 14,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 5,
+    "idProdukti": 46,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 15,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 5,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 16,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 6,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 17,
+    "qmimiTotal": 396,
+    "sasiaPorositur": 1,
+    "idPorosia": 6,
+    "idProdukti": 57,
+    "qmimiProduktit": 396,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 18,
+    "qmimiTotal": 34,
+    "sasiaPorositur": 1,
+    "idPorosia": 6,
+    "idProdukti": 55,
+    "qmimiProduktit": 34,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 19,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 7,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 20,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 7,
+    "idProdukti": 59,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 21,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 7,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 22,
+    "qmimiTotal": 19.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 8,
+    "idProdukti": 49,
+    "qmimiProduktit": 19.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 23,
+    "qmimiTotal": 579,
+    "sasiaPorositur": 1,
+    "idPorosia": 8,
+    "idProdukti": 33,
+    "qmimiProduktit": 579,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 24,
+    "qmimiTotal": 569,
+    "sasiaPorositur": 1,
+    "idPorosia": 8,
+    "idProdukti": 43,
+    "qmimiProduktit": 569,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 25,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 8,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 26,
+    "qmimiTotal": 18.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 9,
+    "idProdukti": 51,
+    "qmimiProduktit": 18.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 27,
+    "qmimiTotal": 240,
+    "sasiaPorositur": 1,
+    "idPorosia": 9,
+    "idProdukti": 45,
+    "qmimiProduktit": 240,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 28,
+    "qmimiTotal": 127.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 9,
+    "idProdukti": 50,
+    "qmimiProduktit": 127.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 29,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 9,
+    "idProdukti": 54,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 30,
+    "qmimiTotal": 169.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 9,
+    "idProdukti": 41,
+    "qmimiProduktit": 169.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 31,
+    "qmimiTotal": 55,
+    "sasiaPorositur": 1,
+    "idPorosia": 10,
+    "idProdukti": 19,
+    "qmimiProduktit": 55,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 32,
+    "qmimiTotal": 758.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 10,
+    "idProdukti": 1,
+    "qmimiProduktit": 758.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 33,
+    "qmimiTotal": 357.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 11,
+    "idProdukti": 8,
+    "qmimiProduktit": 357.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 34,
+    "qmimiTotal": 1779,
+    "sasiaPorositur": 1,
+    "idPorosia": 11,
+    "idProdukti": 23,
+    "qmimiProduktit": 1779,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 35,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 12,
+    "idProdukti": 54,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 36,
+    "qmimiTotal": 169,
+    "sasiaPorositur": 1,
+    "idPorosia": 12,
+    "idProdukti": 44,
+    "qmimiProduktit": 169,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 37,
+    "qmimiTotal": 349,
+    "sasiaPorositur": 1,
+    "idPorosia": 13,
+    "idProdukti": 36,
+    "qmimiProduktit": 349,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 38,
+    "qmimiTotal": 79.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 13,
+    "idProdukti": 38,
+    "qmimiProduktit": 79.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 39,
+    "qmimiTotal": 69.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 14,
+    "idProdukti": 31,
+    "qmimiProduktit": 69.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 40,
+    "qmimiTotal": 3299,
+    "sasiaPorositur": 1,
+    "idPorosia": 14,
+    "idProdukti": 32,
+    "qmimiProduktit": 3299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 41,
+    "qmimiTotal": 99.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 15,
+    "idProdukti": 39,
+    "qmimiProduktit": 99.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 42,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 15,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 43,
+    "qmimiTotal": 89.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 15,
+    "idProdukti": 40,
+    "qmimiProduktit": 89.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 44,
+    "qmimiTotal": 3499.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 16,
+    "idProdukti": 22,
+    "qmimiProduktit": 3499.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 45,
+    "qmimiTotal": 359.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 16,
+    "idProdukti": 24,
+    "qmimiProduktit": 359.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 46,
+    "qmimiTotal": 43.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 16,
+    "idProdukti": 17,
+    "qmimiProduktit": 43.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 47,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 17,
+    "idProdukti": 59,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 48,
+    "qmimiTotal": 396,
+    "sasiaPorositur": 1,
+    "idPorosia": 17,
+    "idProdukti": 57,
+    "qmimiProduktit": 396,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 49,
+    "qmimiTotal": 18.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 17,
+    "idProdukti": 51,
+    "qmimiProduktit": 18.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 50,
+    "qmimiTotal": 210.66,
+    "sasiaPorositur": 1,
+    "idPorosia": 18,
+    "idProdukti": 11,
+    "qmimiProduktit": 210.66,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 51,
+    "qmimiTotal": 284.49,
+    "sasiaPorositur": 1,
+    "idPorosia": 18,
+    "idProdukti": 9,
+    "qmimiProduktit": 284.49,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 52,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 19,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 53,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 19,
+    "idProdukti": 59,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 54,
+    "qmimiTotal": 127.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 19,
+    "idProdukti": 50,
+    "qmimiProduktit": 127.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 55,
+    "qmimiTotal": 3299,
+    "sasiaPorositur": 1,
+    "idPorosia": 20,
+    "idProdukti": 32,
+    "qmimiProduktit": 3299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 56,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 20,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 57,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 21,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 58,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 21,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 59,
+    "qmimiTotal": 3299,
+    "sasiaPorositur": 1,
+    "idPorosia": 21,
+    "idProdukti": 32,
+    "qmimiProduktit": 3299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 60,
+    "qmimiTotal": 84.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 21,
+    "idProdukti": 28,
+    "qmimiProduktit": 84.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 61,
+    "qmimiTotal": 3299,
+    "sasiaPorositur": 1,
+    "idPorosia": 22,
+    "idProdukti": 32,
+    "qmimiProduktit": 3299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 62,
+    "qmimiTotal": 1499.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 22,
+    "idProdukti": 21,
+    "qmimiProduktit": 1499.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 63,
+    "qmimiTotal": 19.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 22,
+    "idProdukti": 49,
+    "qmimiProduktit": 19.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 64,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 22,
+    "idProdukti": 29,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 65,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 23,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 66,
+    "qmimiTotal": 127.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 23,
+    "idProdukti": 50,
+    "qmimiProduktit": 127.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 67,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 23,
+    "idProdukti": 59,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 68,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 23,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 69,
+    "qmimiTotal": 119,
+    "sasiaPorositur": 1,
+    "idPorosia": 24,
+    "idProdukti": 34,
+    "qmimiProduktit": 119,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 70,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 24,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 71,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 24,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 72,
+    "qmimiTotal": 127.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 25,
+    "idProdukti": 50,
+    "qmimiProduktit": 127.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 73,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 25,
+    "idProdukti": 59,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 74,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 25,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 75,
+    "qmimiTotal": 396,
+    "sasiaPorositur": 1,
+    "idPorosia": 26,
+    "idProdukti": 57,
+    "qmimiProduktit": 396,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 76,
+    "qmimiTotal": 34,
+    "sasiaPorositur": 1,
+    "idPorosia": 27,
+    "idProdukti": 55,
+    "qmimiProduktit": 34,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 77,
+    "qmimiTotal": 19.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 28,
+    "idProdukti": 49,
+    "qmimiProduktit": 19.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 78,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 29,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 79,
+    "qmimiTotal": 354.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 30,
+    "idProdukti": 8,
+    "qmimiProduktit": 354.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 80,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 31,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 81,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 31,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 82,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 31,
+    "idProdukti": 54,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 83,
+    "qmimiTotal": 199,
+    "sasiaPorositur": 1,
+    "idPorosia": 32,
+    "idProdukti": 44,
+    "qmimiProduktit": 199,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 84,
+    "qmimiTotal": 899.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 32,
+    "idProdukti": 3,
+    "qmimiProduktit": 899.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 85,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 33,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 86,
+    "qmimiTotal": 39,
+    "sasiaPorositur": 1,
+    "idPorosia": 33,
+    "idProdukti": 17,
+    "qmimiProduktit": 39,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 87,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 33,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 88,
+    "qmimiTotal": 759,
+    "sasiaPorositur": 1,
+    "idPorosia": 34,
+    "idProdukti": 1,
+    "qmimiProduktit": 759,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 89,
+    "qmimiTotal": 999,
+    "sasiaPorositur": 1,
+    "idPorosia": 34,
+    "idProdukti": 20,
+    "qmimiProduktit": 999,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 90,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 35,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 91,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 35,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 92,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 36,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 93,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 36,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 94,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 37,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 95,
+    "qmimiTotal": 354.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 38,
+    "idProdukti": 8,
+    "qmimiProduktit": 354.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 96,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 38,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 97,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 39,
+    "idProdukti": 54,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 98,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 39,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 99,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 39,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 100,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 40,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 101,
+    "qmimiTotal": 129.55,
+    "sasiaPorositur": 1,
+    "idPorosia": 40,
+    "idProdukti": 30,
+    "qmimiProduktit": 129.55,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 102,
+    "qmimiTotal": 1419.96,
+    "sasiaPorositur": 4,
+    "idPorosia": 41,
+    "idProdukti": 8,
+    "qmimiProduktit": 354.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 103,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 41,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 104,
+    "qmimiTotal": 759,
+    "sasiaPorositur": 1,
+    "idPorosia": 42,
+    "idProdukti": 1,
+    "qmimiProduktit": 759,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 105,
+    "qmimiTotal": 39,
+    "sasiaPorositur": 1,
+    "idPorosia": 42,
+    "idProdukti": 17,
+    "qmimiProduktit": 39,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 106,
+    "qmimiTotal": 999.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 42,
+    "idProdukti": 3,
+    "qmimiProduktit": 999.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 107,
+    "qmimiTotal": 35.9,
+    "sasiaPorositur": 1,
+    "idPorosia": 43,
+    "idProdukti": 52,
+    "qmimiProduktit": 35.9,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 108,
+    "qmimiTotal": 78,
+    "sasiaPorositur": 2,
+    "idPorosia": 43,
+    "idProdukti": 17,
+    "qmimiProduktit": 39,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 109,
+    "qmimiTotal": 349,
+    "sasiaPorositur": 1,
+    "idPorosia": 44,
+    "idProdukti": 36,
+    "qmimiProduktit": 349,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 110,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 44,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 111,
+    "qmimiTotal": 245,
+    "sasiaPorositur": 1,
+    "idPorosia": 45,
+    "idProdukti": 45,
+    "qmimiProduktit": 245,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 112,
+    "qmimiTotal": 99.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 45,
+    "idProdukti": 39,
+    "qmimiProduktit": 99.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 113,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 46,
+    "idProdukti": 31,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 114,
+    "qmimiTotal": 354.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 47,
+    "idProdukti": 8,
+    "qmimiProduktit": 354.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 115,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 47,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 116,
+    "qmimiTotal": 709.98,
+    "sasiaPorositur": 2,
+    "idPorosia": 48,
+    "idProdukti": 8,
+    "qmimiProduktit": 354.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 117,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 48,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 118,
+    "qmimiTotal": 159.59,
+    "sasiaPorositur": 1,
+    "idPorosia": 48,
+    "idProdukti": 46,
+    "qmimiProduktit": 159.59,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 119,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 48,
+    "idProdukti": 54,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 120,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 48,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 121,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 48,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 122,
+    "qmimiTotal": 84.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 49,
+    "idProdukti": 28,
+    "qmimiProduktit": 84.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 123,
+    "qmimiTotal": 35.9,
+    "sasiaPorositur": 1,
+    "idPorosia": 49,
+    "idProdukti": 52,
+    "qmimiProduktit": 35.9,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 124,
+    "qmimiTotal": 559,
+    "sasiaPorositur": 1,
+    "idPorosia": 49,
+    "idProdukti": 43,
+    "qmimiProduktit": 559,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 125,
+    "qmimiTotal": 472,
+    "sasiaPorositur": 2,
+    "idPorosia": 49,
+    "idProdukti": 11,
+    "qmimiProduktit": 236,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 126,
+    "qmimiTotal": 39,
+    "sasiaPorositur": 1,
+    "idPorosia": 49,
+    "idProdukti": 17,
+    "qmimiProduktit": 39,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 127,
+    "qmimiTotal": 759,
+    "sasiaPorositur": 1,
+    "idPorosia": 49,
+    "idProdukti": 1,
+    "qmimiProduktit": 759,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 128,
+    "qmimiTotal": 1299,
+    "sasiaPorositur": 1,
+    "idPorosia": 49,
+    "idProdukti": 58,
+    "qmimiProduktit": 1299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 129,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 50,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 130,
+    "qmimiTotal": 354.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 50,
+    "idProdukti": 8,
+    "qmimiProduktit": 354.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 131,
+    "qmimiTotal": 99.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 50,
+    "idProdukti": 39,
+    "qmimiProduktit": 99.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 132,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 50,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 133,
+    "qmimiTotal": 79.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 50,
+    "idProdukti": 38,
+    "qmimiProduktit": 79.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 134,
+    "qmimiTotal": 3299,
+    "sasiaPorositur": 1,
+    "idPorosia": 50,
+    "idProdukti": 32,
+    "qmimiProduktit": 3299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 135,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 51,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 136,
+    "qmimiTotal": 95.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 52,
+    "idProdukti": 40,
+    "qmimiProduktit": 95.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 137,
+    "qmimiTotal": 159.59,
+    "sasiaPorositur": 1,
+    "idPorosia": 52,
+    "idProdukti": 46,
+    "qmimiProduktit": 159.59,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 138,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 53,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 139,
+    "qmimiTotal": 28.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 53,
+    "idProdukti": 6,
+    "qmimiProduktit": 28.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 140,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 54,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 141,
+    "qmimiTotal": 399,
+    "sasiaPorositur": 1,
+    "idPorosia": 55,
+    "idProdukti": 24,
+    "qmimiProduktit": 399,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 142,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 56,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 143,
+    "qmimiTotal": 189.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 56,
+    "idProdukti": 41,
+    "qmimiProduktit": 189.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 144,
+    "qmimiTotal": 559,
+    "sasiaPorositur": 1,
+    "idPorosia": 56,
+    "idProdukti": 43,
+    "qmimiProduktit": 559,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 145,
+    "qmimiTotal": 199,
+    "sasiaPorositur": 1,
+    "idPorosia": 57,
+    "idProdukti": 44,
+    "qmimiProduktit": 199,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 146,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 58,
+    "idProdukti": 59,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 147,
+    "qmimiTotal": 79.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 59,
+    "idProdukti": 38,
+    "qmimiProduktit": 79.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 148,
+    "qmimiTotal": 19.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 59,
+    "idProdukti": 49,
+    "qmimiProduktit": 19.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 149,
+    "qmimiTotal": 39,
+    "sasiaPorositur": 1,
+    "idPorosia": 60,
+    "idProdukti": 17,
+    "qmimiProduktit": 39,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 150,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 60,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 151,
+    "qmimiTotal": 1299,
+    "sasiaPorositur": 1,
+    "idPorosia": 61,
+    "idProdukti": 58,
+    "qmimiProduktit": 1299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 152,
+    "qmimiTotal": 71.8,
+    "sasiaPorositur": 2,
+    "idPorosia": 62,
+    "idProdukti": 52,
+    "qmimiProduktit": 35.9,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 153,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 62,
+    "idProdukti": 59,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 154,
+    "qmimiTotal": 18.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 62,
+    "idProdukti": 51,
+    "qmimiProduktit": 18.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 155,
+    "qmimiTotal": 599,
+    "sasiaPorositur": 1,
+    "idPorosia": 63,
+    "idProdukti": 33,
+    "qmimiProduktit": 599,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 156,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 63,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 157,
+    "qmimiTotal": 34,
+    "sasiaPorositur": 1,
+    "idPorosia": 64,
+    "idProdukti": 55,
+    "qmimiProduktit": 34,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 158,
+    "qmimiTotal": 349,
+    "sasiaPorositur": 1,
+    "idPorosia": 64,
+    "idProdukti": 36,
+    "qmimiProduktit": 349,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 159,
+    "qmimiTotal": 559,
+    "sasiaPorositur": 1,
+    "idPorosia": 65,
+    "idProdukti": 43,
+    "qmimiProduktit": 559,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 160,
+    "qmimiTotal": 354.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 66,
+    "idProdukti": 8,
+    "qmimiProduktit": 354.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 161,
+    "qmimiTotal": 396,
+    "sasiaPorositur": 1,
+    "idPorosia": 66,
+    "idProdukti": 57,
+    "qmimiProduktit": 396,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 162,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 67,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 163,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 67,
+    "idProdukti": 31,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 164,
+    "qmimiTotal": 26.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 67,
+    "idProdukti": 52,
+    "qmimiProduktit": 26.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 165,
+    "qmimiTotal": 26.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 68,
+    "idProdukti": 52,
+    "qmimiProduktit": 26.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 166,
+    "qmimiTotal": 354.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 68,
+    "idProdukti": 8,
+    "qmimiProduktit": 354.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 167,
+    "qmimiTotal": 3499.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 68,
+    "idProdukti": 22,
+    "qmimiProduktit": 3499.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 168,
+    "qmimiTotal": 99.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 68,
+    "idProdukti": 39,
+    "qmimiProduktit": 99.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 169,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 69,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 170,
+    "qmimiTotal": 84.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 70,
+    "idProdukti": 28,
+    "qmimiProduktit": 84.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 171,
+    "qmimiTotal": 29.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 70,
+    "idProdukti": 14,
+    "qmimiProduktit": 29.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 172,
+    "qmimiTotal": 99,
+    "sasiaPorositur": 2,
+    "idPorosia": 70,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 173,
+    "qmimiTotal": 95.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 70,
+    "idProdukti": 40,
+    "qmimiProduktit": 95.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 174,
+    "qmimiTotal": 129.55,
+    "sasiaPorositur": 1,
+    "idPorosia": 71,
+    "idProdukti": 30,
+    "qmimiProduktit": 129.55,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 175,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 71,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 176,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 71,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 177,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 71,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 178,
+    "qmimiTotal": 189.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 72,
+    "idProdukti": 44,
+    "qmimiProduktit": 189.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 179,
+    "qmimiTotal": 29.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 72,
+    "idProdukti": 55,
+    "qmimiProduktit": 29.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 180,
+    "qmimiTotal": 99.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 72,
+    "idProdukti": 39,
+    "qmimiProduktit": 99.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 181,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 73,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 182,
+    "qmimiTotal": 999.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 73,
+    "idProdukti": 3,
+    "qmimiProduktit": 999.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 183,
+    "qmimiTotal": 1064.97,
+    "sasiaPorositur": 3,
+    "idPorosia": 74,
+    "idProdukti": 8,
+    "qmimiProduktit": 354.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 184,
+    "qmimiTotal": 95.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 75,
+    "idProdukti": 40,
+    "qmimiProduktit": 95.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 185,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 75,
+    "idProdukti": 31,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 186,
+    "qmimiTotal": 18.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 75,
+    "idProdukti": 13,
+    "qmimiProduktit": 18.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 187,
+    "qmimiTotal": 1299,
+    "sasiaPorositur": 1,
+    "idPorosia": 75,
+    "idProdukti": 58,
+    "qmimiProduktit": 1299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 188,
+    "qmimiTotal": 19.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 75,
+    "idProdukti": 49,
+    "qmimiProduktit": 19.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 189,
+    "qmimiTotal": 189.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 76,
+    "idProdukti": 44,
+    "qmimiProduktit": 189.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 190,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 76,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 191,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 76,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 192,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 77,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 193,
+    "qmimiTotal": 999.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 77,
+    "idProdukti": 3,
+    "qmimiProduktit": 999.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 194,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 78,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 195,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 78,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 196,
+    "qmimiTotal": 236,
+    "sasiaPorositur": 1,
+    "idPorosia": 78,
+    "idProdukti": 11,
+    "qmimiProduktit": 236,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 197,
+    "qmimiTotal": 19.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 79,
+    "idProdukti": 56,
+    "qmimiProduktit": 19.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 198,
+    "qmimiTotal": 999.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 79,
+    "idProdukti": 3,
+    "qmimiProduktit": 999.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 199,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 79,
+    "idProdukti": 31,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 200,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 80,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 201,
+    "qmimiTotal": 159.59,
+    "sasiaPorositur": 1,
+    "idPorosia": 80,
+    "idProdukti": 46,
+    "qmimiProduktit": 159.59,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 202,
+    "qmimiTotal": 3299,
+    "sasiaPorositur": 1,
+    "idPorosia": 81,
+    "idProdukti": 32,
+    "qmimiProduktit": 3299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 203,
+    "qmimiTotal": 559,
+    "sasiaPorositur": 1,
+    "idPorosia": 81,
+    "idProdukti": 43,
+    "qmimiProduktit": 559,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 204,
+    "qmimiTotal": 35.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 81,
+    "idProdukti": 6,
+    "qmimiProduktit": 35.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 205,
+    "qmimiTotal": 759,
+    "sasiaPorositur": 1,
+    "idPorosia": 81,
+    "idProdukti": 1,
+    "qmimiProduktit": 759,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 206,
+    "qmimiTotal": 349,
+    "sasiaPorositur": 1,
+    "idPorosia": 82,
+    "idProdukti": 36,
+    "qmimiProduktit": 349,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 207,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 83,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 208,
+    "qmimiTotal": 349,
+    "sasiaPorositur": 1,
+    "idPorosia": 83,
+    "idProdukti": 36,
+    "qmimiProduktit": 349,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 209,
+    "qmimiTotal": 999.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 83,
+    "idProdukti": 3,
+    "qmimiProduktit": 999.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 210,
+    "qmimiTotal": 236,
+    "sasiaPorositur": 1,
+    "idPorosia": 84,
+    "idProdukti": 11,
+    "qmimiProduktit": 236,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 211,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 84,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 212,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 85,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 213,
+    "qmimiTotal": 245,
+    "sasiaPorositur": 1,
+    "idPorosia": 85,
+    "idProdukti": 45,
+    "qmimiProduktit": 245,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 214,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 86,
+    "idProdukti": 9,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 215,
+    "qmimiTotal": 349,
+    "sasiaPorositur": 1,
+    "idPorosia": 87,
+    "idProdukti": 36,
+    "qmimiProduktit": 349,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 216,
+    "qmimiTotal": 999.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 87,
+    "idProdukti": 3,
+    "qmimiProduktit": 999.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 217,
+    "qmimiTotal": 559,
+    "sasiaPorositur": 1,
+    "idPorosia": 87,
+    "idProdukti": 43,
+    "qmimiProduktit": 559,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 218,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 88,
+    "idProdukti": 42,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 219,
+    "qmimiTotal": 19.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 88,
+    "idProdukti": 49,
+    "qmimiProduktit": 19.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 220,
+    "qmimiTotal": 79.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 88,
+    "idProdukti": 38,
+    "qmimiProduktit": 79.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 221,
+    "qmimiTotal": 236,
+    "sasiaPorositur": 1,
+    "idPorosia": 89,
+    "idProdukti": 11,
+    "qmimiProduktit": 236,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 222,
+    "qmimiTotal": 84.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 89,
+    "idProdukti": 28,
+    "qmimiProduktit": 84.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 223,
+    "qmimiTotal": 69,
+    "sasiaPorositur": 1,
+    "idPorosia": 89,
+    "idProdukti": 19,
+    "qmimiProduktit": 69,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 224,
+    "qmimiTotal": 49.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 90,
+    "idProdukti": 54,
+    "qmimiProduktit": 49.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 225,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 90,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 226,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 90,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 227,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 90,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 228,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 90,
+    "idProdukti": 31,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 229,
+    "qmimiTotal": 129.55,
+    "sasiaPorositur": 1,
+    "idPorosia": 91,
+    "idProdukti": 30,
+    "qmimiProduktit": 129.55,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 230,
+    "qmimiTotal": 69,
+    "sasiaPorositur": 1,
+    "idPorosia": 91,
+    "idProdukti": 19,
+    "qmimiProduktit": 69,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 231,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 92,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 232,
+    "qmimiTotal": 95.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 92,
+    "idProdukti": 40,
+    "qmimiProduktit": 95.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 233,
+    "qmimiTotal": 95.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 93,
+    "idProdukti": 40,
+    "qmimiProduktit": 95.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 234,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 93,
+    "idProdukti": 29,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 235,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 93,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 236,
+    "qmimiTotal": 189.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 93,
+    "idProdukti": 41,
+    "qmimiProduktit": 189.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 237,
+    "qmimiTotal": 559,
+    "sasiaPorositur": 1,
+    "idPorosia": 94,
+    "idProdukti": 43,
+    "qmimiProduktit": 559,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 238,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 94,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 239,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 94,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 240,
+    "qmimiTotal": 245,
+    "sasiaPorositur": 1,
+    "idPorosia": 94,
+    "idProdukti": 45,
+    "qmimiProduktit": 245,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 241,
+    "qmimiTotal": 95.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 95,
+    "idProdukti": 40,
+    "qmimiProduktit": 95.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 242,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 95,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 243,
+    "qmimiTotal": 349,
+    "sasiaPorositur": 1,
+    "idPorosia": 95,
+    "idProdukti": 36,
+    "qmimiProduktit": 349,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 244,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 95,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 245,
+    "qmimiTotal": 149.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 95,
+    "idProdukti": 47,
+    "qmimiProduktit": 149.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 246,
+    "qmimiTotal": 1299,
+    "sasiaPorositur": 1,
+    "idPorosia": 96,
+    "idProdukti": 58,
+    "qmimiProduktit": 1299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 247,
+    "qmimiTotal": 129.55,
+    "sasiaPorositur": 1,
+    "idPorosia": 96,
+    "idProdukti": 30,
+    "qmimiProduktit": 129.55,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 248,
+    "qmimiTotal": 999.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 96,
+    "idProdukti": 3,
+    "qmimiProduktit": 999.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 249,
+    "qmimiTotal": 59.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 96,
+    "idProdukti": 53,
+    "qmimiProduktit": 59.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 250,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 96,
+    "idProdukti": 31,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 251,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 97,
+    "idProdukti": 67,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 252,
+    "qmimiTotal": 19.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 97,
+    "idProdukti": 69,
+    "qmimiProduktit": 19.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 253,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 97,
+    "idProdukti": 75,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 254,
+    "qmimiTotal": 299,
+    "sasiaPorositur": 1,
+    "idPorosia": 98,
+    "idProdukti": 72,
+    "qmimiProduktit": 299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 255,
+    "qmimiTotal": 39,
+    "sasiaPorositur": 2,
+    "idPorosia": 98,
+    "idProdukti": 69,
+    "qmimiProduktit": 19.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 256,
+    "qmimiTotal": 49.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 98,
+    "idProdukti": 67,
+    "qmimiProduktit": 49.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 257,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 98,
+    "idProdukti": 75,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 258,
+    "qmimiTotal": 19.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 98,
+    "idProdukti": 76,
+    "qmimiProduktit": 19.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 259,
+    "qmimiTotal": 28.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 99,
+    "idProdukti": 78,
+    "qmimiProduktit": 28.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 260,
+    "qmimiTotal": 9.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 99,
+    "idProdukti": 75,
+    "qmimiProduktit": 9.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 261,
+    "qmimiTotal": 6.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 99,
+    "idProdukti": 73,
+    "qmimiProduktit": 6.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 262,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 99,
+    "idProdukti": 70,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 263,
+    "qmimiTotal": 1599,
+    "sasiaPorositur": 1,
+    "idPorosia": 100,
+    "idProdukti": 64,
+    "qmimiProduktit": 1599,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 264,
+    "qmimiTotal": 141.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 100,
+    "idProdukti": 77,
+    "qmimiProduktit": 141.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 265,
+    "qmimiTotal": 79.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 100,
+    "idProdukti": 38,
+    "qmimiProduktit": 79.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 266,
+    "qmimiTotal": 999,
+    "sasiaPorositur": 1,
+    "idPorosia": 100,
+    "idProdukti": 63,
+    "qmimiProduktit": 999,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 267,
+    "qmimiTotal": 18.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 101,
+    "idProdukti": 51,
+    "qmimiProduktit": 18.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 268,
+    "qmimiTotal": 19.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 101,
+    "idProdukti": 69,
+    "qmimiProduktit": 19.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 269,
+    "qmimiTotal": 4149,
+    "sasiaPorositur": 1,
+    "idPorosia": 101,
+    "idProdukti": 27,
+    "qmimiProduktit": 4149,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 270,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 101,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 271,
+    "qmimiTotal": 2469.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 101,
+    "idProdukti": 5,
+    "qmimiProduktit": 2469.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 272,
+    "qmimiTotal": 129.55,
+    "sasiaPorositur": 1,
+    "idPorosia": 102,
+    "idProdukti": 30,
+    "qmimiProduktit": 129.55,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 273,
+    "qmimiTotal": 95.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 102,
+    "idProdukti": 40,
+    "qmimiProduktit": 95.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 274,
+    "qmimiTotal": 49.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 103,
+    "idProdukti": 54,
+    "qmimiProduktit": 49.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 275,
+    "qmimiTotal": 26.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 103,
+    "idProdukti": 52,
+    "qmimiProduktit": 26.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 276,
+    "qmimiTotal": 35.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 103,
+    "idProdukti": 17,
+    "qmimiProduktit": 35.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 277,
+    "qmimiTotal": 119.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 104,
+    "idProdukti": 37,
+    "qmimiProduktit": 119.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 278,
+    "qmimiTotal": 3.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 104,
+    "idProdukti": 81,
+    "qmimiProduktit": 3.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 279,
+    "qmimiTotal": 189.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 104,
+    "idProdukti": 41,
+    "qmimiProduktit": 189.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 280,
+    "qmimiTotal": 26.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 105,
+    "idProdukti": 52,
+    "qmimiProduktit": 26.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 281,
+    "qmimiTotal": 29.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 105,
+    "idProdukti": 55,
+    "qmimiProduktit": 29.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 282,
+    "qmimiTotal": 1299,
+    "sasiaPorositur": 1,
+    "idPorosia": 105,
+    "idProdukti": 61,
+    "qmimiProduktit": 1299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 283,
+    "qmimiTotal": 69,
+    "sasiaPorositur": 1,
+    "idPorosia": 106,
+    "idProdukti": 19,
+    "qmimiProduktit": 69,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 284,
+    "qmimiTotal": 7,
+    "sasiaPorositur": 2,
+    "idPorosia": 106,
+    "idProdukti": 81,
+    "qmimiProduktit": 3.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 285,
+    "qmimiTotal": 95.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 106,
+    "idProdukti": 40,
+    "qmimiProduktit": 95.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 286,
+    "qmimiTotal": 39,
+    "sasiaPorositur": 1,
+    "idPorosia": 106,
+    "idProdukti": 83,
+    "qmimiProduktit": 39,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 287,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 106,
+    "idProdukti": 31,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 288,
+    "qmimiTotal": 589,
+    "sasiaPorositur": 1,
+    "idPorosia": 107,
+    "idProdukti": 65,
+    "qmimiProduktit": 589,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 289,
+    "qmimiTotal": 1299,
+    "sasiaPorositur": 1,
+    "idPorosia": 107,
+    "idProdukti": 61,
+    "qmimiProduktit": 1299,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 290,
+    "qmimiTotal": 199,
+    "sasiaPorositur": 1,
+    "idPorosia": 107,
+    "idProdukti": 44,
+    "qmimiProduktit": 199,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 291,
+    "qmimiTotal": 59.99,
+    "sasiaPorositur": 1,
+    "idPorosia": 108,
+    "idProdukti": 48,
+    "qmimiProduktit": 59.99,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 292,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 109,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  },
+  {
+    "idDetajet": 293,
+    "qmimiTotal": 299.5,
+    "sasiaPorositur": 1,
+    "idPorosia": 110,
+    "idProdukti": 35,
+    "qmimiProduktit": 299.5,
+    "porosia": null,
+    "produkti": null
+  }
+]

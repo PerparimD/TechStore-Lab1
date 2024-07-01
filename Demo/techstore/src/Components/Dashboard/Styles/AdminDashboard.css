@@ -1,0 +1,62 @@
+.flex-column {
+  margin-bottom: 1em;
+  padding: 1em;
+  width: 1em;
+}
+.nav-bc-color {
+  background-color: #009879;
+}
+
+.col {
+  width: 100%;
+  margin: 1em;
+  height: auto;
+  flex: 0.5;
+}
+.colum {
+  width: 7em;
+  margin: 0.01em;
+  padding: 0.4em;
+}
+
+.buttoniMbylle {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+
+.td {
+  width: 2em;
+}
+
+.PerditesoTeDhenatContainer {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+
+.titulliPerditeso {
+  text-align: center;
+}
+
+.butonatPerditesoTeDhenat {
+  display: flex;
+  gap: 0.5em;
+}
+
+@media (max-width: 767px) {
+  .normalMenu {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .hamburgerMenu {
+    display: none;
+  }
+}

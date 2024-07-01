@@ -1,0 +1,71 @@
+.sign-up-form {
+  border-radius: 25px;
+  margin: auto;
+  margin-top: 2em;
+  /* margin-bottom: 7em; */
+  box-shadow: 0 0 20px #ddd;
+  padding: 3em;
+  width: fit-content;
+    
+  }
+
+  .label{
+    color:rgb(163, 154, 154)
+  }
+  
+
+  
+  .formTitle {
+    color: rgb(45, 44, 44);
+    font-weight: 400;
+    margin-bottom: 15px;
+    font-size: 30px;
+  }
+  
+  .forms table {
+    color: white;
+  }
+  
+  .input {
+    color: black;
+    background-color: inherit;
+    border: none;
+    border-radius:25px;
+    box-shadow: 0 0 10px #ddd;
+    outline: none;
+    width: max(27em, 20vw);  
+  }
+
+  /* .full-name{
+    display: flex;
+    gap: 1em;    
+  } */
+
+  .sign-up-button {
+    border: none;
+    background-color: whitesmoke;
+    color: white;
+    background: rgb(61, 101, 160);
+    padding: 1em 2em;
+    width: 100%;
+    border-radius: 50px;
+    margin-top: 1em;
+  }
+  
+  .sign-up-button:hover {
+    background: rgb(18, 62, 127);
+    color: white;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 480px) {
+    .forms {
+      margin-top: 3em;
+      margin-bottom: 0;
+    }
+  
+    .input {
+      width: 15em;
+    }
+  }
+  

@@ -1,0 +1,48 @@
+.banner {
+  background-image: url("../../../public/img/web/bannerIndex.jpg");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+}
+
+.titulliPershkrim {
+  margin-top: 3em;
+  color: black;
+  text-align: center;
+}
+
+.titulliPershkrim p {
+  margin-top: 1em;
+  color: rgb(155, 155, 155);
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.artikujt {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin: 0 auto;
+  width: 90%;
+  flex-wrap: wrap;
+  gap: 0.8em;
+}
+
+.titulliArtikuj {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 2em;
+  width: 100%;
+  padding-left: 1em;
+}
+
+.titulliArtikuj h1 {
+  margin-bottom: 0.5em;
+  font-weight: 500;
+  color: #0f243b;
+}

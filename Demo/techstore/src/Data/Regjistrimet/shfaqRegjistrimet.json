@@ -1,0 +1,290 @@
+[
+  {
+    "idRegjistrimit": 32,
+    "shumaTotaleRegjistrimit": 1581.92,
+    "shumaTotaleBlerese": 815.22,
+    "totaliProdukteveRegjistruara": 5,
+    "dataRegjistrimit": "2023-05-12T17:22:33",
+    "stafiId": 3,
+    "username": "user"
+  },
+  {
+    "idRegjistrimit": 31,
+    "shumaTotaleRegjistrimit": 17742.85,
+    "shumaTotaleBlerese": 13048,
+    "totaliProdukteveRegjistruara": 10,
+    "dataRegjistrimit": "2023-04-24T16:37:50",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 30,
+    "shumaTotaleRegjistrimit": 7501.5,
+    "shumaTotaleBlerese": 5747.43,
+    "totaliProdukteveRegjistruara": 3,
+    "dataRegjistrimit": "2023-04-13T01:35:26",
+    "stafiId": 3,
+    "username": "user"
+  },
+  {
+    "idRegjistrimit": 29,
+    "shumaTotaleRegjistrimit": 11988,
+    "shumaTotaleBlerese": 8148,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2023-03-21T12:26:07",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 28,
+    "shumaTotaleRegjistrimit": 2282,
+    "shumaTotaleBlerese": 1736,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2023-03-13T17:19:23",
+    "stafiId": 3,
+    "username": "user"
+  },
+  {
+    "idRegjistrimit": 27,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2023-01-02T14:29:11",
+    "stafiId": 2,
+    "username": "menagjer"
+  },
+  {
+    "idRegjistrimit": 26,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-12-12T06:38:01",
+    "stafiId": 3,
+    "username": "user"
+  },
+  {
+    "idRegjistrimit": 25,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-09-25T07:35:52",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 24,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-09-08T15:44:06",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 23,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-06-14T14:00:59",
+    "stafiId": 2,
+    "username": "menagjer"
+  },
+  {
+    "idRegjistrimit": 22,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-06-12T12:11:08",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 21,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-05-13T14:48:40",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 20,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-04-30T17:22:03",
+    "stafiId": 2,
+    "username": "menagjer"
+  },
+  {
+    "idRegjistrimit": 19,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-03-19T02:04:27",
+    "stafiId": 2,
+    "username": "menagjer"
+  },
+  {
+    "idRegjistrimit": 18,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-02-20T06:18:18",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 17,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-02-15T22:05:19",
+    "stafiId": 3,
+    "username": "user"
+  },
+  {
+    "idRegjistrimit": 16,
+    "shumaTotaleRegjistrimit": 1488,
+    "shumaTotaleBlerese": 1476,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2022-01-15T04:50:34",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 15,
+    "shumaTotaleRegjistrimit": 12987,
+    "shumaTotaleBlerese": 9568,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2021-12-15T04:02:03",
+    "stafiId": 2,
+    "username": "menagjer"
+  },
+  {
+    "idRegjistrimit": 14,
+    "shumaTotaleRegjistrimit": 37839.33,
+    "shumaTotaleBlerese": 29086.98,
+    "totaliProdukteveRegjistruara": 4,
+    "dataRegjistrimit": "2021-11-29T11:44:12",
+    "stafiId": 3,
+    "username": "user"
+  },
+  {
+    "idRegjistrimit": 13,
+    "shumaTotaleRegjistrimit": 215.94,
+    "shumaTotaleBlerese": 179.94,
+    "totaliProdukteveRegjistruara": 1,
+    "dataRegjistrimit": "2021-11-14T23:23:13",
+    "stafiId": 2,
+    "username": "menagjer"
+  },
+  {
+    "idRegjistrimit": 12,
+    "shumaTotaleRegjistrimit": 33886.2,
+    "shumaTotaleBlerese": 25519.2,
+    "totaliProdukteveRegjistruara": 2,
+    "dataRegjistrimit": "2021-11-05T11:06:37",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 11,
+    "shumaTotaleRegjistrimit": 3789.7,
+    "shumaTotaleBlerese": 2680,
+    "totaliProdukteveRegjistruara": 2,
+    "dataRegjistrimit": "2021-11-03T07:00:58",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 10,
+    "shumaTotaleRegjistrimit": 47472.84,
+    "shumaTotaleBlerese": 40300,
+    "totaliProdukteveRegjistruara": 8,
+    "dataRegjistrimit": "2021-10-30T08:48:52",
+    "stafiId": 2,
+    "username": "menagjer"
+  },
+  {
+    "idRegjistrimit": 9,
+    "shumaTotaleRegjistrimit": 121320.5,
+    "shumaTotaleBlerese": 102164.75,
+    "totaliProdukteveRegjistruara": 5,
+    "dataRegjistrimit": "2021-10-02T13:54:39",
+    "stafiId": 2,
+    "username": "menagjer"
+  },
+  {
+    "idRegjistrimit": 8,
+    "shumaTotaleRegjistrimit": 121859.75,
+    "shumaTotaleBlerese": 110419.14,
+    "totaliProdukteveRegjistruara": 5,
+    "dataRegjistrimit": "2021-08-12T05:56:49",
+    "stafiId": 3,
+    "username": "user"
+  },
+  {
+    "idRegjistrimit": 7,
+    "shumaTotaleRegjistrimit": 34956,
+    "shumaTotaleBlerese": 32376,
+    "totaliProdukteveRegjistruara": 3,
+    "dataRegjistrimit": "2021-07-11T08:53:23",
+    "stafiId": 3,
+    "username": "user"
+  },
+  {
+    "idRegjistrimit": 6,
+    "shumaTotaleRegjistrimit": 201488.4,
+    "shumaTotaleBlerese": 140878.1,
+    "totaliProdukteveRegjistruara": 4,
+    "dataRegjistrimit": "2021-06-17T19:48:01",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 5,
+    "shumaTotaleRegjistrimit": 53789.31,
+    "shumaTotaleBlerese": 40897,
+    "totaliProdukteveRegjistruara": 5,
+    "dataRegjistrimit": "2021-06-13T04:05:17",
+    "stafiId": 3,
+    "username": "user"
+  },
+  {
+    "idRegjistrimit": 4,
+    "shumaTotaleRegjistrimit": 68995,
+    "shumaTotaleBlerese": 62068,
+    "totaliProdukteveRegjistruara": 3,
+    "dataRegjistrimit": "2021-05-10T12:28:33",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 3,
+    "shumaTotaleRegjistrimit": 29750,
+    "shumaTotaleBlerese": 15000,
+    "totaliProdukteveRegjistruara": 2,
+    "dataRegjistrimit": "2021-02-20T18:19:59",
+    "stafiId": 2,
+    "username": "menagjer"
+  },
+  {
+    "idRegjistrimit": 2,
+    "shumaTotaleRegjistrimit": 29750,
+    "shumaTotaleBlerese": 15000,
+    "totaliProdukteveRegjistruara": 2,
+    "dataRegjistrimit": "2021-02-05T02:20:32",
+    "stafiId": 1,
+    "username": "admin"
+  },
+  {
+    "idRegjistrimit": 1,
+    "shumaTotaleRegjistrimit": 16030,
+    "shumaTotaleBlerese": 12326,
+    "totaliProdukteveRegjistruara": 2,
+    "dataRegjistrimit": "2021-01-09T03:37:49",
+    "stafiId": 3,
+    "username": "user"
+  }
+]

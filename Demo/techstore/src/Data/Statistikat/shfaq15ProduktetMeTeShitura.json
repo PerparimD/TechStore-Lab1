@@ -1,0 +1,197 @@
+[
+  {
+    "produkti": {
+      "produktiId": 8,
+      "emriProduktit": "Dron DJI Ryze Tello ED",
+      "fotoProduktit": "63d0561af0d506.97064987.webp",
+      "sasiaNeStok": 345,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 354.99,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 16,
+    "totaliBlerjeve": 5682.84
+  },
+  {
+    "produkti": {
+      "produktiId": 37,
+      "emriProduktit": "Fotoaparat momental Fujifilm Instax Mini 90, i zi",
+      "fotoProduktit": "63eabd7f7f4296.27491084.webp",
+      "sasiaNeStok": 137,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 119.5,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 14,
+    "totaliBlerjeve": 1673
+  },
+  {
+    "produkti": {
+      "produktiId": 35,
+      "emriProduktit": "Celular Samsung Galaxy A23 5G, 6.6\" FHD+, 4GB RAM, 128GB, i kaltër",
+      "fotoProduktit": "63eaba204edb24.98379543.webp",
+      "sasiaNeStok": 287,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 299.5,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 13,
+    "totaliBlerjeve": 3893.5
+  },
+  {
+    "produkti": {
+      "produktiId": 9,
+      "emriProduktit": "Dron Overmax X-Bee, 600 m, i zi",
+      "fotoProduktit": "63d056224fcfd5.12230564.webp",
+      "sasiaNeStok": 187,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 299,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 12,
+    "totaliBlerjeve": 3573.49
+  },
+  {
+    "produkti": {
+      "produktiId": 47,
+      "emriProduktit": "Kamerë Logitech StreamCam C980, e hirtë",
+      "fotoProduktit": "63f5de70338ea0.03180620.webp",
+      "sasiaNeStok": 29,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 149.5,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 12,
+    "totaliBlerjeve": 1794
+  },
+  {
+    "produkti": {
+      "produktiId": 53,
+      "emriProduktit": "Gjirafa50 Bad News Eagles Jersey (Rio Edition) - XXL",
+      "fotoProduktit": "63f5ec27d0f672.76058981.webp",
+      "sasiaNeStok": 239,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 59.5,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 11,
+    "totaliBlerjeve": 654.5
+  },
+  {
+    "produkti": {
+      "produktiId": 42,
+      "emriProduktit": "Maus Preyon Owl Wireless (POW35B)",
+      "fotoProduktit": "63eabe5a5852e1.52076563.webp",
+      "sasiaNeStok": 20,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 49.5,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 11,
+    "totaliBlerjeve": 544.5
+  },
+  {
+    "produkti": {
+      "produktiId": 48,
+      "emriProduktit": "Altoparlant JBL CLIP 4, i kaltër i hapur",
+      "fotoProduktit": "63f5deb8055346.05332264.webp",
+      "sasiaNeStok": 240,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 59.99,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 10,
+    "totaliBlerjeve": 599.41
+  },
+  {
+    "produkti": {
+      "produktiId": 54,
+      "emriProduktit": "Gjirafa50 Bad News Eagles Jersey Legends Edition - L",
+      "fotoProduktit": "63f5ec4e91ff92.01429806.webp",
+      "sasiaNeStok": 240,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 59.5,
+      "qmimiMeZbritjeProduktit": 49.99
+    },
+    "totaliPorosive": 10,
+    "totaliBlerjeve": 556.96
+  },
+  {
+    "produkti": {
+      "produktiId": 40,
+      "emriProduktit": "Kontroller Sony Playstation 5 DualSense",
+      "fotoProduktit": "63eabe14e6ab51.91700813.webp",
+      "sasiaNeStok": 22,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 95.5,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 9,
+    "totaliBlerjeve": 853.5
+  },
+  {
+    "produkti": {
+      "produktiId": 52,
+      "emriProduktit": "Apple 20W USB-C Power Adapter",
+      "fotoProduktit": "63f5e7a904efe1.07954376.webp",
+      "sasiaNeStok": 22,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 35.9,
+      "qmimiMeZbritjeProduktit": 26.99
+    },
+    "totaliPorosive": 9,
+    "totaliBlerjeve": 276.55
+  },
+  {
+    "produkti": {
+      "produktiId": 3,
+      "emriProduktit": "Celular Samsung Galaxy S22 Ultra, 6.8\", 12GB RAM, 512GB, i zi",
+      "fotoProduktit": "63d055e915be98.37912983.webp",
+      "sasiaNeStok": 23,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 999.99,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 8,
+    "totaliBlerjeve": 7899.92
+  },
+  {
+    "produkti": {
+      "produktiId": 31,
+      "emriProduktit": "Disk i jashtëm Transcend Jet 25H3B, 1 TB, i zi / kaltër",
+      "fotoProduktit": "63eab963cfcf35.02921447.webp",
+      "sasiaNeStok": 23,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 59.99,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 8,
+    "totaliBlerjeve": 489.43
+  },
+  {
+    "produkti": {
+      "produktiId": 17,
+      "emriProduktit": "Ftohës Corsair ML120 PRO RGB, 120mm",
+      "fotoProduktit": "63d056ab22eb80.78302695.webp",
+      "sasiaNeStok": 183,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 39,
+      "qmimiMeZbritjeProduktit": 35.99
+    },
+    "totaliPorosive": 8,
+    "totaliBlerjeve": 313.49
+  },
+  {
+    "produkti": {
+      "produktiId": 43,
+      "emriProduktit": "Apple 10.9-inch iPad (10th) Wi-Fi, 64GB, Silver",
+      "fotoProduktit": "63eabe72174975.16788497.webp",
+      "sasiaNeStok": 24,
+      "qmimiBleres": 1,
+      "qmimiProduktit": 559,
+      "qmimiMeZbritjeProduktit": null
+    },
+    "totaliPorosive": 7,
+    "totaliBlerjeve": 3923
+  }
+]

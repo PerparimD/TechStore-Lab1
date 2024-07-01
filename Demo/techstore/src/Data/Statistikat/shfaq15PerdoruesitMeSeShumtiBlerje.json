@@ -1,0 +1,137 @@
+[
+  {
+    "user": {
+      "id": 25,
+      "emri": "Valdrin",
+      "mbiemri": "Berisha"
+    },
+    "totaliPorosive": 6,
+    "totaliBlerjeve": 14802.49
+  },
+  {
+    "user": {
+      "id": 24,
+      "emri": "Vlera",
+      "mbiemri": "Bajrami"
+    },
+    "totaliPorosive": 6,
+    "totaliBlerjeve": 10191.93
+  },
+  {
+    "user": {
+      "id": 6,
+      "emri": "Fatlum",
+      "mbiemri": "Murtezi"
+    },
+    "totaliPorosive": 6,
+    "totaliBlerjeve": 4793.18
+  },
+  {
+    "user": {
+      "id": 19,
+      "emri": "Vlora",
+      "mbiemri": "Gashi"
+    },
+    "totaliPorosive": 6,
+    "totaliBlerjeve": 2993.48
+  },
+  {
+    "user": {
+      "id": 34,
+      "emri": "Besa",
+      "mbiemri": "Bajrami"
+    },
+    "totaliPorosive": 5,
+    "totaliBlerjeve": 3079.96
+  },
+  {
+    "user": {
+      "id": 9,
+      "emri": "Shpresa",
+      "mbiemri": "Hoxha"
+    },
+    "totaliPorosive": 5,
+    "totaliBlerjeve": 2083.57
+  },
+  {
+    "user": {
+      "id": 12,
+      "emri": "Enver",
+      "mbiemri": "Jashari"
+    },
+    "totaliPorosive": 5,
+    "totaliBlerjeve": 1304.47
+  },
+  {
+    "user": {
+      "id": 1,
+      "emri": "Administrator",
+      "mbiemri": "Administrator"
+    },
+    "totaliPorosive": 5,
+    "totaliBlerjeve": 893.55
+  },
+  {
+    "user": {
+      "id": 20,
+      "emri": "Besiana",
+      "mbiemri": "Hajdari"
+    },
+    "totaliPorosive": 4,
+    "totaliBlerjeve": 5681.97
+  },
+  {
+    "user": {
+      "id": 35,
+      "emri": "Liridona",
+      "mbiemri": "Hajdari"
+    },
+    "totaliPorosive": 4,
+    "totaliBlerjeve": 5483.49
+  },
+  {
+    "user": {
+      "id": 30,
+      "emri": "Ardit",
+      "mbiemri": "Rexhepi"
+    },
+    "totaliPorosive": 4,
+    "totaliBlerjeve": 5194.89
+  },
+  {
+    "user": {
+      "id": 15,
+      "emri": "Fitore",
+      "mbiemri": "Bajrami"
+    },
+    "totaliPorosive": 4,
+    "totaliBlerjeve": 3413.45
+  },
+  {
+    "user": {
+      "id": 23,
+      "emri": "Drita",
+      "mbiemri": "Shala"
+    },
+    "totaliPorosive": 4,
+    "totaliBlerjeve": 2313.96
+  },
+  {
+    "user": {
+      "id": 31,
+      "emri": "Lindita",
+      "mbiemri": "Basha"
+    },
+    "totaliPorosive": 4,
+    "totaliBlerjeve": 1723.48
+  },
+  {
+    "user": {
+      "id": 16,
+      "emri": "Dardan",
+      "mbiemri": "Ismaili"
+    },
+    "totaliPorosive": 3,
+    "totaliBlerjeve": 4470.99
+  }
+]

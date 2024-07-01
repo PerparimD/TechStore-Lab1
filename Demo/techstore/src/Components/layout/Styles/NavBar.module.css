@@ -1,0 +1,289 @@
+header {
+  top: 0;
+  width: 100%;
+  padding: 0 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 2000;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 70px;
+  justify-content: space-between;
+}
+
+.nav ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.navCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1em;
+}
+
+.navRight {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 1em;
+  align-items: center;
+}
+
+.logo img {
+  width: 70px;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  width: 100%;
+  margin-top: 0.5em;
+}
+
+.navLinks a {
+  color: #00113f;
+  font-weight: 600;
+}
+
+.line {
+  display: none;
+  content: "";
+  position: absolute;
+  padding: 1.2px;
+  background-color: #3aa27e;
+  width: 100%;
+  top: 1.7em;
+}
+
+.nav ul li:hover .line {
+  display: block;
+}
+
+.nav ul li:hover {
+  transform: scale(1.1);
+  transition: 0.1s ease-in-out;
+}
+
+.mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.mobile a {
+  color: black;
+  font-weight: 600;
+}
+
+.badge:after {
+  content: attr(value);
+  font-size: 12px;
+  color: #fff;
+  background: red;
+  border-radius: 50%;
+  padding: 0 5px;
+  position: relative;
+  left: -8px;
+  top: -10px;
+  opacity: 0.9;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamIkona {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: black;
+  overflow: hidden;
+}
+
+.badge:after {
+  content: attr(value);
+  font-size: 12px;
+  color: #fff;
+  background: red;
+  border-radius: 50%;
+  padding: 0 5px;
+  position: relative;
+  left: -8px;
+  top: -10px;
+  opacity: 0.9;
+}
+
+.hamIkona:nth-child(2) {
+  background-color: #073879;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropbtn span {
+  color: #00113f;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 20px 20px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3aa27e;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 210px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdownContent a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdownContent a:hover {
+  background-color: #3aa27e;
+  color: white;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+@media (min-width: 1025px) {
+  .mobileShporta {
+    display: none;
+  }
+  .nav-left {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+  }
+  .mobile {
+    position: fixed;
+    left: 100%;
+    top: 70px;
+    gap: 0;
+    flex-direction: column;
+    background-color: #f7f7f9;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+  }
+}
+
+@media (max-width: 1024px) {
+  header {
+    position: relative;
+  }
+
+  .mobileShporta {
+    display: block;
+  }
+
+  .mobileShporta li a{
+    color: black;
+  }
+
+  .navItem span {
+    color: black;
+  }
+
+  .nav ul li:hover {
+    transform: none;
+  }
+  .nav ul li:hover .line {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .dropbtn:hover .hamIkona:nth-child(2) {
+    opacity: 0;
+  }
+  .dropbtn:hover .hamIkona:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: #073879;
+  }
+  .dropbtn:hover .hamIkona:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  .nav li {
+    margin: 10px;
+  }
+  .navLinks {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    gap: 0;
+    flex-direction: column;
+    background-color: #f7f7f9;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+  }
+
+  .dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: 0;
+    right: 0;
+  }
+
+  .dropdownContent a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .dropdown:hover .dropdownContent {
+    display: block;
+  }
+}

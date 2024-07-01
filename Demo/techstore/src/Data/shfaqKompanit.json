@@ -1,0 +1,317 @@
+[
+  {
+    "kompaniaId": 20,
+    "emriKompanis": "Acer",
+    "logo": "63cc92dd919978.62580492.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 16,
+    "emriKompanis": "Akasa",
+    "logo": "63cc916f505f64.49149237.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 2,
+    "emriKompanis": "Amd",
+    "logo": "AMDLogo.png",
+    "adresa": null,
+    "produkti": null
+  },
+  {
+    "kompaniaId": 1,
+    "emriKompanis": "Apple",
+    "logo": "AppleLogo.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 23,
+    "emriKompanis": "Arctic",
+    "logo": "63cc945c98f987.79971283.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 3,
+    "emriKompanis": "Asus",
+    "logo": "AsusLogo.png",
+    "adresa": null,
+    "produkti": null
+  },
+  {
+    "kompaniaId": 34,
+    "emriKompanis": "AXAGON",
+    "logo": "63f5eab4b1f247.31552576.jpg",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 38,
+    "emriKompanis": "Brother",
+    "logo": "418c9aa0947044b88223c0b9c37fb859.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 27,
+    "emriKompanis": "Canon",
+    "logo": "63eabbd2c18639.05511269.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 17,
+    "emriKompanis": "Corsair",
+    "logo": "63cc919875a410.74994322.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 42,
+    "emriKompanis": "CZC.cz",
+    "logo": "e02c1a4eecfd46da9bba1e7cb47f6b24.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 25,
+    "emriKompanis": "Dell",
+    "logo": "63cc95f0a30e93.21744349.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 13,
+    "emriKompanis": "DJI",
+    "logo": "63cc90567d1235.30779652.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 35,
+    "emriKompanis": "FIXED",
+    "logo": "63f5ebb63fe7d9.83256153.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 15,
+    "emriKompanis": "G.Skill",
+    "logo": "63cc9106dcdca0.15849659.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 41,
+    "emriKompanis": "Gamebird",
+    "logo": "d5158ff019c0495c8057ac3f24832f52.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 31,
+    "emriKompanis": "Gjirafa50",
+    "logo": "63f5ea779c6482.16567878.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 19,
+    "emriKompanis": "HP",
+    "logo": "63cc929ca61d21.63137864.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 40,
+    "emriKompanis": "HyperX",
+    "logo": "2ddcb71947c940858e18fd4196867383.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 26,
+    "emriKompanis": "Instax",
+    "logo": "63eabba55fbfc7.49583109.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 33,
+    "emriKompanis": "Intel",
+    "logo": "63f5eaa81a4847.00442944.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 4,
+    "emriKompanis": "JBL",
+    "logo": "JBL.png",
+    "adresa": null,
+    "produkti": null
+  },
+  {
+    "kompaniaId": 36,
+    "emriKompanis": "Kingston",
+    "logo": "d55b9bde30554506a7550f45d8da37f2.svg",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 5,
+    "emriKompanis": "Lenovo",
+    "logo": "Lenovo.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 32,
+    "emriKompanis": "Lenuo",
+    "logo": "63f5ea98f28fb2.30089124.jpg",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 6,
+    "emriKompanis": "Logitech",
+    "logo": "Logitech.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 22,
+    "emriKompanis": "Marvo",
+    "logo": "63cc93503bc070.76804317.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 7,
+    "emriKompanis": "MSI",
+    "logo": "MSI.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 8,
+    "emriKompanis": "Nvidia",
+    "logo": "Nvidia.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 14,
+    "emriKompanis": "Overmax",
+    "logo": "63cc90641f4676.38918423.jpg",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 30,
+    "emriKompanis": "Preyon",
+    "logo": "63eabd4a55ae01.00211971.svg",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 9,
+    "emriKompanis": "Razer",
+    "logo": "Razer.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 10,
+    "emriKompanis": "Samsung",
+    "logo": "SamsungLogo.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 44,
+    "emriKompanis": "SanDisk",
+    "logo": "a700cc920a2140e6a33628ab75f39f62.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 37,
+    "emriKompanis": "Seasonic",
+    "logo": "c1467ea8424a456d95cf0e183d6f0d59.svg",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 29,
+    "emriKompanis": "SENSE7",
+    "logo": "63eabcbde6e353.90404410.jpeg",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 28,
+    "emriKompanis": "Sony",
+    "logo": "63eabc0946e731.30555181.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 11,
+    "emriKompanis": "SteelSeries",
+    "logo": "63cc8f01dacf35.52923644.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 12,
+    "emriKompanis": "Thermaltake",
+    "logo": "63cc904665b4c8.92639137.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 24,
+    "emriKompanis": "Transcend",
+    "logo": "63cc94dc60f873.30313171.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 39,
+    "emriKompanis": "UGREEN",
+    "logo": "1630be807ddf4518a6dd28f0ee508a21.webp",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 18,
+    "emriKompanis": "WD - Western Digital",
+    "logo": "63cc923d6652a6.82761403.png",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 45,
+    "emriKompanis": "YENKEE",
+    "logo": "7e085a7967fd4703b7c5d2df0081718a.svg",
+    "adresa": "",
+    "produkti": null
+  },
+  {
+    "kompaniaId": 43,
+    "emriKompanis": "Zotac",
+    "logo": "552fc83db1454175bf7e8bd76a733299.png",
+    "adresa": null,
+    "produkti": null
+  },
+  {
+    "kompaniaId": 21,
+    "emriKompanis": "ZOWIE - BenQ",
+    "logo": "63cc933025a1f3.70979396.png",
+    "adresa": "",
+    "produkti": null
+  }
+]

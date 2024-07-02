@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faBan, faL } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 
+import data from "../../Data/Data";
+
 const ShtoProduktin = (props) => {
   const [emriP, setEmriP] = useState("");
   const [emriK, setEmriK] = useState("");
@@ -25,11 +27,7 @@ const ShtoProduktin = (props) => {
   useEffect(() => {
     const vendosProduktet = async () => {
       try {
-        const produktet = await axios.get(
-          `https://localhost:7285/api/Produkti/Products`, authentikimi
-        );
-        setProduktet(produktet.data);
-
+        setProduktet(data.shfaqPorduktet);
       } catch (err) {
         console.log(err);
       }
@@ -37,14 +35,6 @@ const ShtoProduktin = (props) => {
 
     vendosProduktet();
   }, [perditeso]);
-
-  const getToken = localStorage.getItem("token");
-
-  const authentikimi = {
-    headers: {
-      Authorization: `Bearer ${getToken}`,
-    },
-  };
 
   const handleEmriPChange = (value) => {
     setEmriP(value);
@@ -67,74 +57,16 @@ const ShtoProduktin = (props) => {
   };
 
   useEffect(() => {
-    Promise.all([
-      fetch("https://localhost:7285/api/Kompania/shfaqKompanit"),
-      fetch("https://localhost:7285/api/Kategoria/shfaqKategorit"),
-    ])
-      .then(([resKompanit, resKategorit]) =>
-        Promise.all([resKompanit.json(), resKategorit.json()])
-      )
-      .then(([dataKomapit, dataKategorit]) => {
-        setKompanit(dataKomapit);
-        setKategoria(dataKategorit);
-      });
+    setKompanit(data.shfaqKompanit);
+    setKategoria(data.shfaqKategorite);
   }, []);
 
-
   async function handleSubmit() {
-    if (foto) {
-      const formData = new FormData();
-      formData.append('foto', foto);
-
-      try {
-        await axios.post("https://localhost:7285/api/VendosFotot/ShtoProduktin", formData, authentikimi)
-          .then(async (response) => {
-            await axios
-              .post("https://localhost:7285/api/Produkti/shtoProdukt", {
-                emriProduktit: emriP,
-                pershkrimi: pershkrimi,
-                fotoProduktit: response.data,
-                kategoriaId: llojiK,
-                kompaniaId: emriK
-              }, authentikimi)
-              .then(async (response) => {
-
-                props.setTipiMesazhit("success");
-                props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
-                props.perditesoTeDhenat();
-                props.hide();
-                props.shfaqmesazhin();
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          });
-      } catch (error) {
-        console.error(error);
-      }
-
-    } else {
-      await axios
-        .post("https://localhost:7285/api/Produkti/shtoProdukt", {
-          emriProduktit: emriP,
-          pershkrimi: pershkrimi,
-          fotoProduktit: "ProduktPaFoto.png",
-          kategoriaId: llojiK,
-          kompaniaId: emriK
-        }, authentikimi)
-        .then((response) => {
-
-          props.setTipiMesazhit("success");
-          props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
-          props.perditesoTeDhenat();
-          props.hide();
-          props.shfaqmesazhin();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-
+    props.setTipiMesazhit("success");
+    props.setPershkrimiMesazhit("Produkti u insertua me sukses!");
+    props.perditesoTeDhenat();
+    props.hide();
+    props.shfaqmesazhin();
   }
 
   function isNullOrEmpty(value) {
@@ -142,43 +74,53 @@ const ShtoProduktin = (props) => {
   }
 
   const handleKontrolli = () => {
-    if (
-      isNullOrEmpty(emriP) ||
-      isNullOrEmpty(emriK) ||
-      isNullOrEmpty(llojiK)
-    ) {
+    if (isNullOrEmpty(emriP) || isNullOrEmpty(emriK) || isNullOrEmpty(llojiK)) {
       setFushatEZbrazura(true);
     } else {
-      if (konfirmoProduktin == false && produktet.filter((item) => item.emriProduktit === emriP).length !== 0) {
+      if (
+        konfirmoProduktin == false &&
+        produktet.filter((item) => item.emriProduktit === emriP).length !== 0
+      ) {
         setKontrolloProduktin(true);
-      }
-      else {
+      } else {
         handleSubmit();
       }
     }
+  };
 
-  }
-  
   return (
     <>
-      {fushatEZbrazura &&
-        <Modal size="sm" show={fushatEZbrazura} onHide={() => setFushatEZbrazura(false)}>
+      {fushatEZbrazura && (
+        <Modal
+          size="sm"
+          show={fushatEZbrazura}
+          onHide={() => setFushatEZbrazura(false)}>
           <Modal.Header closeButton>
-            <Modal.Title style={{ color: "red" }} as="h6">Ndodhi nje gabim</Modal.Title>
+            <Modal.Title style={{ color: "red" }} as="h6">
+              Ndodhi nje gabim
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <strong style={{ fontSize: "10pt" }}>Ju lutemi plotesoni te gjitha fushat me <span style={{ color: "red" }}>*</span></strong>
+            <strong style={{ fontSize: "10pt" }}>
+              Ju lutemi plotesoni te gjitha fushat me{" "}
+              <span style={{ color: "red" }}>*</span>
+            </strong>
           </Modal.Body>
           <Modal.Footer>
-            <Button size="sm" onClick={() => setFushatEZbrazura(false)} variant="secondary">
+            <Button
+              size="sm"
+              onClick={() => setFushatEZbrazura(false)}
+              variant="secondary">
               Mbylle <FontAwesomeIcon icon={faXmark} />
-            </Button >
+            </Button>
           </Modal.Footer>
-
         </Modal>
-      }
-      {kontrolloProduktin &&
-        <Modal size="sm" show={kontrolloProduktin} onHide={() => setKontrolloProduktin(false)}>
+      )}
+      {kontrolloProduktin && (
+        <Modal
+          size="sm"
+          show={kontrolloProduktin}
+          onHide={() => setKontrolloProduktin(false)}>
           <Modal.Header closeButton>
             <Modal.Title as="h6">Konfirmo vendosjen</Modal.Title>
           </Modal.Header>
@@ -192,19 +134,23 @@ const ShtoProduktin = (props) => {
             </strong>
           </Modal.Body>
           <Modal.Footer>
-            <Button size="sm" variant="secondary" onClick={() => setKontrolloProduktin(false)}>
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => setKontrolloProduktin(false)}>
               Korrigjo <FontAwesomeIcon icon={faXmark} />
             </Button>
             <Button
               size="sm"
               variant="warning"
-              onClick={() => { handleSubmit(); }}
-            >
+              onClick={() => {
+                handleSubmit();
+              }}>
               Vazhdoni
             </Button>
           </Modal.Footer>
         </Modal>
-      }
+      )}
       <Modal className="modalEditShto" show={props.show} onHide={props.hide}>
         <Modal.Header closeButton>
           <Modal.Title>Shto Produkt</Modal.Title>
@@ -212,7 +158,9 @@ const ShtoProduktin = (props) => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Emri Produktit<span style={{ color: "red" }}>*</span></Form.Label>
+              <Form.Label>
+                Emri Produktit<span style={{ color: "red" }}>*</span>
+              </Form.Label>
               <Form.Control
                 onChange={(e) => handleEmriPChange(e.target.value)}
                 value={emriP}
@@ -241,36 +189,38 @@ const ShtoProduktin = (props) => {
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Kompania<span style={{ color: "red" }}>*</span></Form.Label>
+              controlId="exampleForm.ControlTextarea1">
+              <Form.Label>
+                Kompania<span style={{ color: "red" }}>*</span>
+              </Form.Label>
               <select
                 placeholder="Kompania e Produktit"
                 className="form-select"
                 value={emriK}
-                onChange={(e) => handleKompaniaChange(e.target.value)}
-              >
+                onChange={(e) => handleKompaniaChange(e.target.value)}>
                 <option defaultValue disabled value="">
                   Kompania e Produktit
                 </option>
                 {kompanit.map((item) => {
                   return (
-                    <option key={item.kompaniaId} value={item.kompaniaId}>{item.emriKompanis}</option>
+                    <option key={item.kompaniaId} value={item.kompaniaId}>
+                      {item.emriKompanis}
+                    </option>
                   );
                 })}
               </select>
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Kategoria<span style={{ color: "red" }}>*</span></Form.Label>
+              controlId="exampleForm.ControlTextarea1">
+              <Form.Label>
+                Kategoria<span style={{ color: "red" }}>*</span>
+              </Form.Label>
               <select
                 placeholder="Kategoria e Produktit"
                 className="form-select"
                 value={llojiK}
-                onChange={(e) => handleKategoriaChange(e.target.value)}
-              >
+                onChange={(e) => handleKategoriaChange(e.target.value)}>
                 <option defaultValue disabled value="">
                   Kategoria e Produktit
                 </option>
@@ -291,8 +241,7 @@ const ShtoProduktin = (props) => {
           </Button>
           <Button
             style={{ backgroundColor: "#009879", border: "none" }}
-            onClick={handleKontrolli}
-          >
+            onClick={handleKontrolli}>
             Save Changes
           </Button>
         </Modal.Footer>

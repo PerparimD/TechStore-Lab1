@@ -6,6 +6,8 @@ import { faPenToSquare, faBan } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Mesazhi from "../layout/Mesazhi";
 
+import data from "../../Data/Data";
+
 function Mesazhet() {
     const [mesazhet, setMesazhet] = useState([])
     const [perditeso, setPerditeso] = useState('');
@@ -14,54 +16,26 @@ function Mesazhet() {
     const [tipiMesazhit, setTipiMesazhit] = useState("");
     const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
 
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     function handleEdito(id) {
-        axios.put(`https://localhost:7285/api/ContactForm/konfirmoMesazhin?id=${id}`, {}, authentikimi)
-            .then(x => {
-                
                 setTipiMesazhit("success");
                 setPershkrimiMesazhit("Statusi i Mesazhit u Perditesua me sukses!")
                 setPerditeso(Date.now());
                 setShfaqMesazhin(true);
-            })
-            .catch(error => {
-                console.error(error);
-                setTipiMesazhit("danger");
-                setPershkrimiMesazhit("Ndodhi nje gabim gjate perditesimit te statusit!")
-                setPerditeso(Date.now());
-                setShfaqMesazhin(true);
-            });
     };
 
     async function handleFshij(id) {
-        try {
-            await axios.delete(`https://localhost:7285/api/ContactForm/fshiMesazhin?id=${id}`, authentikimi);
             setTipiMesazhit("success");
             setPershkrimiMesazhit("Mesazhi u fshi me sukses!")
             setPerditeso(Date.now());
             setShfaqMesazhin(true);
-        } catch (error) {
-            console.error(error);
-            setTipiMesazhit("danger");
-            setPershkrimiMesazhit("Ndodhi nje gabim gjate fshirjes se mesazhit!")
-            setPerditeso(Date.now());
-            setShfaqMesazhin(true);
-        }
     };
 
     useEffect(() => {
         const shfaqKompanit = async () => {
             try {
                 setLoading(true);
-                const mesazhet = await axios.get("https://localhost:7285/api/ContactForm/shfaqMesazhet", authentikimi);
-                setMesazhet(mesazhet.data);
+                const mesazhet = data.shfaqMesazhet;
+                setMesazhet(mesazhet);
                 setLoading(false);
             } catch (err) {
                 console.log(err);
@@ -110,7 +84,7 @@ function Mesazhet() {
                         <th>Funksione</th>
                     </tr>
 
-                    {mesazhet.map((m) => (
+                    {mesazhet && mesazhet.map((m) => (
                         <tr key={m.mesazhiId}>
                             <td>{m.mesazhiId}</td>
                             <td>{m.user ? m.user.userId + " - " + m.user.username : 'Nuk ka Llogari'}</td>

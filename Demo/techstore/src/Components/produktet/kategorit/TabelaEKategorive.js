@@ -10,6 +10,8 @@ import EditoKategorin from "./EditoKategorin";
 import LargoKategorin from "./LargoKategorin";
 import { TailSpin } from 'react-loader-spinner';
 
+import data from "../../../Data/Data";
+
 function TabelaEKategorive(props) {
     const [kategorit, setKategorit] = useState([]);
     const [perditeso, setPerditeso] = useState('');
@@ -22,20 +24,11 @@ function TabelaEKategorive(props) {
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
 
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     useEffect(() => {
-        const shfaqKateogrit = async () => {
+        const shfaqKat = async () => {
             try {
                 setLoading(true);
-                const kategoria = await axios.get("https://localhost:7285/api/Kategoria/shfaqKategorit", authentikimi);
-                setKategorit(kategoria.data);
+                setKategorit(data.shfaqKateogrit);
                 setLoading(false);
             } catch (err) {
                 console.log(err);
@@ -43,7 +36,7 @@ function TabelaEKategorive(props) {
             }
         };
 
-        shfaqKateogrit();
+        shfaqKat();
     }, [perditeso]);
 
     const handleClose = () => {

@@ -9,6 +9,8 @@ import { TailSpin } from 'react-loader-spinner';
 import Mesazhi from "../../layout/Mesazhi";
 import FshijZbritjen from './FshijZbritjen';
 
+import data from "../../../Data/Data";
+
 function ZbritjetEProduktit(props) {
     const [zbritjet, setZbritjet] = useState([]);
     const [perditeso, setPerditeso] = useState('');
@@ -30,11 +32,10 @@ function ZbritjetEProduktit(props) {
     };
 
     useEffect(() => {
-        const shfaqZbritjet = async () => {
+        const shfaqSale = async () => {
             try {
                 setLoading(true);
-                const zbritja = await axios.get("https://localhost:7285/api/ZbritjaQmimitProduktit/shfaqZbritjet", authentikimi);
-                setZbritjet(zbritja.data);
+                setZbritjet(data.shfaqZbritjet);
                 setLoading(false);
             } catch (err) {
                 console.log(err);
@@ -42,22 +43,14 @@ function ZbritjetEProduktit(props) {
             }
         };
 
-        shfaqZbritjet();
+        shfaqSale();
     }, [perditeso]);
 
-    useEffect(() => {
-        const currentDate = new Date().toLocaleDateString('en-GB', { dateStyle: 'short' });
-        zbritjet.forEach(zbritja => {
-            const dataSkadimit = new Date(zbritja.dataSkadimit).toLocaleDateString('en-GB', { dateStyle: 'short' });
-            if (dataSkadimit < currentDate) {
-                
-                fshijZbritjen(zbritja.produktiId);
-            }
-        });
-    }, [zbritjet])
 
     const fshijZbritjen = (id) => {
-        axios.delete(`https://localhost:7285/api/ZbritjaQmimitProduktit/fshijZbritjenProduktit?id=${id}`, authentikimi)
+        setTipiMesazhit("success");
+        setPershkrimiMesazhit("Zbritja u fshi me sukses");
+        setShfaqMesazhin(true);
         setPerditeso(Date.now());
     }
 

@@ -6,8 +6,6 @@ import Form from "react-bootstrap/Form";
 import "./Styles/LogIn.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
 import {
   MDBContainer,
   MDBRow,
@@ -24,20 +22,10 @@ const LogIn = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [roles, setRoles] = useState([]);
 
   const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
   const [tipiMesazhit, setTipiMesazhit] = useState("");
   const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
-
-  const getToken = localStorage.getItem("token");
-
-  const authentikimi = {
-    headers: {
-      Authorization: `Bearer ${getToken}`,
-    },
-  };
 
   function vendosEmail(value) {
     setEmail(value);

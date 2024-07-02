@@ -6,25 +6,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faClose } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
 
+import data from "../../Data/Data";
+
 function PorositeUserit(props) {
     const [porosite, setPorosite] = useState([]);
     const [perditeso, setPerditeso] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     useEffect(() => {
         const vendosPorosite = async () => {
             try {
                 setLoading(true);
-                const porosija = await axios.get(`https://localhost:7285/api/Porosia/shfaqPorositeUserit?idPerdoruesi=${props.idUseri}`, authentikimi);
-                setPorosite(porosija.data);
+                const porosija = data.shfaqPorosit.filter((item) => item.idKlienti == props.idUseri);
+                setPorosite(porosija);
                 setLoading(false);
             } catch (err) {
                 console.log(err);

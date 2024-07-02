@@ -17,27 +17,25 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TeDhenatEBiznesit from "../TeDhenatBiznesit/TeDhenatEBiznesit";
 import TabelaEPorosive from "../Porosite/TabelaEPorosive";
-import Banka57449 from "../MbrojtjaProjektit/Banka57449";
-import Personi57449 from "../MbrojtjaProjektit/Personi57449";
-import Planet212257449 from "../MbrojtjaProjektit/Planet212257449";
-import Satellite212257449 from "../MbrojtjaProjektit/Satellite212257449";
-import Team from "../MbrojtjaProjektit/Team";
-import Player from "../MbrojtjaProjektit/Player";
+
+
+import shfaqPerdoruesit from "../../Data/shfaqPerdoruesit.json";
 
 const AdminDashboard = (props) => {
   const [eshteAdmin, setEshteAdmin] = useState(false);
   const [key, setKey] = useState("2");
-  const token = localStorage.getItem("token");
+
+  const getID = localStorage.getItem("id");
 
   useEffect(() => {
-    if (token) {
-      const decodedToken = jwtDecode(token);
-
-      if (decodedToken.role.includes("Admin")) {
-        setEshteAdmin(true);
-      }
-    }
+    if (getID) {
+          const perdoruesi = shfaqPerdoruesit.find((item) => item.perdoruesi.aspNetUserId == getID);
+          if (perdoruesi.rolet.includes("Admin")){
+            setEshteAdmin(true);
+          };
+      };
   }, []);
+
   const ActiveStyle = {
     background: "#009879",
     color: "white",
@@ -135,54 +133,6 @@ const AdminDashboard = (props) => {
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link
-                  className="colum normalMenu"
-                  eventKey="8"
-                  style={key === "8" ? ActiveStyle : inActiveStyle}>
-                  Banka57449
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  className="colum normalMenu"
-                  eventKey="9"
-                  style={key === "9" ? ActiveStyle : inActiveStyle}>
-                  Personi57449
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  className="colum normalMenu"
-                  eventKey="10"
-                  style={key === "10" ? ActiveStyle : inActiveStyle}>
-                  Planet212257449
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  className="colum normalMenu"
-                  eventKey="11"
-                  style={key === "11" ? ActiveStyle : inActiveStyle}>
-                  Satellite212257449
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  className="colum normalMenu"
-                  eventKey="12"
-                  style={key === "12" ? ActiveStyle : inActiveStyle}>
-                  Team
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  className="colum normalMenu"
-                  eventKey="13"
-                  style={key === "13" ? ActiveStyle : inActiveStyle}>
-                  Player
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
                 <NavDropdown
                   title="Menu"
                   id="basic-nav-dropdown"
@@ -244,50 +194,6 @@ const AdminDashboard = (props) => {
                     style={key === "7" ? ActiveStyle : inActiveStyle}>
                     Kalkulimi i Mallit
                   </Nav.Link>
-                  <Nav.Link
-                    className="colum"
-                    eventKey="8"
-                    style={key === "8" ? ActiveStyle : inActiveStyle}>
-                    Banka57449
-                  </Nav.Link>
-                  <Nav.Link
-                    className="colum"
-                    eventKey="9"
-                    style={key === "9" ? ActiveStyle : inActiveStyle}>
-                    Personi57449
-                  </Nav.Link>
-                  <Nav.Item>
-                    <Nav.Link
-                      className="colum"
-                      eventKey="10"
-                      style={key === "10" ? ActiveStyle : inActiveStyle}>
-                      Planet212257449
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link
-                      className="colum"
-                      eventKey="11"
-                      style={key === "11" ? ActiveStyle : inActiveStyle}>
-                      Satellite212257449
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link
-                      className="colum"
-                      eventKey="12"
-                      style={key === "12" ? ActiveStyle : inActiveStyle}>
-                      Team
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link
-                      className="colum"
-                      eventKey="13"
-                      style={key === "13" ? ActiveStyle : inActiveStyle}>
-                      Player
-                    </Nav.Link>
-                  </Nav.Item>
                 </NavDropdown>
               </Nav.Item>
             </Nav>
@@ -317,24 +223,6 @@ const AdminDashboard = (props) => {
               </Tab.Pane>
               <Tab.Pane eventKey="7">
                 <KalkulimiIMallit />
-              </Tab.Pane>
-              <Tab.Pane eventKey="8">
-                <Banka57449 />
-              </Tab.Pane>
-              <Tab.Pane eventKey="9">
-                <Personi57449 />
-              </Tab.Pane>
-              <Tab.Pane eventKey="10">
-                <Planet212257449 />
-              </Tab.Pane>
-              <Tab.Pane eventKey="11">
-                <Satellite212257449 />
-              </Tab.Pane>
-              <Tab.Pane eventKey="12">
-                <Team />
-              </Tab.Pane>
-              <Tab.Pane eventKey="13">
-                <Player />
               </Tab.Pane>
             </Tab.Content>
           </Col>

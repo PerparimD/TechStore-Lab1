@@ -1,236 +1,236 @@
 [
-    {
-      "emri": "Besa Bajrami",
-      "email": "besa.bajrami@gmail.com",
+  {
+    "emri": "Besa Bajrami",
+    "email": "besa.bajrami@gmail.com",
+    "userId": 34,
+    "statusi": "Mesazhi juaj eshte derguar tek Stafi",
+    "mesazhi": "Dyqani ofron zgjidhje tërheqëse për gaming, kam gjetur çdo gjë që më duhej.",
+    "dataDergeses": "2023-06-11T00:00:00",
+    "mesazhiId": 18,
+    "user": {
       "userId": 34,
-      "statusi": "Mesazhi juaj eshte derguar tek Stafi",
-      "mesazhi": "Dyqani ofron zgjidhje tërheqëse për gaming, kam gjetur çdo gjë që më duhej.",
-      "dataDergeses": "2023-06-11T00:00:00",
-      "mesazhiId": 18,
-      "user": {
-        "userId": 34,
-        "username": "bbajrami"
-      }
-    },
-    {
-      "emri": "Florin Krasniqi",
-      "email": "florin.krasniqi@gmail.com",
-      "userId": 32,
-      "statusi": "Mesazhi juaj eshte derguar tek Stafi",
-      "mesazhi": "Transporti ishte i shpejtë dhe produktet arritën në gjendje të shkëlqyeshme.",
-      "dataDergeses": "2023-06-10T00:00:00",
-      "mesazhiId": 17,
-      "user": {
-        "userId": 32,
-        "username": "fkrasniqi"
-      }
-    },
-    {
-      "emri": "Besiana Hajdari",
-      "email": "besiana.hajdari@gmail.com",
-      "userId": 20,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Kam blerë një telefon dhe funksionon mjaft mirë, kam bërë një zgjedhje të shkëlqyeshme.",
-      "dataDergeses": "2023-05-09T00:00:00",
-      "mesazhiId": 16,
-      "user": {
-        "userId": 20,
-        "username": "bhajdari"
-      }
-    },
-    {
-      "emri": "Dardan Isamili",
-      "email": "dardan.ismaili@gmail.com",
-      "userId": 16,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Personeli është i shkathët dhe jep këshilla të mira për zgjedhjen e produkteve",
-      "dataDergeses": "2023-04-02T00:00:00",
-      "mesazhiId": 15,
-      "user": {
-        "userId": 16,
-        "username": "dismaili"
-      }
-    },
-    {
-      "emri": "Dardan Ismaili",
-      "email": "dardan.ismaili@gmail.com",
-      "userId": 16,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Kompjuteri që blera punon pa asnjë problem, jam i kënaqur plotësisht.",
-      "dataDergeses": "2023-03-26T00:00:00",
-      "mesazhiId": 14,
-      "user": {
-        "userId": 16,
-        "username": "dismaili"
-      }
-    },
-    {
-      "emri": "Zejnullah Kadriu",
-      "email": "zejnullah.kadriu@gmail.com",
-      "userId": 11,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Blerja ime e fundit ishte një TV, dhe cilësia është jashtëzakonisht e mirë.",
-      "dataDergeses": "2023-01-16T00:00:00",
-      "mesazhiId": 13,
-      "user": {
-        "userId": 11,
-        "username": "zkadriu"
-      }
-    },
-    {
-      "emri": "Shpresa Hoxha",
-      "email": "shpresa.hoxha@gmail.com",
-      "userId": 9,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Gama e produkteve është e madhe dhe çmimet janë të arsyeshme",
-      "dataDergeses": "2022-12-15T00:00:00",
-      "mesazhiId": 12,
-      "user": {
-        "userId": 9,
-        "username": "shoxha"
-      }
-    },
-    {
-      "emri": "Valbona Krasniqi",
-      "email": "valbona.krasniqi@gmail.com",
-      "userId": 5,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Dyqani ofron produkte teknologjike të shkëlqyera dhe stafi është shumë ndihmësor.",
-      "dataDergeses": "2022-11-23T00:00:00",
-      "mesazhiId": 11,
-      "user": {
-        "userId": 5,
-        "username": "vkrasniqi"
-      }
-    },
-    {
-      "emri": "Naim Dervishi",
-      "email": "naim.dervishi@gmail.com",
-      "userId": 10,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Gjithçka ishte e përsosur dhe unë nuk mund të kisha kërkuar një përvojë të blerjes më të mirë.",
-      "dataDergeses": "2022-11-14T00:00:00",
-      "mesazhiId": 10,
-      "user": {
-        "userId": 10,
-        "username": "ndervishi"
-      }
-    },
-    {
-      "emri": "Besiana Hajdari",
-      "email": "besiana.hajdari@gmail.com",
-      "userId": 20,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Transporti ishte shumë i shpejtë dhe produkti mbërriti në kohën e duhur.",
-      "dataDergeses": "2022-11-03T00:00:00",
-      "mesazhiId": 9,
-      "user": {
-        "userId": 20,
-        "username": "bhajdari"
-      }
-    },
-    {
-      "emri": "Fitore Bajrami",
-      "email": "fitore.bajrami@gmail.com",
-      "userId": 15,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Blerja ishte shumë e thjeshtë dhe e lehtë për tu bërë.",
-      "dataDergeses": "2022-10-29T00:00:00",
-      "mesazhiId": 8,
-      "user": {
-        "userId": 15,
-        "username": "fbajrami"
-      }
-    },
-    {
-      "emri": "Luljeta Ibrahimi",
-      "email": "luljeta.ibrahimi@gmail.com",
-      "userId": 7,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Në përgjithësi, unë kam qenë shumë i kënaqur me porosinë dhe do ta rekomandoja këtë biznes të tjerëve.",
-      "dataDergeses": "2022-10-11T00:00:00",
-      "mesazhiId": 7,
-      "user": {
-        "userId": 7,
-        "username": "librahimi"
-      }
-    },
-    {
-      "emri": "Anila Zeqiri",
-      "email": "anila.zeqiri@gmail.com",
-      "userId": 18,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Porosia ishte e lehtë për tu ndjekur dhe unë isha në gjendje të dija gjithmonë ku ndodhej porosia ime.",
-      "dataDergeses": "2022-09-28T00:00:00",
-      "mesazhiId": 6,
-      "user": {
-        "userId": 18,
-        "username": "azeqiri"
-      }
-    },
-    {
-      "emri": "Florin Krasniqi",
-      "email": "florin.krasniqi@gmail.com",
-      "userId": 32,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Kostoja e produktit ishte shumë e arsyeshme dhe unë ndjeva se kisha bërë një blerje të mirë.",
-      "dataDergeses": "2022-09-05T00:00:00",
-      "mesazhiId": 5,
-      "user": {
-        "userId": 32,
-        "username": "fkrasniqi"
-      }
-    },
-    {
-      "emri": "Fidan Kadriu",
-      "email": "fidan.kadriu@gmail.com",
-      "userId": 29,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Produkti ishte saktësisht siç u shfaq në faqen e internetit dhe ishte i lartë cilësisht.",
-      "dataDergeses": "2022-08-18T00:00:00",
-      "mesazhiId": 4,
-      "user": {
-        "userId": 29,
-        "username": "fkadriu"
-      }
-    },
-    {
-      "emri": "Enver Jashari",
-      "email": "enver.jashari@gmail.com",
-      "userId": 12,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Stafi i shërbimit në klientë ishte shumë i kujdesshëm dhe ndihmës, duke më ndihmuar të zgjidhja shqetësimet e mia.",
-      "dataDergeses": "2022-08-13T00:00:00",
-      "mesazhiId": 3,
-      "user": {
-        "userId": 12,
-        "username": "ejashari"
-      }
-    },
-    {
-      "emri": "Shpresa Hoxha",
-      "email": "shpresa.hoxha@gmail.com",
-      "userId": 9,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Produkti ishte i dërguar shpejt dhe në një paketim të sigurtë, gjë që e bëri përvojën time të blerjes shumë të këndshme.",
-      "dataDergeses": "2022-07-20T00:00:00",
-      "mesazhiId": 2,
-      "user": {
-        "userId": 9,
-        "username": "shoxha"
-      }
-    },
-    {
-      "emri": "Fatlum Murtezi",
-      "email": "fatlum.murtezi@gmail.com",
-      "userId": 6,
-      "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
-      "mesazhi": "Unë kam pranuar një porosi dhe kam qenë shumë i kënaqur me produktin dhe shërbimin e klientit.",
-      "dataDergeses": "2022-07-09T00:00:00",
-      "mesazhiId": 1,
-      "user": {
-        "userId": 6,
-        "username": "fmurtezi"
-      }
+      "username": "bbajrami"
     }
-  ]
+  },
+  {
+    "emri": "Florin Krasniqi",
+    "email": "florin.krasniqi@gmail.com",
+    "userId": 32,
+    "statusi": "Mesazhi juaj eshte derguar tek Stafi",
+    "mesazhi": "Transporti ishte i shpejtë dhe produktet arritën në gjendje të shkëlqyeshme.",
+    "dataDergeses": "2023-06-10T00:00:00",
+    "mesazhiId": 17,
+    "user": {
+      "userId": 32,
+      "username": "fkrasniqi"
+    }
+  },
+  {
+    "emri": "Besiana Hajdari",
+    "email": "besiana.hajdari@gmail.com",
+    "userId": 20,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Kam blerë një telefon dhe funksionon mjaft mirë, kam bërë një zgjedhje të shkëlqyeshme.",
+    "dataDergeses": "2023-05-09T00:00:00",
+    "mesazhiId": 16,
+    "user": {
+      "userId": 20,
+      "username": "bhajdari"
+    }
+  },
+  {
+    "emri": "Dardan Isamili",
+    "email": "dardan.ismaili@gmail.com",
+    "userId": 16,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Personeli është i shkathët dhe jep këshilla të mira për zgjedhjen e produkteve",
+    "dataDergeses": "2023-04-02T00:00:00",
+    "mesazhiId": 15,
+    "user": {
+      "userId": 16,
+      "username": "dismaili"
+    }
+  },
+  {
+    "emri": "Dardan Ismaili",
+    "email": "dardan.ismaili@gmail.com",
+    "userId": 16,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Kompjuteri që blera punon pa asnjë problem, jam i kënaqur plotësisht.",
+    "dataDergeses": "2023-03-26T00:00:00",
+    "mesazhiId": 14,
+    "user": {
+      "userId": 16,
+      "username": "dismaili"
+    }
+  },
+  {
+    "emri": "Zejnullah Kadriu",
+    "email": "zejnullah.kadriu@gmail.com",
+    "userId": 11,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Blerja ime e fundit ishte një TV, dhe cilësia është jashtëzakonisht e mirë.",
+    "dataDergeses": "2023-01-16T00:00:00",
+    "mesazhiId": 13,
+    "user": {
+      "userId": 11,
+      "username": "zkadriu"
+    }
+  },
+  {
+    "emri": "Shpresa Hoxha",
+    "email": "shpresa.hoxha@gmail.com",
+    "userId": 9,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Gama e produkteve është e madhe dhe çmimet janë të arsyeshme",
+    "dataDergeses": "2022-12-15T00:00:00",
+    "mesazhiId": 12,
+    "user": {
+      "userId": 9,
+      "username": "shoxha"
+    }
+  },
+  {
+    "emri": "Valbona Krasniqi",
+    "email": "valbona.krasniqi@gmail.com",
+    "userId": 5,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Dyqani ofron produkte teknologjike të shkëlqyera dhe stafi është shumë ndihmësor.",
+    "dataDergeses": "2022-11-23T00:00:00",
+    "mesazhiId": 11,
+    "user": {
+      "userId": 5,
+      "username": "vkrasniqi"
+    }
+  },
+  {
+    "emri": "Naim Dervishi",
+    "email": "naim.dervishi@gmail.com",
+    "userId": 10,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Gjithçka ishte e përsosur dhe unë nuk mund të kisha kërkuar një përvojë të blerjes më të mirë.",
+    "dataDergeses": "2022-11-14T00:00:00",
+    "mesazhiId": 10,
+    "user": {
+      "userId": 10,
+      "username": "ndervishi"
+    }
+  },
+  {
+    "emri": "Besiana Hajdari",
+    "email": "besiana.hajdari@gmail.com",
+    "userId": 20,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Transporti ishte shumë i shpejtë dhe produkti mbërriti në kohën e duhur.",
+    "dataDergeses": "2022-11-03T00:00:00",
+    "mesazhiId": 9,
+    "user": {
+      "userId": 20,
+      "username": "bhajdari"
+    }
+  },
+  {
+    "emri": "Fitore Bajrami",
+    "email": "fitore.bajrami@gmail.com",
+    "userId": 15,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Blerja ishte shumë e thjeshtë dhe e lehtë për tu bërë.",
+    "dataDergeses": "2022-10-29T00:00:00",
+    "mesazhiId": 8,
+    "user": {
+      "userId": 15,
+      "username": "fbajrami"
+    }
+  },
+  {
+    "emri": "Luljeta Ibrahimi",
+    "email": "luljeta.ibrahimi@gmail.com",
+    "userId": 7,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Në përgjithësi, unë kam qenë shumë i kënaqur me porosinë dhe do ta rekomandoja këtë biznes të tjerëve.",
+    "dataDergeses": "2022-10-11T00:00:00",
+    "mesazhiId": 7,
+    "user": {
+      "userId": 7,
+      "username": "librahimi"
+    }
+  },
+  {
+    "emri": "Anila Zeqiri",
+    "email": "anila.zeqiri@gmail.com",
+    "userId": 18,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Porosia ishte e lehtë për tu ndjekur dhe unë isha në gjendje të dija gjithmonë ku ndodhej porosia ime.",
+    "dataDergeses": "2022-09-28T00:00:00",
+    "mesazhiId": 6,
+    "user": {
+      "userId": 18,
+      "username": "azeqiri"
+    }
+  },
+  {
+    "emri": "Florin Krasniqi",
+    "email": "florin.krasniqi@gmail.com",
+    "userId": 32,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Kostoja e produktit ishte shumë e arsyeshme dhe unë ndjeva se kisha bërë një blerje të mirë.",
+    "dataDergeses": "2022-09-05T00:00:00",
+    "mesazhiId": 5,
+    "user": {
+      "userId": 32,
+      "username": "fkrasniqi"
+    }
+  },
+  {
+    "emri": "Fidan Kadriu",
+    "email": "fidan.kadriu@gmail.com",
+    "userId": 29,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Produkti ishte saktësisht siç u shfaq në faqen e internetit dhe ishte i lartë cilësisht.",
+    "dataDergeses": "2022-08-18T00:00:00",
+    "mesazhiId": 4,
+    "user": {
+      "userId": 29,
+      "username": "fkadriu"
+    }
+  },
+  {
+    "emri": "Enver Jashari",
+    "email": "enver.jashari@gmail.com",
+    "userId": 12,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Stafi i shërbimit në klientë ishte shumë i kujdesshëm dhe ndihmës, duke më ndihmuar të zgjidhja shqetësimet e mia.",
+    "dataDergeses": "2022-08-13T00:00:00",
+    "mesazhiId": 3,
+    "user": {
+      "userId": 12,
+      "username": "ejashari"
+    }
+  },
+  {
+    "emri": "Shpresa Hoxha",
+    "email": "shpresa.hoxha@gmail.com",
+    "userId": 9,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Produkti ishte i dërguar shpejt dhe në një paketim të sigurtë, gjë që e bëri përvojën time të blerjes shumë të këndshme.",
+    "dataDergeses": "2022-07-20T00:00:00",
+    "mesazhiId": 2,
+    "user": {
+      "userId": 9,
+      "username": "shoxha"
+    }
+  },
+  {
+    "emri": "Fatlum Murtezi",
+    "email": "fatlum.murtezi@gmail.com",
+    "userId": 6,
+    "statusi": "Mesazhi eshte Pranuar dhe eshte Pergjigjur ne email",
+    "mesazhi": "Unë kam pranuar një porosi dhe kam qenë shumë i kënaqur me produktin dhe shërbimin e klientit.",
+    "dataDergeses": "2022-07-09T00:00:00",
+    "mesazhiId": 1,
+    "user": {
+      "userId": 6,
+      "username": "fmurtezi"
+    }
+  }
+]

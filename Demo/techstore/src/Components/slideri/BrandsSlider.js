@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import classes from "./Styles/BrandsSlider.module.css";
 
+import data from "../../Data/Data";
+
 function BrandsSlider() {
   const kornizaEBrendeveRef = useRef([]);
   const shkoDjathtasRef = useRef([]);
@@ -11,27 +13,16 @@ function BrandsSlider() {
 
   const [kompanit, setKompanit] = useState([]);
 
-  const getToken = localStorage.getItem("token");
-
-  const authentikimi = {
-    headers: {
-      Authorization: `Bearer ${getToken}`,
-    },
-  };
-
   useEffect(() => {
-    const shfaqKompanit = async () => {
+    const shfaqKomp = async () => {
       try {
-        const kopmania = await axios.get(
-          "https://localhost:7285/api/Kompania/shfaqKompanit", authentikimi
-        );
-        setKompanit(kopmania.data);
+        setKompanit(data.shfaqKompanit);
       } catch (err) {
         console.log(err);
       }
     };
 
-    shfaqKompanit();
+    shfaqKomp();
   }, []);
 
   useEffect(() => {

@@ -7,23 +7,15 @@ import Footer from "../Components/layout/Footer";
 import BrandsSlider from "../Components/slideri/BrandsSlider";
 import { Helmet } from 'react-helmet';
 
+import data from "../Data/Data";
 
 function Home() {
     const [produktet, setProduktet] = useState([]);
 
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     useEffect(() => {
         const shfaqProduktet = async () => {
             try {
-                const produktet = await axios.get("https://localhost:7285/api/Produkti/15ProduktetMeTeFundit", authentikimi);
-                setProduktet(produktet.data);
+                setProduktet(data.shfaq15ProduktetMeTeFundit);
             } catch (err) {
                 console.log(err);
             }

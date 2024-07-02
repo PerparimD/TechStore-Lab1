@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
 
+import data from "../../Data/Data";
+
 function MesazhetUserit(props) {
     const [mesazhet, setMesazhet] = useState([]);
     const [perditeso, setPerditeso] = useState('');
@@ -23,8 +25,8 @@ function MesazhetUserit(props) {
         const vendosMesazhet = async () => {
             try {
                 setLoading(true);
-                const mesazhi = await axios.get(`https://localhost:7285/api/ContactForm/shfaqMesazhetNgaUseri?idUserit=${props.idUseri}`, authentikimi);
-                setMesazhet(mesazhi.data);
+                const mesazhi = data.shfaqMesazhet.filter((item) => item.userId == props.idUseri);
+                setMesazhet(mesazhi);
                 setLoading(false);
             } catch (err) {
                 console.log(err);

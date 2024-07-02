@@ -8,23 +8,17 @@ import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import data from '../../Data/Data';
+
 function Footer(props) {
     const [teDhenatBiznesit, setTeDhenatBiznesit] = useState([]);
     const [perditeso, setPerditeso] = useState('');
 
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     useEffect(() => {
         const ShfaqTeDhenat = async () => {
             try {
-                const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
-                setTeDhenatBiznesit(teDhenat.data);
+                const teDhenat = data.shfaqTeDhenatBiznesit;
+                setTeDhenatBiznesit(teDhenat);
             } catch (err) {
                 console.log(err);
             }

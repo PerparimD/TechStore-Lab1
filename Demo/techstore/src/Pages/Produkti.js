@@ -14,9 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import EditoProduktin from "../Components/produktet/EditoProduktin";
 
-import shfaqProduktet from "../Data/Produktet/shfaqProduktet.json";
-import shfaqPerdoruesit from "../Data/shfaqPerdoruesit.json";
-import shfaq15ProduktetMeTeShitura from "../Data/Statistikat/shfaq15ProduktetMeTeShitura.json";
+import data from "../Data/Data";
 
 function Produkti() {
     const { produktiID } = useParams();
@@ -45,7 +43,7 @@ function Produkti() {
         if (getID) {
             const vendosTeDhenat = async () => {
                 try {
-                    const perdoruesi = shfaqPerdoruesit.find((item) => item.perdoruesi.aspNetUserId === getID);
+                    const perdoruesi = data.shfaqPerdoruesit.find((item) => item.perdoruesi.aspNetUserId === getID);
                     setTeDhenat(perdoruesi);
                 } catch (err) {
                     console.log(err);
@@ -59,8 +57,9 @@ function Produkti() {
     useEffect(() => {
         const teDhenatProd = async () => {
             try {
-                const teDhenatProduktit = shfaqProduktet.find((item) => item.produktiId === produktiID);
+                const teDhenatProduktit = data.shfaqProduktet.find((item) => item.produktiId == produktiID);
                 setProdukti(teDhenatProduktit);
+                console.log(produktiID)
                 console.log(teDhenatProduktit)
                 if (teDhenatProduktit && teDhenatProduktit.pershkrimi !== "") {
                     setKaPershkrim(true);
@@ -77,7 +76,7 @@ function Produkti() {
     useEffect(() => {
         const shfaqProd = async () => {
             try {
-                setProduktet(shfaqProduktet);
+                setProduktet(data.shfaq15ProduktetMeTeShitura);
             } catch (err) {
                 console.log(err);
             }
@@ -265,12 +264,12 @@ function Produkti() {
                 {produktet.map((produkti) => {
                     return (
                         <ProduktetNeHome
-                            produktiID={produkti && produkti.produktiId}
-                            fotoProduktit={produkti && produkti.fotoProduktit}
-                            emriProduktit={produkti && produkti.emriProduktit}
-                            cmimi={produkti && produkti.qmimiProduktit}
-                            sasiaNeStok={produkti && produkti.sasiaNeStok}
-                            cmimiMeZbritje={produkti && produkti.qmimiMeZbritjeProduktit}
+                            produktiID={produkti && produkti.produkti && produkti.produkti.produktiId}
+                            fotoProduktit={produkti && produkti.produkti && produkti.produkti.fotoProduktit}
+                            emriProduktit={produkti && produkti.produkti && produkti.produkti.emriProduktit}
+                            cmimi={produkti && produkti.produkti && produkti.produkti.qmimiProduktit}
+                            sasiaNeStok={produkti && produkti.produkti && produkti.produkti.sasiaNeStok}
+                            cmimiMeZbritje={produkti && produkti.produkti && produkti.produkti.qmimiMeZbritjeProduktit}
                         />
                     );
                 }

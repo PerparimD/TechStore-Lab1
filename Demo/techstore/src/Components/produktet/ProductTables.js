@@ -14,6 +14,8 @@ import ZbritjetEProduktit from "./Zbritjet/ZbritjetEProduktit";
 import TabelaEKategorive from "./kategorit/TabelaEKategorive";
 import TabelaEKompanive from "./kompanit/TabelaEKompanive";
 
+import data from "../../Data/Data";
+
 const ProductTables = () => {
   const [produkti, setProdukti] = useState([]);
   const [id, setId] = useState();
@@ -28,22 +30,11 @@ const ProductTables = () => {
   const [mbyllKompanit, setMbyllKompanit] = useState(true);
   const [mbyllKategorite, setMbyllKategorite] = useState(true);
 
-  const getToken = localStorage.getItem("token");
-
-  const authentikimi = {
-    headers: {
-      Authorization: `Bearer ${getToken}`,
-    },
-  };
-
   useEffect(() => {
-    const shfaqProduktet = async () => {
+    const shfaqProd = async () => {
       try {
         setLoading(true);
-        const produkti = await axios.get(
-          "https://localhost:7285/api/Produkti/Products", authentikimi
-        );
-        setProdukti(produkti.data);
+        setProdukti(data.shfaqProduktet);
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -51,7 +42,7 @@ const ProductTables = () => {
       }
     };
 
-    shfaqProduktet();
+    shfaqProd();
   }, [perditeso]);
 
   const handleClose = () => {
@@ -76,7 +67,6 @@ const ProductTables = () => {
 
   async function handleDelete() {
     try {
-      await axios.delete(`https://localhost:7285/api/Produkti/` + id, authentikimi);
       setTipiMesazhit("success");
       setPershkrimiMesazhit("Produkti u fshi me sukses!");
       setPerditeso(Date.now());

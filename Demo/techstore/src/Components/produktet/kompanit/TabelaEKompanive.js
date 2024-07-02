@@ -10,6 +10,8 @@ import EditoKompanin from "./EditoKompanin";
 import LargoKompanin from "./LargoKompanin";
 import { TailSpin } from 'react-loader-spinner';
 
+import data from "../../../Data/Data";
+
 function TabelaEKompanive(props) {
     const [kompanit, setKompanit] = useState([]);
     const [perditeso, setPerditeso] = useState('');
@@ -22,20 +24,11 @@ function TabelaEKompanive(props) {
     const [id, setId] = useState(0);
     const [loading, setLoading] = useState(false);
 
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     useEffect(() => {
-        const shfaqKompanit = async () => {
+        const shfaqKomp = async () => {
             try {
                 setLoading(true);
-                const kompania = await axios.get("https://localhost:7285/api/Kompania/shfaqKompanit", authentikimi);
-                setKompanit(kompania.data);
+                setKompanit(data.shfaqKompanit);
                 setLoading(false);
             } catch (err) {
                 console.log(err);
@@ -43,7 +36,7 @@ function TabelaEKompanive(props) {
             }
         };
 
-        shfaqKompanit();
+        shfaqKomp();
     }, [perditeso]);
 
     const handleClose = () => {

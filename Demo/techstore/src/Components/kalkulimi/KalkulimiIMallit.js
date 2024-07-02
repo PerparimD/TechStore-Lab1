@@ -8,6 +8,8 @@ import { faCircleInfo, faPlus } from '@fortawesome/free-solid-svg-icons'
 import TeDhenatKalkulimit from "./TeDhenatKalkulimit";
 import { TailSpin } from 'react-loader-spinner';
 
+import data from "../../Data/Data";
+
 function KalkulimiIMallit() {
     const [kalkulimet, setKalkulimet] = useState([]);
     const [perditeso, setPerditeso] = useState('');
@@ -29,8 +31,8 @@ function KalkulimiIMallit() {
         const shfaqKalkulimet = async () => {
             try {
                 setLoading(true);
-                const kalkulimi = await axios.get("https://localhost:7285/api/RegjistrimiStokut/shfaqRegjistrimet", authentikimi);
-                setKalkulimet(kalkulimi.data);
+                const kalkulimi = data.shfaqRegjistrimet;
+                setKalkulimet(kalkulimi);
                 setLoading(false);
             } catch (err) {
                 console.log(err);

@@ -9,6 +9,8 @@ import { faPenToSquare, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import Button from "react-bootstrap/Button";
 import Rolet from "./Rolet/Rolet"
 
+import data from "../../Data/Data";
+
 function TabelaEPerdoruesve() {
     const [perdoruesit, setPerdoruesit] = useState([]);
     const [perditeso, setPerditeso] = useState('');
@@ -28,11 +30,10 @@ function TabelaEPerdoruesve() {
     };
 
     useEffect(() => {
-        const shfaqPerdoruesit = async () => {
+        const shfaqPerdor = async () => {
             try {
                 setLoading(true);
-                const perdoruesit = await axios.get("https://localhost:7285/api/Perdoruesi/shfaqPerdoruesit", authentikimi);
-                setPerdoruesit(perdoruesit.data);
+                setPerdoruesit(data.shfaqPerdoruesit);
                 setLoading(false);
             } catch (err) {
                 console.log(err);
@@ -40,7 +41,7 @@ function TabelaEPerdoruesve() {
             }
         };
 
-        shfaqPerdoruesit();
+        shfaqPerdor();
     }, [perditeso]);
 
     const handleEdito = (id) => {

@@ -3,9 +3,11 @@ import classes from './Styles/TabelaEKompanive.module.css';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faClose, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { TailSpin } from 'react-loader-spinner';
 import { Table, Container, Row, Col } from 'react-bootstrap';
+
+import data from "../../Data/Data";
 
 function TeDhenatKalkulimit(props) {
     const [perditeso, setPerditeso] = useState('');
@@ -13,22 +15,12 @@ function TeDhenatKalkulimit(props) {
     const [produktet, setProduktet] = useState([]);
     const [teDhenatFat, setTeDhenatFat] = useState("");
 
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     useEffect(() => {
         const vendosTeDhenat = async () => {
             try {
                 setLoading(true);
-                const produktet = await axios.get(
-                    `https://localhost:7285/api/RegjistrimiStokut/shfaqTeDhenatKalkulimit?idRegjistrimit=${props.id}`, authentikimi
-                );
-                setProduktet(produktet.data);
+                const produktet = data.shfaqTeDhenatKalkulimit.filter((item) => item.idRegjistrimit == props.id);
+                setProduktet(produktet);
                 setLoading(false);
             } catch (err) {
                 console.log(err);
@@ -43,10 +35,8 @@ function TeDhenatKalkulimit(props) {
         const shfaqTeDhenatFature = async () => {
             try {
                 setLoading(true);
-                const teDhenat = await axios.get(
-                    `https://localhost:7285/api/RegjistrimiStokut/shfaqRegjistrimetNgaID?id=${props.id}`, authentikimi
-                );
-                setTeDhenatFat(teDhenat.data);
+                const teDhenat = data.shfaqRegjistrimet.find((item) => item.idRegjistrimit == props.id);
+                setTeDhenatFat(teDhenat);
                 setLoading(false);
             }
             catch (err) {
@@ -94,7 +84,7 @@ function TeDhenatKalkulimit(props) {
                                 className="mb-3 Butoni"
                                 onClick={handleSave}
                             >
-                                Mbyll Te Dhenat <FontAwesomeIcon icon={faPlus} />
+                                Mbyll Te Dhenat <FontAwesomeIcon icon={faClose} />
                             </Button>
                         </h1>
                     </Row>
@@ -128,7 +118,7 @@ function TeDhenatKalkulimit(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {produktet.map((produkti, index) => (
+                            {produktet && produktet.map((produkti, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{produkti.idProduktit + " - " + produkti.emriProduktit}</td>

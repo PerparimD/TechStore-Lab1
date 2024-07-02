@@ -8,30 +8,24 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 
+import data from "../../Data/Data";
+
 function EditoPerdorues(props) {
     const [perdoruesi, setPerdoruesi] = useState([]);
     const [shfaqRolet, setShfaqRolet] = useState([]);
     const [roletUseri, setRoletUseri] = useState([]);
     const [roletSelektim, setRoletSelektim] = useState([]);
 
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     const handleChange = (roli) => setRoletSelektim(roli);
 
     useEffect(() => {
         const vendosPerdoruesin = async () => {
             try {
-                const user = await axios.get(`https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${props.id}`, authentikimi);
-                setPerdoruesi(user.data);
+                const user = data.shfaqPerdoruesit.find((item) => item.perdoruesi.aspNetUserId == props.id);
+                setPerdoruesi(user);
 
-                setRoletUseri(user.data.rolet);
-                setRoletSelektim(user.data.rolet)
+                setRoletUseri(user.rolet);
+                setRoletSelektim(user.rolet)
 
             } catch (err) {
                 console.log(err);
@@ -44,8 +38,7 @@ function EditoPerdorues(props) {
     useEffect(() => {
         const vendosRolet = async () => {
             try {
-                const rolet = await axios.get(`https://localhost:7285/api/Authenticate/shfaqRolet`, authentikimi);
-                setShfaqRolet(rolet.data);
+                setShfaqRolet(data.shfaqRolet);
             } catch (err) {
                 console.log(err);
             }
@@ -56,18 +49,6 @@ function EditoPerdorues(props) {
 
     async function handleSubmit() {
         try {
-            for (const y of roletUseri) {
-                if (y !== 'User') {
-                    await axios.delete(`https://localhost:7285/api/Authenticate/FshijRolinUserit?userID=${props.id}&roli=${y}`, authentikimi);
-                }
-            }
-
-            for (const y of roletSelektim) {
-                if (y !== 'User') {
-                    await axios.post(`https://localhost:7285/api/Authenticate/ShtoRolinPerdoruesit?userID=${props.id}&roli=${y}`, {}, authentikimi);
-                }
-            }
-
             props.perditesoTeDhenat();
             props.largo();
             props.setTipiMesazhit("success")

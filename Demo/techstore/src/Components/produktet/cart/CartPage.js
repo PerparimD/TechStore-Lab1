@@ -9,6 +9,8 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Checkout from "./Checkout/Checkout";
 
+import data from "../../../Data/Data";
+
 function CartPage() {
   const [{ cart }, dispatch] = useStateValue();
   const [promoCode, setPromoCode] = useState('');
@@ -20,26 +22,18 @@ function CartPage() {
   const [pershkrimiMesazhit, setPershkrimiMesazhit] = useState("");
   const [checkout, setCheckout] = useState(false);
 
-  const getToken = localStorage.getItem("token");
-
-  const authentikimi = {
-    headers: {
-      Authorization: `Bearer ${getToken}`,
-    },
-  };
-
   useEffect(() => {
     const KontrolloKodin = async () => {
       try {
-        const kodiZbritjes = await axios.get(`https://localhost:7285/api/KodiZbritje/gjejKodin?kodi=${promoCode}`, authentikimi);
+        const kodiZbritjes = data.shfaqKodet.find((item) => item.kodi == promoCode);
 
-        setTeDhenatZbritjes(kodiZbritjes.data)
+        setTeDhenatZbritjes(kodiZbritjes)
 
-        if (kodiZbritjes.data.idProdukti === null) {
-          if (qmimiTot > kodiZbritjes.data.qmimiZbritjes) {
-            setQmimiTot((p) => p - kodiZbritjes.data.qmimiZbritjes);
+        if (kodiZbritjes && kodiZbritjes.idProdukti == null) {
+          if (qmimiTot > (kodiZbritjes && kodiZbritjes.qmimiZbritjes)) {
+            setQmimiTot((p) => p - (kodiZbritjes && kodiZbritjes.qmimiZbritjes));
           } else {
-            let shumaZbritjes = kodiZbritjes.data.qmimiZbritjes;
+            let shumaZbritjes = (kodiZbritjes && kodiZbritjes.qmimiZbritjes);
             setTeDhenatZbritjes([]);
             setTipiMesazhit("danger");
             setPershkrimiMesazhit(`Shuma e zbritjes eshte: <strong>${shumaZbritjes.toFixed(2)} €</strong> ndersa totali juaj eshte: <strong>${qmimiTot.toFixed(2)} € </strong>ju lutemi provoni nje kod tjeter ose shtoni produkte ne shporte!`);
@@ -49,8 +43,8 @@ function CartPage() {
         } else {
           {
             cart.length !== 0 && cart.map((item) => {
-              if (cart.find((item) => item.id === kodiZbritjes.data.idProdukti)) {
-                setQmimiTot((p) => p - kodiZbritjes.data.qmimiZbritjes);
+              if (cart.find((item) => item.id === kodiZbritjes.idProdukti)) {
+                setQmimiTot((p) => p - kodiZbritjes.qmimiZbritjes);
               } else {
                 setTeDhenatZbritjes([]);
                 setTipiMesazhit("danger");
@@ -99,8 +93,8 @@ function CartPage() {
         <Checkout
           setCheckout={() => setCheckout(false)}
           qmimiTotal={qmimiTot.toFixed(2)}
-          zbritja={teDhenatZbritje.qmimiZbritjes ? (teDhenatZbritje.qmimiZbritjes).toFixed(2) : 0}
-          kodiZbrijtes={teDhenatZbritje.kodi ? teDhenatZbritje.kodi : ""}
+          zbritja={(teDhenatZbritje && teDhenatZbritje.qmimiZbritjes) ? (teDhenatZbritje && teDhenatZbritje.qmimiZbritjes).toFixed(2) : 0}
+          kodiZbrijtes={(teDhenatZbritje && teDhenatZbritje.kodi) ? (teDhenatZbritje && teDhenatZbritje.kodi) : ""}
           totaliProdukteve={cart.length}
         />
       }
@@ -129,7 +123,7 @@ function CartPage() {
             <div className="details">
               <h3 className="d-title">Detajet e Shportes</h3>
               <h4>Totali produkteve: {cart.length}</h4>
-              {teDhenatZbritje.length === 0 &&
+              {teDhenatZbritje && teDhenatZbritje.length == 0 &&
                 <div className="promo-input-container">
                   <input
                     id="promo-input"
@@ -140,16 +134,16 @@ function CartPage() {
                   />
                   <button className="promo-button" onClick={handleApplyPromoCode}><FontAwesomeIcon icon={faCheck} /></button>
                 </div>}
-              {teDhenatZbritje.length !== 0 &&
+              {teDhenatZbritje && teDhenatZbritje.length !== 0 &&
                 <>
                   <h4>Qmimi total: {(qmimiTot + teDhenatZbritje.qmimiZbritjes).toFixed(2)} €</h4>
                   <h4>Qmimi total - Zbritja: {qmimiTot.toFixed(2)} €</h4>
                 </>
               }
-              {teDhenatZbritje.length === 0 && <h4>Qmimi total: {qmimiTot.toFixed(2)} €</h4>}
+              {teDhenatZbritje && teDhenatZbritje.length === 0 && <h4>Qmimi total: {qmimiTot.toFixed(2)} €</h4>}
               <p><strong>Qmimi total pa TVSH: </strong>{(qmimiTot - qmimiTot * 0.152542).toFixed(2)} €</p>
               <p><strong>TVSH: </strong>{(qmimiTot * 0.152542).toFixed(2)} €</p>
-              {teDhenatZbritje.length !== 0 &&
+              {teDhenatZbritje && teDhenatZbritje.length !== 0 &&
                 <div className="zbritja">
                   <hr />
                   <p><strong>Kodi i Perdorur: </strong>{teDhenatZbritje.kodi}</p>

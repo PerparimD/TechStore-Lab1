@@ -10,6 +10,8 @@ import LargoKompanin from "./FshijKodin";
 import { TailSpin } from 'react-loader-spinner';
 import ShtoKodin from "./ShtoKodin";
 
+import data from "../../Data/Data";
+
 function KodiZbritjes() {
     const [kodetEZbritjeve, setKodetEZbritjeve] = useState([]);
     const [perditeso, setPerditeso] = useState('');
@@ -34,8 +36,8 @@ function KodiZbritjes() {
         const shfaqKompanit = async () => {
             try {
                 setLoading(true);
-                const kodi = await axios.get("https://localhost:7285/api/KodiZbritje/shfaqKodet", authentikimi);
-                setKodetEZbritjeve(kodi.data);
+                const kodi = data.shfaqKodet;
+                setKodetEZbritjeve(kodi);
                 setLoading(false);
             } catch (err) {
                 console.log(err);

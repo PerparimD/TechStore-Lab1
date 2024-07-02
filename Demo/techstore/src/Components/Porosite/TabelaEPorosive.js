@@ -11,6 +11,7 @@ import PagesaMeSukses from "../produktet/cart/Checkout/PagesaMeSukses";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
+import data from "../../Data/Data";
 
 function TabelaEPorosive() {
     const [porosite, setPorosite] = useState([]);
@@ -29,20 +30,12 @@ function TabelaEPorosive() {
     const [dataFillestare, setDataFillestare] = useState(null);
     const [dataFundit, setDataFundit] = useState(null);
 
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     useEffect(() => {
         const vendosPorosite = async () => {
             try {
                 setLoading(true);
-                const porosia = await axios.get("https://localhost:7285/api/Porosia/Porosit", authentikimi);
-                setPorosite(porosia.data);
+                const porosia = data.shfaqPorosit;
+                setPorosite(porosia);
                 setLoading(false);
             } catch (err) {
                 console.log(err);

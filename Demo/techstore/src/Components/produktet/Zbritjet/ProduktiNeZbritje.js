@@ -3,16 +3,20 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Mesazhi from "../../layout/Mesazhi";
 
+import data from "../../../Data/Data";
+
 function ProduktiNeZbritje(props) {
-  const [produkti, setProdukti] = useState("");
-  const [qmimiBleresProduktit, setQmimiBleresProduktit] = useState(0.00);
-  const [qmimiShitesProduktit, setQmimiShitesProduktit] = useState(0.00);
-  const [qmimiZbritur, setQmimiZbritur] = useState(0.00);
-  const [dataSkadimit, setDataSkadimit] = useState(new Date().toISOString().substring(0, 10));
+  const [produkti, setProdukti] = useState(8);
+  const [qmimiBleresProduktit, setQmimiBleresProduktit] = useState(0.0);
+  const [qmimiShitesProduktit, setQmimiShitesProduktit] = useState(0.0);
+  const [qmimiZbritur, setQmimiZbritur] = useState(0.0);
+  const [dataSkadimit, setDataSkadimit] = useState(
+    new Date().toISOString().substring(0, 10)
+  );
   const [produktet, setProduktet] = useState([]);
   const [perditeso, setPerditeso] = useState("");
   const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
@@ -21,22 +25,10 @@ function ProduktiNeZbritje(props) {
   const [zbritjaNeRregull, setZbritjaNeRregull] = useState(false);
   const [kaZbritje, setKaZbritje] = useState(false);
 
-  const getToken = localStorage.getItem("token");
-
-  const authentikimi = {
-    headers: {
-      Authorization: `Bearer ${getToken}`,
-    },
-  };
-
   useEffect(() => {
     const vendosProduktet = async () => {
       try {
-        const produktet = await axios.get(
-          `https://localhost:7285/api/Produkti/Products`, authentikimi
-        );
-        setProduktet(produktet.data);
-
+        setProduktet(data.shfaqProduktet);
       } catch (err) {
         console.log(err);
       }
@@ -47,22 +39,16 @@ function ProduktiNeZbritje(props) {
 
   useEffect(() => {
     const vendosDetajetProduktit = async () => {
-      try {
-        await axios.get(
-          `https://localhost:7285/api/Produkti/${produkti}`, authentikimi
-        ).then((response) => {
-          setQmimiBleresProduktit((response.data.qmimiBleres).toFixed(2));
-          setQmimiShitesProduktit((response.data.qmimiProduktit).toFixed(2));
-          if (response.data.qmimiMeZbritjeProduktit != null) {
-            setQmimiZbritur(response.data.qmimiMeZbritjeProduktit);
-            setKaZbritje(true);
-            setPershkrimiMesazhit("Ky produkt ka Zbritje!");
-            setTipiMesazhit("danger");
-            setShfaqMesazhin(true);
-          }
-        });
-      } catch (err) {
-        console.log(err);
+      var prod = data.shfaqProduktet.find((item) => item.produktiId == produkti);
+
+      setQmimiBleresProduktit((prod && prod.qmimiBleres).toFixed(2));
+      setQmimiShitesProduktit((prod && prod.qmimiProduktit).toFixed(2));
+      if (prod && prod.qmimiMeZbritjeProduktit != null) {
+        setQmimiZbritur(prod && prod.qmimiMeZbritjeProduktit);
+        setKaZbritje(true);
+        setPershkrimiMesazhit("Ky produkt ka Zbritje!");
+        setTipiMesazhit("danger");
+        setShfaqMesazhin(true);
       }
     };
 
@@ -85,7 +71,9 @@ function ProduktiNeZbritje(props) {
       element.focus();
     } else if (value >= parseInt(qmimiShitesProduktit)) {
       setQmimiZbritur(value);
-      setPershkrimiMesazhit("Qmimi i zbritur duhet te jete me i vogel se qmimi aktual!");
+      setPershkrimiMesazhit(
+        "Qmimi i zbritur duhet te jete me i vogel se qmimi aktual!"
+      );
       setTipiMesazhit("danger");
       setShfaqMesazhin(true);
       setZbritjaNeRregull(false);
@@ -94,45 +82,37 @@ function ProduktiNeZbritje(props) {
       setQmimiZbritur(value);
       setZbritjaNeRregull(true);
     }
-  }
+  };
 
   function handleSubmit() {
     if (zbritjaNeRregull === true && kaZbritje === false) {
-      axios.post('https://localhost:7285/api/ZbritjaQmimitProduktit/shtoZbritjenProduktit', {
-        produktiId: produkti,
-        qmimiPaZbritjeProduktit: qmimiShitesProduktit,
-        qmimiMeZbritjeProduktit: qmimiZbritur,
-        dataSkadimit: dataSkadimit
-      }, authentikimi)
-        .then(() => {
-          props.setTipiMesazhit("success");
-          props.setPershkrimiMesazhit("Zbritja u shtua me sukses!")
-          props.setPerditeso(Date.now());
-          props.mbyllZbritjen();
-          props.shfaqmesazhin();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      props.setTipiMesazhit("success");
+      props.setPershkrimiMesazhit("Zbritja u shtua me sukses!");
+      props.setPerditeso(Date.now());
+      props.mbyllZbritjen();
+      props.shfaqmesazhin();
     } else if (kaZbritje === true) {
       setPershkrimiMesazhit("Ky produkt ka Zbritje!");
       setTipiMesazhit("danger");
       setShfaqMesazhin(true);
-    }
-    else {
+    } else {
       handleZbritja(qmimiZbritur);
     }
   }
   return (
     <>
-      {shfaqMesazhin &&
+      {shfaqMesazhin && (
         <Mesazhi
           setShfaqMesazhin={setShfaqMesazhin}
           pershkrimi={pershkrimiMesazhit}
           tipi={tipiMesazhit}
         />
-      }
-      <Modal className="modalEditShto" show={props.shfaq} onHide={() => props.mbyllZbritjen()} size="lg">
+      )}
+      <Modal
+        className="modalEditShto"
+        show={props.shfaq}
+        onHide={() => props.mbyllZbritjen()}
+        size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Shto Zbritjen</Modal.Title>
         </Modal.Header>
@@ -140,26 +120,25 @@ function ProduktiNeZbritje(props) {
           <Form>
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+              controlId="exampleForm.ControlTextarea1">
               <Form.Label>Vlen per</Form.Label>
               <select
                 placeholder="Produkti"
                 className="form-select"
                 value={produkti}
-                onChange={(e) => handleProduktiChange(e.target.value)}
-              >
+                onChange={(e) => handleProduktiChange(e.target.value)}>
                 {produktet.map((item) => {
                   return (
-                    <option key={item.produktiId} value={item.produktiId}>{item.emriProduktit}</option>
+                    <option key={item.produktiId} value={item.produktiId}>
+                      {item.emriProduktit}
+                    </option>
                   );
                 })}
               </select>
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+              controlId="exampleForm.ControlTextarea1">
               <Form.Label>Qmimi Bleres</Form.Label>
               <Form.Control
                 value={qmimiBleresProduktit + " €"}
@@ -170,8 +149,7 @@ function ProduktiNeZbritje(props) {
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+              controlId="exampleForm.ControlTextarea1">
               <Form.Label>Qmimi Shites</Form.Label>
               <Form.Control
                 value={qmimiShitesProduktit + " €"}
@@ -199,15 +177,10 @@ function ProduktiNeZbritje(props) {
               />
             </Form.Group>
 
-            <Form.Group
-              className="mb-3"
-              controlId="qmimiZbritur"
-            >
+            <Form.Group className="mb-3" controlId="qmimiZbritur">
               <Form.Label>Qmimi me Zbritje</Form.Label>
               <Form.Control
-                onChange={(e) =>
-                  handleZbritja(e.target.value)
-                }
+                onChange={(e) => handleZbritja(e.target.value)}
                 onFocus={(e) => e.target.select()}
                 value={qmimiZbritur}
                 type="text"
@@ -224,16 +197,13 @@ function ProduktiNeZbritje(props) {
           <Button variant="secondary" onClick={() => props.mbyllZbritjen()}>
             Anulo <FontAwesomeIcon icon={faXmark} />
           </Button>
-          <Button
-            className="Butoni"
-            onClick={handleSubmit}
-          >
+          <Button className="Butoni" onClick={handleSubmit}>
             Vendosni Zbritjen <FontAwesomeIcon icon={faPlus} />
           </Button>
         </Modal.Footer>
       </Modal>
     </>
-  )
+  );
 }
 
 export default ProduktiNeZbritje;

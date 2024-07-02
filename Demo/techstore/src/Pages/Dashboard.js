@@ -15,6 +15,8 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Mesazhi from "../Components/layout/Mesazhi";
 import PerditesoTeDhenat from "../Components/Dashboard/PerditesoTeDhenat";
 
+import data from "../Data/Data";
+
 const Dashboard = () => {
   const [shfaqAdmin, setShfaqAdmin] = useState(false);
   const [teDhenat, setTeDhenat] = useState([]);
@@ -24,14 +26,7 @@ const Dashboard = () => {
   const [shfaqDetajet, setShfaqDetajet] = useState(false);
   const [shfaqMesazhet, setShfaqMesazhet] = useState(false);
   const [nrFatures, setNumriFatures] = useState(0);
-  const [show, setShow] = useState(false);
   const [edito, setEdito] = useState(false);
-  const [emri, setEmri] = useState("");
-  const [mbiemri, setMbiemri] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [adresa, setAdresa] = useState("");
-  const [nrKontaktit, setNrKontaktit] = useState("");
   const [id, setId] = useState();
   const [mbyllPerditesoTeDhenat, setMbyllPerditesoTeDhenat] = useState(true)
   const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
@@ -42,22 +37,12 @@ const Dashboard = () => {
 
   const getID = localStorage.getItem("id");
 
-  const getToken = localStorage.getItem("token");
-
-  const authentikimi = {
-    headers: {
-      Authorization: `Bearer ${getToken}`,
-    },
-  };
-
   useEffect(() => {
     if (getID) {
       const vendosTeDhenat = async () => {
         try {
-          const perdoruesi = await axios.get(
-            `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
-          );
-          setTeDhenat(perdoruesi.data);
+          const perdoruesi = data.shfaqPerdoruesit.find((item) => item.perdoruesi.aspNetUserId == getID);
+          setTeDhenat(perdoruesi);
         } catch (err) {
           console.log(err);
         } finally {
@@ -70,31 +55,6 @@ const Dashboard = () => {
       navigate("/login");
     }
   }, [perditeso]);
-
-  const perditesoTeDhenat = async () => {
-    try {
-      const info = {
-        emri: emri,
-        mbiemri: mbiemri,
-        email: email,
-        username: username,
-        teDhenatPerdoruesit: {
-          nrKontaktit: nrKontaktit,
-          adresa: adresa,
-        },
-      }
-      fetch("https://localhost:7285/api/Perdoruesi/perditesoPerdorues/" + id, {
-        method: 'PUT',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(info)
-      })
-
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleShfaqPorosite = () => {
     setShfaqAdmin(false);

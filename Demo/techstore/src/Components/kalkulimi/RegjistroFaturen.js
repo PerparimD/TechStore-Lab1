@@ -10,6 +10,8 @@ import { Table, Form, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 
+import data from "../../Data/Data";
+
 function RegjistroFaturen(props) {
     const [perditeso, setPerditeso] = useState('');
     const [shfaqMesazhin, setShfaqMesazhin] = useState(false);
@@ -52,10 +54,8 @@ function RegjistroFaturen(props) {
         if (getID) {
             const vendosTeDhenat = async () => {
                 try {
-                    const perdoruesi = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
-                    );
-                    setTeDhenat(perdoruesi.data);
+                    const perdoruesi = data.shfaqPerdoruesit.find((item) => item.perdoruesi.aspNetUserId == getID);
+                    setTeDhenat(perdoruesi);
                 } catch (err) {
                     console.log(err);
                 } finally {
@@ -72,10 +72,8 @@ function RegjistroFaturen(props) {
     useEffect(() => {
         const vendosProduktet = async () => {
             try {
-                const produktet = await axios.get(
-                    `https://localhost:7285/api/Produkti/ProduktetPerKalkulim`, authentikimi
-                );
-                setProduktet(produktet.data);
+                const produktet = data.shfaqProduktet;
+                setProduktet(produktet);
 
             } catch (err) {
                 console.log(err);
@@ -165,38 +163,10 @@ function RegjistroFaturen(props) {
     }
 
     async function handleMbyllFature() {
-        try {
-            await axios.post('https://localhost:7285/api/RegjistrimiStokut/RuajKalkulimin', {
-                totaliProdukteveRegjistruara: totProdukteve,
-                shumaTotaleRegjistrimit: totFaturesShitese,
-                shumaTotaleBlerese: totFaturesBlerese,
-                stafiId: teDhenat.perdoruesi.userId
-            }, authentikimi).then(async (response) => {
-
-                for (let produkti of produktetNeKalkulim) {
-                    await axios.post('https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/teDhenat', {
-                        idRegjistrimit: response.data.idRegjistrimit,
-                        idProduktit: produkti.produktiId,
-                        sasiaStokut: produkti.sasia,
-                        qmimiBleres: produkti.qmimiBleres,
-                        qmimiShites: produkti.qmimiShites,
-                    }, authentikimi);
-                    await axios.put(`https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/perditesoStokunQmimin?id=${produkti.produktiId}`, {
-                        produktiId: produkti.produktiId,
-                        qmimiBleres: produkti.qmimiBleres,
-                        qmimiProduktit: produkti.qmimiShites,
-                        sasiaNeStok: produkti.sasia
-                    }, authentikimi);
-                }
+        
 
                 props.setPerditeso(Date.now());
                 props.setMbyllFaturen();
-            })
-
-
-        } catch (error) {
-            console.error(error);
-        }
     }
 
     function handleFshij(id) {

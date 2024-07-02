@@ -5,17 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 function LargoKompanin(props) {
-    const getToken = localStorage.getItem("token");
-
-    const authentikimi = {
-        headers: {
-            Authorization: `Bearer ${getToken}`,
-        },
-    };
-
     async function handleSubmit() {
         try {
-            await axios.delete(`https://localhost:7285/api/Kategoria/fshijKategorin?id=${props.id}`, authentikimi);
             props.setTipiMesazhit("success");
             props.setPershkrimiMesazhit("Kategoria u fshi me sukses!")
             props.perditesoTeDhenat();

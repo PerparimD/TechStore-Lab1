@@ -161,10 +161,10 @@ function NavBar(props) {
 
         <ul className={classes.mobileShporta}>
           <li className={classes.navItem}>
-            <a href="/TechStore-Lab1/cart" onClick={kontrolloProduktet}>
+            <Link to="Cart" onClick={kontrolloProduktet}>
               <FontAwesomeIcon icon={faCartShopping} />
               <span className={classes.badge} value={cart.length} />
-            </a>
+            </Link>
           </li>
         </ul>
         <div className={classes.hamburger}>

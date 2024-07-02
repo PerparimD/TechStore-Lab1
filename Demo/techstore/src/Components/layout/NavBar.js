@@ -178,7 +178,7 @@ function NavBar(props) {
               <Link to="/">Home</Link>
               <Link to="/AboutUs">About Us</Link>
               <Link to="/ContactUs">Contact Us</Link>
-              <a href="/Produktet">Products</a>
+              <Link to="/Produktet">Products</Link>
               {id && (
                 <>
                   <Link to="/Dashboard">

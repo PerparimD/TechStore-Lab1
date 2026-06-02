@@ -32,7 +32,7 @@ function TabelaEKompanive(props) {
         const vendosRolet = async () => {
             try {
                 setLoading(true);
-                const roli = await axios.get("https://localhost:7285/api/Authenticate/shfaqRolet", authentikimi);
+                const roli = await axios.get("http://localhost:7255/api/Authenticate/shfaqRolet", authentikimi);
                 setRolet(roli.data);
                 setLoading(false);
             } catch (err) {

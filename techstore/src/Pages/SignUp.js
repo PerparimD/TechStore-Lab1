@@ -63,7 +63,7 @@ const SignUp = () => {
       setTipiMesazhit("danger");
       setShfaqMesazhin(true);
     } else {
-      const kontrolloEmail = await axios.get(`https://localhost:7285/api/Perdoruesi/KontrolloEmail?email=${email}`, authentikimi)
+      const kontrolloEmail = await axios.get(`http://localhost:7255/api/Perdoruesi/KontrolloEmail?email=${email}`, authentikimi)
       const passREGEX = /^[A-Z][A-Za-z0-9@$!%*?&]*[a-z][A-Za-z0-9@$!%*?&]*[0-9][A-Za-z0-9@$!%*?&]*$/
       const telefoniREGEX = /^(?:\+\d{11}|\d{9})$/
 
@@ -84,7 +84,7 @@ const SignUp = () => {
 
       else {
         axios
-          .post("https://localhost:7285/api/Authenticate/register", {
+          .post("http://localhost:7255/api/Authenticate/register", {
             name: emri,
             lastName: mbimeri,
             email: email,

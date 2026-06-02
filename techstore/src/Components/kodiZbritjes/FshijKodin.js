@@ -15,7 +15,7 @@ function FshijKodin(props) {
 
     async function handleSubmit() {
         try {
-            await axios.delete(`https://localhost:7285/api/KodiZbritje/fshijKodin?kodi=${props.id}`, authentikimi);
+            await axios.delete(`http://localhost:7255/api/KodiZbritje/fshijKodin?kodi=${props.id}`, authentikimi);
             props.setTipiMesazhit("success");
             props.setPershkrimiMesazhit("Kodi u fshi me sukses!")
             props.perditesoTeDhenat();

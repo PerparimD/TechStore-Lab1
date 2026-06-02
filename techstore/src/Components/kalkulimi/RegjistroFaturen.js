@@ -53,7 +53,7 @@ function RegjistroFaturen(props) {
             const vendosTeDhenat = async () => {
                 try {
                     const perdoruesi = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
+                        `http://localhost:7255/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(perdoruesi.data);
                 } catch (err) {
@@ -73,7 +73,7 @@ function RegjistroFaturen(props) {
         const vendosProduktet = async () => {
             try {
                 const produktet = await axios.get(
-                    `https://localhost:7285/api/Produkti/ProduktetPerKalkulim`, authentikimi
+                    `http://localhost:7255/api/Produkti/ProduktetPerKalkulim`, authentikimi
                 );
                 setProduktet(produktet.data);
 
@@ -166,7 +166,7 @@ function RegjistroFaturen(props) {
 
     async function handleMbyllFature() {
         try {
-            await axios.post('https://localhost:7285/api/RegjistrimiStokut/RuajKalkulimin', {
+            await axios.post('http://localhost:7255/api/RegjistrimiStokut/RuajKalkulimin', {
                 totaliProdukteveRegjistruara: totProdukteve,
                 shumaTotaleRegjistrimit: totFaturesShitese,
                 shumaTotaleBlerese: totFaturesBlerese,
@@ -174,14 +174,14 @@ function RegjistroFaturen(props) {
             }, authentikimi).then(async (response) => {
 
                 for (let produkti of produktetNeKalkulim) {
-                    await axios.post('https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/teDhenat', {
+                    await axios.post('http://localhost:7255/api/RegjistrimiStokut/ruajKalkulimin/teDhenat', {
                         idRegjistrimit: response.data.idRegjistrimit,
                         idProduktit: produkti.produktiId,
                         sasiaStokut: produkti.sasia,
                         qmimiBleres: produkti.qmimiBleres,
                         qmimiShites: produkti.qmimiShites,
                     }, authentikimi);
-                    await axios.put(`https://localhost:7285/api/RegjistrimiStokut/ruajKalkulimin/perditesoStokunQmimin?id=${produkti.produktiId}`, {
+                    await axios.put(`http://localhost:7255/api/RegjistrimiStokut/ruajKalkulimin/perditesoStokunQmimin?id=${produkti.produktiId}`, {
                         produktiId: produkti.produktiId,
                         qmimiBleres: produkti.qmimiBleres,
                         qmimiProduktit: produkti.qmimiShites,

@@ -23,7 +23,7 @@ function EditoKodin(props) {
         const vendosProduktet = async () => {
             try {
                 const produktet = await axios.get(
-                    `https://localhost:7285/api/Produkti/Products`, authentikimi
+                    `http://localhost:7255/api/Produkti/Products`, authentikimi
                 );
                 setProduktet(produktet.data);
 
@@ -38,7 +38,7 @@ function EditoKodin(props) {
     useEffect(() => {
         const shfaqKodin = async () => {
             try {
-                const teDhenatKodit = await axios.get(`https://localhost:7285/api/KodiZbritje/gjejKodin?kodi=${props.id}`, authentikimi);
+                const teDhenatKodit = await axios.get(`http://localhost:7255/api/KodiZbritje/gjejKodin?kodi=${props.id}`, authentikimi);
                 setKodi(teDhenatKodit.data);
 
             } catch (err) {
@@ -61,7 +61,7 @@ function EditoKodin(props) {
     function handleSubmit() {
 
 
-        axios.put(`https://localhost:7285/api/KodiZbritje/perditesoTeDhenatEKodit?kodi=${kodi.kodi}`, kodi, authentikimi)
+        axios.put(`http://localhost:7255/api/KodiZbritje/perditesoTeDhenatEKodit?kodi=${kodi.kodi}`, kodi, authentikimi)
             .then(x => {
                 props.setTipiMesazhit("success");
                 props.setPershkrimiMesazhit("Te dhenat e kodit u Perditesuan me sukses!")

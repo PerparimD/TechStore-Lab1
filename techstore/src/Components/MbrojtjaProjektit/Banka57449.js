@@ -19,7 +19,7 @@ function Banka57449() {
     useEffect(() => {
         const shfaqBankat = async () => {
             try {
-                const bankat = await axios.get("https://localhost:7285/api/Banka57449/ShfaqBankat");
+                const bankat = await axios.get("http://localhost:7255/api/Banka57449/ShfaqBankat");
                 setBankat(bankat.data);
             } catch (err) {
                 console.log(err);
@@ -46,7 +46,7 @@ function Banka57449() {
     useEffect(() => {
         const vendosTeDhenat = async () => {
             try {
-                const teDhenatBankes = await axios.get(`https://localhost:7285/api/Banka57449/ShfaqBankenNgaID?idBanka=${id}`)
+                const teDhenatBankes = await axios.get(`http://localhost:7255/api/Banka57449/ShfaqBankenNgaID?idBanka=${id}`)
                 setBanka(teDhenatBankes.data);
             } catch (e) {
                 console.error(e);
@@ -71,7 +71,7 @@ function Banka57449() {
     };
 
     const handleShtoBanken = async () => {
-        await axios.post("https://localhost:7285/api/Banka57449/ShtoBanken", { emri57449: emriP })
+        await axios.post("http://localhost:7255/api/Banka57449/ShtoBanken", { emri57449: emriP })
             .then(() => {
                 setShto(false);
                 setPerditeso(Date.now());
@@ -82,7 +82,7 @@ function Banka57449() {
     }
 
     const handlePerditesoBanken = async () => {
-        await axios.put(`https://localhost:7285/api/Banka57449/PerditesoBanken?idBanka=${id}`, banka)
+        await axios.put(`http://localhost:7255/api/Banka57449/PerditesoBanken?idBanka=${id}`, banka)
             .then(() => {
                 setEdito(false);
                 setPerditeso(Date.now());
@@ -93,7 +93,7 @@ function Banka57449() {
     }
 
     const handleFshijBanken = async () => {
-        await axios.delete(`https://localhost:7285/api/Banka57449/FshijBanken?idBanka=${id}`)
+        await axios.delete(`http://localhost:7255/api/Banka57449/FshijBanken?idBanka=${id}`)
             .then(() => {
                 setFshij(false);
                 setPerditeso(Date.now());

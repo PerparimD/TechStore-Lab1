@@ -26,7 +26,7 @@ function Team() {
     const shfaqEkipet = async () => {
       try {
         const ekipet = await axios.get(
-          "https://localhost:7285/api/Team/ShfaqEkipet"
+          "http://localhost:7255/api/Team/ShfaqEkipet"
         );
         setEkipet(ekipet.data);
       } catch (err) {
@@ -55,7 +55,7 @@ function Team() {
     const vendosTeDhenat = async () => {
       try {
         const teDhenatEkipit = await axios.get(
-          `https://localhost:7285/api/Team/ShfaqEkipinNgaID?TeamId=${id}`
+          `http://localhost:7255/api/Team/ShfaqEkipinNgaID?TeamId=${id}`
         );
         setEkipi(teDhenatEkipit.data);
       } catch (e) {
@@ -81,7 +81,7 @@ function Team() {
 
   const handleShtoEkipin = async () => {
     await axios
-      .post("https://localhost:7285/api/Team/ShtoEkipin", { name: name })
+      .post("http://localhost:7255/api/Team/ShtoEkipin", { name: name })
       .then(() => {
         setShto(false);
         setPerditeso(Date.now());
@@ -95,7 +95,7 @@ function Team() {
   const handlePerditesoEkipin = async () => {
     await axios
       .put(
-        `https://localhost:7285/api/Team/PerditesoEkipen?TeamId=${id}`,
+        `http://localhost:7255/api/Team/PerditesoEkipen?TeamId=${id}`,
         ekipi
       )
       .then(() => {
@@ -109,7 +109,7 @@ function Team() {
 
   const handleFshijEkipin = async () => {
     await axios
-      .delete(`https://localhost:7285/api/Team/FshijEkipen?TeamId=${id}`)
+      .delete(`http://localhost:7255/api/Team/FshijEkipen?TeamId=${id}`)
       .then(() => {
         setFshij(false);
         setPerditeso(Date.now());

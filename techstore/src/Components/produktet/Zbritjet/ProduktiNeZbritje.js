@@ -33,7 +33,7 @@ function ProduktiNeZbritje(props) {
     const vendosProduktet = async () => {
       try {
         const produktet = await axios.get(
-          `https://localhost:7285/api/Produkti/Products`, authentikimi
+          `http://localhost:7255/api/Produkti/Products`, authentikimi
         );
         setProduktet(produktet.data);
 
@@ -49,7 +49,7 @@ function ProduktiNeZbritje(props) {
     const vendosDetajetProduktit = async () => {
       try {
         await axios.get(
-          `https://localhost:7285/api/Produkti/${produkti}`, authentikimi
+          `http://localhost:7255/api/Produkti/${produkti}`, authentikimi
         ).then((response) => {
           setQmimiBleresProduktit((response.data.qmimiBleres).toFixed(2));
           setQmimiShitesProduktit((response.data.qmimiProduktit).toFixed(2));
@@ -98,7 +98,7 @@ function ProduktiNeZbritje(props) {
 
   function handleSubmit() {
     if (zbritjaNeRregull === true && kaZbritje === false) {
-      axios.post('https://localhost:7285/api/ZbritjaQmimitProduktit/shtoZbritjenProduktit', {
+      axios.post('http://localhost:7255/api/ZbritjaQmimitProduktit/shtoZbritjenProduktit', {
         produktiId: produkti,
         qmimiPaZbritjeProduktit: qmimiShitesProduktit,
         qmimiMeZbritjeProduktit: qmimiZbritur,

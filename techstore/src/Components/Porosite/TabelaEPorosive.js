@@ -41,7 +41,7 @@ function TabelaEPorosive() {
         const vendosPorosite = async () => {
             try {
                 setLoading(true);
-                const porosia = await axios.get("https://localhost:7285/api/Porosia/Porosit", authentikimi);
+                const porosia = await axios.get("http://localhost:7255/api/Porosia/Porosit", authentikimi);
                 setPorosite(porosia.data);
                 setLoading(false);
             } catch (err) {

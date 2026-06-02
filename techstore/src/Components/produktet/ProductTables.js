@@ -41,7 +41,7 @@ const ProductTables = () => {
       try {
         setLoading(true);
         const produkti = await axios.get(
-          "https://localhost:7285/api/Produkti/Products", authentikimi
+          "http://localhost:7255/api/Produkti/Products", authentikimi
         );
         setProdukti(produkti.data);
         setLoading(false);
@@ -76,7 +76,7 @@ const ProductTables = () => {
 
   async function handleDelete() {
     try {
-      await axios.delete(`https://localhost:7285/api/Produkti/` + id, authentikimi);
+      await axios.delete(`http://localhost:7255/api/Produkti/` + id, authentikimi);
       setTipiMesazhit("success");
       setPershkrimiMesazhit("Produkti u fshi me sukses!");
       setPerditeso(Date.now());

@@ -24,7 +24,7 @@ function EditoProduktin(props) {
     const vendosProduktet = async () => {
       try {
         const produktet = await axios.get(
-          `https://localhost:7285/api/Produkti/Products`, authentikimi
+          `http://localhost:7255/api/Produkti/Products`, authentikimi
         );
         setProduktet(produktet.data);
 
@@ -47,7 +47,7 @@ function EditoProduktin(props) {
   useEffect(() => {
     const shfaqProduktet = async () => {
       try {
-        const produkti = await axios.get(`https://localhost:7285/api/Produkti/` + props.id, authentikimi);
+        const produkti = await axios.get(`http://localhost:7255/api/Produkti/` + props.id, authentikimi);
         setProdukti(produkti.data);
 
       } catch (err) {
@@ -55,8 +55,8 @@ function EditoProduktin(props) {
       }
     };
     Promise.all([
-      fetch("https://localhost:7285/api/Kompania/shfaqKompanit"),
-      fetch("https://localhost:7285/api/Kategoria/shfaqKategorit"),
+      fetch("http://localhost:7255/api/Kompania/shfaqKompanit"),
+      fetch("http://localhost:7255/api/Kategoria/shfaqKategorit"),
     ])
       .then(([resKompanit, resKategorit]) =>
         Promise.all([resKompanit.json(), resKategorit.json()])
@@ -102,9 +102,9 @@ function EditoProduktin(props) {
       formData.append('foto', foto);
 
       try {
-        await axios.post(`https://localhost:7285/api/VendosFotot/EditoProduktin?fotoVjeterProduktit=${produkti.fotoProduktit}`, formData, authentikimi)
+        await axios.post(`http://localhost:7255/api/VendosFotot/EditoProduktin?fotoVjeterProduktit=${produkti.fotoProduktit}`, formData, authentikimi)
           .then(async (response) => {
-            await axios.put(`https://localhost:7285/api/Produkti/` + props.id, {
+            await axios.put(`http://localhost:7255/api/Produkti/` + props.id, {
               emriProduktit: produkti.emriProduktit,
               kategoriaId: produkti.kategoriaId,
               kompaniaId: produkti.kompaniaId,
@@ -131,7 +131,7 @@ function EditoProduktin(props) {
         console.error(error);
       }
     } else {
-      await axios.put(`https://localhost:7285/api/Produkti/` + props.id, {
+      await axios.put(`http://localhost:7255/api/Produkti/` + props.id, {
         emriProduktit: produkti.emriProduktit,
         kategoriaId: produkti.kategoriaId,
         kompaniaId: produkti.kompaniaId,

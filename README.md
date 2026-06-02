@@ -83,3 +83,19 @@ Pasi qe te behet konfigurimi ju mund te kyqeni me keto te dhena:
 
 ![SignUp | TechStore](GitHubImages/SignUpForma.png?raw=true)
 
+## Ekzekutimi me Docker
+
+Ky projekt tani mbështet Docker! Për të ngritur të gjithë infrastrukturën (Frontend, Backend dhe Databazën SQL Server) me një komandë të vetme, ndiqni këto hapa:
+
+1. Sigurohuni që keni **Docker Desktop** të instaluar.
+2. Hapni terminalin në direktorinë root të projektit.
+3. Ekzekutoni komandën:
+   ```bash
+   docker-compose up --build
+   ```
+4. Aplikacioni juaj do të jetë i qasshëm në: `http://localhost:3004` (dhe API në `http://localhost:7255`).
+
+
+## Të Drejtat e Autorit (Copyright & License)
+
+Ky projekt është pronë intelektuale e **Rilind Kyçyku**. Nuk lejohet përdorimi, kopjimi, modifikimi apo shpërndarja e këtij kodi pa pëlqimin paraprak dhe miratimin me shkrim nga autori. Çdo përdorim i paautorizuar është rreptësisht i ndaluar.

@@ -21,7 +21,7 @@ function ShtoKompanit(props) {
         const vendosKompanite = async () => {
             try {
                 const kompanit = await axios.get(
-                    `https://localhost:7285/api/Kompania/shfaqKompanit`, authentikimi
+                    `http://localhost:7255/api/Kompania/shfaqKompanit`, authentikimi
                 );
                 setKompanite(kompanit.data);
 
@@ -62,9 +62,9 @@ function ShtoKompanit(props) {
             formData.append('foto', foto);
 
             try {
-                await axios.post("https://localhost:7285/api/VendosFotot/ShtoKompanin", formData, authentikimi)
+                await axios.post("http://localhost:7255/api/VendosFotot/ShtoKompanin", formData, authentikimi)
                     .then(async (response) => {
-                        axios.post('https://localhost:7285/api/Kompania/shtoKompanin', {
+                        axios.post('http://localhost:7255/api/Kompania/shtoKompanin', {
                             emriKompanis: emri,
                             logo: response.data,
                             adresa: adresa
@@ -86,7 +86,7 @@ function ShtoKompanit(props) {
             }
 
         } else {
-            axios.post('https://localhost:7285/api/Kompania/shtoKompanin', {
+            axios.post('http://localhost:7255/api/Kompania/shtoKompanin', {
                 emriKompanis: emri,
                 logo: "KompaniPaFoto.png",
                 adresa: adresa

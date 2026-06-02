@@ -33,7 +33,7 @@ function ZbritjetEProduktit(props) {
         const shfaqZbritjet = async () => {
             try {
                 setLoading(true);
-                const zbritja = await axios.get("https://localhost:7285/api/ZbritjaQmimitProduktit/shfaqZbritjet", authentikimi);
+                const zbritja = await axios.get("http://localhost:7255/api/ZbritjaQmimitProduktit/shfaqZbritjet", authentikimi);
                 setZbritjet(zbritja.data);
                 setLoading(false);
             } catch (err) {
@@ -57,7 +57,7 @@ function ZbritjetEProduktit(props) {
     }, [zbritjet])
 
     const fshijZbritjen = (id) => {
-        axios.delete(`https://localhost:7285/api/ZbritjaQmimitProduktit/fshijZbritjenProduktit?id=${id}`, authentikimi)
+        axios.delete(`http://localhost:7255/api/ZbritjaQmimitProduktit/fshijZbritjenProduktit?id=${id}`, authentikimi)
         setPerditeso(Date.now());
     }
 

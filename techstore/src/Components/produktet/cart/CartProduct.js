@@ -45,7 +45,7 @@ const CartProduct = (props) => {
 
   useEffect(() => {
     axios
-      .get(`https://localhost:7285/api/Produkti/${props.id}`, authentikimi)
+      .get(`http://localhost:7255/api/Produkti/${props.id}`, authentikimi)
       .then((response) => {
         setSasiaMaxELejuar(response.data.sasiaNeStok);
       })

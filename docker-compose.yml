@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./WebAPI/WebAPI
+      dockerfile: Dockerfile
+    ports:
+      - "7255:80"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__Conn=Server=db;Database=TechStoreDB;User=sa;Password=TECHSTORELAB1!!!;TrustServerCertificate=True;
+
+  frontend:
+    build:
+      context: ./techstore
+      dockerfile: Dockerfile
+    ports:
+      - "3004:80"
+    depends_on:
+      - backend
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=TECHSTORELAB1!!!
+    ports:
+      - "1437:1433"
+    volumes:
+      - techstore_sqldata:/var/opt/mssql
+
+volumes:
+  techstore_sqldata:

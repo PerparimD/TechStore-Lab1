@@ -31,7 +31,7 @@ function CartPage() {
   useEffect(() => {
     const KontrolloKodin = async () => {
       try {
-        const kodiZbritjes = await axios.get(`https://localhost:7285/api/KodiZbritje/gjejKodin?kodi=${promoCode}`, authentikimi);
+        const kodiZbritjes = await axios.get(`http://localhost:7255/api/KodiZbritje/gjejKodin?kodi=${promoCode}`, authentikimi);
 
         setTeDhenatZbritjes(kodiZbritjes.data)
 

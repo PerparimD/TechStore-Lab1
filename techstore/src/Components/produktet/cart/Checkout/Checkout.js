@@ -40,7 +40,7 @@ function Checkout(props) {
             const vendosTeDhenat = async () => {
                 try {
                     const perdoruesi = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
+                        `http://localhost:7255/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(perdoruesi.data);
                 } catch (err) {
@@ -59,7 +59,7 @@ function Checkout(props) {
     const handlePerfundoPorosine = async () => {
         try {
             await axios
-                .post("https://localhost:7285/api/Porosia/vendosPorosine", {
+                .post("http://localhost:7255/api/Porosia/vendosPorosine", {
                     totaliPorosis: props.qmimiTotal,
                     idKlienti: teDhenat.perdoruesi.userId,
                     zbritja: props.zbritja,
@@ -76,7 +76,7 @@ function Checkout(props) {
 
                     cart.forEach((produkti) => {
                         axios
-                            .post("https://localhost:7285/api/Porosia/vendosTeDhenatPorosise", {
+                            .post("http://localhost:7255/api/Porosia/vendosTeDhenatPorosise", {
                                 qmimiTotal: produkti.cmimi * produkti.sasia,
                                 sasiaPorositur: produkti.sasia,
                                 idPorosia: response.data.idPorosia,

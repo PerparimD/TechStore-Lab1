@@ -55,7 +55,7 @@ const Dashboard = () => {
       const vendosTeDhenat = async () => {
         try {
           const perdoruesi = await axios.get(
-            `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
+            `http://localhost:7255/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
           );
           setTeDhenat(perdoruesi.data);
         } catch (err) {
@@ -83,7 +83,7 @@ const Dashboard = () => {
           adresa: adresa,
         },
       }
-      fetch("https://localhost:7285/api/Perdoruesi/perditesoPerdorues/" + id, {
+      fetch("http://localhost:7255/api/Perdoruesi/perditesoPerdorues/" + id, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(info)

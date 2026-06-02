@@ -20,7 +20,7 @@ function ShtoKompanit(props) {
         const vendosKategorite = async () => {
             try {
                 const kategorite = await axios.get(
-                    `https://localhost:7285/api/Kategoria/shfaqKategorit`, authentikimi
+                    `http://localhost:7255/api/Kategoria/shfaqKategorit`, authentikimi
                 );
                 setKateogrite(kategorite.data);
 
@@ -53,7 +53,7 @@ function ShtoKompanit(props) {
     }
 
     function handleSubmit() {
-        axios.post('https://localhost:7285/api/Kategoria/shtoKategorin', {
+        axios.post('http://localhost:7255/api/Kategoria/shtoKategorin', {
             llojiKategoris: llojiKategoris,
             pershkrimiKategoris: pershkrimiKategoris
         }, authentikimi)

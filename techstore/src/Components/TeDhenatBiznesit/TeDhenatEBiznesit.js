@@ -52,7 +52,7 @@ function TeDhenatEBiznesit(props) {
         const ShfaqTeDhenat = async () => {
             try {
                 setLoading(true);
-                const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
+                const teDhenat = await axios.get("http://localhost:7255/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
                 setTeDhenatBiznesit(teDhenat.data);
                 setLoading(false);
             } catch (err) {
@@ -78,9 +78,9 @@ function TeDhenatEBiznesit(props) {
             formData.append('foto', foto);
 
             try {
-                await axios.post(`https://localhost:7285/api/VendosFotot/PerditesoTeDhenatBiznesit?logoVjeter=${teDhenatBiznesit.logo}`, formData, authentikimi)
+                await axios.post(`http://localhost:7255/api/VendosFotot/PerditesoTeDhenatBiznesit?logoVjeter=${teDhenatBiznesit.logo}`, formData, authentikimi)
                     .then(async (response) => {
-                        axios.put("https://localhost:7285/api/TeDhenatBiznesit/perditesoTeDhenat", {
+                        axios.put("http://localhost:7255/api/TeDhenatBiznesit/perditesoTeDhenat", {
                             "emriIbiznesit": formValue.emriBiznesit,
                             "shkurtesaEmritBiznesit": formValue.shkurtesaEmrit,
                             "nui": formValue.nui,
@@ -99,7 +99,7 @@ function TeDhenatEBiznesit(props) {
                 console.error(error);
             }
         } else {
-            await axios.put("https://localhost:7285/api/TeDhenatBiznesit/perditesoTeDhenat", {
+            await axios.put("http://localhost:7255/api/TeDhenatBiznesit/perditesoTeDhenat", {
                 "emriIbiznesit": formValue.emriBiznesit,
                 "shkurtesaEmritBiznesit": formValue.shkurtesaEmrit,
                 "nui": formValue.nui,

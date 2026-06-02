@@ -20,7 +20,7 @@ function EditoKompanin(props) {
         const vendosKompanite = async () => {
             try {
                 const kompanit = await axios.get(
-                    `https://localhost:7285/api/Kompania/shfaqKompanit`, authentikimi
+                    `http://localhost:7255/api/Kompania/shfaqKompanit`, authentikimi
                 );
                 setKompanite(kompanit.data);
 
@@ -43,7 +43,7 @@ function EditoKompanin(props) {
     useEffect(() => {
         const shfaqKompanit = async () => {
             try {
-                const kompania = await axios.get(`https://localhost:7285/api/Kompania/shfaqKompanin?id=${props.id}`, authentikimi);
+                const kompania = await axios.get(`http://localhost:7255/api/Kompania/shfaqKompanin?id=${props.id}`, authentikimi);
                 setKompania(kompania.data);
 
             } catch (err) {
@@ -78,9 +78,9 @@ function EditoKompanin(props) {
             formData.append('foto', foto);
 
             try {
-                await axios.post(`https://localhost:7285/api/VendosFotot/EditoKompanin?fotoVjeterKompanis=${kompania.logo}`, formData, authentikimi)
+                await axios.post(`http://localhost:7255/api/VendosFotot/EditoKompanin?fotoVjeterKompanis=${kompania.logo}`, formData, authentikimi)
                     .then(async (response) => {
-                        await axios.put(`https://localhost:7285/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`,
+                        await axios.put(`http://localhost:7255/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`,
                             {
                                 emriKompanis: kompania.emriKompanis,
                                 logo: response.data,
@@ -107,7 +107,7 @@ function EditoKompanin(props) {
                 console.error(error);
             }
         } else {
-            await axios.put(`https://localhost:7285/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`,
+            await axios.put(`http://localhost:7255/api/Kompania/perditesoKompanin?id=${kompania.kompaniaId}`,
                 {
                     emriKompanis: kompania.emriKompanis,
                     logo: kompania.logo,

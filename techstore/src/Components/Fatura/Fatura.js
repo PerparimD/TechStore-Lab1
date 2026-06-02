@@ -41,7 +41,7 @@ function Fatura(props) {
             const vendosFature = async () => {
                 try {
                     const fatura = await axios.get(
-                        `https://localhost:7285/api/Porosia/shfaqPorosineNgaID?nrFatures=${nrFatures}`, authentikimi
+                        `http://localhost:7255/api/Porosia/shfaqPorosineNgaID?nrFatures=${nrFatures}`, authentikimi
                     );
                     setFatura(fatura.data);
 
@@ -76,7 +76,7 @@ function Fatura(props) {
         const vendosTeDhenatBiznesit = async () => {
             try {
                 const teDhenat = await axios.get(
-                    "https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi
+                    "http://localhost:7255/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi
                 );
                 setTeDhenatBiznesit(teDhenat.data);
             } catch (err) {
@@ -92,7 +92,7 @@ function Fatura(props) {
             const vendosTeDhenatUserit = async () => {
                 try {
                     const teDhenatUser = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
+                        `http://localhost:7255/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(teDhenatUser.data);
 

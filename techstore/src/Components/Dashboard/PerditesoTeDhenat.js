@@ -65,7 +65,7 @@ function PerditesoTeDhenat(props) {
             const vendosTeDhenat = async () => {
                 try {
                     const perdoruesi = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
+                        `http://localhost:7255/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(perdoruesi.data);
                 } catch (err) {
@@ -166,12 +166,12 @@ function PerditesoTeDhenat(props) {
                 !isNullOrEmpty(formValue.username) &&
                 !isNullOrEmpty(formValue.nrKontaktit)
             ) {
-                const kontrolloEmail = await axios.get(`https://localhost:7285/api/Perdoruesi/KontrolloEmail?email=${formValue.email}`, authentikimi)
+                const kontrolloEmail = await axios.get(`http://localhost:7255/api/Perdoruesi/KontrolloEmail?email=${formValue.email}`, authentikimi)
 
                 if (kontrolloEmail.data === false || teDhenat.perdoruesi.email === formValue.email) {
-                    await axios.post(`https://localhost:7285/api/Perdoruesi/NdryshoEmail?emailIVjeter=${teDhenat.perdoruesi.email}&emailIRI=${formValue.email}`, {}, authentikimi)
+                    await axios.post(`http://localhost:7255/api/Perdoruesi/NdryshoEmail?emailIVjeter=${teDhenat.perdoruesi.email}&emailIRI=${formValue.email}`, {}, authentikimi)
                         .then(async () => {
-                            await axios.put(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${teDhenat.perdoruesi.userId}`, {
+                            await axios.put(`http://localhost:7255/api/Perdoruesi/perditesoPerdorues/${teDhenat.perdoruesi.userId}`, {
                                 "emri": formValue.emri,
                                 "mbiemri": formValue.mbiemri,
                                 "email": formValue.email,
@@ -222,7 +222,7 @@ function PerditesoTeDhenat(props) {
                 !isNullOrEmpty(formValue.shteti) &&
                 formValue.zipKodi > 0
             ) {
-                await axios.put(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${teDhenat.perdoruesi.userId}`, {
+                await axios.put(`http://localhost:7255/api/Perdoruesi/perditesoPerdorues/${teDhenat.perdoruesi.userId}`, {
                     "teDhenatPerdoruesit": {
                         "nrKontaktit": formValue.nrKontaktit,
                         "qyteti": formValue.qyteti,
@@ -268,11 +268,11 @@ function PerditesoTeDhenat(props) {
             ) {
                 const passREGEX = /^[A-Z][A-Za-z0-9@$!%*?&]*[a-z][A-Za-z0-9@$!%*?&]*[0-9][A-Za-z0-9@$!%*?&]*$/
 
-                const kontrolloFjalekalimin = await axios.get(`https://localhost:7285/api/Perdoruesi/KontrolloFjalekalimin?AspNetID=${getID}&fjalekalimi=${fjalekalimiAktual}`, authentikimi)
+                const kontrolloFjalekalimin = await axios.get(`http://localhost:7255/api/Perdoruesi/KontrolloFjalekalimin?AspNetID=${getID}&fjalekalimi=${fjalekalimiAktual}`, authentikimi)
 
                 if (kontrolloFjalekalimin.data === true) {
                     if (passREGEX.test(fjalekalimiIRi)) {
-                        await axios.post(`https://localhost:7285/api/Perdoruesi/NdryshoFjalekalimin?AspNetID=${getID}&fjalekalimiAktual=${fjalekalimiAktual}&fjalekalimiIRi=${fjalekalimiIRi}`,
+                        await axios.post(`http://localhost:7255/api/Perdoruesi/NdryshoFjalekalimin?AspNetID=${getID}&fjalekalimiAktual=${fjalekalimiAktual}&fjalekalimiIRi=${fjalekalimiIRi}`,
                             {}, authentikimi);
 
                         setPerditeso(Date.now());

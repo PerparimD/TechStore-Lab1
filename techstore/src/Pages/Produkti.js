@@ -42,7 +42,7 @@ function Produkti() {
             const vendosTeDhenat = async () => {
                 try {
                     const perdoruesi = await axios.get(
-                        `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
+                        `http://localhost:7255/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
                     );
                     setTeDhenat(perdoruesi.data);
                 } catch (err) {
@@ -57,7 +57,7 @@ function Produkti() {
     useEffect(() => {
         const teDhenatProd = async () => {
             try {
-                const teDhenatProduktit = await axios.get(`https://localhost:7285/api/Produkti/${produktiID}`, authentikimi)
+                const teDhenatProduktit = await axios.get(`http://localhost:7255/api/Produkti/${produktiID}`, authentikimi)
                 setProdukti(teDhenatProduktit.data);
                 if (teDhenatProduktit.data.pershkrimi !== "") {
                     setKaPershkrim(true);
@@ -74,7 +74,7 @@ function Produkti() {
     useEffect(() => {
         const shfaqProduktet = async () => {
             try {
-                const produktet = await axios.get("https://localhost:7285/api/Statistikat/15ProduktetMeTeShitura", authentikimi);
+                const produktet = await axios.get("http://localhost:7255/api/Statistikat/15ProduktetMeTeShitura", authentikimi);
                 setProduktet(produktet.data);
             } catch (err) {
                 console.log(err);

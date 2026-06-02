@@ -27,7 +27,7 @@ function EditoPerdorues(props) {
     useEffect(() => {
         const vendosPerdoruesin = async () => {
             try {
-                const user = await axios.get(`https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${props.id}`, authentikimi);
+                const user = await axios.get(`http://localhost:7255/api/Perdoruesi/shfaqSipasID?idUserAspNet=${props.id}`, authentikimi);
                 setPerdoruesi(user.data);
 
                 setRoletUseri(user.data.rolet);
@@ -44,7 +44,7 @@ function EditoPerdorues(props) {
     useEffect(() => {
         const vendosRolet = async () => {
             try {
-                const rolet = await axios.get(`https://localhost:7285/api/Authenticate/shfaqRolet`, authentikimi);
+                const rolet = await axios.get(`http://localhost:7255/api/Authenticate/shfaqRolet`, authentikimi);
                 setShfaqRolet(rolet.data);
             } catch (err) {
                 console.log(err);
@@ -58,13 +58,13 @@ function EditoPerdorues(props) {
         try {
             for (const y of roletUseri) {
                 if (y !== 'User') {
-                    await axios.delete(`https://localhost:7285/api/Authenticate/FshijRolinUserit?userID=${props.id}&roli=${y}`, authentikimi);
+                    await axios.delete(`http://localhost:7255/api/Authenticate/FshijRolinUserit?userID=${props.id}&roli=${y}`, authentikimi);
                 }
             }
 
             for (const y of roletSelektim) {
                 if (y !== 'User') {
-                    await axios.post(`https://localhost:7285/api/Authenticate/ShtoRolinPerdoruesit?userID=${props.id}&roli=${y}`, {}, authentikimi);
+                    await axios.post(`http://localhost:7255/api/Authenticate/ShtoRolinPerdoruesit?userID=${props.id}&roli=${y}`, {}, authentikimi);
                 }
             }
 

@@ -18,7 +18,7 @@ function Statistika() {
     useEffect(() => {
         const vendosTotalinPerdoruesve = async () => {
             try {
-                const totalet = await axios.get("https://localhost:7285/api/Statistikat/totaleTeNdryshme", authentikimi);
+                const totalet = await axios.get("http://localhost:7255/api/Statistikat/totaleTeNdryshme", authentikimi);
                 setTotaleTeNdryshme(totalet.data);
             } catch (e) {
                 console.error(e);
@@ -27,7 +27,7 @@ function Statistika() {
 
         const vendosTop15Bleresit = async () => {
             try {
-                const bleresit = await axios.get("https://localhost:7285/api/Statistikat/15PerdoruesitMeSeShumtiBlerje", authentikimi);
+                const bleresit = await axios.get("http://localhost:7255/api/Statistikat/15PerdoruesitMeSeShumtiBlerje", authentikimi);
                 setTop15Bleresit(bleresit.data);
             } catch (e) {
                 console.error(e);
@@ -36,7 +36,7 @@ function Statistika() {
 
         const vendosTop15Produktet = async () => {
             try {
-                const produktet = await axios.get("https://localhost:7285/api/Statistikat/15ProduktetMeTeShitura", authentikimi);
+                const produktet = await axios.get("http://localhost:7255/api/Statistikat/15ProduktetMeTeShitura", authentikimi);
                 setTop15Produktet(produktet.data);
             } catch (e) {
                 console.error(e);
@@ -45,7 +45,7 @@ function Statistika() {
 
         const vendosShitjetJavore = async () => {
             try {
-                const dita = await axios.get("https://localhost:7285/api/Statistikat/TotaletJavore", authentikimi);
+                const dita = await axios.get("http://localhost:7255/api/Statistikat/TotaletJavore", authentikimi);
                 setShitjetJavore(dita.data);
 
 

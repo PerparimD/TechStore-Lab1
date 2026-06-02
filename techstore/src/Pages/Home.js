@@ -22,7 +22,7 @@ function Home() {
     useEffect(() => {
         const shfaqProduktet = async () => {
             try {
-                const produktet = await axios.get("https://localhost:7285/api/Produkti/15ProduktetMeTeFundit", authentikimi);
+                const produktet = await axios.get("http://localhost:7255/api/Produkti/15ProduktetMeTeFundit", authentikimi);
                 setProduktet(produktet.data);
             } catch (err) {
                 console.log(err);

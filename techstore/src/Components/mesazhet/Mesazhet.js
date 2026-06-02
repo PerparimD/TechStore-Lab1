@@ -23,7 +23,7 @@ function Mesazhet() {
     };
 
     function handleEdito(id) {
-        axios.put(`https://localhost:7285/api/ContactForm/konfirmoMesazhin?id=${id}`, {}, authentikimi)
+        axios.put(`http://localhost:7255/api/ContactForm/konfirmoMesazhin?id=${id}`, {}, authentikimi)
             .then(x => {
                 
                 setTipiMesazhit("success");
@@ -42,7 +42,7 @@ function Mesazhet() {
 
     async function handleFshij(id) {
         try {
-            await axios.delete(`https://localhost:7285/api/ContactForm/fshiMesazhin?id=${id}`, authentikimi);
+            await axios.delete(`http://localhost:7255/api/ContactForm/fshiMesazhin?id=${id}`, authentikimi);
             setTipiMesazhit("success");
             setPershkrimiMesazhit("Mesazhi u fshi me sukses!")
             setPerditeso(Date.now());
@@ -60,7 +60,7 @@ function Mesazhet() {
         const shfaqKompanit = async () => {
             try {
                 setLoading(true);
-                const mesazhet = await axios.get("https://localhost:7285/api/ContactForm/shfaqMesazhet", authentikimi);
+                const mesazhet = await axios.get("http://localhost:7255/api/ContactForm/shfaqMesazhet", authentikimi);
                 setMesazhet(mesazhet.data);
                 setLoading(false);
             } catch (err) {

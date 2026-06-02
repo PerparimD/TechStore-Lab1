@@ -34,7 +34,7 @@ function KodiZbritjes() {
         const shfaqKompanit = async () => {
             try {
                 setLoading(true);
-                const kodi = await axios.get("https://localhost:7285/api/KodiZbritje/shfaqKodet", authentikimi);
+                const kodi = await axios.get("http://localhost:7255/api/KodiZbritje/shfaqKodet", authentikimi);
                 setKodetEZbritjeve(kodi.data);
                 setLoading(false);
             } catch (err) {

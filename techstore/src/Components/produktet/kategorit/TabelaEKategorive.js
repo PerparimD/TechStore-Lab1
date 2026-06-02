@@ -34,7 +34,7 @@ function TabelaEKategorive(props) {
         const shfaqKateogrit = async () => {
             try {
                 setLoading(true);
-                const kategoria = await axios.get("https://localhost:7285/api/Kategoria/shfaqKategorit", authentikimi);
+                const kategoria = await axios.get("http://localhost:7255/api/Kategoria/shfaqKategorit", authentikimi);
                 setKategorit(kategoria.data);
                 setLoading(false);
             } catch (err) {

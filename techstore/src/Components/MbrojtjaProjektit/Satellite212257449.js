@@ -19,7 +19,7 @@ function Satellite212257449() {
     useEffect(() => {
         const shfaqSatelitet = async () => {
             try {
-                const satelitet = await axios.get("https://localhost:7285/api/Satellite212257449/ShfaqSatelitet");
+                const satelitet = await axios.get("http://localhost:7255/api/Satellite212257449/ShfaqSatelitet");
                 setSatelitet(satelitet.data);
             } catch (err) {
                 console.log(err);
@@ -35,7 +35,7 @@ function Satellite212257449() {
     useEffect(() => {
         const shfaqPlanetet = async () => {
             try {
-                const planetet = await axios.get("https://localhost:7285/api/Planet212257449/ShfaqPlanetet");
+                const planetet = await axios.get("http://localhost:7255/api/Planet212257449/ShfaqPlanetet");
                 setPlanetet(planetet.data);
             } catch (err) {
                 console.log(err);
@@ -70,7 +70,7 @@ function Satellite212257449() {
     useEffect(() => {
         const vendosTeDhenat = async () => {
             try {
-                const teDhenatSatelitit = await axios.get(`https://localhost:7285/api/Satellite212257449/ShfaqSatelitinNgaID?SatelitiId=${id}`)
+                const teDhenatSatelitit = await axios.get(`http://localhost:7255/api/Satellite212257449/ShfaqSatelitinNgaID?SatelitiId=${id}`)
                 setSateliti(teDhenatSatelitit.data);
             } catch (e) {
                 console.error(e);
@@ -98,7 +98,7 @@ function Satellite212257449() {
     };
 
     const handleShtoSatelitin = async () => {
-        await axios.post("https://localhost:7285/api/Satellite212257449/ShtoSatelitin", {
+        await axios.post("http://localhost:7255/api/Satellite212257449/ShtoSatelitin", {
             name: name,
             planetId: planet,
         })
@@ -114,7 +114,7 @@ function Satellite212257449() {
     }
 
     const handlePerditesoSatelitin = async () => {
-        await axios.put(`https://localhost:7285/api/Satellite212257449/PerditesoSatelitin?SatelitiId=${id}`, sateliti)
+        await axios.put(`http://localhost:7255/api/Satellite212257449/PerditesoSatelitin?SatelitiId=${id}`, sateliti)
             .then(() => {
                 setEdito(false);
                 setPerditeso(Date.now());
@@ -125,7 +125,7 @@ function Satellite212257449() {
     }
 
     const handleFshijsatelitin = async () => {
-        await axios.delete(`https://localhost:7285/api/Satellite212257449/FshijSatelitin?SatelitiId=${id}`)
+        await axios.delete(`http://localhost:7255/api/Satellite212257449/FshijSatelitin?SatelitiId=${id}`)
             .then(() => {
                 setFshij(false);
                 setPerditeso(Date.now());

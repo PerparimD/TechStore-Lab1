@@ -23,7 +23,7 @@ function Footer(props) {
     useEffect(() => {
         const ShfaqTeDhenat = async () => {
             try {
-                const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
+                const teDhenat = await axios.get("http://localhost:7255/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
                 setTeDhenatBiznesit(teDhenat.data);
             } catch (err) {
                 console.log(err);

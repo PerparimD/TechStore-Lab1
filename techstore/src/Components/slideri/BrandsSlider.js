@@ -23,7 +23,7 @@ function BrandsSlider() {
     const shfaqKompanit = async () => {
       try {
         const kopmania = await axios.get(
-          "https://localhost:7285/api/Kompania/shfaqKompanit", authentikimi
+          "http://localhost:7255/api/Kompania/shfaqKompanit", authentikimi
         );
         setKompanit(kopmania.data);
       } catch (err) {

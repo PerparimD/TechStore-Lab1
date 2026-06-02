@@ -15,7 +15,7 @@ function LargoKompanin(props) {
 
     async function handleSubmit() {
         try {
-            await axios.delete(`https://localhost:7285/api/Kategoria/fshijKategorin?id=${props.id}`, authentikimi);
+            await axios.delete(`http://localhost:7255/api/Kategoria/fshijKategorin?id=${props.id}`, authentikimi);
             props.setTipiMesazhit("success");
             props.setPershkrimiMesazhit("Kategoria u fshi me sukses!")
             props.perditesoTeDhenat();

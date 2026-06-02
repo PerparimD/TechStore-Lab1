@@ -26,7 +26,7 @@ function TeDhenatKalkulimit(props) {
             try {
                 setLoading(true);
                 const produktet = await axios.get(
-                    `https://localhost:7285/api/RegjistrimiStokut/shfaqTeDhenatKalkulimit?idRegjistrimit=${props.id}`, authentikimi
+                    `http://localhost:7255/api/RegjistrimiStokut/shfaqTeDhenatKalkulimit?idRegjistrimit=${props.id}`, authentikimi
                 );
                 setProduktet(produktet.data);
                 setLoading(false);
@@ -44,7 +44,7 @@ function TeDhenatKalkulimit(props) {
             try {
                 setLoading(true);
                 const teDhenat = await axios.get(
-                    `https://localhost:7285/api/RegjistrimiStokut/shfaqRegjistrimetNgaID?id=${props.id}`, authentikimi
+                    `http://localhost:7255/api/RegjistrimiStokut/shfaqRegjistrimetNgaID?id=${props.id}`, authentikimi
                 );
                 setTeDhenatFat(teDhenat.data);
                 setLoading(false);

@@ -28,7 +28,7 @@ const EditoTeDhenat = (props) => {
   useEffect(() => {
     const vendosPerdoruesin = async () => {
       try {
-        const perdoruesi = await axios.get(`https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi);
+        const perdoruesi = await axios.get(`http://localhost:7255/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi);
 
         setPerdoruesi(perdoruesi.data.perdoruesi)
       }
@@ -100,7 +100,7 @@ const EditoTeDhenat = (props) => {
     ) {
       setFushatEZbrazura(true);
     } else {
-      axios.put(`https://localhost:7285/api/Perdoruesi/perditesoPerdorues/${perdoruesi.userId}`, perdoruesi, authentikimi);
+      axios.put(`http://localhost:7255/api/Perdoruesi/perditesoPerdorues/${perdoruesi.userId}`, perdoruesi, authentikimi);
 
       props.perditeso();
       props.setShfaqMesazhin();

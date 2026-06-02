@@ -19,7 +19,7 @@ function Personi57449() {
     useEffect(() => {
         const shfaqklientet = async () => {
             try {
-                const klientet = await axios.get("https://localhost:7285/api/Personi57449/ShfaqKlientet");
+                const klientet = await axios.get("http://localhost:7255/api/Personi57449/ShfaqKlientet");
                 setKlientet(klientet.data);
             } catch (err) {
                 console.log(err);
@@ -35,7 +35,7 @@ function Personi57449() {
     useEffect(() => {
         const shfaqBankat = async () => {
             try {
-                const bankat = await axios.get("https://localhost:7285/api/Banka57449/ShfaqBankat");
+                const bankat = await axios.get("http://localhost:7255/api/Banka57449/ShfaqBankat");
                 setBankat(bankat.data);
             } catch (err) {
                 console.log(err);
@@ -77,7 +77,7 @@ function Personi57449() {
     useEffect(() => {
         const vendosTeDhenat = async () => {
             try {
-                const teDhenatKlientit = await axios.get(`https://localhost:7285/api/Personi57449/ShfaqKlientinNgaID?idPersoni=${id}`)
+                const teDhenatKlientit = await axios.get(`http://localhost:7255/api/Personi57449/ShfaqKlientinNgaID?idPersoni=${id}`)
                 setKlienti(teDhenatKlientit.data);
             } catch (e) {
                 console.error(e);
@@ -102,7 +102,7 @@ function Personi57449() {
     };
 
     const handleShtoKlientin = async () => {
-        await axios.post("https://localhost:7285/api/Personi57449/ShtoKlientin", {
+        await axios.post("http://localhost:7255/api/Personi57449/ShtoKlientin", {
             emri57449: emriK,
             mbiemri57449: mbiemriK,
             banka57449ID: bankaK,
@@ -117,7 +117,7 @@ function Personi57449() {
     }
 
     const handlePerditesoKlientin = async () => {
-        await axios.put(`https://localhost:7285/api/Personi57449/PerditesoKlientin?idPersoni=${id}`, klienti)
+        await axios.put(`http://localhost:7255/api/Personi57449/PerditesoKlientin?idPersoni=${id}`, klienti)
             .then(() => {
                 setEdito(false);
                 setPerditeso(Date.now());
@@ -128,7 +128,7 @@ function Personi57449() {
     }
 
     const handleFshijKlientin = async () => {
-        await axios.delete(`https://localhost:7285/api/Personi57449/FshijKlientin?idPersoni=${id}`)
+        await axios.delete(`http://localhost:7255/api/Personi57449/FshijKlientin?idPersoni=${id}`)
             .then(() => {
                 setFshij(false);
                 setPerditeso(Date.now());

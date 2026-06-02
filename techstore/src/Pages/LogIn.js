@@ -60,7 +60,7 @@ const LogIn = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://localhost:7285/api/Authenticate/login", {
+      const response = await axios.post("http://localhost:7255/api/Authenticate/login", {
         email: email,
         password: password,
       }, authentikimi);

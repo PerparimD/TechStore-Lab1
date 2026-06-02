@@ -26,7 +26,7 @@ function Player() {
     const shfaqLojtaret = async () => {
       try {
         const lojtaret = await axios.get(
-          "https://localhost:7285/api/Player/ShfaqLojtaret"
+          "http://localhost:7255/api/Player/ShfaqLojtaret"
         );
         setLojtaret(lojtaret.data);
       } catch (err) {
@@ -44,7 +44,7 @@ function Player() {
     const shfaqEkipet = async () => {
       try {
         const ekipet = await axios.get(
-          "https://localhost:7285/api/Team/ShfaqEkipet"
+          "http://localhost:7255/api/Team/ShfaqEkipet"
         );
         setEkipet(ekipet.data);
       } catch (err) {
@@ -95,7 +95,7 @@ function Player() {
     const vendosTeDhenat = async () => {
       try {
         const teDhenatLojtarit = await axios.get(
-          `https://localhost:7285/api/Player/ShfaqLojtarinNgaID?PlayerId=${id}`
+          `http://localhost:7255/api/Player/ShfaqLojtarinNgaID?PlayerId=${id}`
         );
         setLojtari(teDhenatLojtarit.data);
       } catch (e) {
@@ -121,7 +121,7 @@ function Player() {
 
   const handleShtoLojtarin = async () => {
     await axios
-      .post("https://localhost:7285/api/Player/ShtoLojtarin", {
+      .post("http://localhost:7255/api/Player/ShtoLojtarin", {
         name: name,
         number: number,
         birthYear: birthYear,
@@ -143,7 +143,7 @@ function Player() {
   const handlePerditesoLojtarin = async () => {
     await axios
       .put(
-        `https://localhost:7285/api/Player/PerditesoLojtarin?PlayerId=${id}`,
+        `http://localhost:7255/api/Player/PerditesoLojtarin?PlayerId=${id}`,
         lojtari
       )
       .then(() => {
@@ -157,7 +157,7 @@ function Player() {
 
   const handleFshijLojtarin = async () => {
     await axios
-      .delete(`https://localhost:7285/api/Player/FshijLojtarin?PlayerId=${id}`)
+      .delete(`http://localhost:7255/api/Player/FshijLojtarin?PlayerId=${id}`)
       .then(() => {
         setFshij(false);
         setPerditeso(Date.now());

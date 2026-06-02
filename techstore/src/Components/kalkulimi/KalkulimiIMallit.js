@@ -29,7 +29,7 @@ function KalkulimiIMallit() {
         const shfaqKalkulimet = async () => {
             try {
                 setLoading(true);
-                const kalkulimi = await axios.get("https://localhost:7285/api/RegjistrimiStokut/shfaqRegjistrimet", authentikimi);
+                const kalkulimi = await axios.get("http://localhost:7255/api/RegjistrimiStokut/shfaqRegjistrimet", authentikimi);
                 setKalkulimet(kalkulimi.data);
                 setLoading(false);
             } catch (err) {

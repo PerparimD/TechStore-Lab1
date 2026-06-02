@@ -36,7 +36,7 @@ function Produktet(props) {
     const vendosProduktet = async () => {
       try {
         const produktet = await axios.get(
-          `https://localhost:7285/api/Produkti/Products`, authentikimi
+          `http://localhost:7255/api/Produkti/Products`, authentikimi
         );
         setProduktet(produktet.data);
 
@@ -70,7 +70,7 @@ function Produktet(props) {
     const vendosKategorit = async () => {
       try {
         const kategorit = await axios.get(
-          `https://localhost:7285/api/Kategoria/shfaqKategorit`, authentikimi
+          `http://localhost:7255/api/Kategoria/shfaqKategorit`, authentikimi
         );
         setKategorit(kategorit.data);
       } catch (err) {

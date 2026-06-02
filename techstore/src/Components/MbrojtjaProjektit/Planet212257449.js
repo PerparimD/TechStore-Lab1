@@ -26,7 +26,7 @@ function Planet212257449() {
     const shfaqPlanetet = async () => {
       try {
         const planetet = await axios.get(
-          "https://localhost:7285/api/Planet212257449/ShfaqPlanetet"
+          "http://localhost:7255/api/Planet212257449/ShfaqPlanetet"
         );
         setPlanetet(planetet.data);
       } catch (err) {
@@ -63,7 +63,7 @@ function Planet212257449() {
     const vendosTeDhenat = async () => {
       try {
         const teDhenatPlaneti = await axios.get(
-          `https://localhost:7285/api/Planet212257449/ShfaqPlanetinNgaID?PlanetiId=${id}`
+          `http://localhost:7255/api/Planet212257449/ShfaqPlanetinNgaID?PlanetiId=${id}`
         );
         setPlaneti(teDhenatPlaneti.data);
       } catch (e) {
@@ -89,7 +89,7 @@ function Planet212257449() {
 
   const handleShtoPlanetin = async () => {
     await axios
-      .post("https://localhost:7285/api/Planet212257449/ShtoPlanetin", {
+      .post("http://localhost:7255/api/Planet212257449/ShtoPlanetin", {
         name: name,
         type: type,
       })
@@ -107,7 +107,7 @@ function Planet212257449() {
   const handlePerditesoPlanetin = async () => {
     await axios
       .put(
-        `https://localhost:7285/api/Planet212257449/PerditesoPlanetin?PlanetiId=${id}`,
+        `http://localhost:7255/api/Planet212257449/PerditesoPlanetin?PlanetiId=${id}`,
         planeti
       )
       .then(() => {
@@ -122,7 +122,7 @@ function Planet212257449() {
   const handleFshijPlanetin = async () => {
     await axios
       .delete(
-        `https://localhost:7285/api/Planet212257449/FshijPlanetin?PlanetiId=${id}`
+        `http://localhost:7255/api/Planet212257449/FshijPlanetin?PlanetiId=${id}`
       )
       .then(() => {
         setFshij(false);

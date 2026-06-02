@@ -1,0 +1,390 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\produkticontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\produkticontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\models\\produkti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\produkti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\models\\porosit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\porosit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\vendosfototcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\vendosfototcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\regjistrimistokutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\regjistrimistokutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\porosiacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\porosiacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\migrations\\20240416170627_krijimidatabazesmbrojtjaprojektitdet3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\migrations\\20240416170627_krijimidatabazesmbrojtjaprojektitdet3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\models\\mbrojtjaeprojektit\\banka57449.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\mbrojtjaeprojektit\\banka57449.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\data\\techstoredbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\data\\techstoredbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\mbrojtjaeprojektit\\banka57449controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\mbrojtjaeprojektit\\banka57449controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\models\\mbrojtjaeprojektit\\satellite212257449.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\mbrojtjaeprojektit\\satellite212257449.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\mbrojtjaeprojektit\\planet212257449controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\mbrojtjaeprojektit\\planet212257449controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\models\\mbrojtjaeprojektit\\team.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\mbrojtjaeprojektit\\team.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\models\\mbrojtjaeprojektit\\planet212257449.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\mbrojtjaeprojektit\\planet212257449.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\mbrojtjaeprojektit\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\mbrojtjaeprojektit\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\mbrojtjaeprojektit\\satellite212257449controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\mbrojtjaeprojektit\\satellite212257449controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\models\\mbrojtjaeprojektit\\personi57449.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\mbrojtjaeprojektit\\personi57449.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\mbrojtjaeprojektit\\personi57449controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\mbrojtjaeprojektit\\personi57449controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\perdoruesicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\perdoruesicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\migrations\\20240416152322_krijimidatabazesmbrojtjaprojektitdet2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\migrations\\20240416152322_krijimidatabazesmbrojtjaprojektitdet2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\models\\mbrojtjaeprojektit\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\mbrojtjaeprojektit\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|d:\\programim\\githubprojekte\\techstore-lab1\\webapi\\webapi\\controllers\\mbrojtjaeprojektit\\teamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{959F7509-79EC-4E53-B92C-B8F77DB5B898}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\mbrojtjaeprojektit\\teamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Produkti.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\Produkti.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\Produkti.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\Produkti.cs",
+              "RelativeToolTip": "WebAPI\\Models\\Produkti.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA4AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T19:47:09.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Porosit.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\Porosit.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\Porosit.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\Porosit.cs",
+              "RelativeToolTip": "WebAPI\\Models\\Porosit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T19:47:08.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProduktiController.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\ProduktiController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\ProduktiController.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\ProduktiController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\ProduktiController.cs",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAswLwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T19:46:58.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VendosFototController.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\VendosFototController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\VendosFototController.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\VendosFototController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\VendosFototController.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAowEkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T19:40:56.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RegjistrimiStokutController.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\RegjistrimiStokutController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\RegjistrimiStokutController.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\RegjistrimiStokutController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\RegjistrimiStokutController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwEEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T19:15:05.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PorosiaController.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\PorosiaController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\PorosiaController.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\PorosiaController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\PorosiaController.cs",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAuwG0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T19:08:40.632Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PerdoruesiController.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\PerdoruesiController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\PerdoruesiController.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\PerdoruesiController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\PerdoruesiController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T20:16:03.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "20240416170627_KrijimiDatabazesMbrojtjaProjektitDet3.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Migrations\\20240416170627_KrijimiDatabazesMbrojtjaProjektitDet3.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Migrations\\20240416170627_KrijimiDatabazesMbrojtjaProjektitDet3.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Migrations\\20240416170627_KrijimiDatabazesMbrojtjaProjektitDet3.cs",
+              "RelativeToolTip": "WebAPI\\Migrations\\20240416170627_KrijimiDatabazesMbrojtjaProjektitDet3.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAAQwCwAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T17:06:27.406Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TechStoreDbContext.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Data\\TechStoreDbContext.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Data\\TechStoreDbContext.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Data\\TechStoreDbContext.cs",
+              "RelativeToolTip": "WebAPI\\Data\\TechStoreDbContext.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAIA9wB8AAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T16:54:14.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "TeamController.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\TeamController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\MbrojtjaEProjektit\\TeamController.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\TeamController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\MbrojtjaEProjektit\\TeamController.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAowFsAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T16:53:19.518Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\PlayerController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\MbrojtjaEProjektit\\PlayerController.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\PlayerController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\MbrojtjaEProjektit\\PlayerController.cs",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAcwF8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T16:52:57.468Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Player.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Player.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\MbrojtjaEProjektit\\Player.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Player.cs",
+              "RelativeToolTip": "WebAPI\\Models\\MbrojtjaEProjektit\\Player.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T16:50:31.83Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Team.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Team.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\MbrojtjaEProjektit\\Team.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Team.cs",
+              "RelativeToolTip": "WebAPI\\Models\\MbrojtjaEProjektit\\Team.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T16:49:48.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Banka57449Controller.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\Banka57449Controller.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\MbrojtjaEProjektit\\Banka57449Controller.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\Banka57449Controller.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\MbrojtjaEProjektit\\Banka57449Controller.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAhwCQAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T16:48:38.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Banka57449.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Banka57449.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\MbrojtjaEProjektit\\Banka57449.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Banka57449.cs",
+              "RelativeToolTip": "WebAPI\\Models\\MbrojtjaEProjektit\\Banka57449.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAgAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T16:31:37.345Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Personi57449.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Personi57449.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\MbrojtjaEProjektit\\Personi57449.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Personi57449.cs",
+              "RelativeToolTip": "WebAPI\\Models\\MbrojtjaEProjektit\\Personi57449.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T16:31:30.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Personi57449Controller.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\Personi57449Controller.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\MbrojtjaEProjektit\\Personi57449Controller.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\Personi57449Controller.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\MbrojtjaEProjektit\\Personi57449Controller.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAIwBMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T16:19:08.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "20240416152322_KrijimiDatabazesMbrojtjaProjektitDet2.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Migrations\\20240416152322_KrijimiDatabazesMbrojtjaProjektitDet2.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Migrations\\20240416152322_KrijimiDatabazesMbrojtjaProjektitDet2.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Migrations\\20240416152322_KrijimiDatabazesMbrojtjaProjektitDet2.cs",
+              "RelativeToolTip": "WebAPI\\Migrations\\20240416152322_KrijimiDatabazesMbrojtjaProjektitDet2.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAzwCMAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T15:23:23.264Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Planet212257449Controller.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\Planet212257449Controller.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\MbrojtjaEProjektit\\Planet212257449Controller.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\Planet212257449Controller.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\MbrojtjaEProjektit\\Planet212257449Controller.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAwwCUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T15:04:36.888Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Satellite212257449Controller.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\Satellite212257449Controller.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\MbrojtjaEProjektit\\Satellite212257449Controller.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Controllers\\MbrojtjaEProjektit\\Satellite212257449Controller.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\MbrojtjaEProjektit\\Satellite212257449Controller.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAYwCcAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T15:03:22.042Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Satellite212257449.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Satellite212257449.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\MbrojtjaEProjektit\\Satellite212257449.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Satellite212257449.cs",
+              "RelativeToolTip": "WebAPI\\Models\\MbrojtjaEProjektit\\Satellite212257449.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T15:01:35.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Planet212257449.cs",
+              "DocumentMoniker": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Planet212257449.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\MbrojtjaEProjektit\\Planet212257449.cs",
+              "ToolTip": "D:\\Programim\\GitHubProjekte\\TechStore-Lab1\\WebAPI\\WebAPI\\Models\\MbrojtjaEProjektit\\Planet212257449.cs",
+              "RelativeToolTip": "WebAPI\\Models\\MbrojtjaEProjektit\\Planet212257449.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T14:58:42.486Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -21,7 +21,7 @@ function PerditesoStatusinPorosis(props) {
     useEffect(() => {
         const vendosPorosine = async () => {
             try {
-                const porosia = await axios.get(`https://localhost:7285/api/Porosia/shfaqPorosineNgaID?nrFatures=${props.id}`, authentikimi);
+                const porosia = await axios.get(`http://localhost:7255/api/Porosia/shfaqPorosineNgaID?nrFatures=${props.id}`, authentikimi);
                 setPorosia(porosia.data);
                 setStatusiPorosis(porosia.data.statusiPorosis)
             } catch (err) {
@@ -35,7 +35,7 @@ function PerditesoStatusinPorosis(props) {
     function handleSubmit() {
 
 
-        axios.put(`https://localhost:7285/api/Porosia/perditesoStatusinPorosis?idPorosia=${props.id}&statusi=${statusiPorosis}`, {}, authentikimi)
+        axios.put(`http://localhost:7255/api/Porosia/perditesoStatusinPorosis?idPorosia=${props.id}&statusi=${statusiPorosis}`, {}, authentikimi)
             .then(x => {
                 
                 props.setTipiMesazhit("success");

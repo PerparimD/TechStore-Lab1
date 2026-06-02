@@ -23,7 +23,7 @@ function PorositeUserit(props) {
         const vendosPorosite = async () => {
             try {
                 setLoading(true);
-                const porosija = await axios.get(`https://localhost:7285/api/Porosia/shfaqPorositeUserit?idPerdoruesi=${props.idUseri}`, authentikimi);
+                const porosija = await axios.get(`http://localhost:7255/api/Porosia/shfaqPorositeUserit?idPerdoruesi=${props.idUseri}`, authentikimi);
                 setPorosite(porosija.data);
                 setLoading(false);
             } catch (err) {

@@ -26,7 +26,7 @@ const ShtoProduktin = (props) => {
     const vendosProduktet = async () => {
       try {
         const produktet = await axios.get(
-          `https://localhost:7285/api/Produkti/Products`, authentikimi
+          `http://localhost:7255/api/Produkti/Products`, authentikimi
         );
         setProduktet(produktet.data);
 
@@ -68,8 +68,8 @@ const ShtoProduktin = (props) => {
 
   useEffect(() => {
     Promise.all([
-      fetch("https://localhost:7285/api/Kompania/shfaqKompanit"),
-      fetch("https://localhost:7285/api/Kategoria/shfaqKategorit"),
+      fetch("http://localhost:7255/api/Kompania/shfaqKompanit"),
+      fetch("http://localhost:7255/api/Kategoria/shfaqKategorit"),
     ])
       .then(([resKompanit, resKategorit]) =>
         Promise.all([resKompanit.json(), resKategorit.json()])
@@ -87,10 +87,10 @@ const ShtoProduktin = (props) => {
       formData.append('foto', foto);
 
       try {
-        await axios.post("https://localhost:7285/api/VendosFotot/ShtoProduktin", formData, authentikimi)
+        await axios.post("http://localhost:7255/api/VendosFotot/ShtoProduktin", formData, authentikimi)
           .then(async (response) => {
             await axios
-              .post("https://localhost:7285/api/Produkti/shtoProdukt", {
+              .post("http://localhost:7255/api/Produkti/shtoProdukt", {
                 emriProduktit: emriP,
                 pershkrimi: pershkrimi,
                 fotoProduktit: response.data,
@@ -115,7 +115,7 @@ const ShtoProduktin = (props) => {
 
     } else {
       await axios
-        .post("https://localhost:7285/api/Produkti/shtoProdukt", {
+        .post("http://localhost:7255/api/Produkti/shtoProdukt", {
           emriProduktit: emriP,
           pershkrimi: pershkrimi,
           fotoProduktit: "ProduktPaFoto.png",

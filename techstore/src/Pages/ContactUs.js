@@ -38,7 +38,7 @@ const ContactUs = () => {
       const vendosTeDhenat = async () => {
         try {
           const teDhenat = await axios.get(
-            `https://localhost:7285/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
+            `http://localhost:7255/api/Perdoruesi/shfaqSipasID?idUserAspNet=${getID}`, authentikimi
           );
 
           setUser(teDhenat.data)
@@ -66,7 +66,7 @@ const ContactUs = () => {
   }
 
   function dergoMesazhin() {
-    axios.post("https://localhost:7285/api/ContactForm/shtoMesazhin", {
+    axios.post("http://localhost:7255/api/ContactForm/shtoMesazhin", {
       mesazhi: msg,
       emri: emri,
       email: email,

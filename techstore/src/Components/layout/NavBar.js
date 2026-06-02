@@ -32,7 +32,7 @@ function NavBar(props) {
   useEffect(() => {
     const ShfaqTeDhenat = async () => {
       try {
-        const teDhenat = await axios.get("https://localhost:7285/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
+        const teDhenat = await axios.get("http://localhost:7255/api/TeDhenatBiznesit/ShfaqTeDhenat", authentikimi);
         setTeDhenatBiznesit(teDhenat.data);
       } catch (err) {
         console.log(err);
@@ -73,7 +73,7 @@ function NavBar(props) {
     const produktet = JSON.parse(localStorage.getItem("cart"));
 
     produktet && produktet.forEach(produkti => {
-      axios.get(`https://localhost:7285/api/Produkti/${produkti.id}`, authentikimi)
+      axios.get(`http://localhost:7255/api/Produkti/${produkti.id}`, authentikimi)
         .then(response => {
           const prd = response.data;
 

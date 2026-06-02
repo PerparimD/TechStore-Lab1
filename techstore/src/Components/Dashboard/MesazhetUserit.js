@@ -23,7 +23,7 @@ function MesazhetUserit(props) {
         const vendosMesazhet = async () => {
             try {
                 setLoading(true);
-                const mesazhi = await axios.get(`https://localhost:7285/api/ContactForm/shfaqMesazhetNgaUseri?idUserit=${props.idUseri}`, authentikimi);
+                const mesazhi = await axios.get(`http://localhost:7255/api/ContactForm/shfaqMesazhetNgaUseri?idUserit=${props.idUseri}`, authentikimi);
                 setMesazhet(mesazhi.data);
                 setLoading(false);
             } catch (err) {

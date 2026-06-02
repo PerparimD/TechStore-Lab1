@@ -31,7 +31,7 @@ function TabelaEPerdoruesve() {
         const shfaqPerdoruesit = async () => {
             try {
                 setLoading(true);
-                const perdoruesit = await axios.get("https://localhost:7285/api/Perdoruesi/shfaqPerdoruesit", authentikimi);
+                const perdoruesit = await axios.get("http://localhost:7255/api/Perdoruesi/shfaqPerdoruesit", authentikimi);
                 setPerdoruesit(perdoruesit.data);
                 setLoading(false);
             } catch (err) {

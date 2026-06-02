@@ -36,7 +36,7 @@ function ShtoKodin(props) {
         const vendosProduktet = async () => {
             try {
                 const produktet = await axios.get(
-                    `https://localhost:7285/api/Produkti/Products`, authentikimi
+                    `http://localhost:7255/api/Produkti/Products`, authentikimi
                 );
                 setProduktet(produktet.data);
 
@@ -63,7 +63,7 @@ function ShtoKodin(props) {
     }
 
     function handleSubmit() {
-        axios.post('https://localhost:7285/api/KodiZbritje/shtoKodin', {
+        axios.post('http://localhost:7255/api/KodiZbritje/shtoKodin', {
             kodi: kodi,
             qmimiZbritjes: qmimi,
             idProdukti: produkti

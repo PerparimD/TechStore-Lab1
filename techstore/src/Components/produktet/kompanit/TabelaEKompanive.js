@@ -34,7 +34,7 @@ function TabelaEKompanive(props) {
         const shfaqKompanit = async () => {
             try {
                 setLoading(true);
-                const kompania = await axios.get("https://localhost:7285/api/Kompania/shfaqKompanit", authentikimi);
+                const kompania = await axios.get("http://localhost:7255/api/Kompania/shfaqKompanit", authentikimi);
                 setKompanit(kompania.data);
                 setLoading(false);
             } catch (err) {

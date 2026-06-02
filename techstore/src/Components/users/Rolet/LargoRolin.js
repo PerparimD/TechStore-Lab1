@@ -15,7 +15,7 @@ function LargoRolin(props) {
 
     async function handleSubmit() {
         try {
-            await axios.delete(`https://localhost:7285/api/Authenticate/fshijRolin?emriRolit=${props.emriRolit}`, authentikimi);
+            await axios.delete(`http://localhost:7255/api/Authenticate/fshijRolin?emriRolit=${props.emriRolit}`, authentikimi);
             props.setTipiMesazhit("success");
             props.setPershkrimiMesazhit("Roli u fshi me sukses!")
             props.perditesoTeDhenat();
